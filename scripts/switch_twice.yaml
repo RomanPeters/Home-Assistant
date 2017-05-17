@@ -1,4 +1,8 @@
-#alias: Switch_twice
+alias: Switch_twice
+sequence:
+  - alias: Turn on
+    service: homeassistant.turn_on
+
 #sequence:
 #  - alias: Turn on
 #    service: homeassistant.turn_on
