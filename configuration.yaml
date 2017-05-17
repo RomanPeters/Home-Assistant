@@ -1,0 +1,189 @@
+homeassistant:
+  name: Dashboard
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 40
+  unit_system: metric
+  time_zone: Europe/Amsterdam
+  customize: !include customize.yaml
+
+scene: !include scenes.yaml
+group: !include groups.yaml
+zone: !include zones.yaml
+automation: !include automations.yaml
+script: !include_dir_named scripts
+
+frontend:
+config:
+updater:
+discovery:
+ios:
+conversation:
+#history:
+logbook:
+http:
+  development: False
+  api_password: !secret api_password
+  ip_ban_enabled: True
+  login_attempts_threshold: 3
+
+sun:  
+
+#device_sun_light_trigger:
+#  light_group: group.lichten
+#  light_profile: relax
+#  device_group: group.person_roman
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+  
+sensor:
+#  - platform: systemmonitor
+#    resources:
+#      - type: disk_use_percent
+#        arg: /home
+#      - type: memory_free
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    monitored_conditions:
+      - summary
+      - temperature
+      - precip_type
+      - precip_intensity
+      - hourly_summary
+      - icon
+      - precip_probability
+      - temperature_min
+      - temperature_max
+    update_interval: '00:15'
+
+  - platform: template
+    sensors:
+      text:
+        value_template: 'Dit is een tekst en het is {{ states.sensor.dark_sky_temperature.state|round }} graden in Utrecht.'
+        friendly_name: 'Tekst'
+
+  - platform: minecraft
+    name: Minecraft
+    server: !secret minecraft_server
+
+  - platform: broadlink
+    host: !secret broadlink_ip
+    mac: !secret broadlink_mac
+    monitored_conditions:
+      - temperature
+
+tts:
+  platform: google
+
+#panel_iframe:
+#  buienalarm:
+#    title: 'Rain'
+#    url: 'http://www.buienalarm.nl/location/utrecht'
+
+
+light:
+  platform: limitlessled  # Milight
+  bridges:
+    - host: !secret limitlessled_ip
+      port: 8899
+      version: 5
+      groups:
+      - number: 1
+        type: rgbw
+        name: A
+      - number: 2
+        type: rgbw
+        name: B
+      - number: 3
+        type: rgbw
+        name: C
+      - number: 1
+        type: white
+        name: D
+
+switch:
+  - platform: broadlink
+    host: !secret broadlinkmp1_ip
+    mac: !secret broadlinkmp1_mac
+    type: mp1-1
+    friendly_name: E
+  - platform: broadlink
+    host: !secret broadlinkmp1_ip
+    mac: !secret broadlinkmp1_mac
+    type: mp1-2
+    friendly_name: F
+  - platform: broadlink
+    host: !secret broadlinkmp1_ip
+    mac: !secret broadlinkmp1_mac
+    type: mp1-3
+    friendly_name: G
+  - platform: broadlink
+    host: !secret broadlikmp1_ip
+    mac: !secret broadlinkmp1_mac
+    type: mp1-4
+    friendly_name: H
+
+  - platform: broadlink
+    host: !secret broadlink_ip
+    mac: !secret broadlink_mac
+    #switches:
+    #  reciever:
+    #    command_on: 'switch_packet on'
+    #    command_off: 'switch_packet off'
+
+notify:
+  - name: Telegram
+    platform: telegram
+    api_key: !secret telegram_api_key
+    chat_id: !secret telegram_chat_id
+
+media_player:
+  - platform: apple_tv
+    host: !secret apple_tv_ip
+    login_id: !secret apple_tv_id
+
+#device_tracker:
+#  - platform: nmap_tracker
+#    hosts: 192.168.1.1/24
+#    scan_options: " -sP "
+#  - platform: icloud
+#    username: !secret email
+#    password: !secret password
+
+input_boolean:
+  smart_alarm:
+    name: Smart alarm
+    initial: off
+    icon: mdi:alarm
+
+
+#######
+
+
+#sensor:
+#  - platform: dht
+#    sensor: DHT22
+#    pin: 23
+#    monitored_conditions:
+#      - temperature
+#      - humidity
+
+
+
+
+#keyboard_remote:
+ # #device_name: Wireless Receiver
+ # device_descriptor: /dev/input/event0
+ # type: key_down
+
+#  - platform: random
+#    name: Random sensor
+#    maximum: 255
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+light.a:
+  friendly_name: Lamp
+  icon: mdi:ceiling-light
+light.b:
+  friendly_name: LED-N
+  icon: mdi:blur-linear
+light.c:
+  friendly_name: LED-S
+  icon: mdi:blur-linear
+light.d:
+  friendly_name: Staande lamp
+  icon: mdi:lamp
+switch.e:
+  friendly_name: Air purifier
+  icon: mdi:fan
+switch.f:
+  friendly_name: Water cooker
+  icon: mdi:coffee
+switch.g:
+  friendly_name: TV
+  icon: mdi:television
+switch.h:
+  friendly_name: Speakers
+  icon: mdi:music
+script.groet:
+  friendly_name: Hallo
+  icon: mdi:human-greeting
+sensor.dark_sky_temperature:
+  friendly_name: Outside
+sensor.broadlink_sensor_temperature:
+  friendly_name: Inside

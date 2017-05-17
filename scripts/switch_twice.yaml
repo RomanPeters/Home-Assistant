@@ -1,0 +1,12 @@
+alias: Switch_twice
+sequence:
+  - alias: Turn on
+    service: homeassistant.turn_on
+    data:
+      entity_id: "{{ switch }}"
+  - delay:
+      seconds: "{{ seconds }}"
+  - alias: Turn off
+    service: homeassistant.turn_off
+    data:
+      entity_id: "{{ switch }}"

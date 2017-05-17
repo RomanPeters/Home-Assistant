@@ -1,0 +1,84 @@
+default_view:
+  view: yes
+  icon: mdi:home 
+  entities:
+#    - group.system
+    - group.lichten
+    - group.coloredlight
+    - group.weather
+    - group.entertainment
+    - group.apple_tv
+    - group.appliances
+    - group.minecraft
+    - panel_iframe.buienalarm
+    - script.groet
+    - group.smart_alarm
+
+#system:
+#  name: Server
+#  view: yes
+#  entities:
+#    - sensor.disk_use_home
+#    - sensor.ram_free
+
+
+weather:
+  name: Temperature
+  view: no
+  entities:
+    - sensor.broadlink_sensor_temperature
+    - sensor.dark_sky_temperature
+    #- sensor.dark_sky_summary
+    #- sensor.dark_sky_hourly_summary
+    #- group.tekst
+
+entertainment:
+  name: Entertainment
+  view: no
+  entities:
+    - switch.h
+    - switch.g
+
+apple_tv:
+  name: Apple TV
+  view: no
+  entities:
+    - media_player.apple_tv
+
+minecraft:
+  name: Minecraft
+  entities:
+    - sensor.minecraft
+
+coloredlight:
+  name: Colour
+  entities:
+    - light.a
+    - light.b
+    - light.c
+
+lichten:
+  name: White
+  entities:
+    - light.d
+
+appliances:
+  name: Appliances
+  entities:
+    - switch.e
+    - switch.f
+
+
+smart_alarm:
+  name: Smart alarm
+  entities:
+    - input_boolean.smart_alarm
+
+
+person_roman:
+  name: Roman
+  entities:
+    - device_tracker.iphone
+    - device_tracker.macbookpro
+#    - device_tracker.iphonedomain_not_setinvalid
+#    - device_tracker.macbookprodomain_not_setinvalid

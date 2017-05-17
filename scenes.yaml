@@ -1,0 +1,44 @@
+- name: Romantic
+  entities:
+    light.a:
+      brightness: 100
+      color_name: pink
+    light.b:
+      brightness: 100
+      color_name: red
+    light.c:
+      brightness: 100
+
+    
+- name: Normal
+  entities:
+    light.led_a:
+      brightness: 250
+
+- name: Movie
+  entities:
+    light.a:
+      brightness: 5
+      color_name: yellow
+    light.b:
+      brightness: 10
+      color_name: orange
+    light.c:
+      brightness: 10
+      color_name: red
+
+- name: Dim
+  entities:
+    light.a:
+      transition: 2
+      brightness: 10
+    light.b:
+      transition: 2
+      brightness: 10
+    light.c:
+      transition: 2
+      brightness: 10
+    light.d:
+      transition: 2
+      brightness: 10
+    
