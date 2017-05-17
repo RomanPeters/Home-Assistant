@@ -120,7 +120,7 @@ switch:
     type: mp1-3
     friendly_name: G
   - platform: broadlink
-    host: !secret broadlikmp1_ip
+    host: !secret broadlinkmp1_ip
     mac: !secret broadlinkmp1_mac
     type: mp1-4
     friendly_name: H
