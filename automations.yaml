@@ -1,122 +1,33 @@
-- alias: Turn on light when sun sets
-  trigger:
-    platform: sun
-    event: sunset
-  condition:
-    - condition: state
-      entity_id: group.person_roman
-      state: 'home'
-    - condition: time
-      after: '16:00:00'
-      before: '23:59:59'
-  action:
-    - service: homeassistant.turn_on
-      entity_id: group.coloredlight
-    - service: notify.telegram
-      data_template: 
-        title: 'Scene turned on'
-        message: "Scene: Sunset"
-        
-- alias: Wake up
-  trigger:
-    platform: state
-    entity_id: input_boolean.smart_alarm
-    state: 'on'
-  action:
-    - service: script.turn_on
-      entity_id: script.wake_up
-
-- alias: Shutdown protocol
-  trigger:
-    platform: state
-    entity_id: group.person_roman
-    state: 'not_home'
-  action:
-    - service: light.turn_off
-      entity_id: group.all_lights
-    - service: notify.telegram
-      data_template: 
-        title: 'Scene turned on'
-        message: "Scene: Shutdown protocol"
-
-
-- alias: Television on
-  trigger:
-    platform: state
-    entity_id: switch.g
-    state: 'on'
-  action:
-    - service: group.set_visibility
-      entity_id: group.apple_tv
-      data:
-        visible: True
-
-- alias: Television off
-  trigger:
-    platform: state
-    entity_id: switch.g
-    state: 'off'
-  action:
-    service: group.set_visibility
-    entity_id: group.apple_tv
-    data:
-      visible: False
- 
-- alias: Update notifications
-  trigger:
-    - platform: state
-      entity_id: updater.updater
-  action:
-    service: notify.telegram
-    data_template: 
-      title: 'New Home Assistant Release'
-      message: "Home Assistant  {{ states.updater.updater.state }}  is nu verkrijgbaar."
-
-#- alias: Dim om middernacht
+#- action:
+#  - service: homeassistant.turn_on
+#    entity_id: group.coloredlight
+#  alias: At sunset
+#  id: '1495372885473'
 #  trigger:
-#    - condition: time
-#      after: '00:00:00'
+#    platform: sun
+#    event: sunset
 #  condition:
-#    - platform: state
-#      entity_id: group.all_lights
-#      state: 'on'
-#  action:
-#    - service: scene.turn_on
-#      entity_id: scene.dim
-#    - service: notify.telegram
-#      data_template: 
-#        title: 'Scene turned on'
-#        message: "Scene: Dim om middernacht"
+#    - condition: state
+#      entity_id: group.person_roman
+#      state: 'home'
 
-#- alias: Minecraft from
-#  trigger:
-#    platform: state
-#    entity_id: sensor.minecraft
-#    from: '0/15'
-#  action:
-#    - service: group.set_visibility
-#      entity_id: group.minecraft
-#      data:
-#        visible: True
-#    - service: notify.telegram
-#      data_template:
-#        title: 'Minecraft'
-#        message: 'Minecraft online'
 
-#- alias: Minecraft to
-#  trigger:
-#    platform: state
-#    entity_id: sensor.minecraft
-#    to: '0/15'
-#  action:
-#    - service: group.set_visibility
-#      entity_id: group.minecraft
-#      data:
-#        visible: False
-#    - service: notify.telegram
-#      data_template:
-#        title: 'Minecraft'
-#        message: 'Minecraft offline'
+- action: 
+    service: script.wake_up
+  alias: Wake up light
+  id: '1495372885474'
+  trigger:
+    platform: time
+    minutes: '/5'
+    seconds: 00
+  condition:
+    - condition: template
+      value_template: '{{ now().strftime("%H:%M") == strptime(states.input_select.alarm_time.state, "%H:%M") }}'
+    - condition: state
+      entity_id: input_boolean.smart_alarm
+      state: 'on'
+
+
 
 
 

@@ -20,6 +20,7 @@ discovery:
 ios:
 conversation:
 #history:
+datadog:
 logbook:
 http:
   development: False
@@ -49,20 +50,20 @@ sensor:
     monitored_conditions:
       - summary
       - temperature
-      - precip_type
-      - precip_intensity
+#      - precip_type
+#      - precip_intensity
       - hourly_summary
-      - icon
-      - precip_probability
+#      - icon
+#      - precip_probability
       - temperature_min
       - temperature_max
     update_interval: '00:15'
 
-  - platform: template
-    sensors:
-      text:
-        value_template: 'Dit is een tekst en het is {{ states.sensor.dark_sky_temperature.state|round }} graden in Utrecht.'
-        friendly_name: 'Tekst'
+ # - platform: template
+ #   sensors:
+#      text:
+#        value_template: 'Dit is een tekst en het is {{ states.sensor.dark_sky_temperature.state|round }} graden in Utrecht.'
+#        friendly_name: 'Tekst'
 
   - platform: minecraft
     name: Minecraft
@@ -73,14 +74,17 @@ sensor:
     mac: !secret broadlink_mac
     monitored_conditions:
       - temperature
+  - platform: bitcoin
+    display_options:
+      - exchangerate
 
 tts:
   platform: google
 
-#panel_iframe:
-#  buienalarm:
-#    title: 'Rain'
-#    url: 'http://www.buienalarm.nl/location/utrecht'
+panel_iframe:
+  buienalarm:
+    title: 'Rain'
+    url: 'https://www.romanpeters.nl'
 
 
 light:
@@ -157,6 +161,12 @@ input_boolean:
     name: Smart alarm
     initial: off
     icon: mdi:alarm
+
+input_select:
+  alarm_time:
+    name: "Time"
+    initial: "08:00"
+    options: !include times.yaml
 
 
 #######

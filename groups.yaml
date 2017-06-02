@@ -73,6 +73,7 @@ smart_alarm:
   name: Smart alarm
   entities:
     - input_boolean.smart_alarm
+    - input_select.alarm_time
 
 
 person_roman:

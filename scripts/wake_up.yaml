@@ -1,33 +1,29 @@
 alias: Wake_up
 sequence:
-  - alias: message
-    service: notify.telegram
-    data_template: 
-      title: 'Scene turned on'
-      message: "Wake up triggered"
-  - alias: Wake-up light
-    service: home_assistant.turn_on
-    entity_id: light.a
-    #color_name: white
-    #transition: 18
-    #brightness: 255
-    
-#  - delay:
-#      minutes: 27
-#  - alias: Zet koffie
-#    service: script.switch_twice
-#    data: 
-#      switch: switch.h
-#      seconds: 180
-#  - delay:
-#      minutes: 3
-#  - alias
-#  service: homeassistant.turn_on
-#    data:
-#      entity_id: switch.h 
+  - alias: Wake up light
+    service: homeassistant.turn_on
+    data:
+      entity_id: group.lichten
+      color_name: white
+      transition: 1800
+      brightness: 255
+  - delay:
+      minutes: 60
+#  - alias: Set alarm
+#      service: input_select.select_option
+#      data:
+#        entity_id: input_select.alarm_time
+#        # not the right day, doesn't work, subtract 60 min
+#        option: "{{ states.calendar.betaplanner.attributes.start_time[10:16] }}"  # must be rounded to %5
+  - alias: Lights off
+    service: homeassistant.turn_off
+    data:
+      entity_id: group.lichten
+
+
 
   
 
 #  - alias: Start sport
 
-#  - alias: Start ontbijt
+#  - alias: Start ontbijt ttp
