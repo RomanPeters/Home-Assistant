@@ -1,6 +1,6 @@
 light.a:
-  friendly_name: Lamp
-  icon: mdi:ceiling-light
+  friendly_name: RGBW
+  icon: mdi:lightbulb
 light.b:
   friendly_name: LED-N
   icon: mdi:blur-linear
@@ -8,8 +8,8 @@ light.c:
   friendly_name: LED-S
   icon: mdi:blur-linear
 light.d:
-  friendly_name: Staande lamp
-  icon: mdi:lamp
+  friendly_name: WW
+  icon: mdi:lightbulb
 switch.e:
   friendly_name: Air purifier
   icon: mdi:fan
