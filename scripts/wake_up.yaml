@@ -3,22 +3,30 @@ sequence:
   - alias: Wake up light
     service: homeassistant.turn_on
     data:
-      entity_id: group.lichten
+      entity_id: light.d
       color_name: white
-      transition: 1800
+      transition: 4 #transition: 1800
       brightness: 255
+      color_temp: 154
+
   - delay:
-      minutes: 60
-#  - alias: Set alarm
-#      service: input_select.select_option
-#      data:
-#        entity_id: input_select.alarm_time
-#        # not the right day, doesn't work, subtract 60 min
-#        option: "{{ states.calendar.betaplanner.attributes.start_time[10:16] }}"  # must be rounded to %5
+      seconds: 6 # minutes: 60
+
+  - alias: Set alarm
+    service: input_select.select_option
+    data_template:
+      entity_id: input_select.alarm_time
+      option: >
+        {% if states.calendar.betaplanner.attributes.start_time[15] == '5' or states.calendar.betaplanner.attributes.start_time[15] == '0'  %}
+        {{ ((strptime(states.calendar.betaplanner.attributes.start_time[11:16], "%H:%M") - strptime("1", "%H")) | string)[:-3] }}
+        {% else %}
+        {{ ((strptime(states.calendar.betaplanner.attributes.start_time[11:16], "%H:%M") - strptime("1", "%H")) | string)[:-4] }}0
+        {% endif %}
+        
   - alias: Lights off
     service: homeassistant.turn_off
     data:
-      entity_id: group.lichten
+      entity_id: light.d
 
 
 

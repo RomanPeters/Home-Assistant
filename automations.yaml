@@ -22,7 +22,7 @@
     seconds: 00
   condition:
     - condition: template
-      value_template: '{{ now().strftime("%H:%M") == strptime(states.input_select.alarm_time.state, "%H:%M") }}'
+      value_template: '{{ (now().strftime("%s") | int + 1800) | timestamp_custom("%H:%M") == states.input_select.alarm_time.state }}'
     - condition: state
       entity_id: input_boolean.smart_alarm
       state: 'on'
