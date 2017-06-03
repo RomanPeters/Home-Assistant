@@ -1,0 +1,5 @@
+alias: Boot
+sequence:
+  - alias: Set alarm
+    service: script.set_alarm
+
