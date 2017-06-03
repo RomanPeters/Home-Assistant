@@ -1,0 +1,23 @@
+alias: Under water
+sequence:
+  - alias: Under water 1
+    service: scene.turn_on
+    data_template:
+      entity_id: scene.under_water1
+      transition: '{{ states.input_slider.light_transition.state | int }}'
+
+  - alias: Under water 2
+    service: scene.turn_on
+    data_template:
+      entity_id: scene.under_water2
+      transition: '{{ states.input_slider.light_transition.state | int }}'
+
+  - alias: Under water 3
+    service: scene.turn_on
+    data_template:
+      entity_id: scene.under_water3
+      transition: '{{ states.input_slider.light_transition.state | int }}'
+
+
+  - alias: Loop
+    service: script.loop2

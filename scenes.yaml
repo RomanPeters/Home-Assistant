@@ -28,35 +28,6 @@
       state: on
       brightness: 255
 
-- name: Ta
-  entities:
-    light.a: 
-      state: on
-      color_name: blue
-    light.b:
-      state: on
-      color_name: red
-    light.c:
-      state: on
-      color_name: blue
-    light.d:
-      state: off
-
-- name: Tu
-  entities:
-    light.a: 
-      state: on
-      color_name: red
-    light.b:
-      state: on
-      color_name: blue
-    light.c:
-      state: on
-      color_name: red
-    light.d:
-      state: off
-
-
     
 - name: Normal
   entities:
@@ -89,4 +60,72 @@
     light.d:
       transition: 2
       brightness: 10
+
+
+- name: Ta
+  entities:
+    light.a: 
+      state: on
+      color_name: blue
+    light.b:
+      state: on
+      color_name: red
+    light.c:
+      state: on
+      color_name: blue
+    light.d:
+      state: off
+
+- name: Tu
+  entities:
+    light.b:
+      state: on
+      color_name: blue
+    light.c:
+      state: on
+      color_name: red
+    light.d:
+      state: off
+
+- name: Under water1
+  entities:
+    light.a: 
+      state: on
+      color_name: blue
+    light.b:
+      state: on
+      color_name: cornflowerblue
+    light.c:
+      state: on
+      color_name: aqua
+    light.d:
+      state: off
+
+- name: Under water2
+  entities:
+    light.a: 
+      state: on
+      color_name: darkblue
+    light.b:
+      state: on
+      color_name: cyan
+    light.c:
+      state: on
+      color_name: dodgerblue
+    light.d:
+      state: off
+
+- name: Under water3
+  entities:
+    light.a: 
+      state: on
+      color_name: royalblue
+    light.b:
+      state: on
+      color_name: lightskyblue
+    light.c:
+      state: on
+      color_name: darkslateblue
+    light.d:
+      state: off
     
