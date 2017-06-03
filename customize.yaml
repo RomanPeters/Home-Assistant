@@ -16,7 +16,7 @@ switch.e:
 switch.f:
   friendly_name: Water cooker
   icon: mdi:coffee
-switch.g:
+switch.tv:
   friendly_name: TV
   icon: mdi:television
 switch.h:

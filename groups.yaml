@@ -29,6 +29,8 @@ scripts:
     - script.groet
     - script.wake_up
     - script.boot
+    - script.tv_on
+    - script.tv_off
 
 weather:
   name: Temperature
@@ -45,7 +47,7 @@ entertainment:
   view: no
   entities:
     - switch.h
-    - switch.g
+    - switch.tv
 
 apple_tv:
   name: Apple TV
@@ -88,12 +90,8 @@ light_scripts:
   name: Light scenes
   entities:
     - input_slider.light_transition
-    - scene.romantic
-    - scene.white
-    - scene.ta
-    - scene.tu
-    - script.blue_furry
-    - script.loop
+    - input_select.transition
+    - input_select.scene
     
   
 

@@ -132,10 +132,16 @@ switch:
   - platform: broadlink
     host: !secret broadlink_ip
     mac: !secret broadlink_mac
-    #switches:
-    #  reciever:
-    #    command_on: 'switch_packet on'
-    #    command_off: 'switch_packet off'
+
+  - platform: template
+    switches:
+      tv:
+        friendly_name: 'Television'
+        value_template: "{{ states.switch.g.state }}"
+        turn_on:
+          service: script.tv_on
+        turn_off:
+          service: script.tv_off
 
 
 media_player:
@@ -163,13 +169,30 @@ input_select:
     initial: "08:00"
     options: !include times.yaml
 
+  transition:
+    name: "Transitions"
+    options:
+      - None
+      - blue_furry
+      - under_water
+
+  scene:
+    name: "Scenes"
+    options:
+      - None
+      - romantic
+      - white
+
+
 input_slider:
   light_transition:
     name: Delay
-    initial: 5
-    min: 0
+    initial: 9
+    min: 1
     max: 9
     step: 1
+
+
 
 
 
