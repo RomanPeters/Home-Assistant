@@ -25,6 +25,13 @@ switch.h:
 script.groet:
   friendly_name: Hallo
   icon: mdi:human-greeting
+script.set_alarm:
+  friendly_name: Auto-adjust
+  icon: None
+input_select.alarm_time:
+  icon: None
+input_boolean.smart_alarm:
+  icon: mdi:alarm
 sensor.dark_sky_temperature:
   friendly_name: Outside
 sensor.broadlink_sensor_temperature:

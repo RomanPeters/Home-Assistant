@@ -11,8 +11,9 @@ default_view:
     - group.appliances
     - group.minecraft
     - panel_iframe.buienalarm
-    - script.groet
+    - group.scripts
     - group.smart_alarm
+    - group.person_roman
 
 #system:
 #  name: Server
@@ -21,6 +22,12 @@ default_view:
 #    - sensor.disk_use_home
 #    - sensor.ram_free
 
+scripts:
+  name: Scripts
+  entities:
+    - script.groet
+    - script.wake_up
+    - script.boot
 
 weather:
   name: Temperature
@@ -74,6 +81,10 @@ smart_alarm:
   entities:
     - input_boolean.smart_alarm
     - input_select.alarm_time
+    - script.set_alarm
+ 
+    
+  
 
 
 person_roman:

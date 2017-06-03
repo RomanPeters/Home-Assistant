@@ -20,7 +20,7 @@ discovery:
 ios:
 conversation:
 #history:
-datadog:
+#datadog:
 logbook:
 http:
   development: False
@@ -65,9 +65,9 @@ sensor:
 #        value_template: 'Dit is een tekst en het is {{ states.sensor.dark_sky_temperature.state|round }} graden in Utrecht.'
 #        friendly_name: 'Tekst'
 
-  - platform: minecraft
-    name: Minecraft
-    server: !secret minecraft_server
+#  - platform: minecraft
+#    name: Minecraft
+#    server: !secret minecraft_server
 
   - platform: broadlink
     host: !secret broadlink_ip
@@ -81,10 +81,10 @@ sensor:
 tts:
   platform: google
 
-panel_iframe:
-  buienalarm:
-    title: 'Rain'
-    url: 'https://www.romanpeters.nl'
+#panel_iframe:
+#  buienalarm:
+#    title: 'Router'
+#    url: 'http://router/cgi-bin/info-system.sh'
 
 
 light:
@@ -137,11 +137,6 @@ switch:
     #    command_on: 'switch_packet on'
     #    command_off: 'switch_packet off'
 
-notify:
-  - name: Telegram
-    platform: telegram
-    api_key: !secret telegram_api_key
-    chat_id: !secret telegram_chat_id
 
 media_player:
   - platform: apple_tv
@@ -167,18 +162,6 @@ input_select:
     name: "Time"
     initial: "08:00"
     options: !include times.yaml
-
-
-#######
-
-
-#sensor:
-#  - platform: dht
-#    sensor: DHT22
-#    pin: 23
-#    monitored_conditions:
-#      - temperature
-#      - humidity
 
 
 
