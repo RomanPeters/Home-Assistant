@@ -2,7 +2,7 @@
 #  - service: homeassistant.turn_on
 #    entity_id: group.coloredlight
 #  alias: At sunset
-#  id: '1495372885473'
+#  id: '1495372885472'
 #  trigger:
 #    platform: sun
 #    event: sunset
@@ -11,6 +11,13 @@
 #      entity_id: group.person_roman
 #      state: 'home'
 
+- action:
+    service: script.boot
+  alias: Boot
+  id: '1495372885473'
+  trigger:
+    platform: homeassistant
+    event: start
 
 - action: 
     service: script.wake_up
@@ -28,7 +35,40 @@
       state: 'on'
 
 
+- alias: Shutdown protocol
+  trigger:
+    platform: state
+    entity_id: group.person_roman
+    state: 'not_home'
+  action:
+    - service: light.turn_off
+      entity_id: group.all_lights
+    
 
+- alias: Television on
+  trigger:
+    platform: state
+    entity_id: switch.g
+    state: 'on'
+  action:
+    - service: group.set_visibility
+      entity_id: group.apple_tv
+      data:
+        visible: True
+    - service: notify.telegram
+      data_template: 
+        title: 'Scene turned on'
+        message: "Test"
 
+- alias: Television off
+  trigger:
+    platform: state
+    entity_id: switch.g
+    state: 'off'
+  action:
+    service: group.set_visibility
+    entity_id: group.apple_tv
+    data:
+      visible: False
 
 
