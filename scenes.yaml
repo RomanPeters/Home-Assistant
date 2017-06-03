@@ -1,13 +1,61 @@
 - name: Romantic
   entities:
     light.a:
-      brightness: 100
-      color_name: pink
+      state: on
+      color_name: red
     light.b:
-      brightness: 100
+      state: on
       color_name: red
     light.c:
-      brightness: 100
+      state: on
+      color_name: red
+    light.d:
+      state: off
+
+
+- name: White
+  entities:
+    light.a: 
+      state: on
+      brightness: 255
+      color_name: white
+      color_temp: 1
+    light.b:
+      state: off
+    light.c:
+      state: off
+    light.d:
+      state: on
+      brightness: 255
+
+- name: Ta
+  entities:
+    light.a: 
+      state: on
+      color_name: blue
+    light.b:
+      state: on
+      color_name: red
+    light.c:
+      state: on
+      color_name: blue
+    light.d:
+      state: off
+
+- name: Tu
+  entities:
+    light.a: 
+      state: on
+      color_name: red
+    light.b:
+      state: on
+      color_name: blue
+    light.c:
+      state: on
+      color_name: red
+    light.d:
+      state: off
+
 
     
 - name: Normal

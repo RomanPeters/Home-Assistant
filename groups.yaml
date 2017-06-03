@@ -12,6 +12,7 @@ default_view:
     - group.minecraft
     - panel_iframe.buienalarm
     - group.scripts
+    - group.light_scripts
     - group.smart_alarm
     - group.person_roman
 
@@ -82,7 +83,17 @@ smart_alarm:
     - input_boolean.smart_alarm
     - input_select.alarm_time
     - script.set_alarm
- 
+
+light_scripts:
+  name: Light scenes
+  entities:
+    - input_slider.light_transition
+    - scene.romantic
+    - scene.white
+    - scene.ta
+    - scene.tu
+    - script.blue_furry
+    - script.loop
     
   
 

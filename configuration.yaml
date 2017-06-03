@@ -163,6 +163,14 @@ input_select:
     initial: "08:00"
     options: !include times.yaml
 
+input_slider:
+  light_transition:
+    name: Delay
+    initial: 5
+    min: 0
+    max: 9
+    step: 1
+
 
 
 
