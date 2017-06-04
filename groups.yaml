@@ -15,6 +15,8 @@ default_view:
     - group.light_scripts
     - group.smart_alarm
     - group.person_roman
+    - group.power_off
+    - group.power_off_activated
 
 #system:
 #  name: Server
@@ -85,6 +87,8 @@ smart_alarm:
     - input_boolean.smart_alarm
     - input_select.alarm_time
     - script.set_alarm
+    - script.set_alarm2
+    - script.set_alarm3
 
 light_scripts:
   name: Light scenes
@@ -93,8 +97,15 @@ light_scripts:
     - input_select.transition
     - input_select.scene
     
-  
+power_off:
+  name: Power off
+  entities:
+    - input_select.power_off
 
+power_off_activated:
+  name: Power off
+  entities:
+    - script.power_off
 
 person_roman:
   name: Roman

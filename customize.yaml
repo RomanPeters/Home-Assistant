@@ -26,7 +26,13 @@ script.groet:
   friendly_name: Hallo
   icon: mdi:human-greeting
 script.set_alarm:
-  friendly_name: Auto-adjust
+  friendly_name: Agenda adjust
+  icon: None
+script.set_alarm2:
+  friendly_name: Night sleep
+  icon: None
+script.set_alarm3:
+  friendly_name: Power nap
   icon: None
 input_select.alarm_time:
   icon: None
@@ -36,3 +42,12 @@ sensor.dark_sky_temperature:
   friendly_name: Outside
 sensor.broadlink_sensor_temperature:
   friendly_name: Inside
+input_select.power_off:
+  friendly_name: Minutes
+  icon: mdi:timelapse
+script.power_off:
+  friendly_name: Activated
+  icon: mdi:timelapse
+
+
+

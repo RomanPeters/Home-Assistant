@@ -50,14 +50,7 @@
     data_template:
       entity_id: "scene.{{ states.input_select.scene.state }}"
 
-- alias: Shutdown protocol
-  trigger:
-    platform: state
-    entity_id: group.person_roman
-    state: 'not_home'
-  action:
-    - service: light.turn_off
-      entity_id: group.all_lights
+
     
 
 - alias: Television on
@@ -85,5 +78,92 @@
     entity_id: group.apple_tv
     data:
       visible: False
+
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '1'
+  action:
+    service: script.power_off
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '5'
+  action:
+    service: script.power_off
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '15'
+  action:
+    service: script.power_off
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '30'
+  action:
+    service: script.power_off
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '60'
+  action:
+    service: script.power_off
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '120'
+  action:
+    service: script.power_off
+
+
+- alias: Power_off script activated
+  trigger:
+    platform: state
+    entity_id: script.power_off
+    state: 'on'
+  action:
+    - service: group.set_visibility
+      entity_id: group.power_off
+      data:
+        visible: False
+    - service: group.set_visibility
+      entity_id: group.power_off_activated
+      data:
+        visible: True
+
+- alias: Power_off script deactivated
+  trigger:
+    platform: state
+    entity_id: script.power_off
+    state: 'off'
+  action:
+    - service: group.set_visibility
+      entity_id: group.power_off_activated
+      data:
+        visible: False
+    - service: group.set_visibility
+      entity_id: group.power_off
+      data:
+        visible: True
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.power_off
+        option: 0
+
+
+
+
+
+
+
+
+
 
 

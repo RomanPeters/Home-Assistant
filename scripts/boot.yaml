@@ -7,3 +7,14 @@ sequence:
     entity_id: group.apple_tv
     data:
       visible: False
+  - alias: Hide scripts
+    service: group.set_visibility
+    entity_id: group.scripts
+    data:
+      visible: False
+  - alias: Hide power off active
+    service: group.set_visibility
+    entity_id: group.power_off_activated
+    data:
+      visible: False
+

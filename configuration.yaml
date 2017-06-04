@@ -183,6 +183,18 @@ input_select:
       - romantic
       - white
 
+  power_off:
+    name: "Power off"
+    options:
+      - 0
+      - 1
+      - 5
+      - 15
+      - 30
+      - 60
+      - 120
+    initial: 0
+
 
 input_slider:
   light_transition:
