@@ -1,0 +1,11 @@
+alias: Set alarm
+sequence:
+  - alias: Set alarm
+    service: input_select.select_option
+    data_template:
+      entity_id: input_select.alarm_time
+      option: '{{ (( as_timestamp(strptime(now().strftime("%Y-%m-%d %H:%M"), "%Y-%m-%d %H:%M")) + 32400) | timestamp_local | string)[11:15] }}0'
+  - alias: Turn on/off
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.smart_alarm
