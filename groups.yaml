@@ -17,6 +17,7 @@ default_view:
     - group.person_roman
     - group.power_off
     - group.power_off_activated
+    - group.cryptocurrency
 
 #system:
 #  name: Server
@@ -114,3 +115,11 @@ person_roman:
     - device_tracker.macbookpro
 #    - device_tracker.iphonedomain_not_setinvalid
 #    - device_tracker.macbookprodomain_not_setinvalid
+
+
+cryptocurrency:
+  name: Ethereum
+  entities:
+    - sensor.ethereum_eur
+    - sensor.wallet_eth
+    - sensor.wallet_eur

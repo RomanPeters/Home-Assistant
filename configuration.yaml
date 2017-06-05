@@ -74,9 +74,24 @@ sensor:
     mac: !secret broadlink_mac
     monitored_conditions:
       - temperature
-  - platform: bitcoin
-    display_options:
-      - exchangerate
+
+  - platform: rest
+    name: Ethereum EUR
+    resource: 'https://min-api.cryptocompare.com/data/dayAvg?fsym=ETH&tsym=EUR&UTCHourDiff=-8&extraParams=your_app_name'
+    value_template: '{{ value_json.EUR }}'
+    unit_of_measurement: EUR
+
+  - platform: rest
+    name: Wallet ETH
+    resource: 'https://api.etherscan.io/api?module=account&action=balance&address=0x9e07ff917221c568d082468d1234d1bd89669ce4&tag=latest'
+    value_template: '{{ (value_json.result | float / 1000000000000000000)| round(4) }}'
+    unit_of_measurement: ETH
+
+  - platform: template
+    sensors:
+      wallet_eur:
+        value_template: '{{ ((states.sensor.ethereum_eur.state | float) * (states.sensor.wallet_eth.state | float)) | round(2) }}'
+        unit_of_measurement: EUR
 
 tts:
   platform: google
