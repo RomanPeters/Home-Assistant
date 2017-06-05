@@ -9,7 +9,6 @@ default_view:
     - group.entertainment
     - group.apple_tv
     - group.appliances
-    - group.minecraft
     - panel_iframe.buienalarm
     - group.scripts
     - group.light_scripts

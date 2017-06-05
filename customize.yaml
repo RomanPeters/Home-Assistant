@@ -1,23 +1,23 @@
 light.a:
-  friendly_name: RGBW
-  icon: mdi:lightbulb
+  friendly_name: RGBW bulb
+  icon: mdi:lightbulb-outline
 light.b:
-  friendly_name: LED-N
+  friendly_name: LED strip N
   icon: mdi:blur-linear
 light.c:
-  friendly_name: LED-S
+  friendly_name: LED strip S
   icon: mdi:blur-linear
 light.d:
-  friendly_name: WW
-  icon: mdi:lightbulb
+  friendly_name: White bulb
+  icon: mdi:lightbulb-outline
 switch.e:
   friendly_name: Air purifier
   icon: mdi:fan
 switch.f:
-  friendly_name: Water cooker
-  icon: mdi:coffee
+  friendly_name: Fan
+  icon: mdi:fan
 switch.tv:
-  friendly_name: TV
+  friendly_name: Television
   icon: mdi:television
 switch.h:
   friendly_name: Speakers
@@ -38,8 +38,10 @@ input_select.alarm_time:
   icon: None
 input_boolean.smart_alarm:
   icon: mdi:alarm
+  homebridge_hidden: true
 sensor.dark_sky_temperature:
   friendly_name: Outside
+  homebridge_hidden: true
 sensor.broadlink_sensor_temperature:
   friendly_name: Inside
 input_select.power_off:
@@ -57,6 +59,66 @@ sensor.wallet_eth:
 sensor.wallet_eur:
   friendly_name: ' '
   icon: None
+group.apple_tv:
+  homebridge_hidden: true
+media_player.apple_tv:
+  homebridge_hidden: true
+group.appliances:
+  homebridge_hidden: true
+group.coloredlight:
+  homebridge_hidden: true
+group.entertainment:
+  homebridge_hidden: true
+#group.ethereum:
+  #homebridge_hidden: true
+group.light_scripts:
+  homebridge_hidden: true
+group.power_off:
+  homebridge_hidden: true
+group.scripts:
+  homebridge_hidden: true
+group.smart_alarm:
+  homebridge_hidden: true
+scene.ta:
+  homebridge_hidden: true
+scene.tu:
+  homebridge_hidden: true
+scene.under_water1:
+  homebridge_hidden: true
+scene.under_water2:
+  homebridge_hidden: true
+scene.under_water3:
+  homebridge_hidden: true
+group.lichten:
+  homebridge_hidden: true
+group.cryptocurrency:
+  homebridge_hidden: true
+switch.g:
+  homebridge_hidden: true
+group.person_roman:
+  homebridge_hidden: true
+group.weather:
+  homebridge_hidden: true
+sensor.darksky:
+  homebridge_hidden: true
+sensor.dark_sky_daily_high_temperature:
+  homebridge_hidden: true
+sensor.dark_sky_daily_low_temperature:
+  homebridge_hidden: true
+sensor.dark_sky_hourly_summary:
+  homebridge_hidden: true
+sensor.dark_sky_summary:
+  homebridge_hidden: true
+sensor.rest:
+  homebridge_hidden: true
+sensor.template:
+  homebridge_hidden: true
+group.minecraft:
+  homebridge_hidden: true
+
+
+
+
 
 
 

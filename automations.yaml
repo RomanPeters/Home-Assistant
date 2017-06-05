@@ -50,9 +50,6 @@
     data_template:
       entity_id: "scene.{{ states.input_select.scene.state }}"
 
-
-    
-
 - alias: Television on
   trigger:
     platform: state
@@ -63,10 +60,7 @@
       entity_id: group.apple_tv
       data:
         visible: True
-    - service: notify.telegram
-      data_template: 
-        title: 'Scene turned on'
-        message: "Test"
+
 
 - alias: Television off
   trigger:
@@ -157,6 +151,14 @@
         entity_id: input_select.power_off
         option: 0
 
+- alias: Dim at midnight
+  trigger:
+    platform: time
+    at: '00:00:00'
+  action:
+    - service: scene.turn_on
+      data: 
+        entity_id: scene.dim
 
 
 

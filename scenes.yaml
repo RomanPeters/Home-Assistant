@@ -28,38 +28,31 @@
       state: on
       brightness: 255
 
-    
-- name: Normal
-  entities:
-    light.led_a:
-      brightness: 250
-
 - name: Movie
   entities:
     light.a:
+      state: on
       brightness: 5
       color_name: yellow
     light.b:
+      state: on
       brightness: 10
       color_name: orange
     light.c:
+      state: on
       brightness: 10
       color_name: red
+    light.d:
+      state: off
 
 - name: Dim
   entities:
-    light.a:
-      transition: 2
-      brightness: 10
-    light.b:
-      transition: 2
-      brightness: 10
-    light.c:
-      transition: 2
-      brightness: 10
-    light.d:
-      transition: 2
-      brightness: 10
+    group.all_lights:
+      state: on
+      transition: 10
+      brightness: 1
+
+
 
 
 - name: Ta
