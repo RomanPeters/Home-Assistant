@@ -1,0 +1,6 @@
+- alias: 'Start transition'
+  trigger:
+    platform: state
+    entity_id: input_select.transition
+  action:
+    - service_template: "script.{{ states.input_select.transition.state }}"

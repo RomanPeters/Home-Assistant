@@ -1,0 +1,10 @@
+- alias: Television on
+  trigger:
+    platform: state
+    entity_id: switch.g
+    state: 'on'
+  action:
+    - service: group.set_visibility
+      entity_id: group.apple_tv
+      data:
+        visible: True

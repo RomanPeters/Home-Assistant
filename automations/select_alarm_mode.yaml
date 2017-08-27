@@ -1,0 +1,11 @@
+- alias: 'Stelect alarm mode'
+  trigger:
+    platform: state
+    entity_id: input_select.alarm_mode
+  action:
+    - service_template: >
+        {% if states.input_select.alarm_mode.state == 'Night sleep' %}
+        script.set_alarm2
+        {% elif states.input_select.alarm_mode.state == 'Power nap' %}
+        script.set_alarm3
+        {% endif %}

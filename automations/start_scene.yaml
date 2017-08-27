@@ -1,0 +1,11 @@
+- alias: 'Start scene'
+  trigger:
+    platform: state
+    entity_id: input_select.scene
+  action:
+    service: scene.turn_on
+    data_template:
+      entity_id: "scene.{{ states.input_select.scene.state }}"
+
+
+

@@ -1,0 +1,7 @@
+- action:
+    service: script.boot
+  alias: Boot
+  id: '1495372885473'
+  trigger:
+    platform: homeassistant
+    event: start

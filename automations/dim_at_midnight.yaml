@@ -1,0 +1,8 @@
+- alias: Dim at midnight
+  trigger:
+    platform: time
+    at: '00:00:00'
+  action:
+    - service: scene.turn_on
+      data: 
+        entity_id: scene.midnight

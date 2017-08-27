@@ -1,0 +1,42 @@
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '1'
+  action:
+    service: script.power_off
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '5'
+  action:
+    service: script.power_off
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '15'
+  action:
+    service: script.power_off
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '30'
+  action:
+    service: script.power_off
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '60'
+  action:
+    service: script.power_off
+- alias: 'Start power off'
+  trigger:
+    platform: state
+    entity_id: input_select.power_off
+    to: '120'
+  action:
+    service: script.power_off
