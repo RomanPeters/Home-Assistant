@@ -1,0 +1,10 @@
+- name: Tu
+  entities:
+    light.b:
+      state: on
+      color_name: blue
+    light.c:
+      state: on
+      color_name: red
+    light.d:
+      state: off

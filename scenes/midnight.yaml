@@ -1,0 +1,16 @@
+- name: Midnight
+  entities:
+    light.a:
+      state: on
+      brightness: 1
+      color_name: yellow
+    light.b:
+      state: on
+      brightness: 1
+      color_name: red
+    light.c:
+      state: on
+      brightness: 1
+      color_name: red
+    light.d:
+      state: off

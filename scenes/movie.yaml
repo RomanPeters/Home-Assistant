@@ -1,0 +1,16 @@
+- name: Movie
+  entities:
+    light.a:
+      state: on
+      brightness: 5
+      color_name: yellow
+    light.b:
+      state: on
+      brightness: 10
+      color_name: orange
+    light.c:
+      state: on
+      brightness: 10
+      color_name: red
+    light.d:
+      state: off

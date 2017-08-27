@@ -1,0 +1,13 @@
+- name: Romantic
+  entities:
+    light.a:
+      state: on
+      color_name: red
+    light.b:
+      state: on
+      color_name: red
+    light.c:
+      state: on
+      color_name: red
+    light.d:
+      state: off

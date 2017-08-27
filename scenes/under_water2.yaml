@@ -1,0 +1,13 @@
+- name: Under water2
+  entities:
+    light.a: 
+      state: on
+      color_name: darkblue
+    light.b:
+      state: on
+      color_name: cyan
+    light.c:
+      state: on
+      color_name: dodgerblue
+    light.d:
+      state: off
