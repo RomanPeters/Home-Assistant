@@ -1,0 +1,129 @@
+  - platform: rest
+    name: Golem EUR
+    resource: 'https://min-api.cryptocompare.com/data/dayAvg?fsym=GNT&tsym=EUR'
+    value_template: '{{ value_json.EUR }}'
+    unit_of_measurement: EUR
+
+  - platform: rest
+    name: Ripple EUR
+    resource: 'https://api.coinmarketcap.com/v1/ticker/ripple/?convert=EUR'  #'https://min-api.cryptocompare.com/data/dayAvg?fsym=XRP&tsym=EUR'
+    value_template: '{{ value_json[0].price_eur | float | round(4) }}'
+    unit_of_measurement: EUR
+
+  - platform: rest
+    name: Siacoin EUR
+    resource: 'https://api.coinmarketcap.com/v1/ticker/siacoin/?convert=EUR' 
+    value_template: '{{ value_json[0].price_eur | float | round(4) }}'
+    unit_of_measurement: EUR
+
+  - platform: rest
+    name: Gulden EUR
+    resource: 'https://api.coinmarketcap.com/v1/ticker/gulden/?convert=EUR' #'https://min-api.cryptocompare.com/data/dayAvg?fsym=NLG&tsym=EUR'
+    value_template: '{{ value_json[0].price_eur | float | round(4) }}'
+    unit_of_measurement: EUR
+
+  - platform: rest
+    name: Bitcoin EUR
+    resource: 'https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=EUR' #'https://min-api.cryptocompare.com/data/dayAvg?fsym=BTC&tsym=EUR'
+    value_template: '{{ value_json[0].price_eur | float | round(2) }}'
+    unit_of_measurement: EUR
+
+  - platform: template
+    sensors:
+      text:
+        value_template: 'Dit is een tekst en het is {{ states.sensor.dark_sky_temperature.state|round }} graden in Utrecht.'
+        friendly_name: 'Tekst'
+
+
+  - platform: rest
+    name: Wallet GNT
+    resource: !secret wallet_gnt
+    value_template: 78.0934 #'{{ (value_json.tokens[0].balance | float ) }}' #round(4) }}' # / 1000000000000000000) | round(4) }}'
+    unit_of_measurement: GNT
+
+  - platform: rest
+    name: Wallet XRP
+    resource: !secret wallet_xrp
+    value_template: 100.8694 #'{{ value_json.account_data.initial_balance | float | round(4) }}'   #'{{ value_json.balances[0].value | float | round(4) }}'
+    unit_of_measurement: XRP
+
+  - platform: rest
+    name: Wallet SC
+    resource: 'https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=EUR' # placeholder
+    value_template: 3483.1868 # todo unhardcode
+    unit_of_measurement: SC
+
+  - platform: rest
+    name: Wallet NLG
+    resource: !secret wallet_nlg
+    value_template: 100.3800 #'{{ (value_json | float / 100000000) | round(4) }}'
+    unit_of_measurement: NLG
+
+
+  - platform: template
+    sensors:
+      wallet_gnt_eur:
+        value_template: '{{ ((states.sensor.golem_eur.state | float) * (states.sensor.wallet_gnt.state | float)) | round(2) }}'
+        unit_of_measurement: EUR
+
+  - platform: template
+    sensors:
+      wallet_xrp_eur:
+        value_template: '{{ ((states.sensor.ripple_eur.state | float) * (states.sensor.wallet_xrp.state | float)) | round(2) }}'
+        unit_of_measurement: EUR
+
+  - platform: template
+    sensors:
+      wallet_sc_eur:
+        value_template: '{{ ((states.sensor.siacoin_eur.state | float) * (states.sensor.wallet_sc.state | float)) | round(2) }}'
+        unit_of_measurement: EUR
+
+  - platform: template
+    sensors:
+      wallet_nlg_eur:
+        value_template: '{{ ((states.sensor.gulden_eur.state | float) * (states.sensor.wallet_nlg.state | float)) | round(2) }}'
+        unit_of_measurement: EUR
+
+  - platform: template
+    sensors:
+      cc_total:
+        value_template: '{{ ((states.sensor.wallet_eth_eur.state | float) + (states.sensor.wallet_nlg_eur.state | float) + (states.sensor.wallet_xrp_eur.state | float) + (states.sensor.wallet_gnt_eur.state | float) + (states.sensor.wallet_sc_eur.state | float)) | round(2) }}'
+        unit_of_measurement: EUR
+      cc_spent: 
+        value_template: '{{ 5000 + 22.57 + 50.00 + 50}}'
+        unit_of_measurement: EUR
+      cc_diff:
+        value_template: '{{ ((states.sensor.cc_total.state | float) - (states.sensor.cc_spent.state | float)) | round(2) }}'
+        unit_of_measurement: EUR
+
+
+
+
+sensor:
+#  - platform: systemmonitor
+#    resources:
+#      - type: disk_use_percent
+#        arg: /home
+#      - type: memory_free
+
+#device_tracker:
+#  - platform: nmap_tracker
+#    hosts: 192.168.1.1/24
+#    scan_options: " -sP "
+#  - platform: icloud
+#    username: !secret email
+#    password: !secret password
+
+#keyboard_remote:
+ # #device_name: Wireless Receiver
+ # device_descriptor: /dev/input/event0
+ # type: key_down
+
+#  - platform: random
+#    name: Random sensor
+#    maximum: 255
+
+
+
+
+

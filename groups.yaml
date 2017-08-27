@@ -1,124 +1,126 @@
 default_view:
-  view: yes
-  icon: mdi:home 
+  view: true
+  icon: mdi:home
   entities:
-#    - group.system
-    - group.lichten
-    - group.coloredlight
-    - group.weather
-    - group.entertainment
-    - group.apple_tv
-    - group.appliances
-    - panel_iframe.buienalarm
-    - group.scripts
-    - group.light_scripts
-    - group.smart_alarm
-    - group.person_roman
-    - group.power_off
-    - group.power_off_activated
-    - group.cryptocurrency
+  - group.ww
+  - group.rgb
+  - group.weather
+  - group.entertainment
+  - group.apple_tv
+  - group.appliances
+  - panel_iframe.buienalarm
+  - group.scripts
+ # - group.light_scripts
+  - group.smart_alarm
+  - group.person_roman
 
-#system:
-#  name: Server
-#  view: yes
-#  entities:
-#    - sensor.disk_use_home
-#    - sensor.ram_free
+
+settings:
+  view: true
+  icon: mdi:settings
+  name: settings
+  entities:
+  - group.blinkt
+  - group.power_off
+  - group.power_off_activated
+
 
 scripts:
   name: Scripts
   entities:
-    - script.groet
-    - script.wake_up
-    - script.boot
-    - script.tv_on
-    - script.tv_off
+  - script.groet
+  - script.wake_up
+  - script.boot
+  - script.tv_on
+  - script.tv_off
 
 weather:
   name: Temperature
-  view: no
+  view: false
   entities:
-    - sensor.broadlink_sensor_temperature
-    - sensor.dark_sky_temperature
-    #- sensor.dark_sky_summary
-    #- sensor.dark_sky_hourly_summary
-    #- group.tekst
+  - sensor.broadlink_sensor_temperature
+  - sensor.dark_sky_temperature
 
 entertainment:
   name: Entertainment
-  view: no
+  view: false
   entities:
-    - switch.h
-    - switch.tv
+  - switch.h
+  - switch.tv
 
 apple_tv:
   name: Apple TV
-  view: no
+  view: false
   entities:
-    - media_player.apple_tv
+  - media_player.apple_tv
 
 minecraft:
   name: Minecraft
   entities:
-    - sensor.minecraft
+  - sensor.minecraft
 
-coloredlight:
-  name: Colour
+rgb:
+  name: RGB lights
   entities:
-    - light.a
-    - light.b
-    - light.c
+  - light.a
+  - light.b
+  - light.c
 
-lichten:
-  name: White
+ww:
+  name: Light
   entities:
-    - light.d
+  - light.d
 
 appliances:
   name: Appliances
   entities:
-    - switch.e
-    - switch.f
-
+  - switch.e
+  - switch.f
 
 smart_alarm:
   name: Smart alarm
   entities:
-    - input_boolean.smart_alarm
-    - input_select.alarm_time
-    - script.set_alarm
-    - script.set_alarm2
-    - script.set_alarm3
+  - input_boolean.smart_alarm
+  - input_select.alarm_time
+  - script.set_alarm
+  - input_select.alarm_mode
 
-light_scripts:
+light_scripts:  # disabled
   name: Light scenes
   entities:
-    - input_slider.light_transition
-    - input_select.transition
-    - input_select.scene
-    
+  - input_slider.light_transition
+  - input_select.transition
+  - input_select.scene
+
 power_off:
   name: Power off
   entities:
-    - input_select.power_off
-
+  - input_select.power_off
 power_off_activated:
   name: Power off
   entities:
-    - script.power_off
-
+  - script.power_off
 person_roman:
   name: Roman
   entities:
-    - device_tracker.iphone
-    - device_tracker.macbookpro
-#    - device_tracker.iphonedomain_not_setinvalid
-#    - device_tracker.macbookprodomain_not_setinvalid
+  - device_tracker.iphone
+  - device_tracker.macbookpro
 
-
-cryptocurrency:
+ethereum:
   name: Ethereum
   entities:
-    - sensor.ethereum_eur
-    - sensor.wallet_eth
-    - sensor.wallet_eur
+  - sensor.ethereum_eur
+  - sensor.wallet_eth
+  - sensor.wallet_eth_eur
+
+blinkt:
+  name: Blinkt
+  entities:
+  - light.blinkt0
+  - light.blinkt1
+  - light.blinkt2
+  - light.blinkt3
+  - light.blinkt4
+  - light.blinkt5
+  - light.blinkt6
+  - light.blinkt7

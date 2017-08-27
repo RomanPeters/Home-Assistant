@@ -7,7 +7,7 @@ homeassistant:
   time_zone: Europe/Amsterdam
   customize: !include customize.yaml
 
-scene: !include scenes.yaml
+scene: !include_dir_named scenes
 group: !include groups.yaml
 zone: !include zones.yaml
 automation: !include automations.yaml
@@ -40,11 +40,6 @@ google:
   client_secret: !secret google_client_secret
   
 sensor:
-#  - platform: systemmonitor
-#    resources:
-#      - type: disk_use_percent
-#        arg: /home
-#      - type: memory_free
   - platform: darksky
     api_key: !secret darksky_api_key
     monitored_conditions:
@@ -59,15 +54,11 @@ sensor:
       - temperature_max
     update_interval: '00:15'
 
- # - platform: template
- #   sensors:
-#      text:
-#        value_template: 'Dit is een tekst en het is {{ states.sensor.dark_sky_temperature.state|round }} graden in Utrecht.'
-#        friendly_name: 'Tekst'
 
-#  - platform: minecraft
-#    name: Minecraft
-#    server: !secret minecraft_server
+
+  - platform: minecraft
+    name: Minecraft
+    server: !secret minecraft_server
 
   - platform: broadlink
     host: !secret broadlink_ip
@@ -76,22 +67,33 @@ sensor:
       - temperature
 
   - platform: rest
+    name: Ethereum hourly percentage
+    resource: 'https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=EUR'
+    value_template: '{{ value_json[0].percent_change_1h | int }}'
+    unit_of_measurement: '%'
+
+  - platform: rest
     name: Ethereum EUR
-    resource: 'https://min-api.cryptocompare.com/data/dayAvg?fsym=ETH&tsym=EUR&UTCHourDiff=-8&extraParams=your_app_name'
-    value_template: '{{ value_json.EUR }}'
+    resource: 'https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=EUR'  #'https://min-api.cryptocompare.com/data/dayAvg?fsym=ETH&tsym=EUR'
+    value_template: '{{ value_json[0].price_eur | float | round(2) }}'
     unit_of_measurement: EUR
+
 
   - platform: rest
     name: Wallet ETH
-    resource: !secret wallet_url  # https://api.etherscan.io/api?module=account&action=balance&address=YOUR_ETH_ADDRESS_HERE&tag=latest
-    value_template: '{{ (value_json.result | float / 1000000000000000000)| round(4) }}'
+    resource: !secret wallet_eth  # https://api.etherscan.io/api?module=account&action=balance&address=YOUR_ETH_ADDRESS_HERE&tag=latest
+    value_template: '{{ (value_json.result | float / 1000000000000000000) | round(4) }}'
     unit_of_measurement: ETH
+
+#  - platform: etherscan
+#    address: !secret ether_address
 
   - platform: template
     sensors:
-      wallet_eur:
-        value_template: '{{ ((states.sensor.ethereum_eur.state | float) * (states.sensor.wallet_eth.state | float)) | round(2) }}'
+      wallet_eth_eur:
+        value_template: '{{ ((states.sensor.ethereum_eur.state | float) * 19.251173998196523) | round(2) }}'  #(states.sensor.wallet_eth.state | float)) | round(2) }}'
         unit_of_measurement: EUR
+
 
 tts:
   platform: google
@@ -103,24 +105,26 @@ tts:
 
 
 light:
-  platform: limitlessled  # Milight
-  bridges:
-    - host: !secret limitlessled_ip
-      port: 8899
-      version: 5
-      groups:
-      - number: 1
-        type: rgbw
-        name: A
-      - number: 2
-        type: rgbw
-        name: B
-      - number: 3
-        type: rgbw
-        name: C
-      - number: 1
-        type: white
-        name: D
+  - platform: limitlessled  # Milight
+    bridges:
+      - host: !secret limitlessled_ip
+        port: 8899
+        version: 5
+        groups:
+        - number: 1
+          type: rgbw
+          name: A
+        - number: 2
+          type: rgbw
+          name: B
+        - number: 3
+          type: rgbw
+          name: C
+        - number: 1
+          type: white
+          name: D
+          
+  - platform: blinkt
 
 switch:
   - platform: broadlink
@@ -164,13 +168,6 @@ media_player:
     host: !secret apple_tv_ip
     login_id: !secret apple_tv_id
 
-#device_tracker:
-#  - platform: nmap_tracker
-#    hosts: 192.168.1.1/24
-#    scan_options: " -sP "
-#  - platform: icloud
-#    username: !secret email
-#    password: !secret password
 
 input_boolean:
   smart_alarm:
@@ -184,6 +181,12 @@ input_select:
     initial: "08:00"
     options: !include times.yaml
 
+  alarm_mode:
+    name: Mode
+    options:
+      - Night sleep
+      - Power nap
+
   transition:
     name: "Transitions"
     options:
@@ -192,7 +195,7 @@ input_select:
       - under_water
 
   scene:
-    name: "Scenes"
+    name: Scenes
     options:
       - None
       - movie
@@ -200,9 +203,8 @@ input_select:
       - white
       - dim
 
-
   power_off:
-    name: "Power off"
+    name: Power off
     options:
       - 0
       - 1
@@ -222,19 +224,6 @@ input_slider:
     max: 9
     step: 1
 
-
-
-
-
-
-#keyboard_remote:
- # #device_name: Wireless Receiver
- # device_descriptor: /dev/input/event0
- # type: key_down
-
-#  - platform: random
-#    name: Random sensor
-#    maximum: 255
 
 
 
