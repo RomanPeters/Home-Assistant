@@ -38,7 +38,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     name = config.get(CONF_NAME)
 
     
-    add_devices([BlinktLight(blinkt, name+str(i)) for i in range(8)])
+    add_devices([BlinktLight(blinkt, name.capitalise()+' '+str(i)) for i in range(1, 9)])
 
 
 class BlinktLight(Light):
