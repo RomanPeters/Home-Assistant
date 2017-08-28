@@ -1,12 +1,16 @@
-#- action:
-#  - service: homeassistant.turn_on
-#    entity_id: group.coloredlight
-#  alias: At sunset
-#  id: '1495372885472'
-#  trigger:
-#    platform: sun
-#    event: sunset
-#  condition:
-#    - condition: state
-#      entity_id: group.person_roman
-#      state: 'home'
+# When the sun goes down
+
+- alias: At sunset
+  trigger:
+    - platform: sun
+      event: sunset
+
+  condition:
+    - condition: state
+      entity_id: group.person_roman
+      state: 'home'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: group.all_lights
+

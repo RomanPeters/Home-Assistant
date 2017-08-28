@@ -1,42 +1,57 @@
+# TODO remove redundancie
+
 - alias: 'Start power off'
   trigger:
-    platform: state
-    entity_id: input_select.power_off
-    to: '1'
+    - platform: state
+      entity_id: input_select.power_off
+      to: '1'
+
   action:
-    service: script.power_off
+    - service: script.power_off
+
 - alias: 'Start power off'
   trigger:
-    platform: state
-    entity_id: input_select.power_off
-    to: '5'
+    - platform: state
+      entity_id: input_select.power_off
+      to: '5'
+  
   action:
-    service: script.power_off
+    - service: script.power_off
+
 - alias: 'Start power off'
   trigger:
-    platform: state
-    entity_id: input_select.power_off
-    to: '15'
+    - platform: state
+      entity_id: input_select.power_off
+      to: '15'
+
   action:
-    service: script.power_off
+    - service: script.power_off
+
 - alias: 'Start power off'
   trigger:
-    platform: state
-    entity_id: input_select.power_off
-    to: '30'
+    - platform: state
+      entity_id: input_select.power_off
+      to: '30'
+
   action:
-    service: script.power_off
+    - service: script.power_off
+
 - alias: 'Start power off'
   trigger:
-    platform: state
-    entity_id: input_select.power_off
-    to: '60'
+    - platform: state
+      entity_id: input_select.power_off
+      to: '60'
+
   action:
-    service: script.power_off
+    - service: script.power_off
+
 - alias: 'Start power off'
   trigger:
-    platform: state
-    entity_id: input_select.power_off
-    to: '120'
+    - platform: state
+      entity_id: input_select.power_off
+      to: '120'
+
   action:
-    service: script.power_off
+    - service: script.power_off
+
+    

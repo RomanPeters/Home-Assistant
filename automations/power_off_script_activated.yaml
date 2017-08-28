@@ -1,13 +1,18 @@
+# When script.power_off gets activated
+
 - alias: Power_off script activated
   trigger:
-    platform: state
-    entity_id: script.power_off
-    state: 'on'
+    - platform: state
+      entity_id: script.power_off
+      state: 'on'
+
   action:
+    # Hide one group
     - service: group.set_visibility
       entity_id: group.power_off
       data:
         visible: False
+    # Show another
     - service: group.set_visibility
       entity_id: group.power_off_activated
       data:

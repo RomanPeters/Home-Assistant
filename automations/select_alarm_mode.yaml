@@ -1,7 +1,10 @@
+# Start alarm script based on selection
+
 - alias: 'Stelect alarm mode'
   trigger:
-    platform: state
-    entity_id: input_select.alarm_mode
+    - platform: state
+      entity_id: input_select.alarm_mode
+
   action:
     - service_template: >
         {% if states.input_select.alarm_mode.state == 'Night sleep' %}
