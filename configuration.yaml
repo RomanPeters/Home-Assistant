@@ -7,10 +7,10 @@ homeassistant:
   time_zone: Europe/Amsterdam
   customize: !include customize.yaml
 
-scene: !include_dir_named scenes
+scene: !include_dir_merge_named scenes
 group: !include groups.yaml
 zone: !include zones.yaml
-automation: !include automations.yaml
+automation: !include_dir_merge_named automations
 script: !include_dir_named scripts
 
 frontend:
