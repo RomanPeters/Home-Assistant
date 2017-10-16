@@ -1,14 +1,14 @@
-- name: White
-  entities:
-    light.a: 
-      state: on
-      brightness: 255
-      color_name: white
-      color_temp: 1
-    light.b:
-      state: off
-    light.c:
-      state: off
-    light.d:
-      state: on
-      brightness: 255
+name: White
+entities:
+  light.a: 
+    state: on
+    brightness: 255
+    color_name: white
+    color_temp: 1
+  light.b:
+    state: off
+  light.c:
+    state: off
+  light.d:
+    state: on
+    brightness: 255

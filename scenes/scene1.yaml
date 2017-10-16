@@ -1,13 +1,16 @@
-name: Midnight
+name: Scene 1
 entities:
-  light.a:
+  light.a: 
     state: on
-    brightness: 1
+    color_name: red
+    brightness: 5
   light.b:
     state: on
+    color_name: blue
     brightness: 1
   light.c:
     state: on
+    color_name: blue
     brightness: 1
   light.d:
     state: off

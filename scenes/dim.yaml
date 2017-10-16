@@ -1,8 +1,8 @@
-- name: Dim
-  entities:
-    group.all_lights:
-      state: on
-      transition: 10
-      brightness: 1
+name: Dim
+entities:
+  group.all_lights:
+    state: on
+    transition: 10
+    brightness: 1
 
     
