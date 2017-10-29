@@ -1,0 +1,38 @@
+alarm_time:
+  name: "Time"
+  initial: "08:00"
+  options: !include times.yaml
+
+alarm_mode:
+  name: Mode
+  options:
+    - Night sleep
+    - Power nap
+
+transition:
+  name: "Transitions"
+  options:
+    - None
+    - blue_furry
+    - under_water
+
+scene:
+  name: Scenes
+  options:
+    - None
+    - movie
+    - romantic
+    - white
+    - dim
+
+power_off:
+  name: Power off
+  options:
+    - 0
+    - 1
+    - 5
+    - 15
+    - 30
+    - 60
+    - 120
+  initial: 0

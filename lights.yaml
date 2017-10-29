@@ -1,0 +1,20 @@
+- platform: limitlessled  # Milight
+  bridges:
+    - host: !secret limitlessled_ip
+      port: 8899
+      version: 5
+      groups:
+      - number: 1
+        type: rgbw
+        name: A
+      - number: 2
+        type: rgbw
+        name: B
+      - number: 3
+        type: rgbw
+        name: C
+      - number: 1
+        type: white
+        name: D
+
+- platform: blinkt

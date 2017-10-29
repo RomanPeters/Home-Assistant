@@ -6,13 +6,6 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/Amsterdam
   customize: !include customize.yaml
-
-scene: !include_dir_merge_named scenes
-group: !include groups.yaml
-zone: !include zones.yaml
-automation: !include_dir_merge_named automations
-script: !include_dir_named scripts
-
 frontend:
   themes:
     steelblue:
@@ -37,6 +30,17 @@ http:
   ip_ban_enabled: True
   login_attempts_threshold: 3
 
+group: !include groups.yaml
+zone: !include zones.yaml
+sensor: !include sensors.yaml
+light: !include lights.yaml
+switch: !include switches.yaml
+input_select: !include input_selects.yaml
+
+automation: !include_dir_merge_named automations
+script: !include_dir_named scripts
+scene: !include_dir_merge_named scenes
+
 sun:  
 
 #device_sun_light_trigger:
@@ -47,159 +51,20 @@ sun:
 google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
-  
-sensor:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    monitored_conditions:
-      - summary
-      - temperature
-#      - precip_type
-#      - precip_intensity
-      - hourly_summary
-#      - icon
-#      - precip_probability
-      - temperature_min
-      - temperature_max
-    update_interval: '00:15'
-
-  - platform: minecraft
-    name: Minecraft
-    server: !secret minecraft_server
-
-  - platform: broadlink
-    host: !secret broadlink_ip
-    mac: !secret broadlink_mac
-    monitored_conditions:
-      - temperature
-
-  - platform: template
-    sensors:
-      inside_temperature:
-        value_template: "{{  states.sensor.broadlink_sensor_temperature.state | float - 3 }}" # offset broadlink by 3˚C
-
-
 
 tts:
   platform: google
-
-#panel_iframe:
-#  buienalarm:
-#    title: 'Router'
-#    url: 'http://router/cgi-bin/info-system.sh'
-
-
-light:
-  - platform: limitlessled  # Milight
-    bridges:
-      - host: !secret limitlessled_ip
-        port: 8899
-        version: 5
-        groups:
-        - number: 1
-          type: rgbw
-          name: A
-        - number: 2
-          type: rgbw
-          name: B
-        - number: 3
-          type: rgbw
-          name: C
-        - number: 1
-          type: white
-          name: D
-          
-  - platform: blinkt
-
-switch:
-  - platform: broadlink
-    host: !secret broadlinkmp1_ip
-    mac: !secret broadlinkmp1_mac
-    type: mp1-1
-    friendly_name: E
-  - platform: broadlink
-    host: !secret broadlinkmp1_ip
-    mac: !secret broadlinkmp1_mac
-    type: mp1-2
-    friendly_name: F
-  - platform: broadlink
-    host: !secret broadlinkmp1_ip
-    mac: !secret broadlinkmp1_mac
-    type: mp1-3
-    friendly_name: G
-  - platform: broadlink
-    host: !secret broadlinkmp1_ip
-    mac: !secret broadlinkmp1_mac
-    type: mp1-4
-    friendly_name: H
-
-  - platform: broadlink
-    host: !secret broadlink_ip
-    mac: !secret broadlink_mac
-
-  - platform: template
-    switches:
-      tv:
-        friendly_name: 'Television'
-        value_template: "{{ states.switch.g.state }}"  # Gives error at boot, should use is_state
-        turn_on:
-          service: script.tv_on
-        turn_off:
-          service: script.tv_off
-
 
 media_player:
   - platform: apple_tv
     host: !secret apple_tv_ip
     login_id: !secret apple_tv_id
 
-
 input_boolean:
   smart_alarm:
     name: Smart alarm
     initial: off
     icon: mdi:alarm
-
-input_select:
-  alarm_time:
-    name: "Time"
-    initial: "08:00"
-    options: !include times.yaml
-
-  alarm_mode:
-    name: Mode
-    options:
-      - Night sleep
-      - Power nap
-
-  transition:
-    name: "Transitions"
-    options:
-      - None
-      - blue_furry
-      - under_water
-
-  scene:
-    name: Scenes
-    options:
-      - None
-      - movie
-      - romantic
-      - white
-      - dim
-
-  power_off:
-    name: Power off
-    options:
-      - 0
-      - 1
-      - 5
-      - 15
-      - 30
-      - 60
-      - 120
-    initial: 0
-
 
 input_slider:
   light_transition:
