@@ -10,9 +10,38 @@ default_view:
   - group.appliances
   - panel_iframe.buienalarm
   - group.scripts
- # - group.light_scripts
-  - group.smart_alarm
+#  - group.light_scripts
   - group.person_roman
+
+schedule:
+  view: true
+  icon: mdi:calendar
+  name: schedule
+  entities:
+    - group.monday
+    - group.tuesday
+    - group.wednesday
+    - group.thursday
+    - group.friday
+    - group.saturday
+    - group.sunday
+    - group.smart_alarm
+
+
+monday:
+  name: Monday 
+tuesday:
+  name: Tuesday
+wednesday:
+  name: Wednesday
+thursday:
+  name: Thursday
+friday:
+  name: Friday
+saturday:
+  name: Saturday
+sunday:
+  name: Sunday
 
 
 settings:
@@ -38,7 +67,7 @@ weather:
   name: Temperature
   view: false
   entities:
-  - sensor.broadlink_sensor_temperature
+  - sensor.inside_temperature
   - sensor.dark_sky_temperature
 
 entertainment:
@@ -106,12 +135,6 @@ person_roman:
   - device_tracker.iphone
   - device_tracker.macbookpro
 
-ethereum:
-  name: Ethereum
-  entities:
-  - sensor.ethereum_eur
-  - sensor.wallet_eth
-  - sensor.wallet_eth_eur
 
 blinkt:
   name: Blinkt
@@ -123,4 +146,4 @@ blinkt:
   - light.blinkt4
   - light.blinkt5
   - light.blinkt6
-  - light.blinkt7
+  - light.blinkt7 

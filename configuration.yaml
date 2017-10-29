@@ -14,6 +14,15 @@ automation: !include_dir_merge_named automations
 script: !include_dir_named scripts
 
 frontend:
+  themes:
+    steelblue:
+      primary-color: steelblue
+    darkred:
+      primary-color: darkred
+    black:
+      primary-color: black
+    darkgray:
+      primary-color: slategray
 config:
 updater:
 discovery:
@@ -54,8 +63,6 @@ sensor:
       - temperature_max
     update_interval: '00:15'
 
-
-
   - platform: minecraft
     name: Minecraft
     server: !secret minecraft_server
@@ -66,33 +73,11 @@ sensor:
     monitored_conditions:
       - temperature
 
-  - platform: rest
-    name: Ethereum hourly percentage
-    resource: 'https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=EUR'
-    value_template: '{{ value_json[0].percent_change_1h | int }}'
-    unit_of_measurement: '%'
-
-  - platform: rest
-    name: Ethereum EUR
-    resource: 'https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=EUR'  #'https://min-api.cryptocompare.com/data/dayAvg?fsym=ETH&tsym=EUR'
-    value_template: '{{ value_json[0].price_eur | float | round(2) }}'
-    unit_of_measurement: EUR
-
-
-  - platform: rest
-    name: Wallet ETH
-    resource: !secret wallet_eth  # https://api.etherscan.io/api?module=account&action=balance&address=YOUR_ETH_ADDRESS_HERE&tag=latest
-    value_template: '{{ (value_json.result | float / 1000000000000000000) | round(4) }}'
-    unit_of_measurement: ETH
-
-#  - platform: etherscan
-#    address: !secret ether_address
-
   - platform: template
     sensors:
-      wallet_eth_eur:
-        value_template: '{{ ((states.sensor.ethereum_eur.state | float) * 19.251173998196523) | round(2) }}'  #(states.sensor.wallet_eth.state | float)) | round(2) }}'
-        unit_of_measurement: EUR
+      inside_temperature:
+        value_template: "{{  states.sensor.broadlink_sensor_temperature.state | float - 3 }}" # offset broadlink by 3˚C
+
 
 
 tts:
@@ -156,7 +141,7 @@ switch:
     switches:
       tv:
         friendly_name: 'Television'
-        value_template: "{{ states.switch.g.state }}"
+        value_template: "{{ states.switch.g.state }}"  # Gives error at boot, should use is_state
         turn_on:
           service: script.tv_on
         turn_off:
