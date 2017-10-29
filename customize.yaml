@@ -44,14 +44,13 @@ sensor.dark_sky_temperature:
   homebridge_hidden: true
 sensor.inside_temperature:
   friendly_name: Inside
+  icon: mdi:thermometer
 input_select.power_off:
   friendly_name: Minutes
   icon: mdi:timelapse
 script.power_off:
   friendly_name: Activated
   icon: mdi:timelapse
-group.power_off:
-  homebridge_hidden: true
 sensor.ethereum_eur:
   friendly_name: Ethereum
   icon: mdi:chart-line
