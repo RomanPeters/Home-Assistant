@@ -1,6 +1,7 @@
 # When it's 00:00
 
-- alias: Dim at midnight
+- id: atmidnight@automation
+  alias: Dim at midnight
   trigger:
     - platform: time
       at: '00:00:00'

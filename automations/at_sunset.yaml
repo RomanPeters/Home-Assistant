@@ -1,16 +1,18 @@
 # When the sun goes down
 
-- alias: At sunset
+- id: atsunset@automation
+  alias: At sunset
   trigger:
     - platform: sun
       event: sunset
+#      offset: "-00:45:00"
 
-  condition:
-    - condition: state
-      entity_id: group.person_roman
-      state: 'home'
+#  condition:
+#    - condition: state
+#      entity_id: group.person_roman
+#      state: home
 
   action:
-    - service: homeassistant.turn_on
-      entity_id: group.all_lights
+    - service: scene.turn_on
+      entity_id: scene.scene1
 
