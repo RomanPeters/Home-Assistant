@@ -21,5 +21,9 @@
 - platform: template
   sensors:
     inside_temperature:
-      value_template: "{{  states.sensor.broadlink_sensor_temperature.state | float - 3 }}" # offset broadlink by 3˚C
-
+      value_template: >
+          {% if states.sensor.broadlink_sensor_temperature.state == float %}
+          {{  states.sensor.broadlink_sensor_temperature.state | float - 3 }}  # Offset sensor by 3 degrees
+          {% else %} 
+          Unavailable
+          {% endif %}
