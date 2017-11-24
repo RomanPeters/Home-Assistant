@@ -1,3 +1,4 @@
+#Home Assistant configuration
 homeassistant:
   name: Dashboard
   latitude: !secret latitude

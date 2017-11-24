@@ -1,3 +1,4 @@
+#Home Assistant renamer
 light.a:
   friendly_name: RGBW bulb
   icon: mdi:lightbulb-outline

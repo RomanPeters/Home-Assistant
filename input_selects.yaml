@@ -1,3 +1,4 @@
+#Home Assistant selection menu's
 alarm_time:
   name: "Time"
   initial: "08:00"

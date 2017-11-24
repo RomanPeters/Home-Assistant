@@ -1,3 +1,4 @@
+#Home Assistant groups and views
 default_view:
   view: true
   icon: mdi:home

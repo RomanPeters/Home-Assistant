@@ -1,3 +1,4 @@
+#Home Assistant switches
 - platform: broadlink
   host: !secret broadlinkmp1_ip
   mac: !secret broadlinkmp1_mac
