@@ -43,10 +43,10 @@ scene: !include_dir_merge_named scenes
 
 sun:  
 
-#device_sun_light_trigger:
-#  light_group: group.lichten
-#  light_profile: relax
-#  device_group: group.person_roman
+device_sun_light_trigger:
+  light_group: group.lichten
+  light_profile: relax
+  device_group: group.person_roman
 
 google:
   client_id: !secret google_client_id

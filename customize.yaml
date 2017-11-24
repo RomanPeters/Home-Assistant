@@ -51,15 +51,9 @@ input_select.power_off:
 script.power_off:
   friendly_name: Activated
   icon: mdi:timelapse
-sensor.ethereum_eur:
-  friendly_name: Ethereum
-  icon: mdi:chart-line
-sensor.wallet_eth:
-  friendly_name: Cold storage
-  icon: mdi:fridge
-sensor.wallet_eur:
-  friendly_name: ' '
-  icon: None
+device_tracker.iphone:
+  friendly_name: "Roman"
+
 group.apple_tv:
   homebridge_hidden: true
 media_player.apple_tv:

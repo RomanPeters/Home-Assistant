@@ -11,7 +11,7 @@ default_view:
   - panel_iframe.buienalarm
   - group.scripts
 #  - group.light_scripts
-  - group.person_roman
+  - group.location
 
 schedule:
   view: true
@@ -129,11 +129,16 @@ power_off_activated:
   name: Power off
   entities:
   - script.power_off
-person_roman:
+
+location:
+  name: Location
+  entities:
+  - location_roman
+
+location_roman:
   name: Roman
   entities:
   - device_tracker.iphone
-  - device_tracker.macbookpro
 
 
 blinkt:
