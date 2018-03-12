@@ -17,3 +17,5 @@ deps/
 ios.conf
 .ios.conf
 .idea/
+.homekit.state
+entity_registry.yaml
