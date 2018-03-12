@@ -27,7 +27,6 @@ schedule:
     - group.sunday
     - group.smart_alarm
 
-
 monday:
   name: Monday 
 tuesday:
@@ -52,6 +51,7 @@ settings:
   - group.blinkt
   - group.power_off
   - group.power_off_activated
+  - script.update_config
 
 
 scripts:
@@ -74,8 +74,8 @@ entertainment:
   name: Entertainment
   view: false
   entities:
-  - switch.h
   - switch.tv
+  - switch.speakers
 
 apple_tv:
   name: Apple TV
@@ -103,8 +103,8 @@ ww:
 appliances:
   name: Appliances
   entities:
-  - switch.e
-  - switch.f
+  - switch.air_purifier
+  - switch.fan
 
 smart_alarm:
   name: Smart alarm
@@ -133,7 +133,7 @@ power_off_activated:
 location:
   name: Location
   entities:
-  - location_roman
+  - group.location_roman
 
 location_roman:
   name: Roman

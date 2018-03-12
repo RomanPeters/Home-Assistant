@@ -1,23 +1,13 @@
 - platform: broadlink
   host: !secret broadlinkmp1_ip
   mac: !secret broadlinkmp1_mac
-  type: mp1-1
-  friendly_name: E
-- platform: broadlink
-  host: !secret broadlinkmp1_ip
-  mac: !secret broadlinkmp1_mac
-  type: mp1-2
-  friendly_name: F
-- platform: broadlink
-  host: !secret broadlinkmp1_ip
-  mac: !secret broadlinkmp1_mac
-  type: mp1-3
-  friendly_name: G
-- platform: broadlink
-  host: !secret broadlinkmp1_ip
-  mac: !secret broadlinkmp1_mac
-  type: mp1-4
-  friendly_name: H
+  type: mp1
+  friendly_name: Power strip
+  slots:
+     slot_1: Fan
+     slot_2: 'Air purifier'
+     slot_3: TV
+     slot_4: Speakers
 
 - platform: broadlink
   host: !secret broadlink_ip
