@@ -31,6 +31,8 @@ http:
   login_attempts_threshold: 3
 homekit:
   pincode: '010-10-010'
+#logger:
+#  default: warn
 
 
 group: !include groups.yaml
@@ -51,9 +53,9 @@ sun:
 #  light_profile: relax
 #  device_group: group.person_roman
 
-google:
-  client_id: !secret google_client_id
-  client_secret: !secret google_client_secret
+#google:
+#  client_id: !secret google_client_id
+#  client_secret: !secret google_client_secret
 
 tts:
   platform: google
@@ -69,7 +71,7 @@ input_boolean:
     initial: off
     icon: mdi:alarm
 
-input_slider:
+input_number:
   light_transition:
     name: Delay
     initial: 9

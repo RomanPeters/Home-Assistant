@@ -26,5 +26,4 @@
           {{  states.sensor.broadlink_sensor_temperature.state | float - 3 }}  # Offset sensor by 3 degrees
           {% else %} 
           -
-          Unavailable
           {% endif %}
