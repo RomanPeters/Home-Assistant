@@ -16,7 +16,7 @@ switch.e:
 switch.f:
   friendly_name: Fan
   icon: mdi:fan
-switch.tv:
+switch.g:
   friendly_name: Television
   icon: mdi:television
 switch.h:
@@ -53,27 +53,11 @@ script.power_off:
   icon: mdi:timelapse
 device_tracker.iphone:
   friendly_name: "Roman"
+switch.update_from_github:
+  can_cancel: false
+  homebridge_hidden: true
 
-group.apple_tv:
-  homebridge_hidden: true
-media_player.apple_tv:
-  homebridge_hidden: true
-group.appliances:
-  homebridge_hidden: true
-group.coloredlight:
-  homebridge_hidden: true
-group.entertainment:
-  homebridge_hidden: true
-group.ethereum:
-  homebridge_hidden: true
-group.light_scripts:
-  homebridge_hidden: true
-group.power_off:
-  homebridge_hidden: true
-group.scripts:
-  homebridge_hidden: true
-group.smart_alarm:
-  homebridge_hidden: true
+# HB hidden items
 scene.ta:
   homebridge_hidden: true
 scene.tu:
@@ -83,16 +67,6 @@ scene.under_water1:
 scene.under_water2:
   homebridge_hidden: true
 scene.under_water3:
-  homebridge_hidden: true
-group.lichten:
-  homebridge_hidden: true
-group.cryptocurrency:
-  homebridge_hidden: true
-switch.g:
-  homebridge_hidden: true
-group.person_roman:
-  homebridge_hidden: true
-group.weather:
   homebridge_hidden: true
 sensor.darksky:
   homebridge_hidden: true
@@ -107,8 +81,6 @@ sensor.dark_sky_summary:
 sensor.rest:
   homebridge_hidden: true
 sensor.template:
-  homebridge_hidden: true
-group.minecraft:
   homebridge_hidden: true
 light.blinkt_1:
   friendly_name: '1'
@@ -133,24 +105,6 @@ light.blinkt_7:
   homebridge_hidden: true
 light.blinkt_8:
   friendly_name: '8'
-  homebridge_hidden: true
-group.blinkt:
-  homebridge_hidden: true
-light.blinkt:
-  homebridge_hidden: true
-group.monday:
-  homebridge_hidden: true
-group.tuesday:
-  homebridge_hidden: true
-group.wednesday:
-  homebridge_hidden: true
-group.thursday:
-  homebridge_hidden: true
-group.friday:
-  homebridge_hidden: true
-group.saturday:
-  homebridge_hidden: true
-group.sunday:
   homebridge_hidden: true
 
 

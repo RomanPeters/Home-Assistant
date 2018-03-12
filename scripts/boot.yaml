@@ -2,11 +2,11 @@ alias: Boot
 sequence:
   - alias: Set alarm
     service: script.set_alarm
-  - alias: Hide Apple TV
-    service: group.set_visibility
-    entity_id: group.apple_tv
-    data:
-      visible: False
+#  - alias: Hide Apple TV
+#    service: group.set_visibility
+#    entity_id: group.apple_tv
+#    data:
+#      visible: False
   - alias: Hide scripts
     service: group.set_visibility
     entity_id: group.scripts
