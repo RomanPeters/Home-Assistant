@@ -35,10 +35,8 @@ input_select.alarm_time:
   icon: None
 input_boolean.smart_alarm:
   icon: mdi:alarm
-  homebridge_hidden: true
 sensor.dark_sky_temperature:
   friendly_name: Outside
-  homebridge_hidden: true
 sensor.inside_temperature:
   friendly_name: Inside
   icon: mdi:thermometer
@@ -52,4 +50,5 @@ device_tracker.iphone:
   friendly_name: "Roman"
 switch.update_from_github:
   can_cancel: false
-  homebridge_hidden: true
+group.media_players:
+  icon: mdi:tv
