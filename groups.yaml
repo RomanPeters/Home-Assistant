@@ -13,35 +13,23 @@ default_view:
 #  - group.light_scripts
   - group.location
 
-schedule:
+screen:
   view: true
-  icon: mdi:calendar
-  name: schedule
+  icon: mdi:tablet
+  name: screen
   entities:
-    - group.monday
-    - group.tuesday
-    - group.wednesday
-    - group.thursday
-    - group.friday
-    - group.saturday
-    - group.sunday
+  - group.ww
+  - group.rgb
+  - group.entertainment
+  - group.apple_tv
+
+experimental:
+  view: true
+  icon: mdi:flask
+  name: experimental
+  entities:
+    - light.blinkt
     - group.smart_alarm
-
-monday:
-  name: Monday 
-tuesday:
-  name: Tuesday
-wednesday:
-  name: Wednesday
-thursday:
-  name: Thursday
-friday:
-  name: Friday
-saturday:
-  name: Saturday
-sunday:
-  name: Sunday
-
 
 settings:
   view: true
@@ -74,7 +62,7 @@ entertainment:
   name: Entertainment
   view: false
   entities:
-  - switch.tv
+  - switch.television
   - switch.speakers
 
 apple_tv:
