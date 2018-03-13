@@ -10,17 +10,14 @@ light.c:
 light.d:
   friendly_name: White bulb
   icon: mdi:lightbulb-outline
-switch.e:
-  friendly_name: Air purifier
+switch.air_purifier:
   icon: mdi:fan
-switch.f:
-  friendly_name: Fan
+switch.fan:
   icon: mdi:fan
-switch.g:
+switch.television:
   friendly_name: Television
   icon: mdi:television
-switch.h:
-  friendly_name: Speakers
+switch.speakers:
   icon: mdi:music
 script.groet:
   friendly_name: Hallo
@@ -56,60 +53,3 @@ device_tracker.iphone:
 switch.update_from_github:
   can_cancel: false
   homebridge_hidden: true
-
-# HB hidden items
-scene.ta:
-  homebridge_hidden: true
-scene.tu:
-  homebridge_hidden: true
-scene.under_water1:
-  homebridge_hidden: true
-scene.under_water2:
-  homebridge_hidden: true
-scene.under_water3:
-  homebridge_hidden: true
-sensor.darksky:
-  homebridge_hidden: true
-sensor.dark_sky_daily_high_temperature:
-  homebridge_hidden: true
-sensor.dark_sky_daily_low_temperature:
-  homebridge_hidden: true
-sensor.dark_sky_hourly_summary:
-  homebridge_hidden: true
-sensor.dark_sky_summary:
-  homebridge_hidden: true
-sensor.rest:
-  homebridge_hidden: true
-sensor.template:
-  homebridge_hidden: true
-light.blinkt_1:
-  friendly_name: '1'
-  homebridge_hidden: true
-light.blinkt_2:
-  friendly_name: '2'
-  homebridge_hidden: true
-light.blinkt_3:
-  friendly_name: '3'
-  homebridge_hidden: true
-light.blinkt_4:
-  friendly_name: '4'
-  homebridge_hidden: true
-light.blinkt_5:
-  friendly_name: '5'
-  homebridge_hidden: true
-light.blinkt_6:
-  friendly_name: '6'
-  homebridge_hidden: true
-light.blinkt_7:
-  friendly_name: '7'
-  homebridge_hidden: true
-light.blinkt_8:
-  friendly_name: '8'
-  homebridge_hidden: true
-
-
-
-
-
-
-
