@@ -5,45 +5,37 @@ default_view:
   entities:
   - group.ww
   - group.rgb
-  - group.weather
   - group.entertainment
-  - group.apple_tv
   - group.appliances
-  - panel_iframe.buienalarm
   - group.scripts
-#  - group.light_scripts
-  - group.location
 
-schedule:
+status:
   view: true
-  icon: mdi:calendar
-  name: schedule
+  icon: mdi:clipboard-text
+  name: status
   entities:
-    - group.monday
-    - group.tuesday
-    - group.wednesday
-    - group.thursday
-    - group.friday
-    - group.saturday
-    - group.sunday
+  - group.weather
+  - group.location
+  - group.minecraft
+
+screen:
+  view: true
+  icon: mdi:tablet
+  name: screen
+  entities:
+  - group.ww
+  - group.rgb
+  - group.entertainment  
+
+experimental:
+  view: true
+  icon: mdi:flask
+  name: experimental
+  entities:
+    - group.blinkt
     - group.smart_alarm
-
-
-monday:
-  name: Monday 
-tuesday:
-  name: Tuesday
-wednesday:
-  name: Wednesday
-thursday:
-  name: Thursday
-friday:
-  name: Friday
-saturday:
-  name: Saturday
-sunday:
-  name: Sunday
-
+    - group.light_scripts
+   
 
 settings:
   view: true
@@ -53,6 +45,8 @@ settings:
   - group.blinkt
   - group.power_off
   - group.power_off_activated
+  - script.update_config
+
 
 
 scripts:
@@ -75,10 +69,11 @@ entertainment:
   name: Entertainment
   view: false
   entities:
-  - switch.h
-  - switch.tv
+  - switch.speakers
+  - switch.television
+  - group.media_players
 
-apple_tv:
+media_players:
   name: Apple TV
   view: false
   entities:
@@ -97,15 +92,15 @@ rgb:
   - light.c
 
 ww:
-  name: Light
+  name: Lights
   entities:
   - light.d
 
 appliances:
   name: Appliances
   entities:
-  - switch.e
-  - switch.f
+  - switch.air_purifier
+  - switch.fan
 
 smart_alarm:
   name: Smart alarm
@@ -115,10 +110,10 @@ smart_alarm:
   - script.set_alarm
   - input_select.alarm_mode
 
-light_scripts:  # disabled
+light_scripts:
   name: Light scenes
   entities:
-  - input_slider.light_transition
+  - input_number.light_transition
   - input_select.transition
   - input_select.scene
 
@@ -134,13 +129,12 @@ power_off_activated:
 location:
   name: Location
   entities:
-  - location_roman
+  - group.location_roman
 
 location_roman:
   name: Roman
   entities:
   - device_tracker.iphone
-
 
 blinkt:
   name: Blinkt

@@ -7,6 +7,7 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/Amsterdam
   customize: !include customize.yaml
+  customize_domain: !include customize_domain.yaml
 frontend:
   themes:
     steelblue:
@@ -26,10 +27,14 @@ conversation:
 #datadog:
 logbook:
 http:
-  development: False
   api_password: !secret api_password
   ip_ban_enabled: True
   login_attempts_threshold: 3
+homekit:
+  pincode: '010-10-010'
+logger:
+  default: warn
+
 
 group: !include groups.yaml
 zone: !include zones.yaml
@@ -44,14 +49,14 @@ scene: !include_dir_merge_named scenes
 
 sun:  
 
-device_sun_light_trigger:
-  light_group: group.lichten
-  light_profile: relax
-  device_group: group.person_roman
+#device_sun_light_trigger:
+#  light_group: group.lichten
+#  light_profile: relax
+#  device_group: group.person_roman
 
-google:
-  client_id: !secret google_client_id
-  client_secret: !secret google_client_secret
+#google:
+#  client_id: !secret google_client_id
+#  client_secret: !secret google_client_secret
 
 tts:
   platform: google
@@ -67,7 +72,7 @@ input_boolean:
     initial: off
     icon: mdi:alarm
 
-input_slider:
+input_number:
   light_transition:
     name: Delay
     initial: 9
@@ -75,7 +80,10 @@ input_slider:
     max: 9
     step: 1
 
-
+shell_command:
+  git_pull: "/usr/bin/git pull origin master"
+  test_config: "hass -c /home/roman/.homeassistant --script check_config"
+  systemctl_restart: "sudo systemctl restart homeassistant.service"
 
 
 
