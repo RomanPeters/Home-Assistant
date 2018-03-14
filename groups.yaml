@@ -1,4 +1,4 @@
-#Home Assistant groups and views
+#Views
 default_view:
   view: true
   icon: mdi:home
@@ -7,7 +7,6 @@ default_view:
   - group.rgb
   - group.entertainment
   - group.appliances
-  - group.scripts
 
 status:
   view: true
@@ -25,7 +24,9 @@ screen:
   entities:
   - group.ww
   - group.rgb
-  - group.entertainment  
+  - group.entertainment
+  - group.appliances
+
 
 experimental:
   view: true
@@ -35,19 +36,17 @@ experimental:
     - group.blinkt
     - group.smart_alarm
     - group.light_scripts
-   
+    - group.scripts
 
 settings:
   view: true
   icon: mdi:settings
   name: settings
   entities:
-  - group.blinkt
   - group.power_off
   - group.power_off_activated
-  - script.update_config
 
-
+#Cards
 
 scripts:
   name: Scripts
@@ -71,13 +70,15 @@ entertainment:
   entities:
   - switch.speakers
   - switch.television
-  - group.media_players
-
-media_players:
-  name: Apple TV
-  view: false
-  entities:
   - media_player.apple_tv
+
+
+#media_players:
+#  icon: mdi:theater
+#  name: Media players
+#  view: false
+#  entities:
+#  - media_player.apple_tv
 
 minecraft:
   name: Minecraft

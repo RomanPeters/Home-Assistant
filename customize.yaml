@@ -20,6 +20,8 @@ switch.television:
   icon: mdi:television
 switch.speakers:
   icon: mdi:music
+#media_player.apple_tv:
+#  icon: mdi:apple
 script.groet:
   friendly_name: Hallo
   icon: mdi:human-greeting

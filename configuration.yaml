@@ -63,6 +63,7 @@ tts:
 
 media_player:
   - platform: apple_tv
+    icon: mdi:apple
     host: !secret apple_tv_ip
     login_id: !secret apple_tv_id
 
