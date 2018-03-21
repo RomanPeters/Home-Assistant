@@ -1,0 +1,7 @@
+settings:
+  view: true
+  icon: mdi:settings
+  name: settings
+  entities:
+  - group.power_off
+  - group.power_off_activated

@@ -1,0 +1,8 @@
+screen:
+  view: true
+  icon: mdi:tablet
+  name: screen
+  entities:
+  - group.ww
+  - group.rgb
+  - group.devices

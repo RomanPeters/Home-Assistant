@@ -1,0 +1,95 @@
+#Cards
+
+scripts:
+  name: Scripts
+  entities:
+  - script.groet
+  - script.wake_up
+  - script.boot
+  - script.tv_on
+  - script.tv_off
+
+weather:
+  name: Temperature
+  view: false
+  entities:
+  - sensor.inside_temperature
+  - sensor.dark_sky_temperature
+
+entertainment:
+  name: Entertainment
+  view: false
+  entities:
+  - switch.speakers
+  - switch.television
+  - media_player.apple_tv
+
+
+#media_players:
+#  icon: mdi:theater
+#  name: Media players
+#  view: false
+#  entities:
+#  - media_player.apple_tv
+
+minecraft:
+  name: Minecraft
+  entities:
+  - sensor.minecraft
+
+rgb:
+  name: RGB lights
+  entities:
+  - light.a
+  - light.b
+  - light.c
+
+ww:
+  name: Lights
+  entities:
+  - light.d
+
+appliances:
+  name: Appliances
+  entities:
+  - switch.fan
+  - switch.air_purifier
+
+
+devices:
+  name: Devices
+  entities:
+  - switch.speakers
+  - switch.television
+  - switch.fan
+  - switch.air_purifier
+
+smart_alarm:
+  name: Smart alarm
+  entities:
+  - input_boolean.smart_alarm
+  - input_select.alarm_time
+  - script.set_alarm
+  - input_select.alarm_mode
+
+light_scripts:
+  name: Light scenes
+  entities:
+  - input_number.light_transition
+  - input_select.transition
+  - input_select.scene
+
+power_off:
+  name: Power off
+  entities:
+  - input_select.power_off
+power_off_activated:
+  name: Power off
+  entities:
+  - script.power_off
+
+location:
+  name: Location
+  entities:
+  - device_tracker.bluetooth_tracker
+  - device_tracker.nmap_tracker

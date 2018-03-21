@@ -1,0 +1,8 @@
+status:
+  view: true
+  icon: mdi:clipboard-text
+  name: status
+  entities:
+  - group.weather
+  - group.location
+  - group.minecraft

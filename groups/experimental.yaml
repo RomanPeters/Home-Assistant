@@ -1,0 +1,9 @@
+experimental:
+  view: true
+  icon: mdi:flask
+  name: experimental
+  entities:
+    - light.blinkt
+    - group.smart_alarm
+    - group.light_scripts
+    - group.scripts

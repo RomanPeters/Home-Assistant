@@ -28,3 +28,14 @@
           {% else %} 
           -
           {% endif %}
+
+- platform: template
+  sensors:
+    homekit_home:
+      friendly_name: HomeKit Home
+      value_template: >
+        {% if is_state('input_boolean.homekit_home', 'on') %}
+          home
+        {% else %}
+          not home
+        {% endif %}
