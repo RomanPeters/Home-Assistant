@@ -1,0 +1,15 @@
+light.a:
+  friendly_name: RGBW bulb
+  icon: mdi:lightbulb-outline
+
+light.b:
+  friendly_name: LED strip N
+  icon: mdi:blur-linear
+
+light.c:
+  friendly_name: LED strip S
+  icon: mdi:blur-linear
+
+light.d:
+  friendly_name: White bulb
+  icon: mdi:lightbulb-outline

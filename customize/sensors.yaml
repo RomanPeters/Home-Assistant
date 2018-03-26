@@ -1,0 +1,6 @@
+sensor.dark_sky_temperature:
+  friendly_name: Outside
+
+sensor.inside_temperature:
+  friendly_name: Inside
+  icon: mdi:thermometer

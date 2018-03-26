@@ -1,5 +1,3 @@
-#Cards
-
 scripts:
   name: Scripts
   entities:
@@ -15,6 +13,12 @@ weather:
   entities:
   - sensor.inside_temperature
   - sensor.dark_sky_temperature
+
+finance:
+  name: Finance
+  view: false
+  entities:
+  - sensor.n26
 
 entertainment:
   name: Entertainment
@@ -92,4 +96,4 @@ location:
   name: Location
   entities:
   - device_tracker.bluetooth_tracker
-  - device_tracker.nmap_tracker
+#  - device_tracker.nmap_tracker
