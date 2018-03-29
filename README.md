@@ -12,4 +12,7 @@ Other connected hardware includes:
 - Broadlink MP1 WiFi power strip
 - Broadlink RM2 Pro
 - Apple TV
+- Apple HomePod
+- Blinkt!
+
 

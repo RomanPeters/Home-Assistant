@@ -1,0 +1,15 @@
+switch.air_purifier:
+  icon: mdi:weather-windy
+
+switch.fan:
+  icon: mdi:fan
+
+switch.television:
+  friendly_name: Television
+  icon: mdi:television
+
+switch.speakers:
+  icon: mdi:music
+
+switch.update_from_github:
+  can_cancel: false

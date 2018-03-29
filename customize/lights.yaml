@@ -1,0 +1,23 @@
+light.a:
+  friendly_name: Standing lamp
+  icon: mdi:lamp
+  assumed_state: false
+
+light.b:
+  friendly_name: LED strip N
+  icon: mdi:blur-linear
+  assumed_state: false
+
+light.c:
+  friendly_name: LED strip S
+  icon: mdi:blur-linear
+  assumed_state: false
+
+light.d:
+  friendly_name: Ceiling lamp
+  icon: mdi:ceiling-light
+  assumed_state: false
+
+light.gateway_light_7811dce1e53e:
+  friendly_name: Gateway light
+  icon: mdi:circle-outline

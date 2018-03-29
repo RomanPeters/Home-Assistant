@@ -1,0 +1,15 @@
+sensor.dark_sky_temperature:
+  friendly_name: Outside temperature
+  icon: mdi:thermometer
+
+sensor.inside_temperature:
+  friendly_name: Inside temperature
+  icon: mdi:thermometer
+
+sensor.n26:
+  friendly_name: Balance
+  icon: mdi:credit-card
+
+sensor.illumination_7811dce1e53e:
+  friendly_name: Light level
+  icon: mdi:theme-light-dark

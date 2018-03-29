@@ -1,3 +1,4 @@
+#Home Assistant configuration
 homeassistant:
   name: Dashboard
   latitude: !secret latitude
@@ -5,48 +6,22 @@ homeassistant:
   elevation: 40
   unit_system: metric
   time_zone: Europe/Amsterdam
-  customize: !include customize.yaml
+  customize: !include_dir_merge_named customize
   customize_domain: !include customize_domain.yaml
-frontend:
-  themes:
-    steelblue:
-      primary-color: steelblue
-    darkred:
-      primary-color: darkred
-    black:
-      primary-color: black
-    darkgray:
-      primary-color: slategray
-config:
-updater:
-discovery:
-ios:
-conversation:
-#history:
-#datadog:
-logbook:
+
 http:
   api_password: !secret api_password
   ip_ban_enabled: True
   login_attempts_threshold: 3
-homekit:
-  pincode: '010-10-010'
-logger:
-  default: warn
 
+xiaomi_aqara:
+  gateways:
+    - key: !secret xiaomi_aqara_key
 
-group: !include groups.yaml
-zone: !include zones.yaml
-sensor: !include sensors.yaml
-light: !include lights.yaml
-switch: !include switches.yaml
-input_select: !include input_selects.yaml
-
-automation: !include_dir_merge_named automations
-script: !include_dir_named scripts
-scene: !include_dir_merge_named scenes
-
-sun:  
+apple_tv:
+  host: !secret apple_tv_ip
+  start_off: true
+  login_id: !secret apple_tv_id
 
 #device_sun_light_trigger:
 #  light_group: group.lichten
@@ -57,32 +32,49 @@ sun:
 #  client_id: !secret google_client_id
 #  client_secret: !secret google_client_secret
 
+frontend:
+  themes: !include themes.yaml
+
+homekit:
+  pincode: !secret homekit_pin
+
+
+logger:
+  default: warn
+
 tts:
   platform: google
 
-media_player:
-  - platform: apple_tv
-    host: !secret apple_tv_ip
-    login_id: !secret apple_tv_id
+config:
+updater:
+discovery:
+ios:
+sun:
+conversation:
+logbook:
 
-input_boolean:
-  smart_alarm:
-    name: Smart alarm
-    initial: off
-    icon: mdi:alarm
+group: !include_dir_merge_named groups
+automation: !include_dir_merge_named automations
+scene: !include_dir_merge_named scenes
+script: !include_dir_named scripts
 
-input_number:
-  light_transition:
-    name: Delay
-    initial: 9
-    min: 1
-    max: 9
-    step: 1
+zone: !include zones.yaml
+sensor: !include sensors.yaml
+light: !include lights.yaml
+switch: !include switches.yaml
+device_tracker: !include device_trackers.yaml
+input_number: !include input_numbers.yaml
+input_select: !include input_selects.yaml
+#input_boolean: !include input_booleans.yaml
+#shell_command: !include shell_commands.yaml
 
-shell_command:
-  git_pull: "/usr/bin/git pull origin master"
-  test_config: "hass -c /home/roman/.homeassistant --script check_config"
-  systemctl_restart: "sudo systemctl restart homeassistant.service"
+
+
+
+
+
+
+
 
 
 

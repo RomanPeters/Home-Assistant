@@ -1,0 +1,14 @@
+- platform: bluetooth_tracker
+
+#nmap_tracker:
+#  hosts: 192.168.1.0/24
+#  home_interval: 30
+#    exclude:
+#      - xxxx
+
+## Doesn't work until the module supports 2FA
+#- platform: icloud
+#  username: !secret email
+#  password: !secret password
+#  account_name: Roman Peters
+

@@ -1,0 +1,3 @@
+git_pull: "/usr/bin/git pull origin master"
+test_config: "hass -c /home/roman/.homeassistant --script check_config"
+systemctl_restart: "sudo systemctl restart homeassistant.service"

@@ -20,3 +20,4 @@ ios.conf
 .homekit.state
 .google.token
 entity_registry.yaml
+

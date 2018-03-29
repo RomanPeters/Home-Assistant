@@ -1,0 +1,4 @@
+script.ringtone:
+  friendly_name: Play sound
+  icon: mdi:bell-ring-outline
+

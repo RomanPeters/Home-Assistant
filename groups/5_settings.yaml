@@ -1,0 +1,14 @@
+settings:
+  view: true
+  icon: mdi:settings
+  name: Settings
+  entities:
+    - group.ringtone
+
+ringtone:
+  name: Ringtone
+  control: hidden
+  entities:
+    - script.ringtone
+    - input_number.ringtone_volume
+    - input_select.ringtone

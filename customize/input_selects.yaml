@@ -1,0 +1,6 @@
+input_select.alarm_time:
+  icon: None
+
+input_select.power_off:
+  friendly_name: Minutes
+  icon: mdi:timelapse
