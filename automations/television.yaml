@@ -1,0 +1,15 @@
+# On TV off
+
+- alias: Television off
+  initial_state: True
+
+  trigger:
+    platform: state
+    entity_id: switch.television
+    state: 'off'
+
+  action:
+    service: group.set_visibility
+    entity_id: group.media_players
+    data:
+      visible: False
