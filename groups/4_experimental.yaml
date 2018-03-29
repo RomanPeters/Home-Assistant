@@ -1,9 +1,18 @@
 experimental:
-  view: true
+  view: false # true
   icon: mdi:flask
   name: experimental
   entities:
-    - light.blinkt
-    - group.smart_alarm
-    - group.light_scripts
-    - group.scripts
+    - group.ringtone
+
+ringtone:
+  entities:
+    - script.ringtone
+    - input_select.ringtone
+    - input_number.ringtone_volume
+
+
+#    - light.blinkt
+#    - group.smart_alarm
+#    - group.light_scripts
+#    - group.scripts

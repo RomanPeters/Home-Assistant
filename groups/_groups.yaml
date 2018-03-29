@@ -1,11 +1,7 @@
 scripts:
   name: Scripts
   entities:
-  - script.groet
-  - script.wake_up
-  - script.boot
-  - script.tv_on
-  - script.tv_off
+  - script.ringtone
 
 weather:
   name: Temperature
@@ -14,59 +10,10 @@ weather:
   - sensor.inside_temperature
   - sensor.dark_sky_temperature
 
-finance:
-  name: Finance
-  view: false
+media_players:
+  name: Media players
   entities:
-  - sensor.n26
-
-entertainment:
-  name: Entertainment
-  view: false
-  entities:
-  - switch.speakers
-  - switch.television
-  - media_player.apple_tv
-
-
-#media_players:
-#  icon: mdi:theater
-#  name: Media players
-#  view: false
-#  entities:
-#  - media_player.apple_tv
-
-minecraft:
-  name: Minecraft
-  entities:
-  - sensor.minecraft
-
-rgb:
-  name: RGB lights
-  entities:
-  - light.a
-  - light.b
-  - light.c
-
-ww:
-  name: Lights
-  entities:
-  - light.d
-
-appliances:
-  name: Appliances
-  entities:
-  - switch.fan
-  - switch.air_purifier
-
-
-devices:
-  name: Devices
-  entities:
-  - switch.speakers
-  - switch.television
-  - switch.fan
-  - switch.air_purifier
+  - media_player.apple_tv_2
 
 smart_alarm:
   name: Smart alarm
@@ -91,9 +38,3 @@ power_off_activated:
   name: Power off
   entities:
   - script.power_off
-
-location:
-  name: Location
-  entities:
-  - device_tracker.bluetooth_tracker
-#  - device_tracker.nmap_tracker

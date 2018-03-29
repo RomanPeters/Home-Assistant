@@ -9,3 +9,7 @@ black:
 
 darkgray:
   primary-color: slategray
+  secondary-color: red
+
+lightgrey:
+  primary-color: lightgrey

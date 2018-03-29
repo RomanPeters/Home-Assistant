@@ -6,16 +6,7 @@
   friendly_name: Power strip
   slots:
      slot_1: Fan
-     slot_2: 'Air purifier'
+     slot_2: Air purifier
      slot_3: Television
      slot_4: Speakers
 
-- platform: broadlink
-  host: !secret broadlink_ip
-  mac: !secret broadlink_mac
-
-- platform: command_line
-  switches:
-    update_from_github:
-      friendly_name: 'Update config'
-      command_on: "home/roman/.homeassistant/other/git_update.sh"

@@ -1,8 +1,17 @@
 screen:
-  view: true
+  view: false # true
   icon: mdi:tablet
   name: screen
   entities:
   - group.ww
   - group.rgb
   - group.devices
+
+
+devices:
+  name: Devices
+  entities:
+  - switch.speakers
+  - switch.television
+  - switch.fan
+  - switch.air_purifier

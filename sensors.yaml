@@ -19,6 +19,11 @@
   monitored_conditions:
     - temperature
 
+- platform: n26
+  username: !secret n26_username
+  password: !secret n26_password
+  currency: EUR
+
 - platform: template
   sensors:
     inside_temperature:
@@ -29,13 +34,3 @@
           -
           {% endif %}
 
-- platform: template
-  sensors:
-    homekit_home:
-      friendly_name: HomeKit Home
-      value_template: >
-        {% if is_state('input_boolean.homekit_home', 'on') %}
-          home
-        {% else %}
-          not home
-        {% endif %}
