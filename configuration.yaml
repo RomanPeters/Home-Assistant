@@ -14,6 +14,15 @@ http:
   ip_ban_enabled: True
   login_attempts_threshold: 3
 
+xiaomi_aqara:
+  gateways:
+    - key: !secret xiaomi_aqara_key
+
+apple_tv:
+  host: !secret apple_tv_ip
+  start_off: true
+  login_id: !secret apple_tv_id
+
 #device_sun_light_trigger:
 #  light_group: group.lichten
 #  light_profile: relax
@@ -28,6 +37,7 @@ frontend:
 
 homekit:
   pincode: !secret homekit_pin
+
 
 logger:
   default: warn
@@ -52,12 +62,11 @@ zone: !include zones.yaml
 sensor: !include sensors.yaml
 light: !include lights.yaml
 switch: !include switches.yaml
-media_player: !include media_players.yaml
-input_select: !include input_selects.yaml
-input_boolean: !include input_booleans.yaml
-input_number: !include input_numbers.yaml
 device_tracker: !include device_trackers.yaml
-shell_command: !include shell_commands.yaml
+input_number: !include input_numbers.yaml
+input_select: !include input_selects.yaml
+#input_boolean: !include input_booleans.yaml
+#shell_command: !include shell_commands.yaml
 
 
 

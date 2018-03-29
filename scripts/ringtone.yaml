@@ -1,0 +1,54 @@
+alias: Ringtone
+sequence:
+  - service: xiaomi_aqara.play_ringtone
+    data_template:
+      ringtone_vol: "{{ states('input_number.ringtone_volume') | int }}"
+      gw_mac: !secret xiaomi_aqara_mac
+      ringtone_id: >
+        {% if states('input_select.ringtone') == 'Police car 1' %}
+        {{ 0 | int }}
+        {% elif states('input_select.ringtone') == 'Police car 2' %}
+        {{ 1 | int }}
+        {% elif states('input_select.ringtone') == 'Accident' %}
+        {{ 2 | int }}
+        {% elif states('input_select.ringtone') == 'Countdown' %}
+        {{ 3 | int }}
+        {% elif states('input_select.ringtone') == 'Ghost' %}
+        {{ 4 | int }}
+        {% elif states('input_select.ringtone') == 'Sniper rifle' %}
+        {{ 5 | int }}
+        {% elif states('input_select.ringtone') == 'Battle' %}
+        {{ 6 | int }}
+        {% elif states('input_select.ringtone') == 'Air raid' %}
+        {{ 7 | int }}
+        {% elif states('input_select.ringtone') == 'Bark' %}
+        {{ 8 | int }}
+        {% elif states('input_select.ringtone') == 'Doorbell' %}
+        {{ 10 | int }}
+        {% elif states('input_select.ringtone') == 'Knock at a door' %}
+        {{ 11 | int }}
+        {% elif states('input_select.ringtone') == 'Amuse' %}
+        {{ 12 | int }}
+        {% elif states('input_select.ringtone') == 'Alarm clock' %}
+        {{ 13 | int }}
+        {% elif states('input_select.ringtone') == 'MiMix' %}
+        {{ 20 | int }}
+        {% elif states('input_select.ringtone') == 'Enthusiastic' %}
+        {{ 21 | int }}
+        {% elif states('input_select.ringtone') == 'GuitarClassic' %}
+        {{ 22 | int }}
+        {% elif states('input_select.ringtone') == 'IceWorldPiano' %}
+        {{ 23 | int }}
+        {% elif states('input_select.ringtone') == 'LeisureTime' %}
+        {{ 24 | int }}
+        {% elif states('input_select.ringtone') == 'ChildHood' %}
+        {{ 25 | int }}
+        {% elif states('input_select.ringtone') == 'MorningStreamLiet' %}
+        {{ 26 | int }}
+        {% elif states('input_select.ringtone') == 'MusicBox' %}
+        {{ 27 | int }}
+        {% elif states('input_select.ringtone') == 'Orange' %}
+        {{ 28 | int }}
+        {% elif states('input_select.ringtone') == 'Thinker' %}
+        {{ 29 | int }}
+        {% endif %}

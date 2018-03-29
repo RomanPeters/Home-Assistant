@@ -1,0 +1,27 @@
+ringtone:
+  name: Ringtone
+  options:
+   - Police car 1
+   - Police car 2
+   - Accident
+   - Countdown
+   - Ghost
+   - Sniper rifle
+   - Battle
+   - Air raid
+   - Bark
+   - Doorbell
+   - Knock at a door
+   - Amuse
+   - Alarm clock
+   - MiMix
+   - Enthusiastic
+   - GuitarClassic
+   - IceWorldPiano
+   - LeisureTime
+   - ChildHood
+   - MorningStreamLiet
+   - MusicBox
+   - Orange
+   - Thinker
+  icon: mdi:music-note
