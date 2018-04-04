@@ -1,0 +1,28 @@
+- id: arriving
+  alias: Arriving at the house
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.homekit
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: notify.notify
+      data:
+        message: "Welcome home!"
+
+- id: leaving
+  alias: Leaving the house
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.homekit
+      from: 'on'
+      to: 'off'
+
+  action:
+    - service: notify.notify
+      data:
+        message: "Goodbye!"
+

@@ -1,9 +1,14 @@
 # Run the boot script
+- id: boot
+  alias: Boot
 
-- alias: Boot
   trigger:
     - platform: homeassistant
       event: start
 
   action:
     - service: script.boot
+
+    - service: notify.notify
+      data:
+        message: "Home Assistant is online"
