@@ -1,4 +1,4 @@
-# Example of zones.yaml
+# Fake zones for Travis testing
 - name: Home
   latitude: 0
   longitude: 0

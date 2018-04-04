@@ -3,8 +3,8 @@ settings:
   icon: mdi:settings
   name: Settings
   entities:
+    - group.alarm
     - group.ringtone
-    - group.settings_switches
     - group.blinkt
     - group.user
     - group.power_off
@@ -29,10 +29,11 @@ power_off_activated:
   entities:
   - script.power_off
 
-settings_switches:
+alarm:
   name: Settings
   control: hidden
   entities:
+  - alarm_control_panel.home_alarm
   - input_boolean.light_alert
 
 user:

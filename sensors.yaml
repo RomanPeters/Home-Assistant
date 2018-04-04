@@ -32,18 +32,18 @@
 
     presence:
       value_template: >
-        {% if states('input_boolean.homekit_home') %}
-        Home
+        {% if states('alarm_control_panel.home_alarm') == 'armed_home' or states('alarm_control_panel.home_alarm') == 'armed_night'%}
+        Yes
         {% else %}
-        Away
+        No
         {% endif %}
 
     sleeping:
       value_template: >
-        {% if states('input_boolean.homekit_awake') %}
-        No
-        {% else %}
+        {% if states('alarm_control_panel.home_alarm') == 'armed_night' %}
         Yes
+        {% else %}
+        No
         {% endif %}
 
 

@@ -2,11 +2,3 @@ light_alert:
   name: Light alert
   initial: on
   icon: mdi:alarm-light
-
-homekit_home:
-  name: Home
-  initial: on
-
-homekit_awake:
-  name: Awake
-  initial: on
