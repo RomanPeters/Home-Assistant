@@ -3,6 +3,7 @@ python:
   - "3.6"
 before_install:
   - mv secrets.yaml.example secrets.yaml
+  - mv zones.yaml.example zones.yaml
 install:
   - pip3 install homeassistant
 script:
