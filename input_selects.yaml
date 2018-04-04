@@ -24,4 +24,16 @@ ringtone:
    - MusicBox
    - Orange
    - Thinker
-  icon: mdi:music-note
+  icon: mdi:none
+
+power_off:
+  name: Power off
+  options:
+    - 0
+    - 1
+    - 5
+    - 15
+    - 30
+    - 60
+    - 120
+  initial: 0
