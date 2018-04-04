@@ -4,6 +4,7 @@ status:
   name: status
   entities:
   - group.sensors
+  - group.graphs
   - group.location
   - group.minecraft
   - group.finance
@@ -17,9 +18,15 @@ location:
 sensors:
   name: Sensors
   entities:
-  - sensor.dark_sky_temperature
   - sensor.inside_temperature
+  - sensor.br_temperature
+  - sensor.br_precipitation
   - sensor.illumination_7811dce1e53e
+
+graphs:
+  entities:
+  - history_graph.temperature
+  - history_graph.light
 
 minecraft:
   name: Minecraft

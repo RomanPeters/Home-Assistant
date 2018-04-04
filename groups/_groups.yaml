@@ -10,10 +10,10 @@ weather:
   - sensor.inside_temperature
   - sensor.dark_sky_temperature
 
-media_players:
-  name: Media players
-  entities:
-  - media_player.apple_tv_2
+#media_players:
+#  name: Media players
+#  entities:
+#  - media_player.apple_tv_2
 
 smart_alarm:
   name: Smart alarm

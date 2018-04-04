@@ -5,6 +5,7 @@ default_view:
   - group.ww
   - group.rgb
   - group.entertainment
+  - group.media_players
   - group.appliances
 
 entertainment:
@@ -13,6 +14,10 @@ entertainment:
   entities:
   - switch.speakers
   - switch.television
+
+media_players:
+  name: Apple TV
+  entities:
   - media_player.apple_tv_2
 
 ww:
@@ -34,3 +39,4 @@ appliances:
   entities:
   - switch.fan
   - switch.air_purifier
+  - switch.socket

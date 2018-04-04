@@ -44,7 +44,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     if not name:
         name = "N26"
     if not currency:
-        currency = "EUR"
+        currency = "EUR"  # At the moment N26 only offers EUR currency anyway
 
 
     add_devices([
@@ -65,8 +65,16 @@ class N26Sensor(Entity):
         self._conf = self._config.Config(username=username, password=password, card_id=None)  # card_id not necessary for sensor
         self._conn = self._api.Api(self._conf)
         self._unit_of_measurement = currency  # Couldn't find an API call to retrieve currency type
-                                              # At the moment N26 only has the option for Euro currency
-        self.update()
+        self._state = None
+        self._id = None
+        self._available_balance = None
+        self._usable_balance = None
+        self._bank_balance = None
+        self._iban = None
+        self._bic = None
+        self._bank_name = None
+        self._seized = None
+
 
     @property
     def name(self):
@@ -99,6 +107,7 @@ class N26Sensor(Entity):
 
     def update(self):
         """Get the latest state of the sensor."""
+        self._conn = self._api.Api(self._conf)
         account = self._conn.get_balance()
         self._state = '{:0,.2f}'.format(account['availableBalance'])
         self._id = account['id']

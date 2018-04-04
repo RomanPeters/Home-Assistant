@@ -1,0 +1,12 @@
+filter:
+  exclude_entities:
+    - script.boot
+    - script.power_off
+    - remote.apple_tv_2
+    - sensor.iphone_5c_battery_level
+    - sensor.br_humidity
+    - sensor.br_temperature
+    - sensor.presence
+    - sensor.sleeping
+    - sensor.broadlink_sensor_temperature
+    - input_boolean.light_alert

@@ -35,10 +35,6 @@ apple_tv:
 frontend:
   themes: !include themes.yaml
 
-homekit:
-  pincode: !secret homekit_pin
-
-
 logger:
   default: warn
 
@@ -54,18 +50,21 @@ conversation:
 logbook:
 
 group: !include_dir_merge_named groups
-automation: !include_dir_merge_named automations
+automation: !include automations.yaml
+automation old: !include_dir_merge_list automations
 scene: !include_dir_merge_named scenes
 script: !include_dir_named scripts
 
+homekit: !include homekit.yaml
 zone: !include zones.yaml
 sensor: !include sensors.yaml
 light: !include lights.yaml
 switch: !include switches.yaml
 device_tracker: !include device_trackers.yaml
+history_graph: !include history_graphs.yaml
 input_number: !include input_numbers.yaml
 input_select: !include input_selects.yaml
-#input_boolean: !include input_booleans.yaml
+input_boolean: !include input_booleans.yaml
 #shell_command: !include shell_commands.yaml
 
 
