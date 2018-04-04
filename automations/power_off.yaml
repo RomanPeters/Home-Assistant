@@ -4,7 +4,7 @@
   trigger:
     - platform: state
       entity_id: script.power_off
-      state: 'on'
+      to: 'on'
 
   action:
     # Hide one group
