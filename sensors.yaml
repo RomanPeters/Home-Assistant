@@ -1,13 +1,12 @@
 #Home Assistant sensors
-- platform: darksky
-  api_key: !secret darksky_api_key
+- platform: buienradar
   monitored_conditions:
-    - summary
+    - condition
+    - humidity
     - temperature
-    - hourly_summary
-    - temperature_min
-    - temperature_max
-  update_interval: '00:15'
+    - windspeed
+    - precipitation
+    - precipitation_forecast_total
 
 - platform: minecraft
   name: Minecraft
@@ -19,18 +18,37 @@
   monitored_conditions:
     - temperature
 
-- platform: n26
-  username: !secret n26_username
-  password: !secret n26_password
-  currency: EUR
-
 - platform: template
   sensors:
     inside_temperature:
+      unit_of_measurement: '°C'
+      # Offset sensor by 3 degrees
       value_template: >
-          {% if states.sensor.broadlink_sensor_temperature.state == float %}
-          {{  states.sensor.broadlink_sensor_temperature.state | float - 3 }}  # Offset sensor by 3 degrees
-          {% else %} 
-          -
-          {% endif %}
+        {% if states('sensor.broadlink_sensor_temperature') %}
+        {{  states('sensor.broadlink_sensor_temperature') | float - 3 }}
+        {% else %}
+        0.0
+        {% endif %}
 
+    presence:
+      value_template: >
+        {% if states('input_boolean.homekit_home') %}
+        Home
+        {% else %}
+        Away
+        {% endif %}
+
+    sleeping:
+      value_template: >
+        {% if states('input_boolean.homekit_awake') %}
+        No
+        {% else %}
+        Yes
+        {% endif %}
+
+
+
+#- platform: n26
+#  username: !secret n26_username
+#  password: !secret n26_password
+#  currency: EUR
