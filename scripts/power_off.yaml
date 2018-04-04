@@ -1,0 +1,61 @@
+alias: Power off
+sequence:
+  - alias: Save state
+    service_template: >
+      {% set light_state_save = {"color": "",
+                                 "brightness": ""} %}
+
+  - alias: Alert light on
+    service: light.turn_on
+    data_template:
+      entity_id: >
+        {% if is_state("input_boolean.alert_light", "on") %}
+        light.gateway_light_7811dce1e53e
+        {%- else -%}
+        light.none
+        {% endif %}
+      brightness_pct: 100
+      color_name: red
+
+  - delay: >
+      {% if states.input_select.power_off.state == '0' %}
+      00:00:00
+      {% elif states.input_select.power_off.state == '1' %}
+      00:01:00
+      {% elif states.input_select.power_off.state == '5' %}
+      00:05:00
+      {% elif states.input_select.power_off.state == '15' %}
+      00:15:00
+      {% elif states.input_select.power_off.state == '30' %}
+      00:30:00
+      {% elif states.input_select.power_off.state == '60' %}
+      01:00:00
+      {% elif states.input_select.power_off.state == '120' %}
+      02:00:00
+      {% endif %}
+
+  - alias: Turn off scripts
+    service: homeassistant.turn_off
+    data:
+      entity_id: group.all_scripts
+
+  - alias: Turn off lights
+    service: light.turn_off
+    data:
+      entity_id: group.all_lights
+      transition: 10
+
+  - alias: Turn off entertainment
+    service: homeassistant.turn_off
+    data:
+      entity_id: group.entertainment
+
+  - alias: Turn off appliances
+    service: homeassistant.turn_off
+    data:
+      entity_id: group.appliances
+
+
+
+
+

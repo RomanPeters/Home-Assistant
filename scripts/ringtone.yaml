@@ -1,6 +1,19 @@
 alias: Ringtone
 sequence:
-  - service: xiaomi_aqara.play_ringtone
+  - alias: Alert light on
+    service: light.turn_on
+    data_template:
+      entity_id: >
+        {% if is_state("input_boolean.alert_light", "on") %}
+        light.gateway_light_7811dce1e53e
+        {%- else -%}
+        light.none
+        {% endif %}
+      brightness_pct: 100
+      color_name: red
+
+  - alias: Play ringtone
+    service: xiaomi_aqara.play_ringtone
     data_template:
       ringtone_vol: "{{ states('input_number.ringtone_volume') | int }}"
       gw_mac: !secret xiaomi_aqara_mac
@@ -51,4 +64,16 @@ sequence:
         {{ 28 | int }}
         {% elif states('input_select.ringtone') == 'Thinker' %}
         {{ 29 | int }}
+        {% endif %}
+
+  - delay: 00:00:10
+
+  - alias: Alert light off
+    service: light.turn_off
+    data_template:
+      entity_id: >
+        {% if is_state("input_boolean.alert_light", "on") %}
+        light.gateway_light_7811dce1e53e
+        {%- else -%}
+        light.none
         {% endif %}

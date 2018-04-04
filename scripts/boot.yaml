@@ -1,12 +1,11 @@
 alias: Boot
 sequence:
-  - alias: Set alarm
-    service: script.set_alarm
   - alias: Hide media players
     service: group.set_visibility
     entity_id: group.media_players
     data:
-      visible: False  
+      visible: False
+
   - alias: Hide power off active
     service: group.set_visibility
     entity_id: group.power_off_activated
