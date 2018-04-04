@@ -2,3 +2,6 @@ script.ringtone:
   friendly_name: Play sound
   icon: mdi:bell-ring-outline
 
+script.power_off:
+  friendly_name: Activated
+  icon: mdi:power

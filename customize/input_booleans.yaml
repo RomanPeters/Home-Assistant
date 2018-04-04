@@ -1,2 +1,6 @@
 input_boolean.smart_alarm:
   icon: mdi:alarm
+
+input_boolean.homekit:
+  icon: mdi:home
+  friendly_name: Home

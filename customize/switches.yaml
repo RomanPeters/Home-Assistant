@@ -11,5 +11,8 @@ switch.television:
 switch.speakers:
   icon: mdi:music
 
-switch.update_from_github:
+switch.socket:
+  icon: mdi:power-socket-eu
+
+script.ringtone:
   can_cancel: false
