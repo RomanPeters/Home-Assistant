@@ -17,3 +17,7 @@ deps/
 ios.conf
 .ios.conf
 .idea/
+.homekit.state
+.google.token
+entity_registry.yaml
+

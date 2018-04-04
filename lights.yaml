@@ -1,3 +1,4 @@
+#Home Assistant lights
 - platform: limitlessled  # Milight
   bridges:
     - host: !secret limitlessled_ip

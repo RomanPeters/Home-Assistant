@@ -1,0 +1,25 @@
+sensor.inside_temperature:
+  friendly_name: Inside temperature
+  icon: mdi:thermometer
+
+sensor.br_temperature:
+  friendly_name: Outside temperature
+
+sensor.br_precipitation:
+  friendly_name: Precipitation
+
+sensor.n26:
+  friendly_name: Balance
+  icon: mdi:credit-card
+
+sensor.illumination_7811dce1e53e:
+  friendly_name: Light level
+  icon: mdi:theme-light-dark
+
+sensor.presence:
+  friendly_name: Home
+  icon: mdi:home-account
+
+sensor.sleeping:
+  friendly_name: Sleeping
+  icon: mdi:sleep

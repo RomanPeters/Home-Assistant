@@ -1,34 +1,17 @@
+#Home Assistant switches
 - platform: broadlink
   host: !secret broadlinkmp1_ip
   mac: !secret broadlinkmp1_mac
-  type: mp1-1
-  friendly_name: E
-- platform: broadlink
-  host: !secret broadlinkmp1_ip
-  mac: !secret broadlinkmp1_mac
-  type: mp1-2
-  friendly_name: F
-- platform: broadlink
-  host: !secret broadlinkmp1_ip
-  mac: !secret broadlinkmp1_mac
-  type: mp1-3
-  friendly_name: G
-- platform: broadlink
-  host: !secret broadlinkmp1_ip
-  mac: !secret broadlinkmp1_mac
-  type: mp1-4
-  friendly_name: H
+  type: mp1
+  friendly_name: Power strip
+  slots:
+     slot_1: Fan
+     slot_2: Television
+     slot_3: Speakers
+     slot_4: Socket
 
-- platform: broadlink
-  host: !secret broadlink_ip
-  mac: !secret broadlink_mac
-
-- platform: template
-  switches:
-    tv:
-      friendly_name: 'Television'
-      value_template: "{{ is_state('states.switch.g', 'on')  }}"
-      turn_on:
-        service: script.tv_on
-      turn_off:
-        service: script.tv_off
+- platform: xiaomi_miio
+  name: Air Purifier
+  host: !secret xiaomi_plug_ip
+  token: !secret xiaomi_plug_token
+  model: chuangmi.plug.m1

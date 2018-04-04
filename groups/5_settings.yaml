@@ -1,0 +1,55 @@
+settings:
+  view: true
+  icon: mdi:settings
+  name: Settings
+  entities:
+    - group.ringtone
+    - group.settings_switches
+    - group.blinkt
+    - group.user
+    - group.power_off
+    - group.power_off_activated
+
+ringtone:
+  name: Ringtone
+  control: hidden
+  entities:
+    - script.ringtone
+    - input_number.ringtone_volume
+    - input_select.ringtone
+
+power_off:
+  name: Power off
+  entities:
+  - input_select.power_off
+
+power_off_activated:
+  name: Power off
+  hidden: true
+  entities:
+  - script.power_off
+
+settings_switches:
+  name: Settings
+  control: hidden
+  entities:
+  - input_boolean.light_alert
+
+user:
+  name: User
+  control: hidden
+  entities:
+  - sensor.presence
+  - sensor.sleeping
+
+blinkt:
+  name: Blinkt
+  entities:
+  - light.blinkt_0
+  - light.blinkt_1
+  - light.blinkt_2
+  - light.blinkt_3
+  - light.blinkt_4
+  - light.blinkt_5
+  - light.blinkt_6
+  - light.blinkt_7

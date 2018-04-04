@@ -1,0 +1,41 @@
+status:
+  view: true
+  icon: mdi:clipboard-text
+  name: status
+  entities:
+  - group.sensors
+  - group.graphs
+  - group.location
+  - group.minecraft
+  - group.finance
+
+
+location:
+  name: Location
+  entities:
+  - device_tracker.iphone
+
+sensors:
+  name: Sensors
+  entities:
+  - sensor.inside_temperature
+  - sensor.br_temperature
+  - sensor.br_precipitation
+  - sensor.illumination_7811dce1e53e
+
+graphs:
+  entities:
+  - history_graph.temperature
+  - history_graph.light
+
+minecraft:
+  name: Minecraft
+  entities:
+  - sensor.minecraft
+
+
+finance:
+  name: Finance
+  view: false
+  entities:
+  - sensor.n26
