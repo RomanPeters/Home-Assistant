@@ -9,6 +9,8 @@ homeassistant:
   customize: !include_dir_merge_named customize
   customize_domain: !include customize_domain.yaml
 
+
+
 http:
   api_password: !secret api_password
   ip_ban_enabled: True
@@ -55,8 +57,9 @@ automation old: !include_dir_merge_list automations
 scene: !include_dir_merge_named scenes
 script: !include_dir_named scripts
 
-homekit: !include homekit.yaml
+
 alarm_control_panel: !include alarm_control_panels.yaml
+homekit: !include homekit.yaml
 zone: !include zones.yaml
 sensor: !include sensors.yaml
 light: !include lights.yaml
