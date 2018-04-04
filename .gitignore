@@ -2,7 +2,6 @@ zones.yaml
 secrets.yaml
 .DS_Store
 .uuid
-.HA_VERSION
 google_calendars.yaml
 known_devices.yaml
 *.log
