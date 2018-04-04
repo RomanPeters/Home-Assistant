@@ -25,7 +25,6 @@ power_off:
 
 power_off_activated:
   name: Power off
-  hidden: true
   entities:
   - script.power_off
 
