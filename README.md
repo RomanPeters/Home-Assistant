@@ -1,4 +1,4 @@
-# Home Assistant
+# Home Assistant  [![Build Status](https://travis-ci.org/romanpeters/home-assistant.svg?branch=master)](https://travis-ci.org/romanpeters/home-assistant)
 
 [Screenshot of the web GUI](example/screenshot.png).
 
