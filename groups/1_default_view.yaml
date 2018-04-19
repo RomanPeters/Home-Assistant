@@ -1,0 +1,35 @@
+default_view:
+  view: true
+  icon: mdi:home
+  entities:
+  - group.ww
+  - group.rgb
+  - group.entertainment
+  - group.appliances
+
+ww:
+  name: Lights
+  entities:
+  - light.d
+
+rgb:
+  name: RGB lights
+  entities:
+  - light.a
+  - light.b
+  - light.c
+  - light.gateway_light_7811dce1e53e
+
+entertainment:
+  name: Entertainment
+  view: false
+  entities:
+  - switch.speakers
+  - switch.television
+
+appliances:
+  name: Appliances
+  entities:
+  - switch.fan
+  - switch.air_purifier
+  - switch.socket

@@ -7,6 +7,7 @@ known_devices.yaml
 *.log
 *.db
 .google.token
+venv/
 custom_components/sensor/__pycache__/
 custom_components/switch/__pycache__/
 custom_components/light/__pycache__/

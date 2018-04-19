@@ -26,8 +26,9 @@ xiaomi_aqara:
     - key: !secret xiaomi_aqara_key
 
 light: !include lights.yaml
+group: !include_dir_merge_named groups
+switch: !include switches.yaml
 
-# group: !include_dir_merge_named groups
 # homekit: !include homekit.yaml
 # history_graph: !include history_graphs.yaml
 
