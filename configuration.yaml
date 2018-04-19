@@ -8,7 +8,7 @@ homeassistant:
   time_zone: Europe/Amsterdam
 
 http:
-  http_password: !secret http_password
+  api_password: !secret http_password
 
 tts:
   platform: google
@@ -18,6 +18,11 @@ config:
 updater:
 ios:
 logbook:
+
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_aqara_key
 
 # group: !include_dir_merge_named groups
 # homekit: !include homekit.yaml
