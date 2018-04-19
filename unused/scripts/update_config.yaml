@@ -1,3 +1,0 @@
-alias: Update config
-sequence:
-  - service: shell_command.git_pull

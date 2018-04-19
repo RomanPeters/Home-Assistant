@@ -1,6 +1,0 @@
-gr1:
-  name: Temperature
-  entities:
-    - sensor.inside_temperature
-    - sensor.br_temperature
-  hours_to_show: 24

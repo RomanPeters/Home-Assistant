@@ -1,9 +1,0 @@
-smart_alarm:
-  name: Smart alarm
-  initial: off
-  icon: mdi:alarm
-
-homekit_home:
-  name: HomeKit Home
-  initial: on
-

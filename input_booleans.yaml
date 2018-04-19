@@ -1,4 +1,0 @@
-light_alert:
-  name: Light alert
-  initial: on
-  icon: mdi:alarm-light

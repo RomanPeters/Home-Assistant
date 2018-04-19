@@ -1,75 +1,28 @@
 #Home Assistant configuration
 homeassistant:
-  name: Dashboard
+  name: Home
   latitude: !secret latitude
   longitude: !secret longitude
   elevation: 40
   unit_system: metric
   time_zone: Europe/Amsterdam
-  customize: !include_dir_merge_named customize
-  customize_domain: !include customize_domain.yaml
-
-
 
 http:
-  api_password: !secret api_password
-  ip_ban_enabled: True
-  login_attempts_threshold: 5
-
-xiaomi_aqara:
-  gateways:
-    - key: !secret xiaomi_aqara_key
-
-apple_tv:
-  host: !secret apple_tv_ip
-  start_off: true
-  login_id: !secret apple_tv_id
-
-#device_sun_light_trigger:
-#  light_group: group.lichten
-#  light_profile: relax
-#  device_group: group.person_roman
-
-#google:
-#  client_id: !secret google_client_id
-#  client_secret: !secret google_client_secret
-
-frontend:
-  themes: !include themes.yaml
-
-logger:
-  default: warn
+  http_password: !secret http_password
 
 tts:
   platform: google
 
+hassio:
 config:
 updater:
-discovery:
 ios:
-sun:
-conversation:
 logbook:
 
-group: !include_dir_merge_named groups
-automation: !include automations.yaml
-automation old: !include_dir_merge_list automations
-scene: !include_dir_merge_named scenes
-script: !include_dir_named scripts
-
-
-alarm_control_panel: !include alarm_control_panels.yaml
-homekit: !include homekit.yaml
-zone: !include zones.yaml
-sensor: !include sensors.yaml
-light: !include lights.yaml
-switch: !include switches.yaml
-device_tracker: !include device_trackers.yaml
-history_graph: !include history_graphs.yaml
-input_number: !include input_numbers.yaml
-input_select: !include input_selects.yaml
-input_boolean: !include input_booleans.yaml
-#shell_command: !include shell_commands.yaml
+# group: !include_dir_merge_named groups
+# homekit: !include homekit.yaml
+# light: !include lights.yaml
+# history_graph: !include history_graphs.yaml
 
 
 

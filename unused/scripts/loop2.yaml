@@ -1,6 +1,0 @@
-alias: Loop
-sequence:
-  - delay: '00:00:02'
-  - alias: Loop
-    service_template: script.{{ states.input_select.transition.state }}
-  
