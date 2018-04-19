@@ -6,6 +6,7 @@ homeassistant:
   elevation: 40
   unit_system: metric
   time_zone: Europe/Amsterdam
+  customize: !include_dir_merge_named customize
 
 http:
   api_password: !secret http_password
@@ -24,9 +25,10 @@ xiaomi_aqara:
   gateways:
     - key: !secret xiaomi_aqara_key
 
+light: !include lights.yaml
+
 # group: !include_dir_merge_named groups
 # homekit: !include homekit.yaml
-# light: !include lights.yaml
 # history_graph: !include history_graphs.yaml
 
 
