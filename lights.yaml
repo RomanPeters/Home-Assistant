@@ -1,12 +1,12 @@
 - platform: limitlessled
   bridges:
-    - host: '192.168.1.200'
+    - host: "192.168.1.200"
       port: 8899
       version: 5
       groups:
       - number: 1
         type: rgbw
-        name: Standing lamp
+        name: Standing Lamp
       - number: 2
         type: rgbw
         name: LED Strip N
@@ -15,6 +15,6 @@
         name: LED strip S
       - number: 1
         type: white
-        name: Ceiling lamp
+        name: Ceiling Lamp
 
 - platform: blinkt
