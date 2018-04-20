@@ -19,12 +19,14 @@ frontend:
 config:
 hassio:
 history:
+homekit:
 logbook:
 ios:
 tts:
   - platform: google
 
 xiaomi_aqara:
+  discovery_retry: 5
   gateways:
     - key: !secret xiaomi_aqara_key
 
@@ -33,3 +35,7 @@ group: !include_dir_merge_named groups
 switch: !include switches.yaml
 sensor: !include sensors.yaml
 panel_iframe: !include panel_iframes.yaml
+
+# homekit: !include homekit.yaml
+# history_graph: !include history_graphs.yaml
+

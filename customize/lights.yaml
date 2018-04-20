@@ -1,0 +1,59 @@
+light.standing_lamp:
+  icon: mdi:lamp
+  assumed_state: false
+
+light.led_strip_n:
+  icon: mdi:blur-linear
+  assumed_state: false
+
+light.led_strip_s:
+  icon: mdi:blur-linear
+  assumed_state: false
+
+light.ceiling_lamp:
+  icon: mdi:ceiling-light
+  assumed_state: false
+
+light.gateway_light_7811dce1e53e:
+  friendly_name: Aqara
+  icon: mdi:circle-outline
+
+light.blinkt_0:
+  friendly_name: 1
+  icon: mdi:raspberrypi
+  assumed_state: false
+
+light.blinkt_1:
+  friendly_name: 2
+  icon: mdi:raspberrypi
+  assumed_state: false
+
+light.blinkt_2:
+  friendly_name: 3
+  icon: mdi:raspberrypi
+  assumed_state: false
+
+light.blinkt_3:
+  friendly_name: 4
+  icon: mdi:raspberrypi
+  assumed_state: false
+
+light.blinkt_4:
+  friendly_name: 5
+  icon: mdi:raspberrypi
+  assumed_state: false
+
+light.blinkt_5:
+  friendly_name: 6
+  icon: mdi:raspberrypi
+  assumed_state: false
+
+light.blinkt_6:
+  friendly_name: 7
+  icon: mdi:raspberrypi
+  assumed_state: false
+
+light.blinkt_7:
+  friendly_name: 8
+  icon: mdi:raspberrypi
+  assumed_state: false

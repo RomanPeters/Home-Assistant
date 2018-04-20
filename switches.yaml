@@ -1,0 +1,16 @@
+- platform: broadlink
+  host: "192.168.1.201"
+  mac: "b4:43:0d:db:97:6c"
+  type: mp1
+  friendly_name: Power Strip
+  slots:
+     slot_1: Fan
+     slot_2: Television
+     slot_3: Speakers
+     slot_4: Socket
+
+- platform: xiaomi_miio
+  name: Air Purifier
+  host: "192.168.1.204"
+  token: !secret xiaomi_plug_token
+  model: chuangmi.plug.m1
