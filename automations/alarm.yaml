@@ -1,0 +1,28 @@
+- id: alarm_triggered
+  alias: 'Send notification when alarm triggered'
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.alarm_system
+      to: 'triggered'
+  action:
+    - service: notify.notify
+      data:
+        message: "Alarm has been triggered!"
+        
+        
+- id: alarm_away
+  alias: 'Trigger alarm while armed away'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001de85f7
+      to: 'active'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001b958bc
+      to: 'open'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.alarm_system
+      state: armed_away
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.alarm_system

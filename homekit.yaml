@@ -1,0 +1,24 @@
+filter:
+  exclude_entities:
+    - binary_sensor.switch_158d0001f4b7af
+    - binary_sensor.wall_switch_left_158d0001e11783
+    - binary_sensor.wall_switch_right_158d0001e11783
+    - binary_sensor.wall_switch_both_158d0001e11783
+    - device_tracker.iphone
+    - sensor.iphone_5c_battery_level
+    - sensor.br_humidity
+    - sensor.br_temperature
+    - sensor.mi_flora_battery
+    - sensor.mi_flora_conductivity
+    - sensor.mi_flora_light_intensity
+    - sensor.mi_flora_moisture
+    - sensor.mi_flora_temperature
+    - light.blinkt_0
+    - light.blinkt_1
+    - light.blinkt_2
+    - light.blinkt_3
+    - light.blinkt_4
+    - light.blinkt_5
+    - light.blinkt_6
+    - light.blinkt_7
+    

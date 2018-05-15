@@ -1,0 +1,26 @@
+#
+# Main arguments, all optional
+#
+title: iPad
+widget_dimensions: [64, 64]
+widget_margins: [0, 0]
+columns: 12
+
+plant:
+    widget_type: label
+    
+
+
+layout:
+    - light.b (1x15), spacer, spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     binary_sensor.door_window_sensor_158d0001b958bc (4x3)
+    -             spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer     
+    -             spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer                                       
+    -             light.a (2x2),          spacer,     plant (3x2),                        spacer,     spacer,     spacer,     spacer,     light.gateway_light_7811dce1e53e (1x2)
+    -                                     spacer,                                         spacer,     spacer,     spacer,     spacer
+    -             spacer,     switch.e (2x1),         spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     light.c (1x10)
+    -             spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     switch.b (2x2)         
+    -             spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer                             
+    -             spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer    
+    -             spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     switch.a (2x2)
+    -             spacer,     script.bed (6x4),                                                       spacer
+    -             spacer,                                                                             spacer,     switch.c (2x2)   

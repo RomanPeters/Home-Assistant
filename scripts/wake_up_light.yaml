@@ -1,0 +1,87 @@
+wake_up_light:
+  alias: Wake-up Light
+  sequence: 
+    - alias: "Wake up light D"
+      data: 
+        brightness_pct: 2
+        color_temp: 370
+        entity_id: light.d
+      service: homeassistant.turn_on
+    - delay: 
+        minutes: 3
+    - alias: "3 min, 10 percent"
+      data: 
+        brightness_pct: 10
+        entity_id: light.d
+      service: homeassistant.turn_on
+    - delay: 
+        minutes: 3
+    - alias: "6 min, 20 percent"
+      data: 
+        brightness_pct: 20
+        entity_id: light.d
+      service: homeassistant.turn_on
+    - delay: 
+        minutes: 3
+    - alias: "9 min, 30 percent"
+      data: 
+        brightness_pct: 30
+        entity_id: light.d
+      service: homeassistant.turn_on
+    - delay: 
+        minutes: 3
+    - alias: "12 min, 40 percent"
+      data: 
+        brightness_pct: 40
+        entity_id: light.d
+      service: homeassistant.turn_on
+    - delay: 
+        minutes: 3
+    - alias: "15 min, 50 percent"
+      data: 
+        brightness_pct: 50
+        entity_id: light.d
+      service: homeassistant.turn_on
+    - delay: 
+        minutes: 3
+    - alias: "18 min, 60 percent"
+      data: 
+        brightness_pct: 60
+        entity_id: light.d
+      service: homeassistant.turn_on
+    - delay: 
+        minutes: 3
+    - alias: "21 min, 70 percent"
+      data: 
+        brightness_pct: 70
+        entity_id: light.d
+      service: homeassistant.turn_on
+    - delay: 
+        minutes: 3
+    - alias: "24 min, 80 percent"
+      data: 
+        brightness_pct: 80
+        entity_id: light.d
+      service: homeassistant.turn_on
+    - delay: 
+        minutes: 3
+    - alias: "27 min, 90 percent"
+      data: 
+        brightness_pct: 90
+        entity_id: light.d
+      service: homeassistant.turn_on
+    - delay: 
+        minutes: 3
+    - alias: "30 min, 100 percent"
+      data: 
+        brightness_pct: 100
+        entity_id: light.d
+      service: homeassistant.turn_on
+    - delay: 
+        minutes: 30
+    - alias: "Lights off"
+      data: 
+        entity_id: light.d
+      service: homeassistant.turn_off
+
+

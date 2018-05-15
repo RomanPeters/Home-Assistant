@@ -1,11 +1,11 @@
 homeassistant:
   name: Home
   latitude: !secret latitude
-  longitude: !secret lonitude
+  longitude: !secret longitude
   elevation: 40
   unit_system: metric
   time_zone: Europe/Amsterdam
-  customize: !include_dir_merge_named customize.yaml
+  customize: !include_dir_merge_named customize
 
 http:
   api_password: !secret http_password
@@ -25,17 +25,38 @@ ios:
 tts:
   - platform: google
 
+recorder:
+  db_url: !secret db_url  
+history:
+logbook:
+ios:
+tts:
+  platform: google
+
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
     - key: !secret xiaomi_aqara_key
 
+feedreader:
+  urls:
+    - https://www.home-assistant.io/atom.xml
+
+binary_sensor:
+  - platform: mqtt
+    state_topic: dummy/floorplan/sensor
+    name: Floorplan
+
+automation: !include_dir_merge_list automations
 light: !include lights.yaml
 group: !include_dir_merge_named groups
 switch: !include switches.yaml
 sensor: !include sensors.yaml
 panel_iframe: !include panel_iframes.yaml
-
-# homekit: !include homekit.yaml
-# history_graph: !include history_graphs.yaml
+script: !include_dir_merge_named scripts
+panel_iframe: !include panel_iframes.yaml
+homekit: !include homekit.yaml
+history_graph: !include history_graphs.yaml
+alarm_control_panel: !include alarm_control_panels.yaml
+plant: !include plants.yaml
 

@@ -1,0 +1,40 @@
+status:
+  view: true
+  icon: mdi:clipboard-text
+  name: status
+  entities:
+  - group.inside
+  - group.outside
+  - group.activity
+  - group.graphs
+  - plant.houseplant
+  - binary_sensor.floorplan
+
+inside:
+  name: Indoors
+  entities:
+  - sensor.temperature_158d00022c8d56
+  - sensor.humidity_158d00022c8d56
+  - sensor.pressure_158d00022c8d56
+  - sensor.illumination_158d0001de85f7
+  - sensor.illumination_7811dce1e53e
+
+outside:
+  name: Outdoors
+  entities:
+  - sensor.br_temperature
+  - sensor.br_humidity
+  - sensor.br_precipitation
+
+activity:
+  name: Activity
+  entities:
+  - binary_sensor.door_window_sensor_158d0001b958bc
+  - binary_sensor.motion_sensor_158d0001de85f7
+
+graphs:
+  name: Graphs
+  entities:
+  - history_graph.temperature
+  - history_graph.humidity
+  - history_graph.particles

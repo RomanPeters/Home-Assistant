@@ -1,0 +1,8 @@
+wake_up_light:
+  alias: Wake-up Light
+  sequence: 
+    - alias: "light off"
+      data: 
+        entity_id: group.all_lights
+      service: homeassistant.turn_off
+

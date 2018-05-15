@@ -20,4 +20,7 @@ ios.conf
 .homekit.state
 .google.token
 entity_registry.yaml
-
+fullchain.pem
+privkey.pem
+appdaemon/compiled
+appdaemon/apps/__pycache__/

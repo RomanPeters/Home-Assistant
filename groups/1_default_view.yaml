@@ -24,12 +24,12 @@ entertainment:
   name: Entertainment
   view: false
   entities:
-  - switch.speakers
-  - switch.television
+  - switch.a  # television
+  - switch.b  # speakers
 
 appliances:
   name: Appliances
   entities:
-  - switch.fan
-  - switch.air_purifier
-  - switch.socket
+  - switch.c  # fan
+  - switch.e  # air purifier
+  - switch.d  # socket

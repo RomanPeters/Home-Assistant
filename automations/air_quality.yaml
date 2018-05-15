@@ -1,0 +1,49 @@
+- id: pm25
+  alias: Too much PM2.5
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.particle_sensor_pm25    
+    above: 5
+  action:
+    - service: switch.turn_on
+      entity_id: script.e
+    - service: notify.notify
+      data:
+        message: "Too much PM2.5, turning on air purifier."
+
+- id: pm10            
+  alias: Too much PM10  
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.particle_sensor_pm25
+    above: 10
+  action:
+    - service: switch.turn_on
+      entity_id: script.e
+    - service: notify.notify
+      data:
+        message: "Too much PM10, turning on air purifier."
+
+  
+- id: clean
+  alias: Air is clean
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.particle_sensor_pm25
+      below: 3
+    - platform: numeric_state
+      entity_id: sensor.particle_sensor_pm10
+      below: 10
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: '{{ states.sensor.particle_sensor_pm25.state | int  < 3 }}'
+      - condition: template
+        value_template: '{{ states.sensor.particle_sensor_pm10.state | int < 10 }}'
+  action:
+    - service: switch.turn_off
+      entity_id: script.e
+    - service: notify.notify
+      data:
+        message: "Room air quality returned to excellent."

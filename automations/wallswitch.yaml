@@ -1,0 +1,45 @@
+- id: wall_switch_left
+  alias: wall switch left
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_left_158d0001e11783
+        click_type: single
+  action:
+    - service: light.toggle
+      entity_id: light.d
+
+
+- id: wall_switch_right_on
+  alias: wall switch right turn on
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_right_158d0001e11783
+        click_type: single
+  condition:
+    - condition: state
+      entity_id: group.rgb
+      state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: group.rgb
+
+
+- id: wall_switch_right_off
+  alias: wall switch right turn off
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_right_158d0001e11783
+        click_type: single
+  condition:
+    - condition: state
+      entity_id: group.rgb
+      state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: group.rgb

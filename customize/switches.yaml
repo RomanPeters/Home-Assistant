@@ -1,15 +1,19 @@
-switch.air_purifier:
-  icon: mdi:weather-windy
+switch.a:
+  friendly_name: Speakers
+  icon: mdi:music
 
-switch.fan:
-  icon: mdi:fan
-
-switch.television:
+switch.b:
   friendly_name: Television
   icon: mdi:television
 
-switch.speakers:
-  icon: mdi:music
+switch.c:
+  friendly_name: Fan
+  icon: mdi:fan
 
-switch.socket:
+switch.d:
+  friendly_name: Socket
   icon: mdi:power-socket-eu
+  
+switch.e:
+  friendly_name: Air purifier
+  icon: mdi:weather-windy

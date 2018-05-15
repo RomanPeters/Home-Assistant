@@ -1,0 +1,14 @@
+- id: home_assistant_rss
+  alias: Send notification of RSS feed title when updated
+   
+  trigger:
+    platform: event
+    event_type: feedreader
+
+  action:
+    - service: notify.notify
+      data:        
+        title: "home-assistant.io"
+        message: "New HA blog post!"
+        data:
+          subtitle: "{{ trigger.event.data.title }}"

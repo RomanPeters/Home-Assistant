@@ -1,0 +1,33 @@
+sensor.illumination_7811dce1e53e:
+  friendly_name: Light level lumen
+  icon: mdi:theme-light-dark
+
+sensor.illumination_158d0001de85f7:
+  friendly_name: Light level lux
+  icon: mdi:theme-light-dark
+
+sensor.humidity_158d00022c8d56:
+  friendly_name: Inside humidity
+
+sensor.pressure_158d00022c8d56:
+  friendly_name: Inside pressure
+
+sensor.temperature_158d00022c8d56:
+  friendly_name: Inside temperature
+
+sensor.br_temperature:
+  friendly_name: Outside temperature
+
+sensor.br_humidity:
+  friendly_name: Outside humidity
+
+sensor.br_precipitation:
+  friendly_name: Precipitation
+
+sensor.particle_sensor_pm25:
+  friendly_name: PM2.5
+  icon: mdi:salesforce
+
+sensor.particle_sensor_pm10:
+  friendly_name: PM10
+  icon: mdi:salesforce
