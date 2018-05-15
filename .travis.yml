@@ -3,6 +3,7 @@ python:
 - 3.6.4
 before_install:
 - mv travis_secrets.yaml secrets.yaml
+- sed "  db_url: !secret db_url" < configuration.yaml > delete
 install:
 - pip3 install homeassistant
 script:
