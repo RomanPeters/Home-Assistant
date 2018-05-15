@@ -6,6 +6,8 @@ google_calendars.yaml
 known_devices.yaml
 *.log
 *.db
+*.save
+*.bak
 .google.token
 venv/
 custom_components/sensor/__pycache__/
