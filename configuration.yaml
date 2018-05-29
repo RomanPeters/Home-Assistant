@@ -57,12 +57,4 @@ history_graph: !include history_graphs.yaml
 alarm_control_panel: !include alarm_control_panels.yaml
 plant: !include plants.yaml
 input_select: !include input_selects.yaml
-or: !include sensors.yaml
-panel_iframe: !include panel_iframes.yaml
-script: !include_dir_merge_named scripts
-#homekit: !include homekit.yaml
-history_graph: !include history_graphs.yaml
-alarm_control_panel: !include alarm_control_panels.yaml
-plant: !include plants.yaml
-input_select: !include input_selects.yaml
 
