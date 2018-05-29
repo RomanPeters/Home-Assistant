@@ -14,7 +14,6 @@ venv/
 custom_components/sensor/__pycache__/
 custom_components/switch/__pycache__/
 custom_components/light/__pycache__/
-appdaemon/apps/__pycache__/
 tts/
 icloud/
 deps/
@@ -26,5 +25,6 @@ ios.conf
 entity_registry.yaml
 fullchain.pem
 privkey.pem
+ip_bans.yaml
 appdaemon/compiled
 appdaemon/apps/__pycache__/
