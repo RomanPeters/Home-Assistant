@@ -8,11 +8,13 @@ known_devices.yaml
 *.db
 *.save
 *.bak
+*.pyc
 .google.token
 venv/
 custom_components/sensor/__pycache__/
 custom_components/switch/__pycache__/
 custom_components/light/__pycache__/
+appdaemon/apps/__pycache__/
 tts/
 icloud/
 deps/
