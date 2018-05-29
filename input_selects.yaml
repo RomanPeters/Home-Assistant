@@ -1,0 +1,42 @@
+channel:
+  name: Channel
+  options:
+   - Unknown
+   - NPO 1
+   - NPO 2
+   - NPO 3
+   - RTL 4
+   - RTL 5
+   - SBS 6
+   - RTL 7
+   - RTL 8
+   - Veronica / Disney XD
+   - Net 5
+   - Comedy Central
+   - Nickelodeon
+   - Discovery Channel
+   - National Geographic
+   - Animal Planet
+   - Eurosport
+   - MTV
+   - XITE
+   - Één
+   - Canvas
+   - TRT Türk
+   - CNN
+   - Euro News
+   - BBC One
+   - BBC Two
+   - ARD
+   - ZDF
+   - FOX
+   - Disney Channel
+   - BBC First
+   - BBC World News
+   - SBS 9
+   - RTV Utrecht
+   - NPO 1 Extra
+   - RTL Z
+   - Ziggo Sport
+  initial: Unknown
+  icon: mdi:television-classic
