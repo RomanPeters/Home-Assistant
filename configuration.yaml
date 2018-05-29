@@ -19,24 +19,19 @@ frontend:
 config:
 hassio:
 history:
-homekit:
 logbook:
+python_script:
 ios:
 tts:
   - platform: google
 
 recorder:
-  db_url: !secret db_url  
-history:
-logbook:
-ios:
-tts:
-  platform: google
+  db_url: !secret db_url
 
-xiaomi_aqara:
-  discovery_retry: 5
-  gateways:
-    - key: !secret xiaomi_aqara_key
+# xiaomi_aqara:
+#   discovery_retry: 5
+#   gateways:
+#     - key: !secret xiaomi_aqara_key
 
 feedreader:
   urls:
@@ -47,6 +42,9 @@ binary_sensor:
     state_topic: dummy/floorplan/sensor
     name: Floorplan
 
+# fan: !include fans.yaml
+
+
 automation: !include_dir_merge_list automations
 light: !include lights.yaml
 group: !include_dir_merge_named groups
@@ -54,9 +52,17 @@ switch: !include switches.yaml
 sensor: !include sensors.yaml
 panel_iframe: !include panel_iframes.yaml
 script: !include_dir_merge_named scripts
-panel_iframe: !include panel_iframes.yaml
-homekit: !include homekit.yaml
+#homekit: !include homekit.yaml
 history_graph: !include history_graphs.yaml
 alarm_control_panel: !include alarm_control_panels.yaml
 plant: !include plants.yaml
+input_select: !include input_selects.yaml
+or: !include sensors.yaml
+panel_iframe: !include panel_iframes.yaml
+script: !include_dir_merge_named scripts
+#homekit: !include homekit.yaml
+history_graph: !include history_graphs.yaml
+alarm_control_panel: !include alarm_control_panels.yaml
+plant: !include plants.yaml
+input_select: !include input_selects.yaml
 
