@@ -1,0 +1,304 @@
+#
+# Main arguments, all optional
+#
+title: Remote
+widget_dimensions: [65, 65]
+widget_size: [1, 1]
+widget_margins: [10, 10]
+rows: 12
+columns: 9
+scalable: False
+
+toggle_power:
+    widget_type: switch
+    entity: switch.b
+
+toggle_sony:
+    widget_type: script
+    entity: script.toggle_sony
+
+toggle_entone:
+    widget_type: script
+    entity: script.toggle_entone
+
+scene1:
+    widget_type: scene
+    entity: scene.scene1
+
+scene2:
+    widget_type: scene
+    entity: scene.scene2
+
+scene3:
+    widget_type: scene
+    entity: scene.scene3
+
+sony_up:
+    widget_type: script
+    entity: script.sony_up
+
+entone_up:
+    widget_type: script
+    entity: script.entone_up
+
+apple_up:
+    widget_type: script
+    entity: script.apple_up
+
+sony_left:
+    widget_type: script
+    entity: script.sony_left
+
+sony_ok:
+    widget_type: script
+    entity: script.sony_ok
+
+sony_right:
+    widget_type: script
+    entity: script.sony_right
+
+entone_left:
+    widget_type: script
+    entity: script.entone_left
+
+entone_ok:
+    widget_type: script
+    entity: script.entone_ok
+
+entone_right:
+    widget_type: script
+    entity: script.entone_right
+
+apple_left:
+    widget_type: script
+    entity: script.apple_left
+
+apple_ok:
+    widget_type: script
+    entity: script.apple_ok
+
+apple_right:
+    widget_type: script
+    entity: script.apple_right
+
+sony_theatre:
+    widget_type: script
+    entity: script.sony_theatre
+
+sony_down:
+    widget_type: script
+    entity: script.sony_down
+
+sony_menu:
+    widget_type: script
+    entity: script.sony_menu
+
+entone_down:
+    widget_type: script
+    entity: script.entone_down
+
+entone_menu:
+    widget_type: script
+    entity: script.entone_menu
+
+apple_down:
+    widget_type: script
+    entity: script.apple_down
+
+apple_playpause:
+    widget_type: script
+    entity: script.apple_playpause
+
+sony_mute:
+    widget_type: script
+    entity: script.sony_mute
+
+sony_back:
+    widget_type: script
+    entity: script.sony_back
+
+entone_back:
+    widget_type: script
+    entity: script.entone_back
+
+apple_back:
+    widget_type: script
+    entity: script.apple_back
+
+sony_volume_lower:
+    widget_type: script
+    entity: script.sony_volume_lower
+
+sony_volume_higher:
+    widget_type: script
+    entity: script.sony_volume_higher
+
+entone_guide:
+    widget_type: script
+    entity: script.entone_guide
+
+entone_channel_down:
+    widget_type: script
+    entity: script.entone_channel_down
+
+entone_channel_up:
+    widget_type: script
+    entity: script.entone_channel_up
+
+npo_1:
+    widget_type: script
+    entity: script.npo_1
+
+npo_2:
+    widget_type: script
+    entity: script.npo_2
+
+npo_3:
+    widget_type: script
+    entity: script.npo_3
+
+rtl_4:
+    widget_type: script
+    entity: script.rtl_4
+
+rtl_5:
+    widget_type: script
+    entity: script.rtl_5
+
+sbs_6:
+    widget_type: script
+    entity: script.sbs_6
+
+rtl_7:
+    widget_type: script
+    entity: script.rtl_7
+
+rtl_8:
+    widget_type: script
+    entity: script.rtl_8
+
+veronica_disney_xd:
+    widget_type: script
+    entity: script.veronica_disney_xd
+
+net_5:
+    widget_type: script
+    entity: script.net_5
+
+comedy_central:
+    widget_type: script
+    entity: script.comedy_central
+
+nickelodeon:
+    widget_type: script
+    entity: script.nickelodeon
+
+discovery_channel:
+    widget_type: script
+    entity: script.discovery_channel
+
+national_geographic:
+    widget_type: script
+    entity: script.national_geographic
+
+animal_planet:
+    widget_type: script
+    entity: script.animal_planet
+
+eurosport:
+    widget_type: script
+    entity: script.eurosport
+
+mtv:
+    widget_type: script
+    entity: script.mtv
+
+xite:
+    widget_type: script
+    entity: script.xite
+
+een:
+    widget_type: script
+    entity: script.een
+
+canvas:
+    widget_type: script
+    entity: script.canvas
+
+trt_turk:
+    widget_type: script
+    entity: script.trt_turk
+
+cnn:
+    widget_type: script
+    entity: script.cnn
+
+euro_news:
+    widget_type: script
+    entity: script.euro_news
+
+bbc_one:
+    widget_type: script
+    entity: script.bbc_one
+
+bbc_two:
+    widget_type: script
+    entity: script.bbc_two
+
+ard:
+    widget_type: script
+    entity: script.ard
+
+zdf:
+    widget_type: script
+    entity: script.zdf
+
+fox:
+    widget_type: script
+    entity: script.fox
+
+disney_channel:
+    widget_type: script
+    entity: script.disney_channel
+
+bbc_first:
+    widget_type: script
+    entity: script.bbc_first
+
+bbc_world_news:
+    widget_type: script
+    entity: script.bbc_world_news
+
+sbs_9:
+    widget_type: script
+    entity: script.sbs_9
+
+rtv_utrecht:
+    widget_type: script
+    entity: script.rtv_utrecht
+
+npo_1_extra:
+    widget_type: script
+    entity: script.npo_1_extra
+
+rtl_z:
+    widget_type: script
+    entity: script.rtl_z
+
+ziggo_sport:
+    widget_type: script
+    entity: script.ziggo_sport
+
+layout:
+    - toggle_power,   toggle_sony,  toggle_entone,    spacer,         spacer,           spacer,           scene1,     scene2,        scene3
+    -
+    - spacer,         sony_up,      spacer,           spacer,         entone_up,          spacer,           spacer,     apple_up,    spacer
+    - sony_left,      sony_ok,      sony_right,       entone_left,    entone_ok,          entone_right,     apple_left, apple_ok,    apple_right
+    - sony_theatre,   sony_down,    sony_menu (1x2),  spacer,         entone_down,        entone_menu (1x2),spacer,     apple_down,  apple_playpause (1x2)
+    - sony_mute,      sony_back,                      spacer,         entone_back,                          spacer,     apple_back
+    - sony_volume_lower (2x2),      sony_volume_higher (2x2),         entone_guide (1x2), entone_channel_down (2x2),    entone_channel_up (2x2)
+    -
+    - npo_1, npo_2, npo_3, rtl_4, rtl_5, sbs_6, rtl_7, rtl_8, veronica_disney_xd
+    - net_5, comedy_central, nickelodeon, discovery_channel, national_geographic, animal_planet, eurosport, mtv, xite
+    - een, canvas, trt_turk, cnn, euro_news, bbc_one, bbc_two, ard, zdf
+    - fox, disney_channel, bbc_first, bbc_world_news, sbs_9, rtv_utrecht, npo_1_extra, rtl_z, ziggo_sport

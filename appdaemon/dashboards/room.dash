@@ -4,6 +4,7 @@
 title: iPad
 widget_dimensions: [64, 64]
 widget_margins: [0, 0]
+rows: 16
 columns: 12
 
 plant:
@@ -22,5 +23,5 @@ layout:
     -             spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer                             
     -             spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer    
     -             spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     spacer,     switch.a (2x2)
-    -             spacer,     script.bed (6x4),                                                       spacer
+    -             spacer,     script.goodnight (6x4),                                                 spacer
     -             spacer,                                                                             spacer,     switch.c (2x2)   
