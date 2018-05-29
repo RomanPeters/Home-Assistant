@@ -1,5 +1,5 @@
 - platform: broadlink
-  host: "192.168.1.2"
+  host: "10.10.10.202"
   mac: "b4:43:0d:db:97:6c"
   type: mp1
   friendly_name: Power Strip
@@ -10,7 +10,7 @@
      slot_4: D
 
 - platform: broadlink
-  host: "192.168.1.3"
+  host: "10.10.10.203"
   mac: "b4:43:0d:db:97:6c"
   type: rm2_pro_plus
   switches:
@@ -27,6 +27,7 @@
 
 - platform: xiaomi_miio
   name: E
-  host: "192.168.1.5"
+  host: "10.10.10.205"
   token: !secret xiaomi_plug_token
   model: chuangmi.plug.m1
+

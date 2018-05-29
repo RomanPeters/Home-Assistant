@@ -1,39 +1,41 @@
-pihole:
-  title: Pi-hole
-  icon: mdi:block-helper
-  url: https://hassio.local:7124
+terminal:
+  title: Terminal
+  icon: mdi:console
+  url: https://10.10.10.11:7681
 
 configurator:
   title: Configurator
   icon: mdi:wrench
-  url: https://hassio.local:3218
+  url: https://10.10.10.11:3218
 
 ide: 
   title: Cloud9
   icon: mdi:cloud-braces
-  url: https://hassio.local:8321
+  url: https://10.10.10.11:8321
+
+pihole:
+  title: Pi-hole
+  icon: mdi:block-helper
+  url: http://10.10.10.12/admin
+
+phpmyadmin:
+  title: phpMyAdmin
+  url: https://10.10.10.100/phpMyAdmin/
+  icon: mdi:language-php
+
+photostation:
+  title: Photo Station
+  url: https://10.10.10.100/photo/
+  icon: mdi:image-multiple
+
+filestation:
+  title: File Station
+  url: https://10.10.10.100/filestation/
+  icon: mdi:file-multiple
 
 synology:
   title: Synology
   icon: mdi:nas
-  url: https://synology.local:3999
+  url: https://10.10.10.100:3999
 
-terminal:
-  title: Terminal
-  icon: mdi:console
-  url: https://hassio.local:7681
   
-phpmyadmin:
-  title: phpMyAdmin
-  url: https://synology.local/phpMyAdmin/
-  icon: mdi:language-php
-  
-photostation:
-  title: Photo Station
-  url: https://synology.local/photo/
-  icon: mdi:image-multiple
-  
-filestation:
-  title: File Station
-  url: https://synology.local/filestation/
-  icon: mdi:file-multiple

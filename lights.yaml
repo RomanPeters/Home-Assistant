@@ -1,6 +1,6 @@
 - platform: limitlessled
   bridges:
-    - host: "192.168.1.1"
+    - host: "10.13.13.1"
       port: 8899
       version: 5
       groups:
