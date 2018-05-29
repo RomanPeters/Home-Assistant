@@ -8,7 +8,6 @@ status:
   - group.activity
   - group.graphs
   - plant.houseplant
-  - binary_sensor.floorplan
 
 inside:
   name: Indoors
