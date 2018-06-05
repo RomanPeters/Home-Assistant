@@ -16,6 +16,8 @@ updater:
   include_used_components: true
 
 frontend:
+  themes: !include themes.yaml
+
 config:
 hassio:
 history:
@@ -28,10 +30,10 @@ tts:
 recorder:
   db_url: !secret db_url
 
-# xiaomi_aqara:
-#   discovery_retry: 5
-#   gateways:
-#     - key: !secret xiaomi_aqara_key
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_aqara_key
 
 feedreader:
   urls:
@@ -52,15 +54,7 @@ switch: !include switches.yaml
 sensor: !include sensors.yaml
 panel_iframe: !include panel_iframes.yaml
 script: !include_dir_merge_named scripts
-#homekit: !include homekit.yaml
-history_graph: !include history_graphs.yaml
-alarm_control_panel: !include alarm_control_panels.yaml
-plant: !include plants.yaml
-input_select: !include input_selects.yaml
-or: !include sensors.yaml
-panel_iframe: !include panel_iframes.yaml
-script: !include_dir_merge_named scripts
-#homekit: !include homekit.yaml
+homekit: !include homekit.yaml
 history_graph: !include history_graphs.yaml
 alarm_control_panel: !include alarm_control_panels.yaml
 plant: !include plants.yaml
