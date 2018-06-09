@@ -12,30 +12,30 @@ ide:
   title: Cloud9
   icon: mdi:cloud-braces
   url: https://10.10.10.11:8321
+  
+#pihole:
+#  title: Pi-hole
+#  icon: mdi:block-helper
+#  url: http://10.10.10.12/admin
 
-pihole:
-  title: Pi-hole
-  icon: mdi:block-helper
-  url: http://10.10.10.12/admin
+#phpmyadmin:
+#  title: phpMyAdmin
+#  url: https://10.10.10.100/phpMyAdmin/
+#  icon: mdi:database
 
-phpmyadmin:
-  title: phpMyAdmin
-  url: https://10.10.10.100/phpMyAdmin/
-  icon: mdi:language-php
+#photostation:
+#  title: Photo Station
+#  url: https://10.10.10.100/photo/
+#  icon: mdi:image-multiple
 
-photostation:
-  title: Photo Station
-  url: https://10.10.10.100/photo/
-  icon: mdi:image-multiple
+#filestation:
+#  title: File Station
+#  url: https://10.10.10.100/filestation/
+#  icon: mdi:file-multiple
 
-filestation:
-  title: File Station
-  url: https://10.10.10.100/filestation/
-  icon: mdi:file-multiple
-
-synology:
-  title: Synology
-  icon: mdi:nas
-  url: https://10.10.10.100:3999
+#synology:
+#  title: Synology
+#  icon: mdi:nas
+#  url: https://10.10.10.100:3999
 
   
