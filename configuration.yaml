@@ -18,6 +18,9 @@ updater:
 frontend:
   themes: !include themes.yaml
 
+mqtt:
+  broker: 172.17.0.1
+
 config:
 hassio:
 history:
@@ -43,9 +46,6 @@ binary_sensor:
   - platform: mqtt
     state_topic: dummy/floorplan/sensor
     name: Floorplan
-
-# fan: !include fans.yaml
-
 
 automation: !include_dir_merge_list automations
 light: !include lights.yaml
