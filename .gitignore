@@ -1,6 +1,7 @@
 .homekit.state
 .ios.conf
 .ssh/
+esphomeyaml/
 .uuid
 appdaemon/compiled
 entity_registry.yaml
