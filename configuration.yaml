@@ -19,7 +19,8 @@ frontend:
   themes: !include themes.yaml
 
 mqtt:
-  broker: 172.17.0.1
+  discovery: true
+  broker: core-mosquitto
 
 config:
 hassio:
@@ -32,20 +33,6 @@ tts:
 
 recorder:
   db_url: !secret db_url
-
-xiaomi_aqara:
-  discovery_retry: 5
-  gateways:
-    - key: !secret xiaomi_aqara_key
-
-feedreader:
-  urls:
-    - https://www.home-assistant.io/atom.xml
-
-binary_sensor:
-  - platform: mqtt
-    state_topic: dummy/floorplan/sensor
-    name: Floorplan
 
 automation: !include_dir_merge_list automations
 light: !include lights.yaml
