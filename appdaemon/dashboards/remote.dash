@@ -8,6 +8,8 @@ widget_margins: [10, 10]
 rows: 12
 columns: 9
 scalable: False
+global_parameters:
+    use_hass_icon: 1
 
 toggle_power:
     widget_type: switch

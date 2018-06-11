@@ -8,8 +8,8 @@ appdaemon:
   plugins:
     HASS:
       type: hass
-      ha_url: http://10.10.10.11:8123
-#      ha_url: https://home.romanpeters.nl
+      ha_url: http://hassio/homeassistant
+      ha_key: eac868445b94498bba1c1ad2d05db556
 hadashboard:
   dash_url: http://10.10.10.11:5050
   dash_dir: /config/appdaemon/dashboards
