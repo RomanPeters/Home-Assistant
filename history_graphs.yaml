@@ -1,20 +1,21 @@
 gr1:
   name: Temperature
   entities:
-    - sensor.temperature_158d00022c8d56
+    - sensor.0x00158d00022c8d56_temperature
     - sensor.br_temperature
   hours_to_show: 24
 
 gr2:
   name: Humidity
   entities:
-    - sensor.humidity_158d00022c8d56
+    - sensor.0x00158d00022c8d56_humidity
     - sensor.br_humidity
   hours_to_show: 24
 
-gr3:
-  name: Particles
-  entities:
-    - sensor.particle_sensor_pm10
-    - sensor.particle_sensor_pm25
-  hours_to_show: 24
+
+#gr3:
+#  name: Particles
+#  entities:
+#    - sensor.particle_sensor_pm10
+#    - sensor.particle_sensor_pm25
+#  hours_to_show: 24
