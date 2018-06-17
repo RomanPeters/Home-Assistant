@@ -1,0 +1,38 @@
+
+- name: Scene1
+  entities:
+    light.a: off
+    light.b: off
+    light.c: off
+    light.d: off
+    switch.b: on
+
+
+- name: Scene2
+  entities:
+    light.a:
+      state: on
+      brightness_pct: 10 
+    light.b:
+      state: on
+      brightness_pct: 10 
+    light.c:
+      state: on
+      brightness_pct: 10
+    light.d: off
+    switch.b: on    
+
+
+- name: Scene3  
+  entities:
+    light.a:
+      state: on
+      brightness_pct: 50 
+    light.b:
+      state: on
+      brightness_pct: 50 
+    light.c:
+      state: on
+      brightness_pct: 50
+    light.d: off
+    switch.b: on
