@@ -48,9 +48,8 @@ gray_medium: "#666"
 gray_light: "#888"
 
 #Page and widget defaults
-#background_style: "background-color: #444"
-background_style: ""
-text_style: "color: $white"
+background_style: "background-color: #444"
+text_style: "color: #fff"
 
 #These are used for icons and indicators
 style_inactive: "color: $gray_light"
@@ -60,73 +59,10 @@ style_info: "color: $blue"
 style_title: "color: $white"
 style_title2: "color: $white"
 
-#Custom for remote
-rm_toggle_power: "background-image: url(custom_css/remote/img/toggle_power.png)"
-rm_toggle_sony: "background-image: url(custom_css/remote/img/toggle_sony.png)"
-rm_toggle_entone: "background-image: url(custom_css/remote/img/toggle_entone.png)"
-
-rm_scene1: "background-image: url(custom_css/remote/img/scene1.png)"
-rm_scene2: "background-image: url(custom_css/remote/img/scene2.png)"
-rm_scene3: "background-image: url(custom_css/remote/img/scene3.png)"
-
-rm_up: "background-image: url(custom_css/remote/img/up.png)"
-rm_down: "background-image: url(custom_css/remote/img/down.png)"
-rm_left: "background-image: url(custom_css/remote/img/left.png)"
-rm_right: "background-image: url(custom_css/remote/img/right.png)"
-rm_ok: "background-image: url(custom_css/remote/img/green.png)"
-rm_back: "background-image: url(custom_css/remote/img/red.png)" 
-rm_playpause: "background-image: url(custom_css/remote/img/playpause.png)"
-rm_theatre: "background-image: url(custom_css/remote/img/theatre.png)"
-rm_menu: "background-image: url(custom_css/remote/img/menu.png)"
-rm_mute: "background-image: url(custom_css/remote/img/mute.png)"
-
-rm_volume_lower: "background-image: url(custom_css/remote/img/volume_lower.png)"
-rm_volume_higher: "background-image: url(custom_css/remote/img/volume_higher.png)"
-rm_guide: "background-image: url(custom_css/remote/img/guide.png)"
-rm_channel_down: "background-image: url(custom_css/remote/img/channel_down.png)"
-rm_channel_up: "background-image: url(custom_css/remote/img/channel_up.png)"
-
-ch_npo_1: "background-image: url(custom_css/remote/img/npo_1.png)"
-ch_npo_2: "background-image: url(custom_css/remote/img/npo_2.png)"
-ch_npo_3: "background-image: url(custom_css/remote/img/npo_3.png)"
-ch_rtl_4: "background-image: url(custom_css/remote/img/rtl_4.png)"
-ch_rtl_5: "background-image: url(custom_css/remote/img/rtl_5.png)"
-ch_sbs_6: "background-image: url(custom_css/remote/img/sbs_6.png)"
-ch_rtl_7: "background-image: url(custom_css/remote/img/rtl_7.png)"
-ch_rtl_8: "background-image: url(custom_css/remote/img/rtl_8.png)"
-ch_veronica_disney_xd: "background-image: url(custom_css/remote/img/veronica_disney_xd.png)"
-ch_net_5: "background-image: url(custom_css/remote/img/net_5.png)"
-ch_comedy_central: "background-image: url(custom_css/remote/img/comedy_central.png)"
-ch_nickelodeon: "background-image: url(custom_css/remote/img/nickelodeon.png)"
-ch_discovery_channel: "background-image: url(custom_css/remote/img/discovery_channel.png)"
-ch_national_geographic: "background-image: url(custom_css/remote/img/national_geographic.png)"
-ch_animal_planet: "background-image: url(custom_css/remote/img/animal_planet.png)"
-ch_eurosport: "background-image: url(custom_css/remote/img/eurosport.png)"
-ch_mtv: "background-image: url(custom_css/remote/img/mtv.png)"
-ch_xite: "background-image: url(custom_css/remote/img/xite.png)"
-ch_een: "background-image: url(custom_css/remote/img/een.png)"
-ch_canvas: "background-image: url(custom_css/remote/img/canvas.png)"
-ch_trt_turk: "background-image: url(custom_css/remote/img/trt_turk.png)"
-ch_cnn: "background-image: url(custom_css/remote/img/cnn.png)"
-ch_euro_news: "background-image: url(custom_css/remote/img/euro_news.png)"
-ch_bbc_one: "background-image: url(custom_css/remote/img/bbc_one.png)"
-ch_bbc_two: "background-image: url(custom_css/remote/img/bbc_two.png)"
-ch_ard: "background-image: url(custom_css/remote/img/ard.png)"
-ch_zdf: "background-image: url(custom_css/remote/img/zdf.png)"
-ch_fox: "background-image: url(custom_css/remote/img/fox.png)"
-ch_disney_channel: "background-image: url(custom_css/remote/img/disney_channel.png)"
-ch_bbc_first: "background-image: url(custom_css/remote/img/bbc_first.png)"
-ch_bbc_world_news: "background-image: url(custom_css/remote/img/bbc_world_news.png)"
-ch_sbs_9: "background-image: url(custom_css/remote/img/sbs_9.png)"
-ch_rtv_utrecht: "background-image: url(custom_css/remote/img/rtv_utrecht.png)"
-ch_npo_1_extra: "background-image: url(custom_css/remote/img/npo_1_extra.png)"
-ch_rtl_z: "background-image: url(custom_css/remote/img/rtl_z.png)"
-ch_ziggo_sport: "background-image: url(custom_css/remote/img/ziggo_sport.png)"
-
 # Widget Default Definitions
 
-scene_icon_on: ""
-scene_icon_off: ""
+scene_icon_on: fa-square
+scene_icon_off: fa-square
 scene_icon_style_active: $style_active
 scene_icon_style_inactive: $style_inactive
 scene_title_style: $style_title
@@ -143,8 +79,8 @@ mode_title2_style: $style_title2
 mode_widget_style: $background_style
 mode_state_text_style: "color: $white"
 
-script_icon_on: ""
-script_icon_off: ""
+script_icon_on: fa-th-large
+script_icon_off: fa-th-large
 script_icon_style_active: $style_active
 script_icon_style_inactive: $style_inactive
 script_title_style: $style_title
@@ -184,8 +120,8 @@ input_boolean_title2_style: $style_title2
 input_boolean_widget_style: $background_style
 input_boolean_state_text_style: "color: $white"
 
-switch_icon_on: ""
-switch_icon_off: ""
+switch_icon_on: fa-circle
+switch_icon_off: fa-circle-thin
 switch_icon_style_active: $style_active
 switch_icon_style_inactive: $style_inactive
 switch_title_style: $style_title
