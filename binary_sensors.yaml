@@ -1,0 +1,31 @@
+- platform: "mqtt"
+  name: Door
+  state_topic: "zigbee2mqtt/0x00158d0001b958bc"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:door"
+  payload_on: false
+  payload_off: true
+  value_template: "{{ value_json.contact }}"
+  device_class: "door"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+
+- platform: "mqtt"
+  name: Motion sensor
+  state_topic: "zigbee2mqtt/0x00158d0001de85f7"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:run-fast"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.occupancy }}"
+  device_class: "motion"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+
+- platform: "mqtt"
+  name: Coffee button
+  state_topic: "sonoff/binary_sensor/coffee_button/state"
+  availability_topic: "sonoff/status"
+  icon: "mdi:coffee"

@@ -18,3 +18,12 @@
         name: D  # Ceiling Lamp
 
 - platform: blinkt
+
+- platform: mqtt_json
+  name: Coffee LED
+  brightness: true
+  flash: true
+  state_topic: "sonoff/light/coffee_led/state"
+  command_topic: "sonoff/light/coffee_led/command"
+  availability_topic: "sonoff/status"
+  icon: "mdi:led"

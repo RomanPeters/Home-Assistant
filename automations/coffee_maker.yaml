@@ -1,0 +1,40 @@
+- id: coffee_led_on
+  alias: LED on if coffee maker on
+  trigger:
+    - platform: state
+      entity_id: switch.coffee_maker
+      from: 'off'
+      to: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.coffee_led
+    - service: script.turn_on
+      entity_id: script.coffee_maker_auto_off
+      
+
+- id: coffee_led_off
+  alias: LED off if coffee maker off
+  trigger:
+    - platform: state
+      entity_id: switch.coffee_maker    
+      from: 'on'
+      to: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.coffee_led
+    - service: script.turn_off         
+      entity_id: script.coffee_maker_auto_off
+
+
+- id: coffee_button_on
+  alias: Relay toggle on button
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.coffee_button
+      from: 'off'
+      to: 'on'
+  action:
+    - service: switch.toggle
+      entity_id: switch.coffee_maker
+
+

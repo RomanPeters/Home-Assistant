@@ -19,7 +19,7 @@ frontend:
   themes: !include themes.yaml
 
 mqtt:
-  discovery: true
+#  discovery: true
   broker: core-mosquitto
 
 config:
@@ -39,6 +39,7 @@ light: !include lights.yaml
 group: !include_dir_merge_named groups
 switch: !include switches.yaml
 sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
 panel_iframe: !include panel_iframes.yaml
 script: !include_dir_merge_named scripts
 homekit: !include homekit.yaml
@@ -46,4 +47,4 @@ history_graph: !include history_graphs.yaml
 alarm_control_panel: !include alarm_control_panels.yaml
 plant: !include plants.yaml
 input_select: !include input_selects.yaml
-
+scene: !include scenes.yaml

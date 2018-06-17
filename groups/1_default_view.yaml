@@ -30,6 +30,7 @@ entertainment:
 appliances:
   name: Appliances
   entities:
-  - switch.c  # fan
+  - switch.coffee_maker
   - switch.e  # air purifier
+  - switch.c  # fan
   - switch.d  # socket
