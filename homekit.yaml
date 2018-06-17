@@ -7,6 +7,7 @@ filter:
     - binary_sensor.wall_switch_left_158d0001e11783
     - binary_sensor.wall_switch_right_158d0001e11783
     - binary_sensor.wall_switch_both_158d0001e11783
+    - binary_sensor.coffee_button
     - device_tracker.iphone
     - sensor.iphone_5c_battery_level
     - sensor.br_humidity
@@ -16,6 +17,7 @@ filter:
     - sensor.mi_flora_light_intensity
     - sensor.mi_flora_moisture
     - sensor.mi_flora_temperature
+    - light.coffee_led
     - light.blinkt_0
     - light.blinkt_1
     - light.blinkt_2
