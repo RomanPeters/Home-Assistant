@@ -8,11 +8,21 @@ configurator:
   icon: mdi:wrench
   url: https://10.10.10.11:3218
 
-ide: 
-  title: Cloud9
-  icon: mdi:cloud-braces
-  url: https://10.10.10.11:8321
+# esphomeyaml:
+#   title: esphomeyaml
+#   icon: mdi:checkbox-multiple-blank-circle-outline
+#   url: http://10.10.10.11:6052
+
+# ide: 
+#   title: Cloud9
+#   icon: mdi:cloud-braces
+#   url: https://10.10.10.11:8321
   
+#tasmoadmin:
+#  title: TasmoAdmin
+#  icon: mdi:toggle-switch-outline
+#  url: https://10.10.10.11:9541
+
 #pihole:
 #  title: Pi-hole
 #  icon: mdi:block-helper

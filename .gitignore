@@ -4,6 +4,7 @@
 esphomeyaml/
 .uuid
 appdaemon/compiled
+appdaemon/apps/__pycache__/
 entity_registry.yaml
 fullchain.pem
 home-assistant.log

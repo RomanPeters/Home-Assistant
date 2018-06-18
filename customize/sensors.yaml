@@ -1,27 +1,3 @@
-### MQTT
-
-sensor.0x00158d0001f4b7af:
-  friendly_name: Button
-
-sensor.0x00158d0001de85f7_illuminance:
-  friendly_name: Light level
-  icon: mdi:theme-light-dark
-
-sensor.0x00158d0001e11783:
-  friendly_name: Wall switch
-
-sensor.0x00158d00022c8d56_humidity:
-  friendly_name: Inside humidity
-
-sensor.0x00158d00022c8d56_pressure:
-  friendly_name: Inside pressure
-
-sensor.0x00158d00022c8d56_temperature:
-  friendly_name: Inside temperature
-
-
-### HTTP
-
 sensor.br_temperature:
   friendly_name: Outside temperature
 
@@ -30,9 +6,6 @@ sensor.br_humidity:
 
 sensor.br_precipitation:
   friendly_name: Precipitation
-
-
-### USB
 
 sensor.particle_sensor_pm25:
   friendly_name: PM2.5

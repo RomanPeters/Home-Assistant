@@ -2,6 +2,3 @@ hello_world:
   module: hello
   class: HelloWorld
 
-blinkt_rainbow:
-  module: blinkt_modes
-  class: Rainbow

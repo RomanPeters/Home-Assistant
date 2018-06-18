@@ -12,11 +12,10 @@ status:
 inside:
   name: Indoors
   entities:
-  - sensor.temperature_158d00022c8d56
-  - sensor.humidity_158d00022c8d56
-  - sensor.pressure_158d00022c8d56
-  - sensor.illumination_158d0001de85f7
-  - sensor.illumination_7811dce1e53e
+  - sensor.inside_temperature
+  - sensor.inside_humidity
+  - sensor.inside_pressure
+  - sensor.illuminance
 
 outside:
   name: Outdoors
@@ -28,8 +27,8 @@ outside:
 activity:
   name: Activity
   entities:
-  - binary_sensor.door_window_sensor_158d0001b958bc
-  - binary_sensor.motion_sensor_158d0001de85f7
+  - binary_sensor.door
+  - binary_sensor.motion_sensor
 
 graphs:
   name: Graphs
