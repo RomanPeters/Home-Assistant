@@ -1,8 +1,0 @@
-
-toggle_sony:
-  alias: Toggle Sony
-  sequence:
-    - alias: Send IR packet
-      service: switch.broadlink_send_packet_192_168_1_3
-      data:
-        package: "xxx"
