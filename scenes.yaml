@@ -1,38 +1,38 @@
 
 - name: Scene1
   entities:
-    light.a: off
-    light.b: off
-    light.c: off
-    light.d: off
-    switch.b: on
+    light.standing_lamp: off
+    light.led_strip_n: off
+    light.led_strip_s: off
+    light.ceiling_lamp: off
+    switch.television: on
 
 
 - name: Scene2
   entities:
-    light.a:
+    light.standing_lamp:
       state: on
       brightness_pct: 10 
-    light.b:
+    light.led_strip_n:
       state: on
       brightness_pct: 10 
-    light.c:
+    light.led_strip_s:
       state: on
       brightness_pct: 10
-    light.d: off
-    switch.b: on    
+    light.ceiling_lamp: off
+    switch.television: on    
 
 
 - name: Scene3  
   entities:
-    light.a:
+    light.standing_lamp:
       state: on
       brightness_pct: 50 
-    light.b:
+    light.led_strip_n:
       state: on
       brightness_pct: 50 
-    light.c:
+    light.led_strip_s:
       state: on
       brightness_pct: 50
-    light.d: off
-    switch.b: on
+    light.ceiling_lamp: off
+    switch.television: on
