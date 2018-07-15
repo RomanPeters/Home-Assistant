@@ -1,0 +1,214 @@
+camera_left:
+  alias: Camera left
+  sequence:
+    - alias: Disable motion sensor
+      service: switch.turn_off
+      entity_id: switch.camera_motion_detection
+
+    - delay:
+        seconds: 1
+
+    - alias: Move camera left
+      service: cover.open_cover
+      data:
+        entity_id: cover.camera_leftright
+
+    - alias: Move camera left
+      service: cover.open_cover
+      data:
+        entity_id: cover.camera_leftright
+
+    - alias: Move camera left
+      service: cover.open_cover
+      data:
+        entity_id: cover.camera_leftright
+
+    - delay:
+        seconds: 10
+
+    - alias: Turn motion detection back on
+      service: switch.turn_on
+      data_template:
+        entity_id: >
+          {% if (now() - states.switch.camera_motion_detection.last_changed).seconds <= 15 %}
+            switch.camera_motion_detection
+          {%- else -%}
+            switch.none
+          {%- endif %}
+
+camera_right:
+  alias: Camera right
+  sequence:
+    - alias: Disable motion sensor
+      service: switch.turn_off
+      entity_id: switch.camera_motion_detection
+
+    - delay:
+        seconds: 1
+
+    - alias: Move camera right
+      service: cover.close_cover
+      data:
+        entity_id: cover.camera_leftright
+
+    - alias: Move camera right
+      service: cover.close_cover
+      data:
+        entity_id: cover.camera_leftright
+
+    - alias: Move camera right
+      service: cover.close_cover
+      data:
+        entity_id: cover.camera_leftright
+
+
+    - delay: 
+        seconds: 10
+
+    - alias: Turn motion detection back on
+      service: switch.turn_on
+      data_template:
+        entity_id: >
+          {% if (now() - states.switch.camera_motion_detection.last_changed).seconds <= 15 %}
+            switch.camera_motion_detection
+          {%- else -%}
+            switch.none
+          {%- endif %}
+
+
+camera_up:
+  alias: Camera up
+  sequence:
+    - alias: Disable motion sensor
+      service: switch.turn_off
+      entity_id: switch.camera_motion_detection
+
+    - delay:
+        seconds: 1
+
+    - alias: Move camera up
+      service: cover.open_cover
+      data:
+        entity_id: cover.camera_updown
+
+    - alias: Move camera up
+      service: cover.open_cover
+      data:
+        entity_id: cover.camera_updown
+
+    - alias: Move camera up
+      service: cover.open_cover
+      data:
+        entity_id: cover.camera_updown
+
+    - delay: 
+        seconds: 10
+
+    - alias: Turn motion detection back on
+      service: switch.turn_on
+      data_template:
+        entity_id: >
+          {% if (now() - states.switch.camera_motion_detection.last_changed).seconds <= 15 %}
+            switch.camera_motion_detection
+          {%- else -%}
+            switch.none
+          {%- endif %}
+
+
+camera_down:
+  alias: Camera down   
+  sequence:
+    - alias: Disable motion sensor
+      service: switch.turn_off
+      entity_id: switch.camera_motion_detection
+
+    - delay:
+        seconds: 1
+
+    - alias: Move camera down
+      service: cover.close_cover 
+      data:
+        entity_id: cover.camera_updown   
+
+    - alias: Move camera down
+      service: cover.close_cover
+      data:
+        entity_id: cover.camera_updown
+
+    - alias: Move camera down
+      service: cover.close_cover
+      data:
+        entity_id: cover.camera_updown
+
+    - delay: 
+        seconds: 10
+
+    - alias: Turn motion detection back on
+      service: switch.turn_on
+      data_template:
+        entity_id: >
+          {% if (now() - states.switch.camera_motion_detection.last_changed).seconds <= 15 %}
+            switch.camera_motion_detection
+          {%- else -%}
+            switch.none
+          {%- endif %}
+
+camera_position_0:
+  alias: Move to door
+  sequence:
+    - alias: Disable motion sensor
+      service: switch.turn_off
+      entity_id: switch.camera_motion_detection
+
+    - delay:
+        seconds: 1
+
+    - alias: Move camera to door
+      service: cover.set_cover
+      data:
+        entity_id: cover.camera_updown
+        position: 0
+
+    - delay: 
+        seconds: 10
+
+    - alias: Turn motion detection back on
+      service: switch.turn_on
+      data_template:
+        entity_id: >
+          {% if (now() - states.switch.camera_motion_detection.last_changed).seconds <= 15 %}
+            switch.camera_motion_detection
+          {%- else -%}
+            switch.none
+          {%- endif %}
+
+camera_position_100:
+  alias: Move to window
+  sequence:
+    - alias: Disable motion sensor
+      service: switch.turn_off
+      entity_id: switch.camera_motion_detection
+
+    - delay:
+        seconds: 1
+
+    - alias: Move camera to door
+      service: cover.set_cover
+      data:
+        entity_id: cover.camera_updown
+        position: 100
+
+    - delay: 
+        seconds: 10
+
+    - alias: Turn motion detection back on
+      service: switch.turn_on
+      data_template:
+        entity_id: >
+          {% if (now() - states.switch.camera_motion_detection.last_changed).seconds <= 15 %}
+            switch.camera_motion_detection
+          {%- else -%}
+            switch.none
+          {%- endif %}
+
+
