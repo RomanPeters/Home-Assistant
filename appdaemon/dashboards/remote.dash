@@ -5,7 +5,7 @@ title: Remote
 widget_dimensions: [65, 65]
 widget_size: [1, 1]
 widget_margins: [10, 10]
-rows: 12
+rows: 11
 columns: 9
 #scalable: False
 global_parameters:
@@ -14,23 +14,17 @@ global_parameters:
 
 toggle_power:
     widget_type: switch
-    entity: switch.b
-#    icon_on: mdi-power-socket-eu
-#    icon_off: mdi-power-socket-eu
+    entity: switch.television
     widget_style: $rm_toggle_power
 
 toggle_sony:
     widget_type: script
     entity: script.toggle_sony
-#    icon_on: mdi-television 
-#    icon_off: mdi-television
     widget_style: $rm_toggle_sony
 
 toggle_entone:
     widget_type: script
     entity: script.toggle_entone
-#    icon_on: mdi-television-box              
-#    icon_off: mdi-television-box
     widget_style: $rm_toggle_entone
 
 scene1:
@@ -47,6 +41,17 @@ scene3:
     widget_type: scene
     entity: scene.scene3
     widget_style: $rm_scene3
+
+input_up:
+    widget_type: script
+    entity: script.input_up
+#    widget_style: $rm_up
+
+input_down:
+    widget_type: script
+    entity: script.input_down
+#    widget_style: $rm_down
+
 
 sony_up:
     widget_type: script
@@ -142,13 +147,6 @@ apple_down:
     entity: script.apple_down
     widget_style: $rm_down
 
-apple_playpause:
-    widget_type: script
-    entity: script.apple_playpause
-    icon_style_active: "top: 48px;"
-    icon_style_inactive: "top: 48px;"
-    widget_style: $rm_playpause
-
 sony_mute:
     widget_type: script
     entity: script.sony_mute
@@ -168,7 +166,6 @@ apple_back:
     widget_type: script
     entity: script.apple_back
     widget_style: $rm_back
-
 
 sony_volume_lower:
     widget_type: script
@@ -315,9 +312,9 @@ cnn:
     entity: script.cnn
     widget_style: $ch_cnn
 
-euro_news:
+euronews:
     widget_type: script
-    entity: script.euro_news
+    entity: script.euronews
     widget_style: $ch_euro_news
 
 bbc_one:
@@ -386,15 +383,14 @@ ziggo_sport:
     widget_style: $ch_ziggo_sport
 
 layout:
-    - toggle_power,   toggle_sony,  toggle_entone,    spacer,         spacer,           spacer,           scene1,     scene2,        scene3
-    -
-    - spacer,         sony_up,      spacer,           spacer,         entone_up,          spacer,           spacer,     apple_up,    spacer
+    - toggle_power,   toggle_sony,  toggle_entone,    input_down,     input_up,           spacer,           scene1,     scene2,        scene3
+    - 
+    - spacer,         sony_up,      sony_menu,        spacer,         entone_up,          entone_menu,      spacer,     apple_up,    sony_theatre
     - sony_left,      sony_ok,      sony_right,       entone_left,    entone_ok,          entone_right,     apple_left, apple_ok,    apple_right
-    - sony_theatre,   sony_down,    sony_menu (1x2),  spacer,         entone_down,        entone_menu (1x2),spacer,     apple_down,  apple_playpause (1x2)
-    - sony_mute,      sony_back,                      spacer,         entone_back,                          spacer,     apple_back
+    - sony_mute,      sony_down,    sony_back,        spacer,         entone_down,        entone_back,      spacer,     apple_down,  apple_back
     - sony_volume_lower (2x2),      sony_volume_higher (2x2),         entone_guide (1x2), entone_channel_down (2x2),    entone_channel_up (2x2)
     -
     - npo_1, npo_2, npo_3, rtl_4, rtl_5, sbs_6, rtl_7, rtl_8, veronica_disney_xd
     - net_5, comedy_central, nickelodeon, discovery_channel, national_geographic, animal_planet, eurosport, mtv, xite
-    - een, canvas, trt_turk, cnn, euro_news, bbc_one, bbc_two, ard, zdf
+    - een, canvas, trt_turk, cnn, euronews, bbc_one, bbc_two, ard, zdf
     - fox, disney_channel, bbc_first, bbc_world_news, sbs_9, rtv_utrecht, npo_1_extra, rtl_z, ziggo_sport

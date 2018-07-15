@@ -1,3 +1,15 @@
+"""
+Remote control button IR code inventory and translation
+
+data
+  {"button": "bbc_one"}
+
+or
+  {"friendly_name": "BBC One"}
+
+"""
+
+
 button_lookup = {"animal_planet": [],
                  "apple_back": [],
                  "apple_down": [],
@@ -26,6 +38,7 @@ button_lookup = {"animal_planet": [],
                  "entone_menu": [],
                  "entone_ok": [],
                  "entone_right": [],
+                 "entone_toggle": [],
                  "entone_up": [],
                  "euro_news": [],
                  "eurosport": [],
@@ -57,7 +70,6 @@ button_lookup = {"animal_planet": [],
                  "sony_up": [],
                  "sony_volume_higher": [],
                  "sony_volume_lower": [],
-                 "entone_toggle": [],
                  "sony_toggle": [],
                  "trt_turk": [],
                  "veronica_disney_xd": [],
@@ -80,7 +92,7 @@ if not button:
 packet = button_lookup.get(button_slug)
 
 if packet:
-    hass.services.call("switch.broadlink_send_packet_10_10_10_203", 
-                       service_data={"packet"=packet})
+    hass.services.call("switch", "broadlink_send_packet_10_10_10_203", 
+                       service_data={"packet": packet})
 else:
-    logger.warning(f"IR packet lookup for {button} failed.")
+    logger.warning("IR packet lookup for {} failed.".format(button))
