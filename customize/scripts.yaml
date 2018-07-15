@@ -1,0 +1,15 @@
+script.air_freshener:
+  icon: mdi:spray
+
+script.camera_left:
+  icon: mdi:arrow-left-bold
+
+script.camera_right:
+  icon: mdi:arrow-right-bold
+
+script.camera_up:
+  icon: mdi:arrow-up-bold
+
+script.camera_down:
+  icon: mdi:arrow-down-bold
+

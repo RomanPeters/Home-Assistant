@@ -1,11 +1,23 @@
+sensor.inside_temperature:
+  friendly_name: Temperature
+
+sensor.inside_humidity:
+  friendly_name: Humidity
+
+sensor.inside_pressure:
+  friendly_name: Pressure
+
 sensor.br_temperature:
-  friendly_name: Outside temperature
+  friendly_name: Temperature
 
 sensor.br_humidity:
-  friendly_name: Outside humidity
+  friendly_name: Humidity
 
-sensor.br_precipitation:
-  friendly_name: Precipitation
+sensor.br_pressure:
+  friendly_name: Pressure
+
+sensor.br_condition:
+  friendly_name: Condition
 
 sensor.particle_sensor_pm25:
   friendly_name: PM2.5

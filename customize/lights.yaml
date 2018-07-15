@@ -1,5 +1,5 @@
 light.standing_lamp:
-  icon: mdi:lamp
+  icon: mdi:lightbulb-outline
   assumed_state: false
 
 light.led_strip_n:
@@ -11,7 +11,7 @@ light.led_strip_s:
   assumed_state: false
 
 light.ceiling_lamp:
-  icon: mdi:ceiling-light
+  icon: mdi:lightbulb-outline
   assumed_state: false
 
 light.blinkt_0:

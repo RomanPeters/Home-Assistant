@@ -1,5 +1,5 @@
 switch.speakers:
-  icon: mdi:music
+  icon: mdi:speaker
 
 switch.television:
   icon: mdi:television
