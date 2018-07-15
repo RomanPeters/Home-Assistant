@@ -1,0 +1,5 @@
+auto_cd: echo 'cd /config' >> /root/.bash_profile
+link_ssh_priv: ln -s /config/.ssh/id_rsa /root/.ssh/id_rsa
+link_ssh_pub: ln -s /config/.ssh/id_rsa.pub /root/.ssh/id_rsa.pub
+boot: "sh /config/hassio_boot.sh"
+restart: hassio ha check && hassio ha restart
