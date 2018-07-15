@@ -1,0 +1,10 @@
+disney_channel:
+  alias: Disney Channel
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet:
+          - "JgBmAFUfDRAMEAwfDCAoEQ0QDB8NEBsQDR4NEAwRDRAMEAwRHB4NEAsRDBEcHg0QGxANEAsACOtVHg0QDRANHg0eKRAMEQ0eDBEcDw0eDRANEAwRDRAMERseDBEbHhweDRAbEA0QDQANBQAA"
+          - "JgCSAFQfDBEMEQwfDB8pEQwQDB8MERsQDCAMEAwRDBEMEQwRGh8MEQwRDBEaEQwfGh8bAAjqVB8MEQwRDB8MHykRDBAMIAwQGxEMHwwRCxEMEQwRDBEaHwwRGiAaEQwfGh8bAAjqVB8MEQwRDB8MHykRCxEMHwwRGxAMIAwQDBEMEQwRDBEaHwwRGh8bEQwfGh8bAA0FAAAAAAAA"
+

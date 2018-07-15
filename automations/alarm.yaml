@@ -14,10 +14,10 @@
   alias: 'Trigger alarm while armed away'
   trigger:
     - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001de85f7
+      entity_id: sensor.motion_sensor
       to: 'active'
     - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001b958bc
+      entity_id: sensor.door
       to: 'open'
   condition:
     - condition: state

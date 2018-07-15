@@ -1,0 +1,147 @@
+script.toggle_power:
+  entity_picture: "/local/images/remote/toggle_power.png"
+script.toggle_sony:
+  entity_picture: "/local/images/remote/toggle_sony.png"
+script.toggle_entone:
+  entity_picture: "/local/images/remote/toggle_entone.png"
+
+scene.scene1:
+  entity_picture: "/local/images/remote/scene1.png"
+scene.scene2:
+  entity_picture: "/local/images/remote/scene2.png"
+scene.scene3:
+  entity_picture: "/local/images/remote/scene3.png"
+
+script.sony_up:
+  entity_picture: "/local/images/remote/up.png"
+script.sony_down:
+  entity_picture: "/local/images/remote/down.png"
+script.sony_left:
+  entity_picture: "/local/images/remote/left.png"
+script.sony_right:
+  entity_picture: "/local/images/remote/right.png"
+script.sony_ok:
+  entity_picture: "/local/images/remote/green.png"
+script.sony_back:
+  entity_picture: "/local/images/remote/red.png"
+script.sony_theatre:
+  entity_picture: "/local/images/remote/theatre.png"
+script.sony_menu:
+  entity_picture: "/local/images/remote/menu.png"
+script.sony_mute:
+  entity_picture: "/local/images/remote/mute.png"
+
+script.entone_up:
+  entity_picture: "/local/images/remote/up.png"
+script.entone_down:
+  entity_picture: "/local/images/remote/down.png"
+script.entone_left:
+  entity_picture: "/local/images/remote/left.png"
+script.entone_right:
+  entity_picture: "/local/images/remote/right.png"
+script.entone_ok:
+  entity_picture: "/local/images/remote/green.png"
+script.entone_back:
+  entity_picture: "/local/images/remote/red.png"
+script.entone_menu:
+  entity_picture: "/local/images/remote/menu.png"
+script.entone_mute:
+  entity_picture: "/local/images/remote/mute.png"
+
+script.apple_up:
+  entity_picture: "/local/images/remote/up.png"
+script.apple_down:
+  entity_picture: "/local/images/remote/down.png"
+script.apple_left:
+  entity_picture: "/local/images/remote/left.png"
+script.apple_right:
+  entity_picture: "/local/images/remote/right.png"
+script.apple_ok:
+  entity_picture: "/local/images/remote/green.png"
+script.apple_back:
+  entity_picture: "/local/images/remote/red.png"
+
+script.sony_volume_lower:
+  entity_picture: "/local/images/remote/volume_lower.png"
+script.sony_volume_higher:
+  entity_picture: "/local/images/remote/volume_higher.png"
+script.entone_guide:
+  entity_picture: "/local/images/remote/guide.png"
+script.entone_channel_down:
+  entity_picture: "/local/images/remote/channel_down.png"
+script.entone_channel_up: 
+  entity_picture: "/local/images/remote/channel_up.png"
+
+script.npo_1:
+  entity_picture: "/local/images/remote/npo_1.png"
+script.npo_2:
+  entity_picture: "/local/images/remote/npo_2.png"
+script.npo_3:
+  entity_picture: "/local/images/remote/npo_3.png"
+script.rtl_4:
+  entity_picture: "/local/images/remote/rtl_4.png"
+script.rtl_5:
+  entity_picture: "/local/images/remote/rtl_5.png"
+script.sbs_6:
+  entity_picture: "/local/images/remote/sbs_6.png"
+script.rtl_7:
+  entity_picture: "/local/images/remote/rtl_7.png"
+script.rtl_8:
+  entity_picture: "/local/images/remote/rtl_8.png"
+script.veronica_disney_xd:
+  entity_picture: "/local/images/remote/veronica_disney_xd.png"
+script.net_5:
+  entity_picture: "/local/images/remote/net_5.png"
+script.comedy_central:
+  entity_picture: "/local/images/remote/comedy_central.png"
+script.nickelodeon:
+  entity_picture: "/local/images/remote/nickelodeon.png"
+script.discovery_channel:
+  entity_picture: "/local/images/remote/discovery_channel.png"
+script.national_geographic:
+  entity_picture: "/local/images/remote/national_geographic.png"
+script.animal_planet:
+  entity_picture: "/local/images/remote/animal_planet.png"
+script.eurosport:
+  entity_picture: "/local/images/remote/eurosport.png"
+script.mtv:
+  entity_picture: "/local/images/remote/mtv.png"
+script.xite:
+  entity_picture: "/local/images/remote/xite.png"
+script.een:
+  entity_picture: "/local/images/remote/een.png"
+script.canvas:
+  entity_picture: "/local/images/remote/canvas.png"
+script.trt_turk:
+  entity_picture: "/local/images/remote/trt_turk.png"
+script.cnn:
+  entity_picture: "/local/images/remote/cnn.png"
+script.euronews:
+  entity_picture: "/local/images/remote/euronews.png"
+script.bbc_one:
+  entity_picture: "/local/images/remote/bbc_one.png"
+script.bbc_two:
+  entity_picture: "/local/images/remote/bbc_two.png"
+script.ard:
+  entity_picture: "/local/images/remote/ard.png"
+script.zdf:
+  entity_picture: "/local/images/remote/zdf.png"
+script.fox:
+  entity_picture: "/local/images/remote/fox.png"
+script.disney_channel:
+  entity_picture: "/local/images/remote/disney_channel.png"
+script.bbc_first:
+  entity_picture: "/local/images/remote/bbc_first.png"
+script.bbc_world_news:
+  entity_picture: "/local/images/remote/bbc_world_news.png"
+script.sbs_9:
+  entity_picture: "/local/images/remote/sbs_9.png"
+script.rtv_utrecht:
+  entity_picture: "/local/images/remote/rtv_utrecht.png"
+script.npo_1_extra:
+  entity_picture: "/local/images/remote/npo_1_extra.png"
+script.rtl_z:
+  entity_picture: "/local/images/remote/rtl_z.png"
+script.ziggo_sport:
+  entity_picture: "/local/images/remote/ziggo_sport.png"
+

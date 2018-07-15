@@ -1,0 +1,10 @@
+sbs_9:
+  alias: SBS 9
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet:
+          - "JgBmAFUeDBENEAwfDR4pEQ0QDB8NEBsQDB8MEQwRDBAMEQ0QGx4MEQ0QDRANEBseDBEbEA0ACOlVHw0QDBANHwsgKBEMEQwfDBEbEAwfDRANEAwRDBANEBweDRAbHg0QGx4MERwPDAANBQAA"
+          - "JgBmAFQfDBEMEQwfDB8pEQsRDB8MERsQDCAMEAwRDBEMEQwRGh8MEQwRDBEaHxogDBAMEQwACNtXHgwRDBAMIAwfKBENEAwfDBEbEAwfDBEMEQwRDBEMEBweDBEaHxweGh8MEQwRDAANBQAA"
+

@@ -1,0 +1,9 @@
+apple_ok:
+  alias: Apple TV select
+  sequence:
+    - alias: Select
+      service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - select

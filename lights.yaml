@@ -6,16 +6,16 @@
       groups:
       - number: 1
         type: rgbw
-        name: A  # Standing Lamp
+        name: Standing Lamp
       - number: 2
         type: rgbw
-        name: B  # LED Strip N
+        name: LED Strip N
       - number: 3
         type: rgbw
-        name: C  # LED strip S
+        name: LED strip S
       - number: 1
         type: white
-        name: D  # Ceiling Lamp
+        name: Ceiling Lamp
 
 - platform: blinkt
 

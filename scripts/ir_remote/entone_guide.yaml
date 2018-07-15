@@ -1,0 +1,8 @@
+entone_guide:
+  alias: Television guide
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet: 
+          - "JgBmAFYeDg8ODg4eDR4qDw4PDh0ODxwPDh0ODw4PDg8ODw0PHR0ODw4PDQ8dHRwPDh0ODw4ACNpWHg4JEw8OHQ4eKg8ODw4dDg8cDw4dDg8ODw4PDg4ODx0dDg8cHRwdHQ8OHQ4PDQANBQAA"

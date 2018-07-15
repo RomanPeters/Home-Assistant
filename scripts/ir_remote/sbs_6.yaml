@@ -1,0 +1,8 @@
+sbs_6:
+  alias: SBS 6
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet:
+          - "JgBqAFUeDRANEAwfDB8pEQwQDR8MEBwQDB8NDwwRDRANEAwRGx4MEQwRDRANEAwQHBAMHwwQDAAI3VUeDRANEAwfDB8pEQwQDB8MERwPDCANDw0QDRANEAwRGx4MERseDBENEBsQDR4NEAwADQUAAAAAAAAAAAAAAAAAAA"

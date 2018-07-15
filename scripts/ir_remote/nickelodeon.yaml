@@ -1,0 +1,9 @@
+nickelodeon:
+  alias: Nickelodeon
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet:
+          - "JgCSAFQfDBEMEQwfDB8pEQwQDB8MERsQDCAMEAwRDBEMEQwRGh8MEQwRDBEaEQwfGh8bAAjqVB8MEQwRDB8MHykRDBAMIAwQGxEMHwwRCxEMEQwRDBEaHwwRGiAaEQwfGh8bAAjqVB8MEQwRDB8MHykRCxEMHwwRGxAMIAwQDBEMEQwRDBEaHwwRGh8bEQwfGh8bAA0FAAAAAAAA"
+          - "JgBmAFUfDBEMEA0eDCAoEQ0QDR4MERsQDB8MEQwRDBEMEAwRHB4MEQsRDBEcHhsQDBEMHwwACNxVHgwRDBEMHw0eKREMEQwfDBEaEQwfDBEMEA0QDBEMERseDBEcHhseHA8MEQwfDAANBQAA"

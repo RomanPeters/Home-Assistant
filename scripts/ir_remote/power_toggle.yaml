@@ -1,0 +1,6 @@
+toggle_power:
+  alias: Toggle power
+  sequence:
+    - alias: Toggle power
+      service: switch.toggle
+      entity_id: switch.television

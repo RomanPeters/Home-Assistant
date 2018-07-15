@@ -1,19 +1,14 @@
-switch.a:
-  friendly_name: Speakers
+switch.speakers:
   icon: mdi:music
 
-switch.b:
-  friendly_name: Television
+switch.television:
   icon: mdi:television
 
-switch.c:
-  friendly_name: Fan
+switch.fan:
   icon: mdi:fan
 
-switch.d:
-  friendly_name: Socket
+switch.socket:
   icon: mdi:power-socket-eu
   
-switch.e:
-  friendly_name: Air purifier
+switch.air_purifier:
   icon: mdi:weather-windy

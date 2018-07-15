@@ -1,26 +1,18 @@
-light.a:
-  friendly_name: Standing lamp
+light.standing_lamp:
   icon: mdi:lamp
   assumed_state: false
 
-light.b:
-  friendly_name: LED strip N
+light.led_strip_n:
   icon: mdi:blur-linear
   assumed_state: false
 
-light.c:
-  friendly_name: LED strip S
+light.led_strip_s:
   icon: mdi:blur-linear
   assumed_state: false
 
-light.d:
-  friendly_name: Ceiling lamp
+light.ceiling_lamp:
   icon: mdi:ceiling-light
   assumed_state: false
-
-light.gateway_light_7811dce1e53e:
-  friendly_name: Aqara
-  icon: mdi:blur-radial
 
 light.blinkt_0:
   friendly_name: 1

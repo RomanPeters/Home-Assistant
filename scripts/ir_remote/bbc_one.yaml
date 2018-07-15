@@ -1,0 +1,10 @@
+bbc_one:
+  alias: BBC One
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet:
+          - "JgBmAFUfDBEMEA0eDCAoEQ0QDR4MERsQDB8MEQwRDBEMEAwRHB4MEQsRDBEcHhsQDBEMHwwACNxVHgwRDBEMHw0eKREMEQwfDBEaEQwfDBEMEA0QDBEMERseDBEcHhseHA8MEQwfDAANBQAA"
+          - "JgBmAFUeDBENEAwfDR4pEQ0QDB8NEBsQDB8MEQwRDBAMEQ0QGx4MEQ0QDRANEBseDBEbEA0ACOlVHw0QDBANHwsgKBEMEQwfDBEbEAwfDRANEAwRDBANEBweDRAbHg0QGx4MERwPDAANBQAA"
+

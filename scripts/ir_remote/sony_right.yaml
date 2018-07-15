@@ -1,0 +1,8 @@
+sony_right:
+  alias: Sony right
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet: 
+          - "JgBwAE4UExMUEygTExQnFCcUExMoExMUExMUExMAA1BPExMUExMoExMUJxQnFBMTKBMUExMUExMTAANQThQTExMUJxQTEygTKBMSFSgTExQRFREWEQADUk4UExMTFCcUExMoEygTExQoExMUExMTFBMADQUAAAAAAAAAAA"

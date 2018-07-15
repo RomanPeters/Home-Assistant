@@ -1,0 +1,1057 @@
+name: Home
+views:
+  - title: Dashboard
+    tab_icon: mdi:home 
+    background: center / cover no-repeat url("/local/background.png") fixed
+    cards:
+
+# 3D TOPDOWN VERTICAL
+      - type: picture-elements
+        image: /local/images/topdown_vertical.png
+        elements:
+          - type: state-icon
+            tap_action: toggle
+            entity: light.standing_lamp
+            style:
+#              transform: 
+#                - rotate(155deg)
+              top: 79%
+              left: 85%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.ceiling_lamp
+            style:
+              transform: rotate(180deg)
+              top: 48%
+              left: 30%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.television
+            style:
+#              transform: 
+#                - rotate(270deg)
+#                  scaleX(3.2)
+#                  scaleY(0.9)
+              top: 62%
+              left: 15%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.speakers
+            style:
+#              transform: 
+#                - rotate(270deg)
+              top: 44%
+              left: 14%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.fan
+            style:
+              top: 33%
+              left: 14%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.led_strip_n
+            style:
+#              transform: 
+#                - rotate(270deg)
+#                  scaleX(22)
+#                  scaleY(0.1)
+              top: 51%
+              left: 95%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.led_strip_s
+            style:
+#              transform: 
+#                - rotate(270deg)
+#                  scaleX(18)
+#                  scaleY(0.1)
+              top: 51%
+              left: 4%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.coffee_maker
+            style:
+              top: 48%
+              left: 72%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.air_purifier
+            style:
+              transform: rotate(180deg)
+              top: 68%
+              left: 66%
+          - type: state-label
+            entity: binary_sensor.door
+            style:
+              top: 92%
+              left: 20%
+              color: white
+              text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"
+          - type: state-label
+            entity: sensor.inside_temperature
+            style:
+              color: white
+              text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"
+              top: 17%
+              left: 88%
+          - type: state-label
+            entity: sensor.br_temperature
+            style:
+              color: white
+              text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"
+              top: 2%
+              left: 88%
+          - type: state-label
+            entity: plant.plant
+            style:
+              color: white
+              text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"
+              top: 78%
+              left: 53%
+
+
+# 3D ROOM 
+#      - type: picture-elements
+#        image: /local/images/kamer.png
+#        elements:
+#          - type: state-icon
+#            tap_action: toggle
+#            entity: light.standing_lamp
+#            style:
+#              top: 18%
+#              left: 59%
+#          - type: state-icon
+#            tap_action: toggle
+#            entity: switch.television
+#            style:
+#              top: 45%
+#              left: 75%
+#          - type: state-icon
+#            tap_action: toggle
+#            entity: switch.speakers
+#            style:
+#              top: 48%
+#              left: 64%
+#          - type: state-icon
+#            tap_action: toggle
+#            entity: switch.fan
+#            style:
+#              top: 55%
+#              left: 55%
+#          - type: state-icon
+#            tap_action: toggle
+#            entity: light.led_strip_n
+#            style:
+#              top: 17%
+#              left: 45%
+#          - type: state-icon
+#            tap_action: toggle
+#            entity: switch.coffee_maker
+#            style:
+#              top: 40%
+#              left: 45%
+#          - type: state-icon
+#            tap_action: toggle
+#            entity: switch.air_purifier
+#            style:
+#              top: 32%
+#              left: 60%
+#          - type: state-label
+#            entity: binary_sensor.door
+#            style:
+#              top: 32%
+#              left: 87%
+#              text-shadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white"
+#          - type: state-badge
+#            entity: sensor.inside_temperature
+#            style:
+#              top: 90%
+#              left: 80%
+
+# LIGHTS
+      - type: entities
+        title: Lights
+        entities:
+          - group.ambient
+
+
+# MEDIA PLAYER
+      - type: media-control
+        entity: media_player.apple_tv
+
+# APPLIANCES
+      - type: picture-glance
+        image: /local/images/clouds_off.jpg
+        entity: group.air_appliances
+        state_image:
+          'on': /local/images/clouds_on.jpg
+        entities:
+          - switch.air_purifier
+          - switch.fan
+        
+# ACTIONS
+      - type: picture-entity
+        entity: switch.coffee_maker
+        tap_action: toggle
+        image: /local/images/coffee_off.jpg
+        state_image:
+          "on": /local/images/coffee_on.jpg
+
+#      - type: weather-forecast
+#        title: Outdoors
+#        entity: weather.utrecht
+
+# ENVIRONMENT
+      - type: vertical-stack
+        cards:
+          - type: glance
+            title: Outdoors
+            entities:
+              - sensor.br_temperature
+              - sensor.br_humidity
+              - sensor.br_pressure
+              - sensor.br_condition
+          - type: glance
+            title: Indoors
+            entities:
+              - sensor.inside_temperature
+              - sensor.inside_humidity
+              - sensor.inside_pressure
+              - sensor.illuminance
+
+# ACTIVITY
+      - type: glance
+        title: Activity
+        entities:
+          - binary_sensor.door
+          - group.all_motion_sensors
+          - alarm_control_panel.alarm_system
+          - binary_sensor.home
+          - input_boolean.night_mode
+
+# GRAPHS
+      - type: vertical-stack
+        cards:
+          - type: history-graph
+            entities: 
+             - sensor.inside_temperature
+             - sensor.br_temperature
+          - type: history-graph
+            entities:
+             - sensor.inside_humidity
+             - sensor.br_humidity
+# PLANT
+      - type: plant-status
+        title: Plant
+        entity: plant.plant
+
+# CAMERA
+      - type: picture-glance
+        image: #https://10.10.10.12/cgi-bin/currentpic.cgi
+        camera_image: camera.camera
+        navigation_path: '/lovelace/3'
+        entities:
+          - script.camera_left
+          - script.camera_right
+          - script.camera_up         
+          - script.camera_down
+          - switch.camera_ir_led
+          - switch.socket
+          - switch.camera_motion_detection
+ 
+  - title: Testing
+    tab_icon: mdi:flask
+    cards:
+
+      - type: history-graph
+        title: Speakers automation
+        entities: 
+          - media_player.apple_tv
+          - switch.speakers
+        hours_to_show: 3
+
+      - type: history-graph
+        title: Light automation
+        entities: 
+          - binary_sensor.dark
+          - sun.sun
+          - group.lights
+          - switch.camera_ir_filter
+          - switch.camera_ir_led
+          - sensor.illuminance
+          - sensor.mi_flora_light_intensity
+
+
+      - type: history-graph
+        title: Presence
+        entities:
+          - input_boolean.home
+          - binary_sensor.door
+          - group.all_motion_sensors
+          
+      - type: history-graph
+        title: Night mode   
+        entities:
+          - input_boolean.night_mode
+          - group.lights
+          - input_boolean.home
+
+      - type: history-graph
+        entities:
+         - sensor.inside_humidity
+         - sensor.br_humidity
+         - switch.air_purifier
+
+
+  - title: Room
+    tab_icon: mdi:home
+    panel: true
+    cards:
+#3D TOPDOWN HORIZONTAL
+     - type: picture-elements
+       image: /local/images/topdown_horizontal.png
+       elements:
+         - type: state-icon
+           tap_action: toggle
+           entity: light.standing_lamp
+           style:
+             top: 85%
+             left: 21%
+         - type: state-icon
+           tap_action: toggle
+           entity: light.ceiling_lamp
+           style:
+             top: 40%
+             left: 49%
+         - type: state-icon
+           tap_action: toggle
+           entity: switch.television
+           style:
+             top: 16%
+             left: 37%
+         - type: state-icon
+           tap_action: toggle
+           entity: switch.speakers
+           style:
+             top: 12%
+             left: 54%
+         - type: state-icon
+           tap_action: toggle
+           entity: switch.fan
+           style:
+             top: 12%
+             left: 66%
+         - type: state-icon
+           tap_action: toggle
+           entity: light.led_strip_n
+           style:
+             top: 92%
+             left: 45%
+         - type: state-icon
+           tap_action: toggle
+           entity: light.led_strip_s
+           style:
+             top: 5%
+             left: 45%
+         - type: state-icon
+           tap_action: toggle
+           entity: switch.coffee_maker
+           style:
+             top: 70%
+             left: 52%
+         - type: state-icon
+           tap_action: toggle
+           entity: switch.air_purifier
+           style:
+             top: 70%
+             left: 28%
+         - type: state-label
+           entity: binary_sensor.door
+           style:
+             top: 14%
+             left: 5%
+             text-shadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white"
+         - type: state-label
+           entity: sensor.inside_temperature
+           style:
+             text-shadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white"
+             top: 2%
+             left: 81%
+         - type: state-label
+           entity: sensor.br_temperature
+           style:
+             text-shadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white"
+             top: 2%
+             left: 89%
+         - type: state-label
+           entity: plant.plant
+           style:
+             text-shadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white"
+             top: 54%
+             left: 21%
+
+  - title: Camera
+    tab_icon: mdi:eye
+    panel: true
+    cards:
+      - type: picture-glance
+        image: #https://10.10.10.12/cgi-bin/currentpic.cgi
+        camera_image: camera.camera
+        entities:
+          - script.camera_left
+          - script.camera_right
+          - script.camera_up
+          - script.camera_down
+          - scrip.camera_position_0
+          - switch.camera_motion_tracking
+        
+
+  - title: Remote
+    tab_icon: mdi:remote
+    panel: true
+    cards:
+      - type: picture-elements
+        image: /local/images/remote_bg_horizontal.png
+        elements:
+#-ROW 1
+          - type: state-icon
+            entity: script.toggle_power
+            tap_action: toggle
+            style:
+              top: 5%
+              left: 5%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.sony_theatre
+            tap_action: toggle
+            style:
+              top: 19%
+              left: 75%
+              outline-style: solid
+              outline-color: white
+
+
+          - type: state-icon
+            entity: scene.scene1
+            tap_action: toggle
+            style:
+              top: 26%
+              left: 65%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: scene.scene2
+            tap_action: toggle
+            style:
+              top: 26%
+              left: 70%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: scene.scene3
+            tap_action: toggle
+            style:
+              top: 26%
+              left: 75%
+              outline-style: solid
+              outline-color: white
+#-ROW 2
+          - type: state-icon
+            entity: script.toggle_sony
+            tap_action: toggle
+            style:
+              top: 5%
+              left: 25%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.sony_up
+            tap_action: toggle
+            style:
+              top: 5%
+              left: 30%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.toggle_entone
+            tap_action: toggle
+            style:
+              top: 5%
+              left: 45%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.entone_up
+            tap_action: toggle
+            style:
+              top: 5%
+              left: 50%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.toggle_apple
+            tap_action: toggle
+            style:
+              top: 5%
+              left: 65%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.apple_up
+            tap_action: toggle
+            style:
+              top: 5%
+              left: 70%
+              outline-style: solid
+              outline-color: white
+
+
+#-ROW 3
+          - type: state-icon
+            entity: script.sony_left
+            tap_action: toggle
+            style:
+              top: 12%
+              left: 25%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.sony_ok
+            tap_action: toggle
+            style:
+              top: 12%
+              left: 30%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.sony_right
+            tap_action: toggle
+            style:
+              top: 12%
+              left: 35%
+              outline-style: solid
+              outline-color: white
+
+
+          - type: state-icon
+            entity: script.entone_left
+            tap_action: toggle
+            style:
+              top: 12%
+              left: 45%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.entone_ok
+            tap_action: toggle
+            style:
+              top: 12%
+              left: 50%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.entone_right
+            tap_action: toggle
+            style:
+              top: 12%
+              left: 55%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.apple_left
+            tap_action: toggle
+            style:
+              top: 12%
+              left: 65%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.apple_ok
+            tap_action: toggle
+            style:
+              top: 12%
+              left: 70%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.apple_right
+            tap_action: toggle
+            style:
+              top: 12%
+              left: 75%
+              outline-style: solid
+              outline-color: white
+
+#-ROW 4
+          - type: state-icon
+            entity: script.sony_back
+            tap_action: toggle
+            style:
+              top: 19%
+              left: 25%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.sony_down
+            tap_action: toggle
+            style:
+              top: 19%
+              left: 30%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.sony_menu
+            tap_action: toggle
+            style:
+              top: 19%
+              left: 35%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.entone_back
+            tap_action: toggle
+            style:
+              top: 19%
+              left: 45%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.entone_down
+            tap_action: toggle
+            style:
+              top: 19%
+              left: 50%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.entone_menu
+            tap_action: toggle
+            style:
+              top: 19%
+              left: 55%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.apple_back
+            tap_action: toggle
+            style:
+              top: 19%
+              left: 65%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.apple_down
+            tap_action: toggle
+            style:
+              top: 19%
+              left: 70%
+              outline-style: solid
+              outline-color: white
+
+#-ROW 5
+          - type: state-icon
+            entity: script.sony_mute
+            tap_action: toggle
+            style:
+              top: 26%
+              left: 25%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.sony_volume_lower
+            tap_action: toggle
+            style:
+              top: 26%
+              left: 30%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.sony_volume_higher
+            tap_action: toggle
+            style:
+              top: 26%
+              left: 35%
+              outline-style: solid
+              outline-color: white
+
+#-ROW 6
+          - type: state-icon
+            entity: script.entone_channel_down
+            tap_action: toggle
+            style:
+              top: 26%
+              left: 45%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.entone_guide
+            tap_action: toggle
+            style:
+              top: 26%
+              left: 50%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.entone_channel_up
+            tap_action: toggle
+            style:
+              top: 26%
+              left: 55%
+              outline-style: solid
+              outline-color: white
+
+#-ROW 7
+          - type: state-icon
+            entity: script.npo_1
+            tap_action: toggle
+            style:
+              top: 33%
+              left: 5%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.npo_2
+            tap_action: toggle
+            style:
+              top: 33%
+              left: 20%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.npo_3
+            tap_action: toggle
+            style:
+              top: 33%
+              left: 35%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.rtl_4
+            tap_action: toggle
+            style:
+              top: 33%
+              left: 50%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.rtl_5
+            tap_action: toggle
+            style:
+              top: 33%
+              left: 65%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.sbs_6
+            tap_action: toggle
+            style:
+              top: 33%
+              left: 80%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.rtl_7
+            tap_action: toggle
+            style:
+              top: 40%
+              left: 5%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.rtl_8
+            tap_action: toggle
+            style:
+              top: 40%
+              left: 20%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.veronica_disney_xd
+            tap_action: toggle
+            style:
+              top: 40%
+              left: 35%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.net_5
+            tap_action: toggle
+            style:
+              top: 40%
+              left: 50%
+              outline-style: solid
+              outline-color: white
+
+#-ROW
+          - type: state-icon
+            entity: script.comedy_central
+            tap_action: toggle
+            style:
+              top: 40%
+              left: 65%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.nickelodeon
+            tap_action: toggle
+            style:
+              top: 40%
+              left: 80%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.discovery_channel
+            tap_action: toggle
+            style:
+              top: 47%
+              left: 5%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.national_geographic
+            tap_action: toggle
+            style:
+              top: 47%
+              left: 20%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.animal_planet
+            tap_action: toggle
+            style:
+              top: 47%
+              left: 35%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.eurosport
+            tap_action: toggle
+            style:
+              top: 47%
+              left: 50%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.mtv
+            tap_action: toggle
+            style:
+              top: 47%
+              left: 65%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.xite
+            tap_action: toggle
+            style:
+              top: 47%
+              left: 80%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.een
+            tap_action: toggle
+            style:
+              top: 54%
+              left: 5%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.canvas
+            tap_action: toggle
+            style:
+              top: 54%
+              left: 20%
+              outline-style: solid
+              outline-color: white
+
+#-ROW
+          - type: state-icon
+            entity: script.trt_turk
+            tap_action: toggle
+            style:
+              top: 54%
+              left: 35%
+              outline-style: solid
+              outline-color: white
+
+
+          - type: state-icon
+            entity: script.cnn
+            tap_action: toggle
+            style:
+              top: 54%
+              left: 50%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.euronews
+            tap_action: toggle
+            style:
+              top: 54%
+              left: 65%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.bbc_one
+            tap_action: toggle
+            style:
+              top: 54%
+              left: 80%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.bbc_two
+            tap_action: toggle
+            style:
+              top: 61%
+              left: 5%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.ard
+            tap_action: toggle
+            style:
+              top: 61%
+              left: 20%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.zdf
+            tap_action: toggle
+            style:
+              top: 61%
+              left: 35%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.fox
+            tap_action: toggle
+            style:
+              top: 61%
+              left: 50%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.disney_channel
+            tap_action: toggle
+            style:
+              top: 61%
+              left: 65%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.bbc_first
+            tap_action: toggle
+            style:
+              top: 61%
+              left: 80%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.bbc_world_news
+            tap_action: toggle
+            style:
+              top: 68%
+              left: 5%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.sbs_9
+            tap_action: toggle
+            style:
+              top: 68%
+              left: 20%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.rtv_utrecht
+            tap_action: toggle
+            style:
+              top: 68%
+              left: 35%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.npo_1_extra
+            tap_action: toggle
+            style:
+              top: 68%
+              left: 50%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.rtl_z
+            tap_action: toggle
+            style:
+              top: 68%
+              left: 65%
+              outline-style: solid
+              outline-color: white
+
+          - type: state-icon
+            entity: script.ziggo_sport
+            tap_action: toggle
+            style:
+              top: 68%
+              left: 80%
+              outline-style: solid
+              outline-color: white

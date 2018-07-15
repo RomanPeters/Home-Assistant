@@ -10,27 +10,26 @@ default_view:
 ww:
   name: Lights
   entities:
-  - light.d
+  - light.ceiling_lamp
 
 rgb:
   name: RGB lights
   entities:
-  - light.a
-  - light.b
-  - light.c
-  - light.gateway_light_7811dce1e53e
+  - light.standing_lamp
+  - light.led_strip_n
+  - light.led_strip_s
 
 entertainment:
   name: Entertainment
   view: false
   entities:
-  - switch.a  # television
-  - switch.b  # speakers
+  - switch.television
+  - switch.speakers
 
 appliances:
   name: Appliances
   entities:
   - switch.coffee_maker
-  - switch.e  # air purifier
-  - switch.c  # fan
-  - switch.d  # socket
+  - switch.air_purifier
+  - switch.fan
+  - switch.socket

@@ -9,7 +9,7 @@
       state: 'left'
   action:
     - service: light.toggle
-      entity_id: light.d
+      entity_id: light.ceiling_lamp
 
 - id: wall_switch_right_on
   alias: wall switch right turn on

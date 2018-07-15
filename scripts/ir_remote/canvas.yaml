@@ -1,0 +1,9 @@
+canvas:
+  alias: Canvas
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet:
+          - "JgBmAFUfDBEMEA0eDCAoEQ0QDR4MERsQDB8MEQwRDBEMEAwRHB4MEQsRDBEcHhsQDBEMHwwACNxVHgwRDBEMHw0eKREMEQwfDBEaEQwfDBEMEA0QDBEMERseDBEcHhseHA8MEQwfDAANBQAA"
+          - "JgBmAFceDRANEA0eDR4pEQ0PDR8NDxwQDR4NDw0QDBENEA0QGx4NEA0QDRANEBsQDR4bEA0ACOlUIAsRDRAMHw0eKREMEQwfDBEbEAwfDRANEAwQDRANEBweDQ8cHg0QGxANHhsQDAANBQAA"

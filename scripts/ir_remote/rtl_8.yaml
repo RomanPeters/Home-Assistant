@@ -1,0 +1,8 @@
+rtl_8:
+  alias: RTL 8
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet:
+          - "JgBmAFUeDRAMEQ0eDR4pEA0QDB8MERwPDR8LEQwRDRANEA0QGx4NEAwRDBEbHhsQDRANEAwACOlWHgwRDRANHgwfKREMEQwfDBEbEAwfDRAMEQsRDRAMERseDRAcHhseHA8NEAwRDQANBQAA"

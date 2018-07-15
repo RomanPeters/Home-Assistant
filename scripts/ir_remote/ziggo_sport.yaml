@@ -1,0 +1,10 @@
+ziggo_sport:
+  alias: Ziggo Sport
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet:
+          - "JgBmAFUeDRANEA0eDR4pEQ0QDR4NEBsQDB8NEA0QDQ8MEQ0QHB4MEA0QDRAbEA0eHBAMHw0ACNtVHg0QDRANHgwfKRENDw0fDBAcEA0eDQ8NEA0QDRANEBseDRAcHhsQDB8bEA0eDQANBQAA"
+          - "JgBmAFUfDRAMEAwfDCAoEQ0QDB8NEBsQDR4NEAwRDRAMEAwRHB4NEAsRDBEcHg0QGxANEAsACOtVHg0QDRANHg0eKRAMEQ0eDBEcDw0eDRANEAwRDRAMERseDBEbHhweDRAbEA0QDQANBQAA"
+

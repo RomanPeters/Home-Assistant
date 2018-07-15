@@ -1,0 +1,8 @@
+entone_down:
+  alias: Entone down
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet: 
+          - "JgBqAFcfDBEMEQwfDB8pEQwRDB8MERoRDB8MEQwQDBEMEQwRGh8MEQwRDBEMERoRDB8MEQwRDAAI3FQfDBEMEQwfDB8pEQwRDB8MERoRDB8MEQwRDBAMEQwRGx8MEBsfDBEaEQwfDBEMEQwADQUAAAAAAAAAAAAAAAAAAA"

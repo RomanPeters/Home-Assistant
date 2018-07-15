@@ -1,0 +1,8 @@
+sony_mute:
+  alias: Mute television
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet: 
+          - "JgCMAEwWERUSFSYVERYlFhEVERYlFhEVEhURFRIAA2ZMFhEVEhUmFREVJhUSFREWJRYRFREWERUSAANmTBYRFREWJhURFSYVEhURFiUWERURFhEVEgADZkwVEhURFSYVEhUmFREWERUmFRIVERUSFREAA2dMFhEVERYlFhEVJhUSFREVJhUSFREWERURAA0FAAAAAAAAAAAAAAAA"

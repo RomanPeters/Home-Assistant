@@ -1,0 +1,9 @@
+veronica_disney_xd:
+  alias: Veronica / Disney XD
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet:
+          - "JgBmAFQfDBEMEQwfDB8pEQsRDB8MERsQDCAMEAwRDBEMEQwRGh8MEQwRDBEaHxogDBAMEQwACNtXHgwRDBAMIAwfKBENEAwfDBEbEAwfDBEMEQwRDBEMEBweDBEaHxweGh8MEQwRDAANBQAA"
+
