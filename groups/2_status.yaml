@@ -7,7 +7,7 @@ status:
   - group.outside
   - group.activity
   - group.graphs
-  - plant.houseplant
+  - plant.plant
 
 inside:
   name: Indoors

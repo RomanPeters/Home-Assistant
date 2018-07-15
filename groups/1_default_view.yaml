@@ -2,6 +2,7 @@ default_view:
   view: true
   icon: mdi:home
   entities:
+#  - camera.camera
   - group.ww
   - group.rgb
   - group.entertainment
@@ -19,6 +20,27 @@ rgb:
   - light.led_strip_n
   - light.led_strip_s
 
+ambient:
+  name: Ambient
+  icon: mdi:none
+  entities:
+  - light.standing_lamp
+  - light.led_strip_n
+  - light.led_strip_s
+
+blinkt:
+  name: Blinkt
+  entities:
+  - light.blinkt_0
+  - light.blinkt_1
+  - light.blinkt_2
+  - light.blinkt_3
+  - light.blinkt_4
+  - light.blinkt_5
+  - light.blinkt_6
+  - light.blinkt_7
+
+
 entertainment:
   name: Entertainment
   view: false
@@ -33,3 +55,25 @@ appliances:
   - switch.air_purifier
   - switch.fan
   - switch.socket
+
+air_appliances:
+  name: Air
+  entities:
+  - switch.air_purifier
+  - switch.fan
+
+all_motion_sensors:
+  name: Motion
+  icon: mdi:run-fast
+  entities:
+  - binary_sensor.motion_sensor
+  - binary_sensor.camera_motion_sensor
+
+
+lights:
+  name: Lights
+  entities:
+  - light.standing_lamp
+  - light.led_strip_n
+  - light.led_strip_s
+  - light.ceiling_lamp
