@@ -8,6 +8,11 @@ configurator:
   icon: mdi:wrench
   url: https://10.10.10.11:3218
 
+remote:
+  title: Remote
+  icon: mdi:remote
+  url: http://10.10.10.11:5050/remote?skin=remote
+
 # esphomeyaml:
 #   title: esphomeyaml
 #   icon: mdi:checkbox-multiple-blank-circle-outline

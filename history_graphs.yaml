@@ -1,11 +1,11 @@
-gr1:
+temperature:
   name: Temperature
   entities:
     - sensor.inside_temperature
     - sensor.br_temperature
   hours_to_show: 24
 
-gr2:
+humidity:
   name: Humidity
   entities:
     - sensor.inside_humidity

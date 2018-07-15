@@ -1,4 +1,4 @@
-Houseplant:
+Plant:
   sensors:
     moisture: sensor.mi_flora_moisture
     battery: sensor.mi_flora_battery
