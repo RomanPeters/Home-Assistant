@@ -12,3 +12,4 @@ ip_bans.yaml
 known_devices.yaml
 privkey.pem
 secrets.yaml
+tts/
