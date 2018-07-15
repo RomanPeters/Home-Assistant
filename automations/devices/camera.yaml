@@ -1,0 +1,51 @@
+- id: camera_ir_led_on
+  alias: Switch Camera IR filter off
+  trigger:
+    - platform: state
+      entity_id: switch.camera_ir_led
+      to: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.camera_ir_filter
+
+- id: camera_ir_led_off   
+  alias: Switch Camera IR filter on
+  trigger:
+    - platform: state
+      entity_id: switch.camera_ir_led
+      to: 'off'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.camera_ir_filter
+
+- id: camera_dark_mode_on
+  alias: Turn on dark mode
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dark
+      to: 'on'
+    - platform: template
+      value_template: '{{ states("sensor.camera")[24:26] == "1 " }}'  # uptime == 1 min
+  condition:
+    - condition: state
+      entity_id: binary_sensor.dark
+      state: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.camera_ir_led  # will also trigger automation above
+
+- id: camera_dark_mode_off
+  alias: Turn off dark mode
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dark
+      to: 'off'
+    - platform: template
+      value_template: '{{ states("sensor.camera")[24:26] == "1 " }}'  # uptime == 1 min
+  condition:
+    - condition: state
+      entity_id: binary_sensor.dark
+      state: 'off'   
+  action:
+    - service: switch.turn_off
+      entity_id: switch.camera_ir_led  # will also trigger automation above

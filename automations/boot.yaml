@@ -4,7 +4,14 @@
     - platform: homeassistant
       event: start
   action:
-    - service: notify.notify
+    - service: notify.ios_iphone
       data:
         message: "Home Assistant is online"
 
+    - service: python_script.say
+      data:
+        message: "Home Assistant is online"
+
+    - service: frontend.set_theme
+      data:
+        name: neutral

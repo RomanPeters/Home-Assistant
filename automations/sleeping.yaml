@@ -1,0 +1,93 @@
+# SLEEPING TRUE
+- id: lights_turned_off_at_night
+  alias: Lights turned off at night
+  trigger:
+    - platform: state
+      entity_id: group.lights
+      to: 'off'
+      for:
+        seconds: 5
+    - platform: state
+      entity_id: group.all_motion_sensors
+      to: 'off'
+      for:
+        minutes: 15
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.home
+      state: 'on'
+    - condition: state
+      entity_id: group.lights
+      state: 'off'
+    - condition: state
+      entity_id: switch.television
+      state: 'off'
+    - condition: time
+      after: '22:00:00'
+      before: '07:00:00'
+
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.sleeping
+    - service: notify.ios_iphone
+      data:
+        message: "Sleep tight"      
+
+# SLEEPING FALSE
+- id: not_sleeping
+  alias: Not sleeping
+  trigger:
+    - platform: state
+      entity_id: group.lights
+      to: 'on'
+    - platform: state
+      entity_id: switch.television
+      to: 'on'
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.sleeping
+
+- id: nightlight
+  alias: Nightlight
+  trigger:
+    - platform: state
+      entity_id: group.all_motion_sensors
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.dark
+      state: 'on'
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.sleeping
+    - service: light.turn_on
+      data:
+        entity_id: light.standing_lamp
+        color_name: red
+        brightness_pct: 1
+    - service: timer.start
+      entity_id: timer.nightlight 
+
+- id: nightlight_off
+  alias: Turn nightlight off
+  trigger: 
+    - platform: event
+      event_type: timer.finished
+      event_data: 
+        entity_id: timer.nightlight
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.standing_lamp
+
+# NIGHT_MODE ON
+- id: night_mode_on
+  alias: turn Night Mode on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.sleeping
+      to: 'on'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.night_mode

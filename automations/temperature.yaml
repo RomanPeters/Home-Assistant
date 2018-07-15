@@ -1,0 +1,30 @@
+- id: open_window_to_cool
+  alias: Open window
+  trigger:
+    - platform: state
+      entity_id: input_boolean.home
+      to: 'home'
+    - platform: state
+      entity_id: binary_sensor.outside_cooler_than_inside
+      to: 'on'
+
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.indside_temperature
+      above: 25
+    - condition: state
+      entity_id: binary_sensor.outside_cooler_than_inside
+      to: 'on'
+    - condition: state
+      entity_id: input_boolean.home
+      state: home
+    - condition: state
+      entity_id: input_boolean.sleeping
+      state: 'off'
+
+  action:
+    - service: notify.ios_iphone
+      data:
+        message: "Open your window to cool your room"
+
+

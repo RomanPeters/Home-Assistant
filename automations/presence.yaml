@@ -1,0 +1,99 @@
+# DOOR
+- id: door_opens
+  alias: Set home
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door
+    to: 'on'
+  action:
+    - service: timer.cancel
+      entity_id: timer.leaving
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.home
+
+- id: door_closes
+  alias: Check for activity
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door
+    to: 'off'
+#    for:
+#      seconds: 10
+  action:
+    - service: timer.start
+      entity_id: timer.leaving
+
+- id: timer_leaving_done
+  alias: Timer Leaving done
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data: 
+      entity_id: timer.leaving
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.home
+
+# CANCEL LEAVING
+- id: not_leaving_motion
+  alias: Motion detected
+  trigger:
+    - platform: state
+      entity_id: group.all_motion_sensors
+      to: 'on'
+    - platform: state
+      entity_id: sensor.wall_switch
+      to: 'right'
+    - platform: state
+      entity_id: sensor.wall_switch
+      to: 'left'
+    - platform: state
+      entity_id: sensor.button
+      to: 'single'
+  action:
+    - service: timer.cancel
+      entity_id: timer.leaving
+
+# LEAVING
+- id: leaving_home
+  alias: Leaving
+  trigger:
+    - platform: state
+      entity_id: input_boolean.home
+      to: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: group.all_lights
+    - service: switch.turn_on
+      entity_id: switch.air_purifier
+
+
+# ARRIVING,DARK, NM OFF
+- id: arriving_home
+  alias: Arriving
+  trigger:
+    platform: state
+    entity_id: input_boolean.home
+    to: 'on'
+
+  condition:
+    condition: and
+    conditions:
+
+      - condition: or  # 'when dark' condition: either after sunset or before sunrise
+        conditions:
+          - condition: sun
+            after: sunset
+            after_offset: "-01:00:00"
+          - condition: sun
+            before: sunrise
+
+      - condition: state
+        entity_id: input_boolean.night_mode
+        state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id: group.ambient
+    - service: switch.turn_off
+      entity_id: switch.air_purifier

@@ -1,0 +1,46 @@
+#- id: blinkt_home_awake
+#  alias: Green if home and day mode
+#  trigger:
+#    - platform: state
+#      entity_id: input_boolean.home
+#      to: 'home'
+#  condition:
+#    - condition: state
+#      entity_id: input_boolean.night_mode
+#      state: off
+#  action:
+#    - service: light.turn_on
+#      data:
+#        entity_id: group.blinkt
+#        color_name: green
+#        brightness_pct: 100
+      
+#- id: blinkt_home_asleep
+#  alias: Blue if home and night mode
+#  trigger:
+#    - platform: state
+#      entity_id: input_boolean.night_mode
+#      to: 'on'
+#  condition:
+#    - condition: state
+#      entity_id: input_boolean.home
+#      state: home
+#  action:
+#    - service: light.turn_on
+#      data:
+#        entity_id: group.blinkt
+#        color_name: blue
+#        brightness_pct: 100
+
+#- id: blinkt_away
+#  alias: Red if away
+#  trigger:
+#    - platform: state
+#      entity_id: input_boolean.home
+#      from: 'home'
+#  action:
+#    - service: light.turn_on
+#      data:
+#        entity_id: group.blinkt
+#        color_name: red
+#        brightness_pct: 100

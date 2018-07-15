@@ -1,0 +1,9 @@
+- id: stop_wakeup
+  alias: Stop WakeUp Light
+  trigger:
+    - platform: state
+      entity_id: light.d
+      to: 'off'
+  action:
+    - service: script.turn_off
+      entity_id: script.wake_up

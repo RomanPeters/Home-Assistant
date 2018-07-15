@@ -1,3 +1,4 @@
+# ACTION
 - id: alarm_triggered
   alias: 'Send notification when alarm triggered'
   trigger:
@@ -9,16 +10,13 @@
       data:
         message: "Alarm has been triggered!"
         
-        
+# AWAY MODE
 - id: alarm_away
   alias: 'Trigger alarm while armed away'
   trigger:
     - platform: state
-      entity_id: sensor.motion_sensor
-      to: 'active'
-    - platform: state
-      entity_id: sensor.door
-      to: 'open'
+      entity_id: group.motion_sensors
+      to: 'on'
   condition:
     - condition: state
       entity_id: alarm_control_panel.alarm_system
@@ -26,3 +24,33 @@
   action:
     service: alarm_control_panel.alarm_trigger
     entity_id: alarm_control_panel.alarm_system
+
+## NIGHT MODE
+#- id: alarm_night
+#  alias: 'Trigger alarm while armed night'
+#  trigger:
+#    - platform: state
+#      entity_id: group.motion_sensors
+#      to: 'on'
+#  condition:
+#    - condition: state
+#      entity_id: alarm_control_panel.alarm_system
+#      state: armed_night
+#  action:
+#    service: alarm_control_panel.alarm_trigger
+#    entity_id: alarm_control_panel.alarm_system
+
+## HOME MODE
+#- id: alarm_home
+#  alias: 'Trigger alarm while armed home'
+#  trigger:
+#    - platform: state
+#      entity_id: group.motion_sensors
+#      to: 'on'
+#  condition:
+#    - condition: state
+#      entity_id: alarm_control_panel.alarm_system
+#      state: armed_home
+#  action:
+#    service: alarm_control_panel.alarm_trigger
+#    entity_id: alarm_control_panel.alarm_system

@@ -1,0 +1,80 @@
+# single
+
+- id: button_night_light_on
+  alias: button night light on
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/0x00158d0001f4b7af
+  condition:
+    - condition: state
+      entity_id: sensor.button
+      state: 'single'
+    - condition: state
+      entity_id: light.standing_lamp
+      state: 'off'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.standing_lamp
+        color_name: red
+        brightness_pct: 1
+
+- id: button_night_light_off
+  alias: button night light off
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/0x00158d0001f4b7af
+  condition:
+    - condition: state
+      entity_id: sensor.button
+      state: 'single'
+    - condition: state
+      entity_id: light.standing_lamp
+      state: 'on'
+  action:
+    - service: light.turn_off  
+      entity_id: light.standing_lamp
+
+# double
+
+- id: button_toggle_air_purifier
+  alias: toggle air purifier
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/0x00158d0001f4b7af
+  condition:
+    - condition: state
+      entity_id: sensor.button
+      state: 'double'
+  action:
+    - service: switch.toggle
+      entity_id: switch.air_purifier
+
+# triple
+
+# quadruple
+
+# many
+
+# long
+
+- id: button_all_off
+  alias: turn everything off
+  trigger:
+    - platform: state
+      entity_id: sensor.button
+      to: 'long'
+  action:
+    - service: light.turn_off
+      entity_id: group.ww
+    - service: light.turn_off
+      entity_id: group.rgb
+    - service: switch.turn_off
+      entity_id: switch.speakers
+    - service: switch.turn_off
+      entity_id: switch.fan
+    - service: switch.turn_off
+      entity_id: switch.air_purifier
+
+# long_release
+
