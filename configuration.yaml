@@ -22,17 +22,46 @@ mqtt:
 #  discovery: true
   broker: core-mosquitto
 
+weather:
+  - platform: buienradar
+    name: Utrecht
+
 config:
 hassio:
 history:
 logbook:
 python_script:
+sun:
 ios:
+  push:
+    categories:
+      - name: Alarm
+        identifier: 'alarm'
+        actions:
+          - identifier: 'SOUND_ALARM'
+            title: 'Sound Alarm'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'SILENCE_ALARM'
+            title: 'Silence Alarm'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'textInput'
+            textInputButtonTitle: 'Silencio!'
+            textInputPlaceholder: 'Placeholder'
+
 tts:
   - platform: google
 
 recorder:
   db_url: !secret db_url
+
+apple_tv:
+  - host: 10.10.10.4
+    login_id: !secret apple_tv_id
 
 automation: !include_dir_merge_list automations
 light: !include lights.yaml
@@ -47,4 +76,10 @@ history_graph: !include history_graphs.yaml
 alarm_control_panel: !include alarm_control_panels.yaml
 plant: !include plants.yaml
 input_select: !include input_selects.yaml
+input_boolean: !include input_booleans.yaml
 scene: !include scenes.yaml
+shell_command: !include shell_commands.yaml
+camera: !include cameras.yaml
+cover: !include covers.yaml
+timer: !include timers.yaml
+

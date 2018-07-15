@@ -2,11 +2,8 @@ filter:
   exclude_domains:
     - script
     - automation
+    - camera
   exclude_entities:
-    - binary_sensor.switch_158d0001f4b7af
-    - binary_sensor.wall_switch_left_158d0001e11783
-    - binary_sensor.wall_switch_right_158d0001e11783
-    - binary_sensor.wall_switch_both_158d0001e11783
     - binary_sensor.coffee_button
     - device_tracker.iphone
     - sensor.iphone_5c_battery_level
@@ -28,17 +25,5 @@ filter:
     - light.blinkt_7
 
 entity_config:
-  switch.d:
+  switch.socket:
     type: outlet
-  sensor.temperature_158d00022c8d56:
-    name: Temperature
-  sensor.humidity_158d00022c8d56:
-    name: Humidity
-  sensor.illumination_7811dce1e53e:
-    name: Light Level
-  sensor.illumination_158d0001de85f7:
-    name: Light Level
-  light.d:
-    name: Ceiling Lamp
-  light.a:
-    name: Standing Lamp

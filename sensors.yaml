@@ -3,17 +3,16 @@
     - condition
     - humidity
     - temperature
-    - windspeed
+    - pressure
     - precipitation
     - precipitation_forecast_total
 
 - platform: miflora
   mac: 'C4:7C:8D:66:42:FC'
 
-- platform: serial_pm
-  serial_device: /dev/ttyUSB0
-  name: Particle Sensor
-  brand: novafitness,sds011
+#- platform: serial_pm#  serial_device: /dev/ttyUSB0
+#  name: Particle Sensor
+#  brand: novafitness,sds011
 
 - platform: waqi
   token: !secret waqi_token
@@ -21,3 +20,92 @@
     - utrecht
   stations:
     - de Jongweg
+
+### MQTT
+
+- platform: "mqtt"
+  name: Button
+  state_topic: "zigbee2mqtt/0x00158d0001f4b7af"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:toggle-switch"
+  value_template: "{{ value_json.click }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+    - "action"
+    - "duration"
+
+- platform: "mqtt"
+  name: Wall switch
+  state_topic: "zigbee2mqtt/0x00158d0001e11783"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:toggle-switch"
+  value_template: "{{ value_json.click }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+    - "action"
+    - "duration"
+
+- platform: "mqtt"
+  name: Inside temperature
+  state_topic: "zigbee2mqtt/0x00158d00022c8d56"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  icon: "mdi:thermometer"
+  value_template: "{{ value_json.temperature }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+
+- platform: "mqtt"
+  name: Inside humidity
+  state_topic: "zigbee2mqtt/0x00158d00022c8d56"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  icon: "mdi:water-percent"
+  value_template: "{{ value_json.humidity }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+
+- platform: "mqtt"
+  name: Inside pressure
+  state_topic: "zigbee2mqtt/0x00158d00022c8d56"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "Pa"
+  icon: "mdi:speedometer"
+  value_template: "{{ value_json.pressure }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+
+- platform: "mqtt"
+  name: Illuminance
+  state_topic: "zigbee2mqtt/0x00158d0001de85f7"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "lx"
+  icon: "mdi:theme-light-dark"
+  value_template: "{{ value_json.illuminance }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+
+- platform: "mqtt"
+  name: Camera Light Sensor
+  state_topic: xiaomi/dafang/brightness
+  icon: mdi:brightness-5
+  unit_of_measurement: "%"
+
+- platform: "mqtt"
+  name: Camera
+  state_topic: xiaomi/dafang
+  icon: "mdi:cctv"
+  json_attributes: 
+    - uptime
+    - load average
+    - ssid
+    - bitrate
+    - signal_level 
+    - link_quality
+    - noise_level

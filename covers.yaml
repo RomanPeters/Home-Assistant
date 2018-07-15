@@ -1,0 +1,17 @@
+- platform: "mqtt"
+  name: "Camera up/down"
+  command_topic: "xiaomi/dafang/motors/vertical/set"
+  state_topic: "xiaomi/dafang/motors/vertical"
+  payload_close: "down"
+  payload_open: "up"
+  optimistic: false
+  value_template: "{{((value|int)/7.3)|round }}"
+
+- platform: "mqtt"
+  name: "Camera left/right"
+  command_topic: "xiaomi/dafang/motors/horizontal/set"
+  state_topic: "xiaomi/dafang/motors/horizontal"
+  payload_close: "right"
+  payload_open: "left"
+  optimistic: false
+  value_template: "{{ ((value|int)/27)|round }}" 

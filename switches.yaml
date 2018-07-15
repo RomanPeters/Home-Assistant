@@ -13,24 +13,94 @@
   host: "10.10.10.203"
   mac: "b4:43:0d:db:97:6c"
   type: rm2_pro_plus
-#  switches:
-#    sony:
-#      friendly_name: Television
-#      command_on: "JgBsAU4UJRYSFSUVEhUkFxEWEhQmFRAXExMRFRIAA1FMFiYWDhgkFxEVKBUOFxEWJhQSFRAXEBYSAANRTRUmFREWJRYSFCQXERURFiQXEhcPFREVEgADUU0WJRYRFSQZDhYnFBMUERYkFxIVERYQFg8AA1NLFicVEBcmFBIWJRYQFhEVIxoOFxAWEhQSAANRTRUoFA8XJRYRFScUExQRFiUVFBMRFhEVEgADUUwWJBcRFiYVDhglFhEVEhUnFRAVERYRFhEAA1FNFSYVEhUlFhEVJhURFhEVJhURFhEVEhURAANSTRQmFRIVJhUSFSUWERURFiUWERURFhEVEgADUU0WJRYQFSYVEhUmFREWERUmFREWEhQRFxAAA1JMFSYVEhUmFREVJhUSFREWJRYRFREWERURAANSTRUlFhEVJhUSFSYVERYRFSYVERYRFREWEQADUkwVJhUSFSYVERUmFRIVERYlFhEVERYRFREADQUAAAAAAAAAAAAAAAA"
-#      command_off: "JgBsAU4UJRYSFSUVEhUkFxEWEhQmFRAXExMRFRIAA1FMFiYWDhgkFxEVKBUOFxEWJhQSFRAXEBYSAANRTRUmFREWJRYSFCQXERURFiQXEhcPFREVEgADUU0WJRYRFSQZDhYnFBMUERYkFxIVERYQFg8AA1NLFicVEBcmFBIWJRYQFhEVIxoOFxAWEhQSAANRTRUoFA8XJRYRFScUExQRFiUVFBMRFhEVEgADUUwWJBcRFiYVDhglFhEVEhUnFRAVERYRFhEAA1FNFSYVEhUlFhEVJhURFhEVJhURFhEVEhURAANSTRQmFRIVJhUSFSUWERURFiUWERURFhEVEgADUU0WJRYQFSYVEhUmFREWERUmFREWEhQRFxAAA1JMFSYVEhUmFREVJhUSFREWJRYRFREWERURAANSTRUlFhEVJhUSFSYVERYRFSYVERYRFREWEQADUkwVJhUSFSYVERUmFRIVERYlFhEVERYRFREADQUAAAAAAAAAAAAAAAA"
-
-#      up: "JgCMAE0WERUPFyYWEhQkFyUXJhQnFA8YEhQTExIAAz1LFxMTEBclFxITJxQlFyQXJxQPFxIVERUSAAM8TBcSFBAXJxMRFiQXJRclFSUWEhQTFBAWFAADO0sWExQQFycUERUkFyYVJxQmFREXERQQFxIAAzxOFBEVEhYmFBAXJRclFSYVJRYQFxEVEBcSAA0FAAAAAAAAAAAAAAAA"
-#      down: "JgAYAU4UJhUSFSUWEBYmFSYVJxQnFBMUEhQRFhEAAylMFiUWEhQmFREWJRYmFSYVJhUTExMUEBcSAAMnThQmFRIVJRYRFSYVJhUnFCcUEhUSFBEWEQADKU0VJhUQFicUEhUmFSUWJhUmFREWERURFhEAAyhNFSYVERYlFhEVJRYnFCcUJxQSFREVERYSAAMoTRUmFRAWJhUTFCYVJRYnFCYVERYRFREWEgADJ04UJhURFiUWEhQlFicUJhUmFREWEhQRFhEAAylNFSYVEBYnFBMUJRYlFiYVJhURFhEVERYRAAMoTRUmFRIVJRYRFSUWJhUmFScUERYSFBEWEQADKU0VJhUQFicUEhUmFSUWKBMnFBEWERURFhEADQU="
 
 - platform: xiaomi_miio
   name: Air Purifier
-  host: "10.10.10.205"
+  host: "10.10.10.204"
   token: !secret xiaomi_plug_token
   model: chuangmi.plug.m1
 
 - platform: mqtt
-  name: Coffee maker
+  name: Coffee Maker
   icon: "mdi:coffee"
   state_topic: "sonoff/switch/coffee_maker/state"
   command_topic: "sonoff/switch/coffee_maker/command"
   availability_topic: "sonoff/status"
+
+- platform: mqtt
+  name: Air Freshener
+  icon: "mdi:wind"
+  state_topic: "nodemcu_lolin/switch/air_freshener/state"
+  command_topic: "nodemcu_lolin/switch/air_freshener/command"
+  availability_topic: "nodemcu_lolin/status"
+
+- platform: mqtt
+  name: zigbee2mqtt
+  state_topic: "zigbee2mqtt/bridge/state"
+  command_topic: "zigbee2mqtt/bridge/config/permit_join"
+  payload_on: "true"
+  payload_off: "false"
+
+- platform: mqtt
+  name: Camera H264
+  icon": mdi:cctv
+  state_topic: xiaomi/dafang/rtsp_h264_server
+  command_topic: xiaomi/dafang/rtsp_h264_server/set
+
+- platform: mqtt
+  name: Camera MJPEG
+  icon: mdi:cctv
+  state_topic: xiaomi/dafang/rtsp_mjpeg_server
+  command_topic: xiaomi/dafang/rtsp_mjpeg_server/set
+
+- platform: mqtt
+  name: Camera IR Filter
+  icon: mdi:image-filter-black-white
+  state_topic: xiaomi/dafang/ir_cut
+  command_topic: xiaomi/dafang/ir_cut/set
+
+- platform: mqtt
+  name: Camera IR LED
+  icon: mdi:weather-night
+  state_topic: xiaomi/dafang/leds/ir
+  command_topic: xiaomi/dafang/leds/ir/set
+
+- platform: mqtt
+  name: Camera Night Mode
+  icon: mdi:weather-night
+  state_topic: xiaomi/dafang/night_mode
+  command_topic: xiaomi/dafang/night_mode/set
+
+- platform: mqtt
+  name: Camera Night Mode Auto
+  icon: mdi:weather-night
+  state_topic: xiaomi/dafang/night_mode/auto
+  command_topic: xiaomi/dafang/night_mode/auto/set
+
+- platform: mqtt
+  name: Camera Blue LED
+  icon: mdi:led-on
+  state_topic: xiaomi/dafang/leds/blue
+  command_topic: xiaomi/dafang/leds/blue/set
+
+- platform: mqtt
+  name: Camera Yellow LED
+  icon: mdi:led-on
+  state_topic: xiaomi/dafang/leds/yellow
+  command_topic: xiaomi/dafang/leds/yellow/set
+
+- platform: mqtt
+  name: Camera Motion Detection
+  icon: mdi:run
+  state_topic: xiaomi/dafang/motion/detection
+  command_topic: xiaomi/dafang/motion/detection/set
+
+- platform: mqtt
+  name: Camera Motion Tracking
+  icon: mdi:run
+  state_topic: xiaomi/dafang/motion/tracking
+  command_topic: xiaomi/dafang/motion/tracking/set  
+
+
+
+

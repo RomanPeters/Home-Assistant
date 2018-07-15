@@ -1,0 +1,21 @@
+- platform: generic
+  name: Camera
+  still_image_url: https://10.10.10.12/cgi-bin/currentpic.cgi
+  username: !secret camera_username
+  password: !secret camera_password
+  framerate: 10
+
+#- platform: ffmpeg
+#  name: Camera
+#  input: -rtsp_transport tcp -i rtsp://10.10.10.12:8554/unicast
+#  extra_arguments: -pred 1
+
+#- platform: mqtt
+#  name: Camera Motion Snapshot
+#  topic: xiaomi/dafang/motion/snapshot  
+
+#- platform: synology
+#  url: https://10.10.10.100:5001
+#  username: synology@romanpeters.nl
+#  password: !secret synology_password
+#  verify_ssl: false
