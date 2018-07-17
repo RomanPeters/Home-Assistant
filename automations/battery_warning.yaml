@@ -1,5 +1,3 @@
-
-
 - id: low_battery_notification_illuminance
   alias: Low battery notification
   trigger:
@@ -23,10 +21,10 @@
     - condition: template
       value_template: '{{ states.sensor.inside_temperature.attributes.battery | int < 10 }}'
   action:
-    service: persistent_notification.create
-    data:
-      message: "Temperature sensor battery is at {{ states.sensor.inside_temperature.attributes.battery | int }}%"
-      title: "Battery warning"
+    - service: persistent_notification.create
+      data:
+        message: "Temperature sensor battery is at {{ states.sensor.inside_temperature.attributes.battery | int }}%"
+        title: "Battery warning"
 
 - id: low_battery_notification_wall_switch
   alias: Low battery notification
@@ -37,10 +35,10 @@
     - condition: template
       value_template: '{{ states.sensor.wall_switch.attributes.battery | int < 10 }}'
   action:
-    service: persistent_notification.create
-    data:
-      message: "Wall switch battery is at {{ states.sensor.wall_switch.attributes.battery | int }}%"
-      title: "Battery warning"
+    - service: persistent_notification.create
+      data:
+        message: "Wall switch battery is at {{ states.sensor.wall_switch.attributes.battery | int }}%"
+        title: "Battery warning"
 
 - id: low_battery_notification_mi_flora
   alias: Low battery notification
@@ -49,11 +47,11 @@
       at: '18:00:00'
   condition:
     - condition: template
-      value_template: '{{ states('sensor.mi_flora_battery') | int < 10 }}'
+      value_template: "{{ states('sensor.mi_flora_battery') | int < 10 }}"
   action:
-    service: persistent_notification.create
-    data:
-      message: "Plant sensor battery is at {{ states('sensor.mi_flora_battery') }}%"
-      title: "Battery warning"
+    - service: persistent_notification.create
+      data:
+        message: "Plant sensor battery is at {{ states('sensor.mi_flora_battery') }}%"
+        title: "Battery warning"
 
 
