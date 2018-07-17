@@ -44,30 +44,32 @@
     - platform: state
       entity_id: switch.television
       to: 'on'
+    - platform: time
+      at: '10:00:00'
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.sleeping
 
-- id: nightlight
-  alias: Nightlight
-  trigger:
-    - platform: state
-      entity_id: group.all_motion_sensors
-      to: 'on'
-  condition:
-    - condition: state
-      entity_id: binary_sensor.dark
-      state: 'on'
-  action:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.sleeping
-    - service: light.turn_on
-      data:
-        entity_id: light.standing_lamp
-        color_name: red
-        brightness_pct: 1
-    - service: timer.start
-      entity_id: timer.nightlight 
+#- id: nightlight
+#  alias: Nightlight
+#  trigger:
+#    - platform: state
+#      entity_id: group.all_motion_sensors
+#      to: 'on'
+#  condition:
+#    - condition: state
+#      entity_id: binary_sensor.dark
+#      state: 'on'
+#  action:
+#    - service: input_boolean.turn_off
+#      entity_id: input_boolean.sleeping
+#    - service: light.turn_on
+#      data:
+#        entity_id: light.standing_lamp
+#        color_name: red
+#        brightness_pct: 1
+#    - service: timer.start
+#      entity_id: timer.nightlight 
 
 - id: nightlight_off
   alias: Turn nightlight off

@@ -5,13 +5,16 @@ make_coffee:
   duration: '00:08:00'
 
 cool_coffee:
-  duration: '00:07:00'
+  duration: '00:17:00'
 
 air_freshener:
   duration: '00:00:02'
 
 air_purifier:
-  duration: '01:30:00'
+  duration: '01:00:00'
 
 nightlight:
   duration: '00:01:00'
+
+fan_loop:
+  duration: '00:15:00'

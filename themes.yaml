@@ -1,3 +1,4 @@
+
 # https://github.com/home-assistant/home-assistant-polymer/blob/master/src/resources/ha-style.js
 
 darkred:
@@ -48,3 +49,7 @@ neutral:
   paper-font-headline_-_font-family: "var(--primary-font-family)"
   paper-font-caption_-_font-family: "var(--primary-font-family)"    
   paper-font-title_-_font-family: "var(--primary-font-family)"   
+
+remote:
+  primary-color: "#000000"
+  paper-item-icon-color: "#FFFFFF"

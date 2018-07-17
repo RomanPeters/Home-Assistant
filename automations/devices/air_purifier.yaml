@@ -1,4 +1,4 @@
-- id: air_purifier_on
+- id: air_purifier_start
   alias: Start auto-off
   trigger:
     - platform: state
@@ -9,7 +9,18 @@
     - service: timer.start
       entity_id: timer.air_purifier 
 
-- id: air_purifier_off
+- id: air_purifier_cancelled
+  alias: Air Purifier cancel auto-off
+  trigger:
+    - platform: state
+      entity_id: switch.air_purifier
+      from: 'on'
+      to: 'off'
+  action:
+    - service: timer.cancel
+      entity_id: timer.air_purifier
+
+- id: air_purifier_finished
   alias: Air Purifier auto-off
   trigger:
     - platform: event

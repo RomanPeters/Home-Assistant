@@ -11,7 +11,13 @@
       entity_id: light.coffee_led
     - service: notify.notify
       data_template:
-        message: "Your coffee will be ready at {{ now() }}"
+        message: >
+          {% set timestamp = as_timestamp(now()) %}
+          {% set h, m, s = states.timer.make_coffee.attributes.duration.split(':') %}
+          {% set duration_seconds = (h|float*3600) + (m|float*60) + s|float %}
+          {% set custom_time = (timestamp + duration_seconds) | timestamp_custom('%H:%M') %}
+            Your coffee will be ready at {{ custom_time }}
+
     - service: timer.start
       entity_id: timer.make_coffee
 

@@ -1,10 +1,11 @@
 script.toggle_power:
-  entity_picture: "/local/images/remote/toggle_power.png"
+  icon: mdi:power-socket-eu
 script.toggle_sony:
-  entity_picture: "/local/images/remote/toggle_sony.png"
+  icon: mdi:television
 script.toggle_entone:
-  entity_picture: "/local/images/remote/toggle_entone.png"
-
+  icon: mdi:television-box
+script.toggle_apple:
+  icon: mdi:apple
 scene.scene1:
   entity_picture: "/local/images/remote/scene1.png"
 scene.scene2:
@@ -13,64 +14,68 @@ scene.scene3:
   entity_picture: "/local/images/remote/scene3.png"
 
 script.sony_up:
-  entity_picture: "/local/images/remote/up.png"
+  icon: mdi:menu-up
 script.sony_down:
-  entity_picture: "/local/images/remote/down.png"
+  icon: mdi:menu-down
 script.sony_left:
-  entity_picture: "/local/images/remote/left.png"
+  icon: mdi:menu-left
 script.sony_right:
-  entity_picture: "/local/images/remote/right.png"
+  icon: mdi:menu-right
 script.sony_ok:
-  entity_picture: "/local/images/remote/green.png"
+  icon: mdi:checkbox-marked
 script.sony_back:
-  entity_picture: "/local/images/remote/red.png"
+  icon: mdi:minus-box
 script.sony_theatre:
-  entity_picture: "/local/images/remote/theatre.png"
+  icon: mdi:theater
 script.sony_menu:
-  entity_picture: "/local/images/remote/menu.png"
+  icon: mdi:menu
 script.sony_mute:
-  entity_picture: "/local/images/remote/mute.png"
+  icon: mdi:volume-off
+script.sony_volume_lower:
+  icon: mdi:volume-medium
+script.sony_volume_higher:
+  icon: mdi:volume-high
 
 script.entone_up:
-  entity_picture: "/local/images/remote/up.png"
+  icon: mdi:menu-up
 script.entone_down:
-  entity_picture: "/local/images/remote/down.png"
+  icon: mdi:menu-down
 script.entone_left:
-  entity_picture: "/local/images/remote/left.png"
+  icon: mdi:menu-left
 script.entone_right:
-  entity_picture: "/local/images/remote/right.png"
+  icon: mdi:menu-right
 script.entone_ok:
-  entity_picture: "/local/images/remote/green.png"
+  icon: mdi:checkbox-marked
 script.entone_back:
-  entity_picture: "/local/images/remote/red.png"
+  icon: mdi:minus-box
 script.entone_menu:
-  entity_picture: "/local/images/remote/menu.png"
+  icon: mdi:menu
 script.entone_mute:
-  entity_picture: "/local/images/remote/mute.png"
+  icon: mdi:volume-off
+script.entone_guide:
+  icon: mdi:book-open-page-variant
+script.entone_channel_down:
+  icon: mdi:chevron-left
+script.entone_channel_up: 
+  icon: mdi:chevron-right
 
 script.apple_up:
-  entity_picture: "/local/images/remote/up.png"
+  icon: mdi:menu-up
 script.apple_down:
-  entity_picture: "/local/images/remote/down.png"
+  icon: mdi:menu-down
 script.apple_left:
-  entity_picture: "/local/images/remote/left.png"
+  icon: mdi:menu-left
 script.apple_right:
-  entity_picture: "/local/images/remote/right.png"
+  icon: mdi:menu-right
 script.apple_ok:
-  entity_picture: "/local/images/remote/green.png"
+  icon: mdi:checkbox-marked
 script.apple_back:
-  entity_picture: "/local/images/remote/red.png"
+  icon: mdi:minus-box
+script.apple_next:
+  icon: mdi:skip-next
+script.apple_previous:
+  icon: mdi:skip-previous
 
-script.sony_volume_lower:
-  entity_picture: "/local/images/remote/volume_lower.png"
-script.sony_volume_higher:
-  entity_picture: "/local/images/remote/volume_higher.png"
-script.entone_guide:
-  entity_picture: "/local/images/remote/guide.png"
-script.entone_channel_down:
-  entity_picture: "/local/images/remote/channel_down.png"
-script.entone_channel_up: 
-  entity_picture: "/local/images/remote/channel_up.png"
 
 script.npo_1:
   entity_picture: "/local/images/remote/npo_1.png"

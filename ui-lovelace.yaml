@@ -4,6 +4,17 @@ views:
     tab_icon: mdi:home 
     background: center / cover no-repeat url("/local/background.png") fixed
     cards:
+      - type: entities
+        entities:
+          - input_text.overview
+
+      - type: markdown
+        content: >
+          ## Lovelace
+
+          {{ states('binary_sensor.door')}}
+          Starting with Home Assistant 0.72, we're experimenting with a new way of defining your interface. We're calling it the **Lovelace UI**.
+
 
 # 3D TOPDOWN VERTICAL
       - type: picture-elements
@@ -102,13 +113,11 @@ views:
               text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"
               top: 2%
               left: 88%
-          - type: state-label
-            entity: plant.plant
+          - type: state-icon
+            entity: sensor.plant_emoji
             style:
-              color: white
-              text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"
-              top: 78%
-              left: 53%
+              top: 75%
+              left: 61%
 
 
 # 3D ROOM 
@@ -299,10 +308,18 @@ views:
 
       - type: history-graph
         entities:
-         - sensor.inside_humidity
-         - sensor.br_humidity
-         - switch.air_purifier
+          - sensor.inside_humidity
+          - sensor.br_humidity
+          - switch.air_purifier
 
+      - type: history-graph
+        title: Temperature
+        entities:
+          - binary_sensor.outside_cooler_than_inside
+          - sensor.br_temperature
+          - sensor.inside_temperature
+          - switch.fan
+          - input_boolean.home
 
   - title: Room
     tab_icon: mdi:home
@@ -384,12 +401,11 @@ views:
              text-shadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white"
              top: 2%
              left: 89%
-         - type: state-label
-           entity: plant.plant
+         - type: state-icon
+           entity: sensor.plant_emoji
            style:
-             text-shadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white"
-             top: 54%
-             left: 21%
+             top: 48%
+             left: 24%
 
   - title: Camera
     tab_icon: mdi:eye
@@ -409,6 +425,7 @@ views:
 
   - title: Remote
     tab_icon: mdi:remote
+    theme: remote
     panel: true
     cards:
       - type: picture-elements
@@ -421,8 +438,17 @@ views:
             style:
               top: 5%
               left: 5%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
+
+          - type: state-label
+            entity: switch.television
+            style:
+              top: 5%
+              left: 8%
+              color: white
 
           - type: state-icon
             entity: script.sony_theatre
@@ -430,36 +456,11 @@ views:
             style:
               top: 19%
               left: 75%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
-
-          - type: state-icon
-            entity: scene.scene1
-            tap_action: toggle
-            style:
-              top: 26%
-              left: 65%
-              outline-style: solid
-              outline-color: white
-
-          - type: state-icon
-            entity: scene.scene2
-            tap_action: toggle
-            style:
-              top: 26%
-              left: 70%
-              outline-style: solid
-              outline-color: white
-
-          - type: state-icon
-            entity: scene.scene3
-            tap_action: toggle
-            style:
-              top: 26%
-              left: 75%
-              outline-style: solid
-              outline-color: white
 #-ROW 2
           - type: state-icon
             entity: script.toggle_sony
@@ -467,8 +468,11 @@ views:
             style:
               top: 5%
               left: 25%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
+              text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px white
 
           - type: state-icon
             entity: script.sony_up
@@ -476,8 +480,10 @@ views:
             style:
               top: 5%
               left: 30%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.toggle_entone
@@ -485,8 +491,10 @@ views:
             style:
               top: 5%
               left: 45%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.entone_up
@@ -494,8 +502,10 @@ views:
             style:
               top: 5%
               left: 50%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.toggle_apple
@@ -503,8 +513,10 @@ views:
             style:
               top: 5%
               left: 65%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.apple_up
@@ -512,9 +524,10 @@ views:
             style:
               top: 5%
               left: 70%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
-
+              outline-width: 1px
 
 #-ROW 3
           - type: state-icon
@@ -523,8 +536,10 @@ views:
             style:
               top: 12%
               left: 25%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.sony_ok
@@ -532,8 +547,10 @@ views:
             style:
               top: 12%
               left: 30%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.sony_right
@@ -541,9 +558,10 @@ views:
             style:
               top: 12%
               left: 35%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
-
+              outline-width: 1px
 
           - type: state-icon
             entity: script.entone_left
@@ -551,8 +569,10 @@ views:
             style:
               top: 12%
               left: 45%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.entone_ok
@@ -560,8 +580,10 @@ views:
             style:
               top: 12%
               left: 50%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.entone_right
@@ -569,8 +591,10 @@ views:
             style:
               top: 12%
               left: 55%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.apple_left
@@ -578,8 +602,10 @@ views:
             style:
               top: 12%
               left: 65%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.apple_ok
@@ -587,8 +613,10 @@ views:
             style:
               top: 12%
               left: 70%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.apple_right
@@ -596,8 +624,10 @@ views:
             style:
               top: 12%
               left: 75%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
 #-ROW 4
           - type: state-icon
@@ -606,8 +636,10 @@ views:
             style:
               top: 19%
               left: 25%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.sony_down
@@ -615,8 +647,10 @@ views:
             style:
               top: 19%
               left: 30%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.sony_menu
@@ -624,8 +658,10 @@ views:
             style:
               top: 19%
               left: 35%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.entone_back
@@ -633,8 +669,10 @@ views:
             style:
               top: 19%
               left: 45%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.entone_down
@@ -642,8 +680,10 @@ views:
             style:
               top: 19%
               left: 50%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.entone_menu
@@ -651,8 +691,10 @@ views:
             style:
               top: 19%
               left: 55%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.apple_back
@@ -660,8 +702,10 @@ views:
             style:
               top: 19%
               left: 65%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.apple_down
@@ -669,8 +713,10 @@ views:
             style:
               top: 19%
               left: 70%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
 #-ROW 5
           - type: state-icon
@@ -679,8 +725,10 @@ views:
             style:
               top: 26%
               left: 25%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.sony_volume_lower
@@ -688,8 +736,10 @@ views:
             style:
               top: 26%
               left: 30%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.sony_volume_higher
@@ -697,8 +747,10 @@ views:
             style:
               top: 26%
               left: 35%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
 #-ROW 6
           - type: state-icon
@@ -707,8 +759,10 @@ views:
             style:
               top: 26%
               left: 45%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.entone_guide
@@ -716,8 +770,10 @@ views:
             style:
               top: 26%
               left: 50%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.entone_channel_up
@@ -725,8 +781,33 @@ views:
             style:
               top: 26%
               left: 55%
+              "--paper-item-icon-color": white
               outline-style: solid
               outline-color: white
+              outline-width: 1px
+
+          - type: state-icon
+            entity: script.apple_previous
+            tap_action: toggle
+            style:
+              top: 26%
+              left: 65%
+              "--paper-item-icon-color": white
+              outline-style: solid
+              outline-color: white
+              outline-width: 1px
+
+          - type: state-icon
+            entity: script.apple_next
+            tap_action: toggle
+            style:
+              top: 26%
+              left: 75%
+              "--paper-item-icon-color": white
+              outline-style: solid
+              outline-color: white
+              outline-width: 1px
+
 
 #-ROW 7
           - type: state-icon
@@ -737,6 +818,14 @@ views:
               left: 5%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
+
+          - type: state-label
+            entity: input_text.npo_1  
+            style:
+              top: 33%
+              left: 10%
+              color: white
 
           - type: state-icon
             entity: script.npo_2
@@ -746,6 +835,7 @@ views:
               left: 20%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.npo_3
@@ -755,6 +845,7 @@ views:
               left: 35%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.rtl_4
@@ -764,6 +855,7 @@ views:
               left: 50%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.rtl_5
@@ -773,6 +865,7 @@ views:
               left: 65%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.sbs_6
@@ -782,6 +875,7 @@ views:
               left: 80%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.rtl_7
@@ -791,6 +885,7 @@ views:
               left: 5%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.rtl_8
@@ -800,6 +895,7 @@ views:
               left: 20%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.veronica_disney_xd
@@ -809,6 +905,7 @@ views:
               left: 35%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.net_5
@@ -818,6 +915,7 @@ views:
               left: 50%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
 #-ROW
           - type: state-icon
@@ -828,6 +926,7 @@ views:
               left: 65%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.nickelodeon
@@ -837,6 +936,7 @@ views:
               left: 80%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.discovery_channel
@@ -846,6 +946,7 @@ views:
               left: 5%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.national_geographic
@@ -855,6 +956,7 @@ views:
               left: 20%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.animal_planet
@@ -864,6 +966,7 @@ views:
               left: 35%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.eurosport
@@ -873,6 +976,7 @@ views:
               left: 50%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.mtv
@@ -882,6 +986,7 @@ views:
               left: 65%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.xite
@@ -891,6 +996,7 @@ views:
               left: 80%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.een
@@ -900,6 +1006,7 @@ views:
               left: 5%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.canvas
@@ -909,6 +1016,7 @@ views:
               left: 20%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
 #-ROW
           - type: state-icon
@@ -919,7 +1027,7 @@ views:
               left: 35%
               outline-style: solid
               outline-color: white
-
+              outline-width: 1px
 
           - type: state-icon
             entity: script.cnn
@@ -929,6 +1037,7 @@ views:
               left: 50%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.euronews
@@ -938,6 +1047,7 @@ views:
               left: 65%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.bbc_one
@@ -947,6 +1057,7 @@ views:
               left: 80%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.bbc_two
@@ -956,6 +1067,7 @@ views:
               left: 5%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.ard
@@ -965,6 +1077,7 @@ views:
               left: 20%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.zdf
@@ -974,6 +1087,7 @@ views:
               left: 35%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.fox
@@ -983,6 +1097,7 @@ views:
               left: 50%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.disney_channel
@@ -992,6 +1107,7 @@ views:
               left: 65%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.bbc_first
@@ -1001,6 +1117,7 @@ views:
               left: 80%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.bbc_world_news
@@ -1010,6 +1127,7 @@ views:
               left: 5%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.sbs_9
@@ -1019,6 +1137,7 @@ views:
               left: 20%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.rtv_utrecht
@@ -1028,6 +1147,7 @@ views:
               left: 35%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.npo_1_extra
@@ -1037,6 +1157,7 @@ views:
               left: 50%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.rtl_z
@@ -1046,6 +1167,7 @@ views:
               left: 65%
               outline-style: solid
               outline-color: white
+              outline-width: 1px
 
           - type: state-icon
             entity: script.ziggo_sport
@@ -1055,3 +1177,4 @@ views:
               left: 80%
               outline-style: solid
               outline-color: white
+              outline-width: 1px

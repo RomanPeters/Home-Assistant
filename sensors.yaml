@@ -21,6 +21,28 @@
   stations:
     - de Jongweg
 
+- platform: template
+  sensors:
+    plant_emoji:
+      friendly_name: "Plant"
+      value_template: > 
+        {% if is_state('plant.plant', 'ok') %}
+          Perfect
+        {% elif is_state('plant.plant', 'unknown') %}
+          Unknown
+        {% else %}
+          {{ states.plant.plant.attributes.problem }}
+        {% endif %}
+      icon_template: >
+        {% if is_state('sensor.plant_emoji', 'perfect') %}
+          mdi:emoticon-happy
+        {% elif is_state('sensor.plant_emoji', 'unkown') %}
+          mdi:help-circle
+        {% elif states('sensor.plant_emoji').split(',') | length == 1  %}
+          mdi:emoticon-neutral
+        {% else %}
+          mdi:emoticon-sad
+        {% endif %}
 ### MQTT
 
 - platform: "mqtt"

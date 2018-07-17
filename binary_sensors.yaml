@@ -16,7 +16,7 @@
   sensors:
     outside_cooler_than_inside:
       friendly_name: "Outside cooler than inside"
-      value_template: "{{ (states('sensor.br_temperature') | float) > (states('sensor.inside_temperature') | float) }}"
+      value_template: "{{ (states('sensor.br_temperature') | float) < (states('sensor.inside_temperature') | float) }}"
 
 - platform: "mqtt"
   name: Door

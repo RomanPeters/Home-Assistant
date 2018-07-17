@@ -30,9 +30,9 @@
 - platform: mqtt
   name: Air Freshener
   icon: "mdi:wind"
-  state_topic: "nodemcu_lolin/switch/air_freshener/state"
-  command_topic: "nodemcu_lolin/switch/air_freshener/command"
-  availability_topic: "nodemcu_lolin/status"
+  state_topic: "nodemcu_amica/switch/air_freshener/state"
+  command_topic: "nodemcu_amica/switch/air_freshener/command"
+  availability_topic: "nodemcu_amica/status"
 
 - platform: mqtt
   name: zigbee2mqtt

@@ -41,6 +41,14 @@
     - platform: state
       entity_id: group.all_motion_sensors
       to: 'on'
+  action:
+    - service: timer.cancel
+      entity_id: timer.leaving
+
+
+- id: someone_home
+  alias: Someone is home
+  trigger:
     - platform: state
       entity_id: sensor.wall_switch
       to: 'right'
@@ -53,6 +61,9 @@
   action:
     - service: timer.cancel
       entity_id: timer.leaving
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.home
+
 
 # LEAVING
 - id: leaving_home
