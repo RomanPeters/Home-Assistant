@@ -1,0 +1,10 @@
+type: vertical-stack
+cards:
+  - type: history-graph
+    entities:
+     - sensor.inside_temperature
+     - sensor.br_temperature
+  - type: history-graph
+    entities:
+     - sensor.inside_humidity
+     - sensor.br_humidity

@@ -1,0 +1,991 @@
+type: picture-elements
+image: /local/images/remote_bg_horizontal.png
+elements:
+  - type: state-icon
+    entity: script.toggle_power
+    tap_action: toggle
+    style:
+      top: 5%
+      left: 5%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: switch.television
+    style:
+      top: 5%
+      left: 8%
+      color: white
+
+  - type: state-icon
+    entity: script.sony_theatre
+    tap_action: toggle
+    style:
+      top: 19%
+      left: 75%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.toggle_sony
+    tap_action: toggle
+    style:
+      top: 5%
+      left: 25%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+      text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px white
+
+  - type: state-icon
+    entity: script.sony_up
+    tap_action: toggle
+    style:
+      top: 5%
+      left: 30%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.toggle_entone
+    tap_action: toggle
+    style:
+      top: 5%
+      left: 45%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.entone_up
+    tap_action: toggle
+    style:
+      top: 5%
+      left: 50%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.toggle_apple
+    tap_action: toggle
+    style:
+      top: 5%
+      left: 65%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.apple_up
+    tap_action: toggle
+    style:
+      top: 5%
+      left: 70%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.sony_left
+    tap_action: toggle
+    style:
+      top: 12%
+      left: 25%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.sony_ok
+    tap_action: toggle
+    style:
+      top: 12%
+      left: 30%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.sony_right
+    tap_action: toggle
+    style:
+      top: 12%
+      left: 35%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.entone_left
+    tap_action: toggle
+    style:
+      top: 12%
+      left: 45%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.entone_ok
+    tap_action: toggle
+    style:
+      top: 12%
+      left: 50%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.entone_right
+    tap_action: toggle
+    style:
+      top: 12%
+      left: 55%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.apple_left
+    tap_action: toggle
+    style:
+      top: 12%
+      left: 65%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.apple_ok
+    tap_action: toggle
+    style:
+      top: 12%
+      left: 70%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.apple_right
+    tap_action: toggle
+    style:
+      top: 12%
+      left: 75%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.sony_back
+    tap_action: toggle
+    style:
+      top: 19%
+      left: 25%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.sony_down
+    tap_action: toggle
+    style:
+      top: 19%
+      left: 30%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.sony_menu
+    tap_action: toggle
+    style:
+      top: 19%
+      left: 35%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.entone_back
+    tap_action: toggle
+    style:
+      top: 19%
+      left: 45%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.entone_down
+    tap_action: toggle
+    style:
+      top: 19%
+      left: 50%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.entone_menu
+    tap_action: toggle
+    style:
+      top: 19%
+      left: 55%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.apple_back
+    tap_action: toggle
+    style:
+      top: 19%
+      left: 65%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.apple_down
+    tap_action: toggle
+    style:
+      top: 19%
+      left: 70%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.sony_mute
+    tap_action: toggle
+    style:
+      top: 26%
+      left: 25%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.sony_volume_lower
+    tap_action: toggle
+    style:
+      top: 26%
+      left: 30%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.sony_volume_higher
+    tap_action: toggle
+    style:
+      top: 26%
+      left: 35%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.entone_channel_down
+    tap_action: toggle
+    style:
+      top: 26%
+      left: 45%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.entone_guide
+    tap_action: toggle
+    style:
+      top: 26%
+      left: 50%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.entone_channel_up
+    tap_action: toggle
+    style:
+      top: 26%
+      left: 55%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.apple_previous
+    tap_action: toggle
+    style:
+      top: 26%
+      left: 65%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.apple_next
+    tap_action: toggle
+    style:
+      top: 26%
+      left: 75%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+
+
+#---------Channels
+  - type: state-icon
+    entity: script.npo_1
+    tap_action: toggle
+    style:
+      top: 33%
+      left: 5%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.npo_1
+    style:
+      top: 33%
+      left: 12%
+      color: white
+
+  - type: state-icon
+    entity: script.npo_2
+    tap_action: toggle
+    style:
+      top: 33%
+      left: 20%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.npo_2
+    style:
+      top: 33%
+      left: 27%
+      color: white
+
+  - type: state-icon
+    entity: script.npo_3
+    tap_action: toggle
+    style:
+      top: 33%
+      left: 35%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.npo_3
+    style:
+      top: 33%
+      left: 42%
+      color: white
+
+  - type: state-icon
+    entity: script.rtl_4
+    tap_action: toggle
+    style:
+      top: 33%
+      left: 50%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.rtl_4
+    style:
+      top: 33%
+      left: 57%
+      color: white
+
+  - type: state-icon
+    entity: script.rtl_5
+    tap_action: toggle
+    style:
+      top: 33%
+      left: 65%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.rtl_5
+    style:
+      top: 33%
+      left: 72%
+      color: white
+
+
+  - type: state-icon
+    entity: script.sbs_6
+    tap_action: toggle
+    style:
+      top: 33%
+      left: 80%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.sbs_6
+    style:
+      top: 33%
+      left: 87%
+      color: white
+
+  - type: state-icon
+    entity: script.rtl_7
+    tap_action: toggle
+    style:
+      top: 40%
+      left: 5%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.rtl_7
+    style:
+      top: 40%
+      left: 12%
+      color: white
+
+  - type: state-icon
+    entity: script.rtl_8
+    tap_action: toggle
+    style:
+      top: 40%
+      left: 20%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.rtl_8
+    style:
+      top: 40%
+      left: 27%
+      color: white
+
+  - type: state-icon
+    entity: script.veronica_disney_xd
+    tap_action: toggle
+    style:
+      top: 40%
+      left: 35%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.veronica_disney_xd
+    style:
+      top: 40%
+      left: 42%
+      color: white
+
+  - type: state-icon
+    entity: script.net_5
+    tap_action: toggle
+    style:
+      top: 40%
+      left: 50%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+
+  - type: state-label
+    entity: input_text.net_5
+    style:
+      top: 40%
+      left: 57%
+      color: white
+
+  - type: state-icon
+    entity: script.comedy_central
+    tap_action: toggle
+    style:
+      top: 40%
+      left: 65%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.comedy_central
+    style:
+      top: 40%
+      left: 72%
+      color: white
+
+  - type: state-icon
+    entity: script.nickelodeon
+    tap_action: toggle
+    style:
+      top: 40%
+      left: 80%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.nickelodeon
+    style:
+      top: 40%
+      left: 87%
+      color: white
+
+  - type: state-icon
+    entity: script.discovery_channel
+    tap_action: toggle
+    style:
+      top: 47%
+      left: 5%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+
+  - type: state-label
+    entity: input_text.discovery_channel
+    style:
+      top: 47%
+      left: 12%
+      color: white
+
+  - type: state-icon
+    entity: script.national_geographic
+    tap_action: toggle
+    style:
+      top: 47%
+      left: 20%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.national_geographic
+    style:
+      top: 47%
+      left: 27%
+      color: white
+
+  - type: state-icon
+    entity: script.animal_planet
+    tap_action: toggle
+    style:
+      top: 47%
+      left: 35%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.animal_planet
+    style:
+      top: 47%
+      left: 42%
+      color: white
+
+  - type: state-icon
+    entity: script.eurosport
+    tap_action: toggle
+    style:
+      top: 47%
+      left: 50%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.eurosport
+    style:
+      top: 47%
+      left: 57%
+      color: white
+
+  - type: state-icon
+    entity: script.mtv
+    tap_action: toggle
+    style:
+      top: 47%
+      left: 65%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.mtv
+    style:
+      top: 47%
+      left: 72%
+      color: white
+
+  - type: state-icon
+    entity: script.xite
+    tap_action: toggle
+    style:
+      top: 47%
+      left: 80%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.xite
+    style:
+      top: 47%
+      left: 87%
+      color: white
+
+  - type: state-icon
+    entity: script.een
+    tap_action: toggle
+    style:
+      top: 54%
+      left: 5%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.een
+    style:
+      top: 54%
+      left: 12%
+      color: white
+
+  - type: state-icon
+    entity: script.canvas
+    tap_action: toggle
+    style:
+      top: 54%
+      left: 20%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.canvas
+    style:
+      top: 54%
+      left: 27%
+      color: white
+
+  - type: state-icon
+    entity: script.trt_turk
+    tap_action: toggle
+    style:
+      top: 54%
+      left: 35%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.trt_turk
+    style:
+      top: 54%
+      left: 42%
+      color: white
+
+  - type: state-icon
+    entity: script.cnn
+    tap_action: toggle
+    style:
+      top: 54%
+      left: 50%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.cnn
+    style:
+      top: 54%
+      left: 57%
+      color: white
+
+  - type: state-icon
+    entity: script.euronews
+    tap_action: toggle
+    style:
+      top: 54%
+      left: 65%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.euronews
+    style:
+      top: 54%
+      left: 72%
+      color: white
+
+  - type: state-icon
+    entity: script.bbc_one
+    tap_action: toggle
+    style:
+      top: 54%
+      left: 80%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.bbc_one
+    style:
+      top: 54%
+      left: 87%
+      color: white
+
+  - type: state-icon
+    entity: script.bbc_two
+    tap_action: toggle
+    style:
+      top: 61%
+      left: 5%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.bbc_two
+    style:
+      top: 61%
+      left: 12%
+      color: white
+
+  - type: state-icon
+    entity: script.ard
+    tap_action: toggle
+    style:
+      top: 61%
+      left: 20%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.ard
+    style:
+      top: 61%
+      left: 27%
+      color: white
+
+  - type: state-icon
+    entity: script.zdf
+    tap_action: toggle
+    style:
+      top: 61%
+      left: 35%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.zdf
+    style:
+      top: 61%
+      left: 42%
+      color: white
+
+  - type: state-icon
+    entity: script.fox
+    tap_action: toggle
+    style:
+      top: 61%
+      left: 50%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.fox
+    style:
+      top: 61%
+      left: 57%
+      color: white
+
+  - type: state-icon
+    entity: script.disney_channel
+    tap_action: toggle
+    style:
+      top: 61%
+      left: 65%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.disney_channel
+    style:
+      top: 61%
+      left: 72%
+      color: white
+
+  - type: state-icon
+    entity: script.bbc_first
+    tap_action: toggle
+    style:
+      top: 61%
+      left: 80%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.bbc_first
+    style:
+      top: 61%
+      left: 87%
+      color: white
+
+  - type: state-icon
+    entity: script.bbc_world_news
+    tap_action: toggle
+    style:
+      top: 68%
+      left: 5%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.bbc_world_news
+    style:
+      top: 68%
+      left: 12%
+      color: white
+
+  - type: state-icon
+    entity: script.sbs_9
+    tap_action: toggle
+    style:
+      top: 68%
+      left: 20%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.sbs_9
+    style:
+      top: 68%
+      left: 27%
+      color: white
+
+  - type: state-icon
+    entity: script.rtv_utrecht
+    tap_action: toggle
+    style:
+      top: 68%
+      left: 35%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.rtv_utrecht
+    style:
+      top: 68%
+      left: 42%
+      color: white
+
+  - type: state-icon
+    entity: script.npo_1_extra
+    tap_action: toggle
+    style:
+      top: 68%
+      left: 50%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.npo_1_extra
+    style:
+      top: 68%
+      left: 57%
+      color: white
+
+  - type: state-icon
+    entity: script.rtl_z
+    tap_action: toggle
+    style:
+      top: 68%
+      left: 65%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.rtl_z
+    style:
+      top: 68%
+      left: 72%
+      color: white
+
+  - type: state-icon
+    entity: script.ziggo_sport
+    tap_action: toggle
+    style:
+      top: 68%
+      left: 80%
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-label
+    entity: input_text.ziggo_sport
+    style:
+      top: 68%
+      left: 87%
+      color: white

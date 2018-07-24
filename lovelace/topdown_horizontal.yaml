@@ -1,0 +1,92 @@
+type: picture-elements
+image: /local/images/topdown_horizontal.png
+elements:
+  - type: state-icon
+    tap_action: toggle
+    entity: light.standing_lamp
+    style:
+      "--paper-item-icon-color": white
+      top: 85%
+      left: 21%
+  - type: state-icon
+    tap_action: toggle
+    entity: light.ceiling_lamp
+    style:
+      "--paper-item-icon-color": white
+      top: 40%
+      left: 49%
+  - type: state-icon
+    tap_action: toggle
+    entity: switch.television
+    style:
+      "--paper-item-icon-color": white
+      top: 16%
+      left: 37%
+  - type: state-icon
+    tap_action: toggle
+    entity: switch.speakers
+    style:
+      "--paper-item-icon-color": white
+      top: 12%
+      left: 54%
+  - type: state-icon
+    tap_action: toggle
+    entity: switch.fan
+    style:
+      "--paper-item-icon-color": white
+      top: 12%
+      left: 66%
+  - type: state-icon
+    tap_action: toggle
+    entity: light.led_strip_n
+    style:
+      "--paper-item-icon-color": white
+      top: 92%
+      left: 45%
+  - type: state-icon
+    tap_action: toggle
+    entity: light.led_strip_s
+    style:
+      "--paper-item-icon-color": white
+      top: 5%
+      left: 45%
+  - type: state-icon
+    tap_action: toggle
+    entity: switch.coffee_maker
+    style:
+      "--paper-item-icon-color": white
+      top: 70%
+      left: 52%
+  - type: state-icon
+    tap_action: toggle
+    entity: switch.air_purifier
+    style:
+      "--paper-item-icon-color": white
+      top: 70%
+      left: 28%
+  - type: state-icon
+    entity: binary_sensor.door_icon
+    style:
+      "--paper-item-icon-color": white
+      top: 14%
+      left: 5%
+  - type: state-label
+    entity: sensor.inside_temperature
+    style:
+      color: white
+      text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"
+      top: 2%
+      left: 81%
+  - type: state-label
+    entity: sensor.br_temperature
+    style:
+      color: white
+      text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"
+      top: 2%
+      left: 89%
+  - type: state-icon
+    entity: sensor.plant_emoji
+    style:
+      "--paper-item-icon-color": white
+      top: 54%
+      left: 21%

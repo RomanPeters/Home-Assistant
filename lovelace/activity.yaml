@@ -1,0 +1,8 @@
+type: glance
+title: Activity
+entities:
+  - binary_sensor.door
+  - group.all_motion_sensors
+  - alarm_control_panel.alarm_system
+  - binary_sensor.home
+  - input_boolean.night_mode

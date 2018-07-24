@@ -1,0 +1,11 @@
+type: picture-glance
+image: #https://10.10.10.12/cgi-bin/currentpic.cgi
+camera_image: camera.camera
+navigation_path: '/lovelace/3'
+entities:
+  - script.camera_left
+  - script.camera_right
+  - script.camera_up
+  - script.camera_down
+  - switch.camera_ir_led
+  - switch.camera_motion_detection

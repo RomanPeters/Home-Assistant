@@ -1,0 +1,8 @@
+type: picture-glance
+image: /local/images/clouds_off.jpg
+entity: group.air_appliances
+state_image:
+  'on': /local/images/clouds_on.jpg
+entities:
+  - switch.air_purifier
+  - switch.fan

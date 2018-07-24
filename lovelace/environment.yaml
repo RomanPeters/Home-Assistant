@@ -1,0 +1,16 @@
+type: vertical-stack
+cards:
+  - type: glance
+    title: Outdoors
+    entities:
+      - sensor.br_temperature
+      - sensor.br_humidity
+      - sensor.br_pressure
+      - sensor.br_condition
+  - type: glance
+    title: Indoors
+    entities:
+      - sensor.inside_temperature
+      - sensor.inside_humidity
+      - sensor.inside_pressure
+      - sensor.illuminance
