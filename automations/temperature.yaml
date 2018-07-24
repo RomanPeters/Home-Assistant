@@ -9,18 +9,18 @@
       entity_id: binary_sensor.outside_cooler_than_inside
       to: 'on'
   condition:
-    - condition: numeric_state
-      entity_id: sensor.indside_temperature
-      above: 25
+#    - condition: numeric_state
+#      entity_id: sensor.indside_temperature
+#      above: 25
     - condition: state
       entity_id: binary_sensor.outside_cooler_than_inside
       state: 'on'
-    - condition: state
-      entity_id: input_boolean.home
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.sleeping
-      state: 'off'
+#    - condition: state
+#      entity_id: input_boolean.home
+#      state: 'home'
+#    - condition: state
+#      entity_id: input_boolean.sleeping
+#      state: 'off'
   action:
     - service: notify.ios_iphone
       data:

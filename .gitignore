@@ -1,6 +1,7 @@
 .homekit.state
 .ios.conf
 .ssh/
+.storage/
 esphomeyaml/
 .uuid
 appdaemon/compiled
@@ -13,3 +14,4 @@ known_devices.yaml
 privkey.pem
 secrets.yaml
 tts/
+.DS_Store

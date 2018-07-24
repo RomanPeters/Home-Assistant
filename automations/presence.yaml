@@ -67,7 +67,7 @@
 
 # LEAVING
 - id: leaving_home
-  alias: Leaving
+  alias: Leaving home
   trigger:
     - platform: state
       entity_id: input_boolean.home
@@ -79,18 +79,29 @@
       entity_id: switch.air_purifier
 
 
-# ARRIVING,DARK, NM OFF
-- id: arriving_home
-  alias: Arriving
+# ARRIVING, GENERAL  
+- id: arriving_home           
+  alias: Arriving home
   trigger:
     platform: state
     entity_id: input_boolean.home
     to: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.air_purifier
 
+
+
+# ARRIVING,DARK, NM OFF
+- id: arriving_home_night
+  alias: Arriving home night
+  trigger:
+    platform: state
+    entity_id: input_boolean.home
+    to: 'on'
   condition:
     condition: and
     conditions:
-
       - condition: or  # 'when dark' condition: either after sunset or before sunrise
         conditions:
           - condition: sun
@@ -102,9 +113,7 @@
       - condition: state
         entity_id: input_boolean.night_mode
         state: 'off'
-
   action:
     - service: light.turn_on
       entity_id: group.ambient
-    - service: switch.turn_off
-      entity_id: switch.air_purifier
+

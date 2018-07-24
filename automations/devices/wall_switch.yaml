@@ -9,10 +9,10 @@
       state: 'left'
   action:
     - service: light.toggle
-      entity_id: light.ceiling_lamp
+      entity_id: light.standing_lamp
 
-- id: wall_switch_right_on
-  alias: wall switch right turn on
+- id: wall_switch_right
+  alias: wall switch right
   trigger:
     - platform: mqtt
       topic: zigbee2mqtt/0x00158d0001e11783
@@ -20,28 +20,7 @@
     - condition: state
       entity_id: sensor.wall_switch
       state: 'right'
-    - condition: state
-      entity_id: group.ambient
-      state: 'off'
   action:
-    - service: light.turn_on
-      entity_id: group.ambient
-
-
-- id: wall_switch_right_off
-  alias: wall switch right turn off
-  trigger:
-    - platform: mqtt
-      topic: zigbee2mqtt/0x00158d0001e11783
-  condition:
-    - condition: state
-      entity_id: sensor.wall_switch
-      state: 'right'
-    - condition: state
-      entity_id: group.ambient
-      state: 'on'
-  action:
-    - service: light.turn_off
-      entity_id: group.ambient
-
+    - service: light.toggle
+      entity_id: light.ambient
 

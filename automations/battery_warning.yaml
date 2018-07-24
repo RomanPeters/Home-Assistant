@@ -1,5 +1,5 @@
 - id: low_battery_notification_illuminance
-  alias: Low battery notification
+  alias: Low battery notification illuminance
   trigger:
     - platform: time
       at: '18:00:00'
@@ -13,7 +13,7 @@
       title: "Battery warning"
 
 - id: low_battery_notification_temperature
-  alias: Low battery notification
+  alias: Low battery notification temperature
   trigger:
     - platform: time 
       at: '18:00:00'
@@ -27,7 +27,7 @@
         title: "Battery warning"
 
 - id: low_battery_notification_wall_switch
-  alias: Low battery notification
+  alias: Low battery notification wall switch
   trigger:
     - platform: time
       at: '18:00:00'
@@ -41,7 +41,7 @@
         title: "Battery warning"
 
 - id: low_battery_notification_mi_flora
-  alias: Low battery notification
+  alias: Low battery notification plant
   trigger:
     - platform: time
       at: '18:00:00'

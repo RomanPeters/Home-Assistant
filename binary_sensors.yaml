@@ -6,17 +6,23 @@
       value_template: "{{ states('input_boolean.home') == 'on' }}"
       device_class: presence
 
-- platform: template
-  sensors:
     dark:
       friendly_name: "It's dark"
       value_template: "{{ not is_state('sun.sun', 'above_horizon') and is_state('group.lights', 'off') }}"
 
-- platform: template
-  sensors:
     outside_cooler_than_inside:
       friendly_name: "Outside cooler than inside"
       value_template: "{{ (states('sensor.br_temperature') | float) < (states('sensor.inside_temperature') | float) }}"
+
+    door_icon:
+      friendly_name: "Door"
+      icon_template: >
+        {% if is_state('binary_sensor.door', 'on') %}
+          mdi:door-open
+        {% else %}
+          mdi:door
+        {% endif %}
+      value_template: "{{ is_state('binary_sensor.door', 'on') }}"
 
 - platform: "mqtt"
   name: Door

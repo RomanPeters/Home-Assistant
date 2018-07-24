@@ -24,7 +24,7 @@ ambient:
   name: Ambient
   icon: mdi:none
   entities:
-  - light.standing_lamp
+  - light.ceiling_lamp
   - light.led_strip_n
   - light.led_strip_s
 

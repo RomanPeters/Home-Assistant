@@ -14,6 +14,9 @@ light.ceiling_lamp:
   icon: mdi:lightbulb-outline
   assumed_state: false
 
+light.tv_backlight:
+  assumed_state: false
+
 light.blinkt_0:
   friendly_name: 1
   icon: mdi:raspberrypi
@@ -53,3 +56,4 @@ light.blinkt_7:
   friendly_name: 8
   icon: mdi:raspberrypi
   assumed_state: false
+

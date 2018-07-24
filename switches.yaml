@@ -4,10 +4,10 @@
   type: mp1
   friendly_name: Power Strip
   slots:
-     slot_1: Speakers
-     slot_2: Television
-     slot_3: Fan
-     slot_4: Socket
+     slot_1: Entone
+     slot_2: Fan
+     slot_3: Television
+     slot_4: Speakers
 
 - platform: broadlink
   host: "10.10.10.203"

@@ -7,6 +7,7 @@
     - precipitation
     - precipitation_forecast_total
 
+
 - platform: miflora
   mac: 'C4:7C:8D:66:42:FC'
 
@@ -17,9 +18,8 @@
 - platform: waqi
   token: !secret waqi_token
   locations:
-    - utrecht
-  stations:
-    - de Jongweg
+    - 'utrecht'
+
 
 - platform: template
   sensors:
@@ -43,6 +43,7 @@
         {% else %}
           mdi:emoticon-sad
         {% endif %}
+
 ### MQTT
 
 - platform: "mqtt"
