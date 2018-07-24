@@ -1,0 +1,8 @@
+tv_backlight_brightness_down:
+  alias: Decrease brightness TV Backlight
+  sequence:
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet:
+          - "JgBQAAABJpUSFBE4EjcSFBEUERQQFRE4EjgROBITETkQFRE4ETgSFBA5ERQRFBITETkQFRAVERQRFBI4ETgROBEUEjgQORE5EAAFHAABJkwQAA0FAAAAAAAAAAA"
