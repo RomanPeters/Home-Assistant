@@ -1,0 +1,5 @@
+- type: entities
+  title: Switches
+  entities:
+    - switch.zigbee_pairing
+    - input_boolean.night_mode

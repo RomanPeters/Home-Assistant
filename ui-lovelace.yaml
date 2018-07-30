@@ -23,12 +23,14 @@ views:
 
   - title: Room
     tab_icon: mdi:home
+    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
     panel: true
     cards:
       - !include 'lovelace/topdown_horizontal.yaml'
 
   - title: Camera
     tab_icon: mdi:eye
+    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
     panel: true
     cards:
       - !include 'lovelace/camera_extended.yaml'
@@ -36,6 +38,12 @@ views:
   - title: Remote
     tab_icon: mdi:remote
     theme: remote
+    background: center / cover no-repeat url("/local/images/remote_bg_horizontal.png") fixed
     panel: true
     cards:
       - !include 'lovelace/remote.yaml'
+
+  - title: Settings
+    tab_icon: mdi:cog
+    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
+    cards: !include 'lovelace/views/settings.yaml'
