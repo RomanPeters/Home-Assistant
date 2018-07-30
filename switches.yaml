@@ -5,7 +5,7 @@
   friendly_name: Power Strip
   slots:
      slot_1: Entone
-     slot_2: Fan
+     slot_2: Socket behind TV  # For future use
      slot_3: Television
      slot_4: Speakers
 
@@ -13,12 +13,34 @@
   host: "10.10.10.203"
   mac: "b4:43:0d:db:97:6c"
   type: rm2_pro_plus
+  switches:
+    socket_1:
+      friendly_name: "Socket 1"
+      command_on: "sg0yAAcRBhESBgYRBhEGEQYREgYRBgYRBhEGrREGBhEGEQYRBxERBgYREQYSBgYREQYRBgYRAAAAAAAA"
+      command_off: "sg8yAAYREgYGERIGEgYGEhEGEgYGEQYRBhERBgYRBhEGEQYRBhEGEREGBhEGrBEGBhEGEQYRAAAAAAAA"
+    socket_2:
+      friendly_name: "Socket 2"
+      command_on: "sgsyAAYSBhEHEQcREQcGEhEGBxEGrREGBhIGEQYRBhERBgYSEQYRBgcREQYRBwYRBhEGEREHAAAAAAAA"
+      command_off: "skcyABEGBhEGEQYRBhESBgYREQYRBgcREgYSBgYRBhEHEREGBhEGEQYRBhEGEQYREgYGEQasAAAAAAAA"
+    socket_3:
+      friendly_name: "Socket 3"
+      command_on: "sgoyABIGBxEHEQcRBhESBgcREgYSBQcREgUSBgcRBxEHERIFBxEGEQcRBhESBgcRBhESBgesAAAAAAAA"
+      command_off: "sgYyAAasEQYHEQYRBxEGEREGBhESBhEGBhERBhIGBhEGEgYSEQYGEQYRBhEGEQYRBhEGEREGAAAAAAAA"
+    fan:  # socket 4
+      friendly_name: "Fan"
+      command_on: "sgsyABIGEQYGEREGEgYGEQcRBhERBgYRBxEGEQcREgYSBgcREgYGrBEGBxEGEQYRBxESBgcRAAAAAAAA"
+      command_off: "sgoyABEGBhEGEQYREQYGEQYRBhEGEQcREQYGERIGBqwRBgYRBhEGEQYREQYGERIGEQYGEREGAAAAAAAA"
+    air_purifier:  # socket 5
+      friendly_name: "Air Purifier"
+      command_on: "sg4yABIGBhEGEQYRBhIRBgYREQYRBgYREQYRBgYRBhIGEREGBhEGEQYRBhERBgYREQYRBgasAAAAAAAA"
+      command_off: "shEyABIGBhEGEQYRBhERBgYREQYRBgYREQYRBgYRBhEHEREGBhEGEQYRBxEHEQYREQYRBgesAAAAAAAA"
 
-- platform: xiaomi_miio
-  name: Air Purifier
-  host: "10.10.10.204"
-  token: !secret xiaomi_plug_token
-  model: chuangmi.plug.m1
+# Unused at this time
+#- platform: xiaomi_miio
+#  name: Socket
+#  host: "10.10.10.204"
+#  token: !secret xiaomi_plug_token
+#  model: chuangmi.plug.m1
 
 - platform: mqtt
   name: Coffee Maker
@@ -33,13 +55,6 @@
   state_topic: "nodemcu_amica/switch/air_freshener/state"
   command_topic: "nodemcu_amica/switch/air_freshener/command"
   availability_topic: "nodemcu_amica/status"
-
-- platform: mqtt
-  name: zigbee2mqtt
-  state_topic: "zigbee2mqtt/bridge/state"
-  command_topic: "zigbee2mqtt/bridge/config/permit_join"
-  payload_on: "true"
-  payload_off: "false"
 
 - platform: mqtt
   name: Camera H264
@@ -101,6 +116,10 @@
   state_topic: xiaomi/dafang/motion/tracking
   command_topic: xiaomi/dafang/motion/tracking/set  
 
-
-
+- platform: mqtt
+  name: zigbee2mqtt pairing
+  icon: mdi:cellphone-wireless
+  command_topic: zigbee2mqtt/bridge/config/permit_join
+  payload_on: "true"
+  payload_off: "false"
 

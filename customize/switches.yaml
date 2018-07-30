@@ -6,9 +6,12 @@ switch.television:
 
 switch.fan:
   icon: mdi:fan
+  assumed_state: false
 
 switch.socket:
   icon: mdi:power-socket-eu
+  assumed_state: false
   
 switch.air_purifier:
   icon: mdi:weather-windy
+  assumed_state: false
