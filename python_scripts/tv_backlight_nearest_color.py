@@ -1,6 +1,6 @@
 
 possible_colors = {}
-possible_colors["script.tv_backlight_w"] =  (0,   0,   0)
+possible_colors["script.tv_backlight_w"] =  (255,   255,   255)
 
 possible_colors["script.tv_backlight_r"] =  (255, 0,   0)
 possible_colors["script.tv_backlight_g"] =  (0,   255, 0)
