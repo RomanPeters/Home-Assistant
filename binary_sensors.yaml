@@ -26,7 +26,7 @@
 
 - platform: "mqtt"
   name: Door
-  state_topic: "zigbee2mqtt/0x00158d0001b958bc"
+  state_topic: "zigbee2mqtt/door_sensor"
   availability_topic: "zigbee2mqtt/bridge/state"
   icon: "mdi:door"
   payload_on: false
@@ -39,7 +39,7 @@
 
 - platform: "mqtt"
   name: Motion sensor
-  state_topic: "zigbee2mqtt/0x00158d0001de85f7"
+  state_topic: "zigbee2mqtt/motion_sensor"
   availability_topic: "zigbee2mqtt/bridge/state"
   icon: "mdi:run-fast"
   payload_on: true

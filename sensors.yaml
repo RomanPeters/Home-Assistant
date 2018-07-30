@@ -19,7 +19,8 @@
   token: !secret waqi_token
   locations:
     - 'utrecht'
-
+  stations:
+    - 'de Jongweg, Utrecht'
 
 - platform: template
   sensors:
@@ -48,7 +49,7 @@
 
 - platform: "mqtt"
   name: Button
-  state_topic: "zigbee2mqtt/0x00158d0001f4b7af"
+  state_topic: "zigbee2mqtt/button"
   availability_topic: "zigbee2mqtt/bridge/state"
   icon: "mdi:toggle-switch"
   value_template: "{{ value_json.click }}"
@@ -60,7 +61,7 @@
 
 - platform: "mqtt"
   name: Wall switch
-  state_topic: "zigbee2mqtt/0x00158d0001e11783"
+  state_topic: "zigbee2mqtt/wall_switch"
   availability_topic: "zigbee2mqtt/bridge/state"
   icon: "mdi:toggle-switch"
   value_template: "{{ value_json.click }}"
@@ -72,7 +73,7 @@
 
 - platform: "mqtt"
   name: Inside temperature
-  state_topic: "zigbee2mqtt/0x00158d00022c8d56"
+  state_topic: "zigbee2mqtt/sensor_temperature"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
   icon: "mdi:thermometer"
@@ -83,7 +84,7 @@
 
 - platform: "mqtt"
   name: Inside humidity
-  state_topic: "zigbee2mqtt/0x00158d00022c8d56"
+  state_topic: "zigbee2mqtt/sensor_humidity"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   icon: "mdi:water-percent"
@@ -94,7 +95,7 @@
 
 - platform: "mqtt"
   name: Inside pressure
-  state_topic: "zigbee2mqtt/0x00158d00022c8d56"
+  state_topic: "zigbee2mqtt/sensor_pressure"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "Pa"
   icon: "mdi:speedometer"
@@ -105,7 +106,7 @@
 
 - platform: "mqtt"
   name: Illuminance
-  state_topic: "zigbee2mqtt/0x00158d0001de85f7"
+  state_topic: "zigbee2mqtt/motion_sensor"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "lx"
   icon: "mdi:theme-light-dark"
