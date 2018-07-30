@@ -1,9 +1,9 @@
-- platform: generic
-  name: Camera
-  still_image_url: https://10.10.10.12/cgi-bin/currentpic.cgi
-  username: !secret camera_username
-  password: !secret camera_password
-  framerate: 10
+#- platform: generic
+#  name: Camera
+#  still_image_url: https://10.10.10.12/cgi-bin/currentpic.cgi
+#  username: !secret camera_username
+#  password: !secret camera_password
+#  framerate: 10
 
 #- platform: ffmpeg
 #  name: Camera

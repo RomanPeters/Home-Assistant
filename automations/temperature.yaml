@@ -9,9 +9,9 @@
       entity_id: binary_sensor.outside_cooler_than_inside
       to: 'on'
   condition:
-#    - condition: numeric_state
-#      entity_id: sensor.indside_temperature
-#      above: 25
+    - condition: numeric_state
+      entity_id: sensor.indside_temperature
+      above: 25
     - condition: state
       entity_id: binary_sensor.outside_cooler_than_inside
       state: 'on'

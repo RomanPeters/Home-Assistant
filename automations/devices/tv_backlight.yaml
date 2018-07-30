@@ -31,7 +31,6 @@
       data_template:
         entity_id: "scrip.tv_backlight_{{states.light.tv_backlight.attributes.effect}}"
 
-
 - id: tv_backlight_color
   alias: TV Backlight change color
   trigger:
