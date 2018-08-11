@@ -15,43 +15,13 @@ light.ceiling_lamp:
 light.tv_backlight:
   assumed_state: false
 
-light.blinkt_0:
-  friendly_name: 1
-  icon: mdi:raspberrypi
-  assumed_state: false
+light.balcony_lights:
+  icon: mdi:led-off
 
-light.blinkt_1:
-  friendly_name: 2
-  icon: mdi:raspberrypi
-  assumed_state: false
+light.coffee_led:
+  icon: mdi:led-off
 
-light.blinkt_2:
-  friendly_name: 3
+light.blinkt:
+  friendly_name: Bed LED
   icon: mdi:raspberrypi
-  assumed_state: false
-
-light.blinkt_3:
-  friendly_name: 4
-  icon: mdi:raspberrypi
-  assumed_state: false
-
-light.blinkt_4:
-  friendly_name: 5
-  icon: mdi:raspberrypi
-  assumed_state: false
-
-light.blinkt_5:
-  friendly_name: 6
-  icon: mdi:raspberrypi
-  assumed_state: false
-
-light.blinkt_6:
-  friendly_name: 7
-  icon: mdi:raspberrypi
-  assumed_state: false
-
-light.blinkt_7:
-  friendly_name: 8
-  icon: mdi:raspberrypi
-  assumed_state: false
 

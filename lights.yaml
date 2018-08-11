@@ -17,7 +17,40 @@
         type: white
         name: Standing Lamp
 
-- platform: blinkt
+- platform: mqtt_json
+  name: Blinkt
+  brightness: true
+  rgb: true
+  flash: true
+  effect: true
+  effect_list:
+    - None
+    - Binary Clock
+    - Binary Clock Meld
+    - Candle
+    - Larson
+    - Larson Hue
+    - Pulse
+    - Rainbow
+    - Tetris
+  state_topic: "zero_w/light/state"
+  command_topic: "zero_w/light/command"
+#  availability_topic: "zero_w/status"
+
+
+- platform: mqtt_json
+  name: Balcony Lights
+  brightness: true
+  rgb: true
+  flash: true
+  effect: true
+  effect_list:
+    - None
+#    - Random
+    - Rainbow Effect
+  state_topic: "nodemcu_lolin/light/led_lights/state"
+  command_topic: "nodemcu_lolin/light/led_lights/command"
+  availability_topic: "nodemcu_lolin/status"
 
 - platform: mqtt_json
   name: Coffee LED
@@ -26,7 +59,6 @@
   state_topic: "sonoff/light/coffee_led/state"
   command_topic: "sonoff/light/coffee_led/command"
   availability_topic: "sonoff/status"
-  icon: "mdi:led"
 
 - platform: template
   lights:
@@ -50,10 +82,10 @@
   rgb_command_topic: "homeassistant/light/tv_backlight/rgb"
   effect_command_topic: "homeassistant/light/tv_backlight/effect"
   effect_list:
-    - strobe
-    - flash
-    - fade 
-    - rgb fade
+    - Strobe
+    - Flash
+    - Fade 
+    - RGB Fade
 
 - platform: group
   name: LED Strips
@@ -68,3 +100,15 @@
     - light.led_strip_s
     - light.ceiling_lamp
     - light.tv_backlight
+
+- platform: group
+  name: All Ambient Lights
+  entities:
+    - light.ambient_lights
+    - light.balcony_lights
+
+- platform: group
+  name: White Lights
+  entities:
+    - light.standing_lamp
+    - light.spot
