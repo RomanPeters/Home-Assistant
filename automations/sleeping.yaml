@@ -18,6 +18,9 @@
       entity_id: input_boolean.home
       state: 'on'
     - condition: state
+      entity_id: input_boolean.sleeping
+      state: 'off'
+    - condition: state
       entity_id: group.lights
       state: 'off'
     - condition: state
@@ -46,11 +49,21 @@
     - platform: state
       entity_id: switch.television
       to: 'on'
+    - platform: state
+      entity_id: switch.coffee_maker
+      to: 'on'
     - platform: time
       at: '10:00:00'
+  condition:
+    - condition: state
+      entity_id: input_boolean.sleeping
+      state: 'on'
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.sleeping
+    - service: notify.ios_iphone
+      data:
+        message: "Good morning"
 
 #- id: nightlight
 #  alias: Nightlight

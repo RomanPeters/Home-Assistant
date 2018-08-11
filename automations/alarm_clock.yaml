@@ -1,0 +1,41 @@
+- id: trigger_alarm_clock_normal
+  alias: "Trigger alarm clock"
+  trigger:
+    - platform: time
+      minutes: '/5'
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_clock
+      state: 'on'
+    - condition: template                                               
+      value_template: '{{ ((as_timestamp(now())|int + 1800)|timestamp_custom("%H:%M")) == states.input_select.alarm_time.state }}'
+  action:
+    - service: script.turn_on
+      data_template: 
+        entity_id: 'script.alarm_clock_{{states( "input_select.alarm_clock_light" ).lower().replace(" ", "_")}}'
+    - service: script.turn_on
+      data_template: 
+        entity_id: 'script.alarm_clock_{{states( "input_select.alarm_clock_sound" ).lower().replace(" ", "_")}}'
+    - service: script.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state('input_boolean.alarm_clock_coffee', 'on') %}
+            script.alarm_clock_coffee
+          {% else %}
+            script.alarm_clock_none
+          {% endif %} 
+
+#- id: trigger_alarm_clock_short_notice
+#  alias: "Trigger the alarm clock within half an hour"
+#  trigger:
+#    - platform: state
+#      entity_id: input_boolean.alarm_clock
+#    - platform: state
+#      entity_id: input_select.alarm_clock_time
+#    - platform: state
+#      entity_id: input_select.alarm_clock_light
+#    - platform: state
+#      entity_id: input_select.alarm_clock_sound
+#  condition:
+#    - condition: template
+#      value_template: '{{ ((as_timestamp(now())|int + 1800) == states.input_select.alarm_time.state.strftime("%H:%M") }}'

@@ -1,0 +1,10 @@
+- id: effect_speed
+  alias: Light Effect Speed 
+  trigger:
+    - platform: state
+      entity_id: input_slider.effect_speed 
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: "zero_w/light/command"
+        payload: '{"effect_speed": {{ states("input_slider.light_effect_speed") | int }} }'

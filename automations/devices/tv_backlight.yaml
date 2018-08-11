@@ -29,7 +29,7 @@
   action:
     - service: script.turn_on
       data_template:
-        entity_id: "scrip.tv_backlight_{{states.light.tv_backlight.attributes.effect}}"
+        entity_id: "scrip.tv_backlight_{{states.light.ambient_lights.attributes.effect.replace(' ', '_').lower()}}"
 
 - id: tv_backlight_color
   alias: TV Backlight change color

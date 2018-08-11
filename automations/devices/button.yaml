@@ -4,30 +4,42 @@
   alias: button night light on
   trigger:
     - platform: mqtt
-      topic: zigbee2mqtt/0x00158d0001f4b7af
+      topic: zigbee2mqtt/button
   condition:
-    - condition: state
-      entity_id: sensor.button
-      state: 'single'
+    - condition: template
+      value_template: "{{ trigger.payload_json.click == 'single' }}"
     - condition: state
       entity_id: light.standing_lamp
       state: 'off'
   action:
-    - service: light.turn_on
-      data:
-        entity_id: light.standing_lamp
-        color_name: red
-        brightness_pct: 1
+    - service_template: >
+          {% if is_state('input_select.button_single', 'Fan') %}
+            switch.toggle
+          {% elif is_state('input_select.button_single', 'Standing Lamp') %}
+            light.toggle
+          {% elif is_state('input_select.button_single', 'Ambient Lights') %}
+            light.toggle
+          {% endif %}
+
+      data_template:
+        entity_id: >
+          {% if is_state('input_select.button_single', 'Fan') %}
+            switch.fan
+          {% elif is_state('input_select.button_single', 'Standing Lamp') %}
+            light.standing_lamp
+          {% elif is_state('input_select.button_single', 'Ambient Lights') %}
+            light.ambient_lights
+          {% endif %}
+
 
 - id: button_night_light_off
   alias: button night light off
   trigger:
     - platform: mqtt
-      topic: zigbee2mqtt/0x00158d0001f4b7af
+      topic: zigbee2mqtt/button
   condition:
-    - condition: state
-      entity_id: sensor.button
-      state: 'single'
+    - condition: template
+      value_template: "{{ trigger.payload_json.click == 'single' }}"
     - condition: state
       entity_id: light.standing_lamp
       state: 'on'
@@ -41,11 +53,10 @@
   alias: toggle air purifier
   trigger:
     - platform: mqtt
-      topic: zigbee2mqtt/0x00158d0001f4b7af
+      topic: zigbee2mqtt/button
   condition:
-    - condition: state
-      entity_id: sensor.button
-      state: 'double'
+    - condition: template
+      value_template: "{{ trigger.payload_json.click == 'double' }}"
   action:
     - service: switch.toggle
       entity_id: switch.air_purifier
@@ -58,23 +69,23 @@
 
 # long
 
-- id: button_all_off
-  alias: turn everything off
+- id: button_long_press
+  alias: Button long press
   trigger:
     - platform: state
       entity_id: sensor.button
       to: 'long'
   action:
-    - service: light.turn_off
-      entity_id: group.ww
-    - service: light.turn_off
-      entity_id: group.rgb
-    - service: switch.turn_off
-      entity_id: switch.speakers
-    - service: switch.turn_off
-      entity_id: switch.fan
-    - service: switch.turn_off
-      entity_id: switch.air_purifier
+    - service: script.turn_on
+      entity_id: script.button_dim_up
 
 # long_release
-
+- id: button_long_release
+  alias: Button long release
+  trigger:
+    - platform: state
+      entity_id: sensor.button
+      to: 'long_release'
+  action:
+    - service: script.turn_off
+      entity_id: script.button_dim_up
