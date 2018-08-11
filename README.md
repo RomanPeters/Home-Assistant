@@ -3,8 +3,8 @@
 ## Hass.io
 
 #### Raspberry Pi  
-- [Hass.IO](https://www.home-assistant.io/hassio/) on RPi 3b
-- [Blinkt!](https://www.home-assistant.io/components/light.blinkt/)
+- [Hass.IO](https://www.home-assistant.io/hassio/) on a RPi 3b
+- [Blinkt!](https://www.home-assistant.io/components/light.blinkt/) on a RPi Zero W using [blinkt-mqtt-client](https://github.com/romanpeters/blinkt-mqtt-client)
 
 #### Apple  
 - [Apple TV](https://www.home-assistant.io/components/apple_tv/)
@@ -15,7 +15,8 @@
 - [RM2 Pro IR transmitter](https://www.home-assistant.io/components/sensor.broadlink/)
 
 #### ESP8266
-- Sonoff Basic, flashed with [esphomeyaml](https://github.com/ottowinter/esphomeyaml)
+- Sonoff Basic, flashed with [esphomeyaml](https://github.com/ottowinter/esphomeyaml) for the Coffee Maker
+- NodeMCU, flashed with [esphomeyaml](https://github.com/ottowinter/esphomeyaml) for the Balcony Lights
 
 #### Milight / Easybulb / LimitlessLED  
 - [WiFi bridge](https://www.home-assistant.io/components/light.limitlessled/)
@@ -31,3 +32,5 @@
 - [Door sensor](https://www.home-assistant.io/components/xiaomi_aqara/)
 - [Chuangmi Plug V1](https://www.home-assistant.io/components/switch.xiaomi_miio/)
 
+#### Other
+- Some cheap RF socket switches
