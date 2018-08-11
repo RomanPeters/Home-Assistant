@@ -1,0 +1,8 @@
+type: glance #entities
+title: Alarm Clock
+entities:
+  - input_boolean.alarm_clock
+  - input_select.alarm_clock_time
+  - input_select.alarm_clock_light
+  - input_select.alarm_clock_sound
+  - input_boolean.alarm_coffee

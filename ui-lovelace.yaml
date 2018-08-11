@@ -1,4 +1,7 @@
 name: Home
+resources:
+  - url: /local/gauge-card.js?v=1
+    type: js
 views:
   - title: Dashboard
     tab_icon: mdi:home
@@ -10,10 +13,10 @@ views:
       - !include 'lovelace/appliances.yaml'
       - !include 'lovelace/coffee_maker.yaml'
       - !include 'lovelace/environment.yaml'
+      - !include 'lovelace/alarm_clock.yaml'
       - !include 'lovelace/activity.yaml'
       - !include 'lovelace/graphs.yaml'
       - !include 'lovelace/plant.yaml'
-      - !include 'lovelace/camera.yaml'
 
 
   - title: Testing

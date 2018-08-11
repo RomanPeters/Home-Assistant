@@ -1,14 +1,16 @@
-#- platform: generic
-#  name: Camera
-#  still_image_url: https://10.10.10.12/cgi-bin/currentpic.cgi
-#  username: !secret camera_username
-#  password: !secret camera_password
-#  framerate: 10
+- platform: generic
+  name: Camera
+  still_image_url: https://10.10.10.13/cgi-bin/currentpic.cgi
+  username: !secret camera_username
+  password: !secret camera_password
+  framerate: 10
 
 #- platform: ffmpeg
 #  name: Camera
-#  input: -rtsp_transport tcp -i rtsp://10.10.10.12:8554/unicast
+#  input: -rtsp_transport tcp -i rtsp://10.10.10.13:8554/unicast
 #  extra_arguments: -pred 1
+
+
 
 #- platform: mqtt
 #  name: Camera Motion Snapshot

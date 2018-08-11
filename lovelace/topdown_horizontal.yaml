@@ -13,9 +13,35 @@ elements:
     tap_action: toggle
     entity: light.ceiling_lamp
     style:
+      transform: rotate(180deg)
       "--paper-item-icon-color": white
       top: 40%
       left: 49%
+
+  - type: state-icon
+    entity: light.blinkt
+    style:
+      "--paper-item-icon-color": white
+      top: 78%
+      left: 69%
+
+  - type: state-icon
+    tap_action: toggle
+    entity: light.balcony_lights
+    style:
+      transform: rotate(180deg)
+      "--paper-item-icon-color": white
+      top: 35%
+      left: 88%
+  
+
+  - type: state-icon
+    tap_action: toggle
+    entity: light.tv_backlight
+    style:
+      "--paper-item-icon-color": white
+      top: 10%
+      left: 37%
 
   - type: state-icon
     tap_action: toggle
@@ -23,15 +49,15 @@ elements:
     style:
       "--paper-item-icon-color": white
       top: 16%
-      left: 37%
+      left: 38%
 
   - type: state-icon
     tap_action: toggle
     entity: switch.speakers
     style:
       "--paper-item-icon-color": white
-      top: 12%
-      left: 54%
+      top: 19%
+      left: 46%
 
   - type: state-icon
     tap_action: toggle

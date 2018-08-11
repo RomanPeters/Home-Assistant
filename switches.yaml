@@ -17,13 +17,14 @@
     socket_1:
       friendly_name: "Socket 1"
       command_on: "sg0yAAcRBhESBgYRBhEGEQYREgYRBgYRBhEGrREGBhEGEQYRBxERBgYREQYSBgYREQYRBgYRAAAAAAAA"
+      # command_off is broken
       command_off: "sg8yAAYREgYGERIGEgYGEhEGEgYGEQYRBhERBgYRBhEGEQYRBhEGEREGBhEGrBEGBhEGEQYRAAAAAAAA"
-    socket_2:
-      friendly_name: "Socket 2"
+    spot:
+      friendly_name: "Spot"
       command_on: "sgsyAAYSBhEHEQcREQcGEhEGBxEGrREGBhIGEQYRBhERBgYSEQYRBgcREQYRBwYRBhEGEREHAAAAAAAA"
       command_off: "skcyABEGBhEGEQYRBhESBgYREQYRBgcREgYSBgYRBhEHEREGBhEGEQYRBhEGEQYREgYGEQasAAAAAAAA"
-    socket_3:
-      friendly_name: "Socket 3"
+    camera:
+      friendly_name: "Camera"
       command_on: "sgoyABIGBxEHEQcRBhESBgcREgYSBQcREgUSBgcRBxEHERIFBxEGEQcRBhESBgcRBhESBgesAAAAAAAA"
       command_off: "sgYyAAasEQYHEQYRBxEGEREGBhESBhEGBhERBhIGBhEGEgYSEQYGEQYRBhEGEQYRBhEGEREGAAAAAAAA"
     fan:  # socket 4

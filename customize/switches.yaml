@@ -4,6 +4,15 @@ switch.speakers:
 switch.television:
   icon: mdi:television
 
+
+switch.spot:
+  icon: mdi:lightbulb
+  assumed_state: false
+
+switch.camera:
+  icon: mdi:webcam
+  assumed_state: false
+
 switch.fan:
   icon: mdi:fan
   assumed_state: false
@@ -14,4 +23,7 @@ switch.socket:
   
 switch.air_purifier:
   icon: mdi:weather-windy
+  assumed_state: false
+
+switch.zigbee2mqtt_pairing:
   assumed_state: false

@@ -22,6 +22,27 @@
   stations:
     - 'de Jongweg, Utrecht'
 
+#- platform: template
+#  sensors:
+#    air_quality_status:
+#      friendly_name: Air Quality Status
+#      value_template: >
+#        {% if states('sensor.waqi_de_jongweg_utrecht') | int <= 50 %}
+#          Good
+#        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 100 %}
+#          Moderate
+#        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 150 %}
+#          Unhealthy for Sensitive Groups
+#        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 200 %}
+#          Unhealthy
+#        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 300 %}
+#          Very Unhealthy
+#        {% elif states('sensor.waqi_de_jongweg_utrecht') | int > 300 %}
+#          Hazardous
+#        {% else %}
+#          Unknown
+#        (% endif %}
+
 - platform: template
   sensors:
     plant_emoji:
@@ -73,7 +94,7 @@
 
 - platform: "mqtt"
   name: Inside temperature
-  state_topic: "zigbee2mqtt/sensor_temperature"
+  state_topic: "zigbee2mqtt/sensor"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
   icon: "mdi:thermometer"
@@ -84,7 +105,7 @@
 
 - platform: "mqtt"
   name: Inside humidity
-  state_topic: "zigbee2mqtt/sensor_humidity"
+  state_topic: "zigbee2mqtt/sensor"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   icon: "mdi:water-percent"
@@ -95,7 +116,7 @@
 
 - platform: "mqtt"
   name: Inside pressure
-  state_topic: "zigbee2mqtt/sensor_pressure"
+  state_topic: "zigbee2mqtt/sensor"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "Pa"
   icon: "mdi:speedometer"

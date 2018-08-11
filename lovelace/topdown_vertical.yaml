@@ -13,11 +13,27 @@ elements:
       left: 85%
 
   - type: state-icon
+    entity: light.blinkt
+    style:
+      "--paper-item-icon-color": white
+      top: 28%
+      left: 85%    
+
+  - type: state-icon
     tap_action: toggle
     entity: light.tv_backlight
     style:
+      "--paper-item-icon-color": white
       top: 62%
-      left: 8%
+      left: 7%
+
+  - type: state-icon
+    entity: light.balcony_lights
+    style:
+      transform: rotate(180deg)
+      "--paper-item-icon-color": white
+      top: 4%
+      left: 34%
 
   - type: state-icon
     tap_action: toggle

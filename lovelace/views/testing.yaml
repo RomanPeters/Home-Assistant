@@ -3,6 +3,20 @@
   entities:
     - script.tv_backlight_on
     - script.tv_backlight_off
+    - light.blinkt
+
+- type: history-graph
+  entities:
+    - sensor.wall_switch
+
+- type: entities
+  title: RF Sockets
+  entities:
+    - switch.socket_1
+    - switch.spot
+    - switch.camera
+    - switch.fan
+    - switch.air_purifier
 
 - type: history-graph
   title: Speakers automation

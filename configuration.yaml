@@ -87,3 +87,5 @@ camera: !include cameras.yaml
 cover: !include covers.yaml
 timer: !include timers.yaml
 input_text: !include input_texts.yaml
+input_number: !include input_numbers.yaml
+

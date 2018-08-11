@@ -1,5 +1,12 @@
 - type: entities
   title: Switches
+  show_header_toggle: false
   entities:
-    - switch.zigbee_pairing
+    - switch.zigbee2mqtt_pairing
     - input_boolean.night_mode
+
+- type: entities
+  title: Configuration
+  show_header_toggle: false
+  entities:
+    - input_select.button_single

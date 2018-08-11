@@ -1,12 +1,3 @@
-sensor.inside_temperature:
-  friendly_name: Temperature
-
-sensor.inside_humidity:
-  friendly_name: Humidity
-
-sensor.inside_pressure:
-  friendly_name: Pressure
-
 sensor.br_temperature:
   friendly_name: Temperature
 
