@@ -81,7 +81,7 @@
       event_data:
         entity_id: timer.pre_alarm_clock
   action:
-    - sevice: climate.set_operation_mode
+    - service: climate.set_operation_mode
       entity_id: climate.thermostat
       operation_mode: "Heat"
     - service: python_script.alarm_clock_coffee
