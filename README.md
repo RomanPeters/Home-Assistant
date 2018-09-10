@@ -16,6 +16,7 @@
 
 #### ESP8266
 - Sonoff Basic, flashed with [esphomeyaml](https://github.com/ottowinter/esphomeyaml) for the Coffee Maker
+- Sonoff TH10, flashed with [esphomeyaml](https://github.com/ottowinter/esphomeyaml) in combination with an electronic radiator valve for climate control
 - NodeMCU, flashed with [esphomeyaml](https://github.com/ottowinter/esphomeyaml) for the Balcony Lights
 
 #### Milight / Easybulb / LimitlessLED  
