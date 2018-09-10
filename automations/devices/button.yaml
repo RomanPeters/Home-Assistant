@@ -32,20 +32,20 @@
           {% endif %}
 
 
-- id: button_night_light_off
-  alias: button night light off
-  trigger:
-    - platform: mqtt
-      topic: zigbee2mqtt/button
-  condition:
-    - condition: template
-      value_template: "{{ trigger.payload_json.click == 'single' }}"
-    - condition: state
-      entity_id: light.standing_lamp
-      state: 'on'
-  action:
-    - service: light.turn_off  
-      entity_id: light.standing_lamp
+#- id: button_night_light_off
+#  alias: button night light off
+#  trigger:
+#    - platform: mqtt
+#      topic: zigbee2mqtt/button
+#  condition:
+#    - condition: template
+#      value_template: "{{ trigger.payload_json.click == 'single' }}"
+#    - condition: state
+#      entity_id: light.standing_lamp
+#      state: 'on'
+#  action:
+#    - service: light.turn_off  
+#      entity_id: light.standing_lamp
 
 # double
 
@@ -76,16 +76,15 @@
       entity_id: sensor.button
       to: 'long'
   action:
-    - service: script.turn_on
-      entity_id: script.button_dim_up
+    - service: python_script.brighten
 
 # long_release
-- id: button_long_release
-  alias: Button long release
-  trigger:
-    - platform: state
-      entity_id: sensor.button
-      to: 'long_release'
-  action:
-    - service: script.turn_off
-      entity_id: script.button_dim_up
+#- id: button_long_release
+#  alias: Button long release
+#  trigger:
+#    - platform: state
+#      entity_id: sensor.button
+#      to: 'long_release'
+#  action:
+#    - service: script.turn_off
+#      entity_id: script.button_dim_up

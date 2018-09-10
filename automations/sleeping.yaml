@@ -35,6 +35,9 @@
       entity_id: group.lights
     - service: input_boolean.turn_on
       entity_id: input_boolean.sleeping
+    - sevice: climate.set_operation_mode
+      entity_id: climate.thermostat
+      operation_mode: "Off"
     - service: notify.ios_iphone
       data:
         message: "Sleep tight"      
@@ -61,6 +64,9 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.sleeping
+    - sevice: climate.set_operation_mode
+      entity_id: climate.thermostat
+      operation_mode: "Heat"
     - service: notify.ios_iphone
       data:
         message: "Good morning"

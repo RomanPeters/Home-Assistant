@@ -1,82 +1,94 @@
-# SPEAKERS ON
-- id: apple_tv_playing
-  alias: Turn speakers on when playing
-  trigger:
-    - platform: state
-      entity_id: media_player.apple_tv
-      to: 'playing'
-  action:
-    - service: switch.turn_on
-      entity_id: switch.speakers
-      
-- id: apple_tv_idle_on      
-  alias: Turn speakers on on idle
-  trigger:
-    - platform: state
-      entity_id: media_player.apple_tv
-      to: 'idle'
-  action:
-    - service: switch.turn_on
-      entity_id: switch.speakers
-
-
-# SPEAKERS OFF
-- id: apple_tv_off
-  alias: Turn speakers off if the Apple TV is off
-  trigger:
-    - platform: state
-      entity_id: media_player.apple_tv
-      to: 'off'
-  action:
-    - service: switch.turn_off
-      entity_id: switch.speakers
-
-- id: apple_tv_idle_off     
-  alias: Turn speakers offon idle 
-  trigger:
-    - platform: state
-      entity_id: media_player.apple_tv
-      to: 'idle'
-      for:
-        minutes: 1
-  action:
-    - service: switch.turn_off
-      entity_id: switch.speakers
-
 # ENTONE ON
 - id: entone_on
   alias: Turn Entone on
   trigger:
     - platform: state
-      entity_id: switch.tv
+      entity_id: switch.television
       to: 'on'
+    - platform: state
+      entity_id: input_select.tv_input
+      to: 'Television'
+  condition:
+    - condition: state
+      entity_id: input_select.tv_input
+      state: 'Television'
   action:
     - service: switch.turn_on
       entity_id: switch.entone
 
-# ENTONE OFF
-- id: entone_off
-  alias: Turn Entone off
+# APPLE TV ON
+- id: apple_tv_on
+  alias: Turn Apple TV on
   trigger:
     - platform: state
-      entity_id: switch.tv            
-      to: 'off'
-  action:
-    - service: switch.turn_off 
-      entity_id: switch.entone  
-
-- id: entone_off_while_tv_on
-  alias: Turn Entone off when using Apple TV
-  trigger:
+      entity_id: switch.television
+      to: 'on'
     - platform: state
-      entity_id: media_player.apple_tv
-      to: 'playing'
-      for:
-        minutes: 1
+      entity_id: input_select.tv_input
+      to: 'Apple TV'
   condition:
     - condition: state
-      entity_id: switch.tv
-      state: 'on'
+      entity_id: input_select.tv_input
+      state: 'Apple TV'
+  action:
+    - service: remote.turn_on
+      entity_id: remote.apple_tv
+
+# ENTONE OFF
+- id: entone_off
+  alias: Turn Entone off when using other input
+  trigger:
+    - platform: state
+      entity_id: switch.television
+      to: 'off'
+    - platform: state
+      entity_id: input_select.tv_input
+      to: 'Apple TV'
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: input_select.tv_input
+      to: 'HDMI'
+      for:
+        minutes: 1
   action:
     - service: switch.turn_off
       entity_id: switch.entone
+
+# APPLE TV OFF
+- id: apple_tv_off
+  alias: Turn Apple TV off when using other input
+  trigger:
+    - platform: state
+      entity_id: switch.television
+      to: 'off'
+    - platform: state
+      entity_id: input_select.tv_input
+      to: 'Television'
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: input_select.tv_input
+      to: 'HDMI'
+      for:
+        minutes: 1
+  action:
+    - service: remote.turn_off
+      entity_id: remote.apple_tv
+
+# TV OFF
+- id: tv_off_on_inactive_apple_tv
+  alias: Turn TV off when not in use
+  trigger:
+    - platform: state
+      entity_id: media_player.apple_tv
+      to: 'idle'
+      for:
+        minutes: 5
+  condition:
+    - condition: state
+      entity_id: input_select.tv_input
+      state: 'Apple TV'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.television
