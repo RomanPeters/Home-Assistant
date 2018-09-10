@@ -1,4 +1,12 @@
 - type: entities
+  title: Alarm Clock
+  show_header_toggle: false
+  entities:
+    - input_select.alarm_clock_light
+    - input_select.alarm_clock_sound
+    - input_boolean.alarm_coffee
+
+- type: entities
   title: Switches
   show_header_toggle: false
   entities:

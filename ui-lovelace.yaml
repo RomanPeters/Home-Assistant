@@ -1,7 +1,9 @@
 name: Home
 resources:
-  - url: /local/gauge-card.js?v=1
+  - url: /local/custom-lovelace/gauge-card/gauge-card.js?v=1
     type: js
+  - url: /local/custom-lovelace/thermostat-card/thermostat-card.js?v=1
+    type: module
 views:
   - title: Dashboard
     tab_icon: mdi:home
@@ -10,14 +12,15 @@ views:
       - !include 'lovelace/topdown_vertical.yaml'
       - !include 'lovelace/lights.yaml'
       - !include 'lovelace/media_player.yaml'
-      - !include 'lovelace/appliances.yaml'
-      - !include 'lovelace/coffee_maker.yaml'
+      - !include 'lovelace/remote_mini.yaml'
+      - !include 'lovelace/thermostat.yaml'
+#      - !include 'lovelace/appliances.yaml'
+#      - !include 'lovelace/coffee_maker.yaml'
       - !include 'lovelace/environment.yaml'
       - !include 'lovelace/alarm_clock.yaml'
       - !include 'lovelace/activity.yaml'
       - !include 'lovelace/graphs.yaml'
       - !include 'lovelace/plant.yaml'
-
 
   - title: Testing
     tab_icon: mdi:flask

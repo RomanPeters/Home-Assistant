@@ -32,7 +32,7 @@ elements:
       transform: rotate(180deg)
       "--paper-item-icon-color": white
       top: 35%
-      left: 88%
+      left: 89%
   
 
   - type: state-icon
@@ -100,6 +100,13 @@ elements:
       left: 28%
 
   - type: state-icon
+    entity: switch.heater
+    style:
+      "--paper-item-icon-color": white
+      top: 50%
+      left: 75%
+
+  - type: state-icon
     entity: binary_sensor.door_icon
     style:
       "--paper-item-icon-color": white
@@ -115,7 +122,7 @@ elements:
       left: 81%
 
   - type: state-label
-    entity: sensor.br_temperature
+    entity: sensor.outside_temperature
     style:
       color: white
       text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"

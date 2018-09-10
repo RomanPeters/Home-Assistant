@@ -3,9 +3,9 @@ cards:
   - type: glance
     title: Outdoors
     entities:
-      - sensor.br_temperature
-      - sensor.br_humidity
-      - sensor.br_pressure
+      - sensor.outside_temperature
+      - sensor.outside_humidity
+      - sensor.outside_pressure
       - sensor.br_condition
   - type: glance
     title: Indoors

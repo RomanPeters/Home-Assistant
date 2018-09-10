@@ -12,6 +12,28 @@ elements:
       outline-color: white
       outline-width: 1px
 
+  - type: state-icon
+    entity: script.input_up
+    tap_action: toggle
+    style:
+      top: 12%
+      left: 5%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
+  - type: state-icon
+    entity: script.input_down  
+    tap_action: toggle
+    style:
+      top: 19%
+      left: 5%
+      "--paper-item-icon-color": white
+      outline-style: solid
+      outline-color: white
+      outline-width: 1px
+
   - type: state-label
     entity: switch.television
     style:

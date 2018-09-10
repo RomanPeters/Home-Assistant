@@ -124,6 +124,13 @@ elements:
       top: 92%
       left: 20%
 
+  - type: state-icon
+    entity: switch.heater
+    style:
+      "--paper-item-icon-color": white
+      top: 23%
+      left: 50%
+
   - type: state-label
     entity: sensor.inside_temperature
     style:
@@ -133,7 +140,7 @@ elements:
       left: 88%
 
   - type: state-label
-    entity: sensor.br_temperature
+    entity: sensor.outside_temperature
     style:
       color: white
       text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"
@@ -146,3 +153,4 @@ elements:
       "--paper-item-icon-color": white
       top: 79%
       left: 54%
+

@@ -3,8 +3,14 @@ cards:
   - type: history-graph
     entities:
      - sensor.inside_temperature
-     - sensor.br_temperature
+     - sensor.outside_temperature
+     - sensor.thermostat_temperature
   - type: history-graph
     entities:
      - sensor.inside_humidity
-     - sensor.br_humidity
+     - sensor.outside_humidity
+     - sensor.thermostat_humidity
+  - type: history-graph
+    entities:
+     - sensor.inside_pressure
+     - sensor.outside_pressure
