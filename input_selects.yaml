@@ -3,6 +3,7 @@ button_single:
   options:
     - Fan
     - Standing Lamp
+    - TV Backlight
     - Ambient Lights
 
 alarm_clock_time:

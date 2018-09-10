@@ -63,9 +63,9 @@
     - binary_sensor.outside_cooler_than_inside
     - climate.thermostat
     - sensor.br_temperature
-    - sensor.inside_temperature
-    - sensor.outside_temperature
-    - sensor.thermostat_temperature
+    - sensor.room_temperature
+    - sensor.balcony_temperature
+    - sensor.stairway_temperature
     - switch.fan
     - switch.heater
     - input_boolean.home

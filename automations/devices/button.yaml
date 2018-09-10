@@ -17,6 +17,8 @@
             switch.toggle
           {% elif is_state('input_select.button_single', 'Standing Lamp') %}
             light.toggle
+          {% elif is_state('input_select.button_single', 'TV Backlight') %}
+            light.toggle
           {% elif is_state('input_select.button_single', 'Ambient Lights') %}
             light.toggle
           {% endif %}
@@ -27,6 +29,8 @@
             switch.fan
           {% elif is_state('input_select.button_single', 'Standing Lamp') %}
             light.standing_lamp
+          {% elif is_state('input_select.button_single', 'TV Backlight') %}
+            light.tv_backlight
           {% elif is_state('input_select.button_single', 'Ambient Lights') %}
             light.ambient_lights
           {% endif %}

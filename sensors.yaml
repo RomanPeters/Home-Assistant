@@ -93,7 +93,7 @@
     - "duration"
 
 - platform: "mqtt"
-  name: Inside temperature
+  name: Stairway temperature
   state_topic: "zigbee2mqtt/sensor_inside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
@@ -104,7 +104,7 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Inside humidity
+  name: Stairway humidity
   state_topic: "zigbee2mqtt/sensor_inside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
@@ -115,7 +115,7 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Inside pressure
+  name: Stairway Pressure
   state_topic: "zigbee2mqtt/sensor_inside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "Pa"
@@ -126,7 +126,7 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Outside temperature
+  name: Balcony Temperature
   state_topic: "zigbee2mqtt/sensor_outside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
@@ -137,7 +137,7 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Outside humidity
+  name: Balcony Humidity
   state_topic: "zigbee2mqtt/sensor_outside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
@@ -148,7 +148,7 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Outside pressure
+  name: Balcony Pressure
   state_topic: "zigbee2mqtt/sensor_outside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "Pa"
@@ -189,14 +189,14 @@
     - noise_level
 
 - platform:  "mqtt"
-  name: "Thermostat Temperature"
+  name: "Room Temperature"
   state_topic: "sonoff_th10/sensor/thermostat_temperature/state"
   availability_topic: "sonoff_th10/status"
   unit_of_measurement: "°C"
   expire_after: 675
 
 - platform:  "mqtt"
-  name: "Thermostat Humidity"
+  name: "Room Humidity"
   icon: mdi:water-percent
   state_topic: "sonoff_th10/sensor/thermostat_humidity/state"
   availability_topic: "sonoff_th10/status"

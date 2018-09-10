@@ -132,7 +132,7 @@ elements:
       left: 50%
 
   - type: state-label
-    entity: sensor.inside_temperature
+    entity: sensor.room_temperature
     style:
       color: white
       text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"
@@ -140,7 +140,7 @@ elements:
       left: 88%
 
   - type: state-label
-    entity: sensor.outside_temperature
+    entity: sensor.balcony_temperature
     style:
       color: white
       text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"
