@@ -1,41 +1,104 @@
-- id: trigger_alarm_clock_normal
-  alias: "Trigger alarm clock"
+
+
+- id: alarm_clock_on
+  alias: Set alarm clock
   trigger:
-    - platform: time
-      minutes: '/5'
+    - platform: state
+      entity_id: input_boolean.alarm_clock
+      to: 'on'
+    - platform: state
+      entity_id: input_select.alarm_clock_time
+    - platform: homeassistant
+      event: start
   condition:
     - condition: state
       entity_id: input_boolean.alarm_clock
       state: 'on'
-    - condition: template                                               
-      value_template: '{{ ((as_timestamp(now())|int + 1800)|timestamp_custom("%H:%M")) == states.input_select.alarm_time.state }}'
   action:
-    - service: script.turn_on
-      data_template: 
-        entity_id: 'script.alarm_clock_{{states( "input_select.alarm_clock_light" ).lower().replace(" ", "_")}}'
-    - service: script.turn_on
-      data_template: 
-        entity_id: 'script.alarm_clock_{{states( "input_select.alarm_clock_sound" ).lower().replace(" ", "_")}}'
-    - service: script.turn_on
+    - service: timer.start
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.alarm_clock_coffee', 'on') %}
-            script.alarm_clock_coffee
-          {% else %}
-            script.alarm_clock_none
-          {% endif %} 
+        entity_id: timer.alarm_clock
+        duration: >
+          {% set year_day = now().strftime("%Y.%j.") %}
+          {% set hour_minute = states("input_select.alarm_clock_time") %}
+          {% set alarm =  strptime( year_day + hour_minute, "%Y.%j.%H:%M" ) %}
 
-#- id: trigger_alarm_clock_short_notice
-#  alias: "Trigger the alarm clock within half an hour"
-#  trigger:
-#    - platform: state
-#      entity_id: input_boolean.alarm_clock
-#    - platform: state
-#      entity_id: input_select.alarm_clock_time
-#    - platform: state
-#      entity_id: input_select.alarm_clock_light
-#    - platform: state
-#      entity_id: input_select.alarm_clock_sound
-#  condition:
-#    - condition: template
-#      value_template: '{{ ((as_timestamp(now())|int + 1800) == states.input_select.alarm_time.state.strftime("%H:%M") }}'
+          {% if  as_timestamp(now()) > as_timestamp(alarm) %} 
+              {% set day = now().strftime("%j") %}
+              {% set day_plus = day | int + 1 %}
+              {% set day_plus_str = day_plus | string %}   
+              {% set year = now().strftime("%Y") %}
+              {% set alarm =  strptime( year + '.' + day_plus_str + '.' + hour_minute, "%Y.%j.%H:%M" ) %}
+          {% endif %}
+ 
+          {% set duration = as_timestamp(alarm) - as_timestamp(now())  %}
+          {% set duration_str = duration | string %}
+          {{ duration_str.split('.')[0] }}
+    - service: timer.start
+      data_template:
+        entity_id: timer.alarm_clock
+        duration: >
+          {% set year_day = now().strftime("%Y.%j.") %}
+          {% set hour_minute = states("input_select.alarm_clock_time") %}
+          {% set alarm =  strptime( year_day + hour_minute, "%Y.%j.%H:%M" ) %}
+
+          {% if  as_timestamp(now()) > as_timestamp(alarm) %}
+              {% set day = now().strftime("%j") %}
+              {% set day_plus = day | int + 1 %}
+              {% set day_plus_str = day_plus | string %}
+              {% set year = now().strftime("%Y") %}
+              {% set alarm =  strptime( year + '.' + day_plus_str + '.' + hour_minute, "%Y.%j.%H:%M" ) %}
+          {% endif %}
+ 
+          {% set duration = as_timestamp(alarm) - as_timestamp(now())  %}
+          {% set duration_pre = duration - 1800 %}
+
+          {% if  duration_pre < 0 %}
+              {% set duration_pre = 0 %}
+          {% endif %}
+
+          {% set duration_str = duration_pre | string %}
+          {{ duration_str.split('.')[0] }}
+    - service: notify.notify
+      data_template:
+        message: "Your alarm has been set for {{ states('input_select.alarm_clock_time') }}"
+
+- id: alarm_clock_off
+  alias: Stop alarm clock
+  trigger:
+    - platform: state
+      entity_id: input_boolean.alarm_clock
+      to: 'off'
+  action:
+    - service: timer.cancel
+      entity_id: timer.alarm_clock
+
+- id: trigger_pre_alarm_clock
+  alias: Trigger pre-alarm clock
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.pre_alarm_clock
+  action:
+    - sevice: climate.set_operation_mode
+      entity_id: climate.thermostat
+      operation_mode: "Heat"
+    - service: python_script.alarm_clock_coffee
+    - service: python_script.alarm_clock_light
+    
+
+- id: trigger_alarm_clock
+  alias: Trigger alarm clock
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data: 
+        entity_id:  timer.alarm_clock
+  action:
+    - service: python_script.alarm_clock_sound
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.sleeping
+
+# script.snooze_alarm_clock
+# python_script.stop_alarm_clock     

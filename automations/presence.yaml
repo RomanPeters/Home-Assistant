@@ -11,6 +11,21 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.home
 
+
+
+# notification
+- id: presence_change_home
+  alias: Presence change home
+  trigger: 
+    - platform: state
+      entity_id: input_boolean.home
+      from: 'off'
+      to: 'on'
+  action:
+    - service: notify.ios_iphone
+      data:
+        message: "Welcome home!"
+
 - id: door_closes
   alias: Check for activity
   trigger:
@@ -33,16 +48,13 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.home
-    - service: notify.ios_iphone
-      data:
-        message: "Good bye!"
 
 # CANCEL LEAVING
 - id: not_leaving_motion
   alias: Motion detected
   trigger:
     - platform: state
-      entity_id: group.all_motion_sensors
+      entity_id: binary_sensor.motion_sensor
       to: 'on'
   action:
     - service: timer.cancel
@@ -66,9 +78,6 @@
       entity_id: timer.leaving
     - service: input_boolean.turn_on
       entity_id: input_boolean.home
-    - service: notify.ios_iphone
-      data:
-        message: "Welcome home!"
 
 # LEAVING
 - id: leaving_home
@@ -82,6 +91,12 @@
       entity_id: group.all_lights
     - service: switch.turn_on
       entity_id: switch.air_purifier
+    - sevice: climate.set_operation_mode
+      entity_id: climate.thermostat
+      operation_mode: "Off"
+    - service: notify.ios_iphone
+      data:
+        message: "Good bye!"
 
 
 # ARRIVING, GENERAL  
@@ -94,7 +109,9 @@
   action:
     - service: switch.turn_off
       entity_id: switch.air_purifier
-
+    - sevice: climate.set_operation_mode
+      entity_id: climate.thermostat
+      operation_mode: "Heat"
 
 
 # ARRIVING,DARK, NM OFF
@@ -120,5 +137,5 @@
         state: 'off'
   action:
     - service: light.turn_on
-      entity_id: group.ambient
+      entity_id: light.standing_lamp
 

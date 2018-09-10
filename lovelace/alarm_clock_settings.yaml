@@ -1,0 +1,9 @@
+type: entities
+title: Alarm Clock
+show_header_toggle: false
+entities:
+  - input_select.alarm_clock_light
+  - input_select.alarm_clock_sound
+  - input_boolean.alarm_heater
+  - input_boolean.alarm_coffee
+

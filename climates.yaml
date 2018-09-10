@@ -1,0 +1,4 @@
+- platform: generic_thermostat
+  name: Thermostat
+  heater: switch.heater
+  target_sensor: sensor.thermostat_temperature

@@ -51,6 +51,13 @@
   availability_topic: "sonoff/status"
 
 - platform: mqtt
+  name: Heater
+  icon: "mdi:radiator-disabled"
+  state_topic: "sonoff_th10/switch/heater/state"
+  command_topic: "sonoff_th10/switch/heater/command"
+  availability_topic: "sonoff_th10/status"
+
+- platform: mqtt
   name: Air Freshener
   icon: "mdi:wind"
   state_topic: "nodemcu_amica/switch/air_freshener/state"

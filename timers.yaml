@@ -1,5 +1,5 @@
 leaving:
-  duration: '00:05:00'
+  duration: '00:10:00'
 
 make_coffee:
   duration: '00:08:00'
@@ -18,4 +18,7 @@ nightlight:
 
 fan_loop:
   duration: '00:15:00'
+
+pre_alarm_clock:
+alarm_clock:
 
