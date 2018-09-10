@@ -4,6 +4,8 @@ switch.speakers:
 switch.television:
   icon: mdi:television
 
+switch.entone:
+  icon: mdi:television-box
 
 switch.spot:
   icon: mdi:lightbulb

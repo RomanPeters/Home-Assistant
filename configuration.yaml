@@ -12,14 +12,14 @@ homeassistant:
 
 http:
   api_password: !secret http_password
-  ip_ban_enabled: True
+  ip_ban_enabled: False #True
   login_attempts_threshold: 5
 
 updater:
   include_used_components: true
 
 frontend:
-  javascript_version: es5
+#  javascript_version: es5
   themes: !include themes.yaml
 
 mqtt:
@@ -30,7 +30,7 @@ weather:
   - platform: buienradar
     name: Utrecht
 
-#auth:
+auth:
 config:
 hassio:
 history:
@@ -85,6 +85,7 @@ input_boolean: !include input_booleans.yaml
 scene: !include scenes.yaml
 camera: !include cameras.yaml
 cover: !include covers.yaml
+climate: !include climates.yaml
 timer: !include timers.yaml
 input_text: !include input_texts.yaml
 input_number: !include input_numbers.yaml

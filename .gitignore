@@ -6,6 +6,7 @@ esphomeyaml/
 .uuid
 appdaemon/compiled
 appdaemon/apps/__pycache__/
+custom_components/__pycache__/
 entity_registry.yaml
 fullchain.pem
 home-assistant.log
@@ -14,4 +15,6 @@ known_devices.yaml
 privkey.pem
 secrets.yaml
 tts/
+deps/
 .DS_Store
+

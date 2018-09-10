@@ -94,7 +94,7 @@
 
 - platform: "mqtt"
   name: Inside temperature
-  state_topic: "zigbee2mqtt/sensor"
+  state_topic: "zigbee2mqtt/sensor_inside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
   icon: "mdi:thermometer"
@@ -105,7 +105,7 @@
 
 - platform: "mqtt"
   name: Inside humidity
-  state_topic: "zigbee2mqtt/sensor"
+  state_topic: "zigbee2mqtt/sensor_inside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   icon: "mdi:water-percent"
@@ -116,7 +116,40 @@
 
 - platform: "mqtt"
   name: Inside pressure
-  state_topic: "zigbee2mqtt/sensor"
+  state_topic: "zigbee2mqtt/sensor_inside"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "Pa"
+  icon: "mdi:speedometer"
+  value_template: "{{ value_json.pressure }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+
+- platform: "mqtt"
+  name: Outside temperature
+  state_topic: "zigbee2mqtt/sensor_outside"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  icon: "mdi:thermometer"
+  value_template: "{{ value_json.temperature }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+
+- platform: "mqtt"
+  name: Outside humidity
+  state_topic: "zigbee2mqtt/sensor_outside"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  icon: "mdi:water-percent"
+  value_template: "{{ value_json.humidity }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+
+- platform: "mqtt"
+  name: Outside pressure
+  state_topic: "zigbee2mqtt/sensor_outside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "Pa"
   icon: "mdi:speedometer"
@@ -154,3 +187,19 @@
     - signal_level 
     - link_quality
     - noise_level
+
+- platform:  "mqtt"
+  name: "Thermostat Temperature"
+  state_topic: "sonoff_th10/sensor/thermostat_temperature/state"
+  availability_topic: "sonoff_th10/status"
+  unit_of_measurement: "°C"
+  expire_after: 675
+
+- platform:  "mqtt"
+  name: "Thermostat Humidity"
+  icon: mdi:water-percent
+  state_topic: "sonoff_th10/sensor/thermostat_humidity/state"
+  availability_topic: "sonoff_th10/status"
+  unit_of_measurement: "%"
+  expire_after: 675
+

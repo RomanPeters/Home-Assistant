@@ -6,6 +6,12 @@ script.toggle_entone:
   icon: mdi:television-box
 script.toggle_apple:
   icon: mdi:apple
+
+script.input_up:
+  icon: mdi:menu-up
+script.input_down:
+  icon: mdi:menu-down
+
 scene.scene1:
   entity_picture: "/local/images/remote/scene1.png"
 scene.scene2:

@@ -1,15 +1,23 @@
 home:
   name: Home
   icon: mdi:home-account
-  initial: off
 
 sleeping:
   name: Sleeping
   icon: mdi:sleep
-  initial: off
 
 night_mode:
   name: Night Mode
   icon: mdi:weather-night
-  initial: off
 
+alarm_clock:
+  name: Alarm
+  icon: mdi:alarm
+
+alarm_coffee:
+  name: Coffee
+  icon: mdi:coffee
+
+alarm_heater:
+  name: Heater
+  icon: mdi:heater-disabled

@@ -14,7 +14,10 @@ filter:
     - sensor.mi_flora_light_intensity
     - sensor.mi_flora_moisture
     - sensor.mi_flora_temperature
+    - sensor.thermostat_temperature
     - light.coffee_led
+    - light.heater_led
+    - light.sonoff_led
     - light.blinkt_0
     - light.blinkt_1
     - light.blinkt_2
