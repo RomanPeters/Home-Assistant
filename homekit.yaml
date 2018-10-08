@@ -3,9 +3,14 @@ filter:
     - script
     - automation
     - camera
+    - input_boolean
+    - remote
+    - cover
+    - binary_sensor
+    - alarm_control_panel
   exclude_entities:
-    - binary_sensor.coffee_button
     - device_tracker.iphone
+    - sensor.room_temperature
     - sensor.iphone_5c_battery_level
     - sensor.br_humidity
     - sensor.br_temperature
@@ -26,6 +31,31 @@ filter:
     - light.blinkt_5
     - light.blinkt_6
     - light.blinkt_7
+    - switch.air_freshener
+    - switch.camera
+    - switch.camera_blue_led
+    - switch.camera_yellow_led
+    - switch.camera_h264
+    - switch.camera_ir_filter
+    - switch.camera_ir_led
+    - switch.camera_mjpeg
+    - switch.camera_motion_detection
+    - switch.camera_motion_tracking
+    - switch.camera_night_mode
+    - switch.camera_night_mode_auto
+    - switch.entone
+    - switch.zigbee2mqtt_pairing
+    - switch.heater
+    - switch.socket_1
+    - switch.socket_behind_tv
+    - light.white_lights
+    - light.all_ambient_lights
+    - light.ambient_lights
+    - light.led_strips
+    - light.tv_light
+  include_entities:
+    - binary_sensor.door
+    - binary_sensor.motion_sensor
 
 entity_config:
   switch.socket:
