@@ -2,15 +2,15 @@ type: vertical-stack
 cards:
   - type: history-graph
     entities:
-     - sensor.inside_temperature
-     - sensor.outside_temperature
-     - sensor.thermostat_temperature
+     - sensor.stairway_temperature
+     - sensor.balcony_temperature
+     - sensor.room_temperature
   - type: history-graph
     entities:
-     - sensor.inside_humidity
-     - sensor.outside_humidity
-     - sensor.thermostat_humidity
+     - sensor.stairway_humidity
+     - sensor.balcony_humidity
+     - sensor.room_humidity
   - type: history-graph
     entities:
-     - sensor.inside_pressure
-     - sensor.outside_pressure
+     - sensor.balcony_pressure
+     - sensor.stairway_pressure

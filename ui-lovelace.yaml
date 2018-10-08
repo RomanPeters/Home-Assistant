@@ -4,6 +4,8 @@ resources:
     type: js
   - url: /local/custom-lovelace/thermostat-card/thermostat-card.js?v=1
     type: module
+  - url: /local/mini-media-player/mini-media-player.js
+    type: js
 views:
   - title: Dashboard
     tab_icon: mdi:home
@@ -22,11 +24,6 @@ views:
       - !include 'lovelace/graphs.yaml'
       - !include 'lovelace/plant.yaml'
 
-  - title: Testing
-    tab_icon: mdi:flask
-    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
-    cards: !include 'lovelace/views/testing.yaml'
-
   - title: Room
     tab_icon: mdi:home
     background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
@@ -34,12 +31,12 @@ views:
     cards:
       - !include 'lovelace/topdown_horizontal.yaml'
 
-  - title: Camera
-    tab_icon: mdi:eye
-    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
-    panel: true
-    cards:
-      - !include 'lovelace/camera_extended.yaml'
+#  - title: Camera
+#    tab_icon: mdi:eye
+#    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
+#    panel: true
+#    cards:
+#      - !include 'lovelace/camera_extended.yaml'
 
   - title: Remote
     tab_icon: mdi:remote
@@ -48,6 +45,11 @@ views:
     panel: true
     cards:
       - !include 'lovelace/remote.yaml'
+
+  - title: Testing
+    tab_icon: mdi:flask
+    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
+    cards: !include 'lovelace/views/testing.yaml'
 
   - title: Settings
     tab_icon: mdi:cog

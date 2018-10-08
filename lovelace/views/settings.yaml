@@ -4,7 +4,7 @@
   entities:
     - input_select.alarm_clock_light
     - input_select.alarm_clock_sound
-    - input_boolean.alarm_coffee
+    - input_boolean.alarm_clock_coffee
 
 - type: entities
   title: Switches
