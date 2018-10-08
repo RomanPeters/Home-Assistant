@@ -30,9 +30,15 @@
     - condition: state
       entity_id: input_select.tv_input
       state: 'Apple TV'
+    - condition: state
+      entity_id: media_player.apple_tv
+      state: 'off'
   action:
-    - service: remote.turn_on
-      entity_id: remote.apple_tv
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - 'top_menu'
 
 # ENTONE OFF
 - id: entone_off
@@ -55,27 +61,6 @@
     - service: switch.turn_off
       entity_id: switch.entone
 
-# APPLE TV OFF
-- id: apple_tv_off
-  alias: Turn Apple TV off when using other input
-  trigger:
-    - platform: state
-      entity_id: switch.television
-      to: 'off'
-    - platform: state
-      entity_id: input_select.tv_input
-      to: 'Television'
-      for:
-        minutes: 1
-    - platform: state
-      entity_id: input_select.tv_input
-      to: 'HDMI'
-      for:
-        minutes: 1
-  action:
-    - service: remote.turn_off
-      entity_id: remote.apple_tv
-
 # TV OFF
 - id: tv_off_on_inactive_apple_tv
   alias: Turn TV off when not in use
@@ -84,7 +69,7 @@
       entity_id: media_player.apple_tv
       to: 'idle'
       for:
-        minutes: 5
+        minutes: 10
   condition:
     - condition: state
       entity_id: input_select.tv_input
