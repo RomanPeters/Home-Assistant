@@ -1,5 +1,3 @@
-
-
 - id: alarm_clock_on
   alias: Set alarm clock
   trigger:
@@ -82,23 +80,71 @@
         entity_id: timer.pre_alarm_clock
   action:
     - service: climate.set_operation_mode
-      entity_id: climate.thermostat
-      operation_mode: "Heat"
-    - service: python_script.alarm_clock_coffee
-    - service: python_script.alarm_clock_light
+      data:
+        entity_id: climate.thermostat
+        operation_mode: "Heat"
     
-
-- id: trigger_alarm_clock
-  alias: Trigger alarm clock
+- id: trigger_alarm_clock_coffee
+  alias: Trigger Alarm Clock Coffee
   trigger:
     - platform: event
       event_type: timer.finished
-      event_data: 
-        entity_id:  timer.alarm_clock
+      event_data:
+        entity_id: timer.pre_alarm_clock
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_clock_coffee
+      state: 'on'
   action:
-    - service: python_script.alarm_clock_sound
+    - service: script.turn_on
+      entity_id: script.alarm_clock_coffee
     - service: input_boolean.turn_off
-      entity_id: input_boolean.sleeping
+      entity_id: input_boolean.alarm_clock_coffee
+
+
+- id: trigger_alarm_clock_light
+  alias: Trigger Alarm Clock Coffee
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.pre_alarm_clock
+  condition:
+    - condition: template
+      value_template: "{{ not is_state('input_select.alarm_clock_light', 'None') }}"
+  action:
+    - service: script.turn_on
+      entity_id: script.alarm_clock_light
+
+- id: trigger_alarm_clock_television
+  alias: Trigger Alarm Clock Television
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.pre_alarm_clock
+  condition:
+    - condition: state
+      entity_id: input_select.alarm_clock_sound
+      state: 'Television'
+  action:
+    - service: script.turn_on
+      entity_id: script.alarm_clock_television 
+
+- id: trigger_alarm_clock_sound
+  alias: Trigger Alarm Clock Sound
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.alarm_clock
+  condition:
+    - condition: template
+      value_template: "{{ not is_state('input_select.alarm_clock_sound', 'None') and not is_state('input_select.alarm_clock_sound', 'Television') }}"
+  action:
+    - service: script.turn_on
+      entity_id: script.alarm_clock_sound
+
 
 # script.snooze_alarm_clock
 # python_script.stop_alarm_clock     

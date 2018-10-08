@@ -5,6 +5,6 @@
   armed_home:
     pending_time: 0
   armed_away:
-    pending_time: 60
+    pending_time: 0
   armed_night:
     pending_time: 0

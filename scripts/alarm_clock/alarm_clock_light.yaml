@@ -1,0 +1,799 @@
+alarm_clock_light:
+  alias: Alarm Clock Television
+  sequence:  # if only there were loops in HA scripts...
+    - alias: Light 1%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 1
+        colorname: white
+        
+    - alias: Light 2%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 2
+
+
+    - alias: Light 3%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 3
+
+
+    - alias: Light 4%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 4
+
+
+    - alias: Light 5%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 5
+
+
+    - alias: Light 6%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 6
+
+
+    - alias: Light 7%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 7
+
+
+    - alias: Light 8%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 8
+
+
+    - alias: Light 9%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 9
+
+
+    - alias: Light 10%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 10
+
+
+    - alias: Light 11%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 11
+
+
+    - alias: Light 12%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 12
+
+
+    - alias: Light 13%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 13
+
+
+    - alias: Light 14%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 14
+
+
+    - alias: Light 15%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 15
+
+
+    - alias: Light 16%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 16
+
+
+    - alias: Light 17%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 17
+
+
+    - alias: Light 18%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 18
+
+
+    - alias: Light 19%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 19
+
+
+    - alias: Light 20%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 20
+
+
+    - alias: Light 21%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 21
+
+
+    - alias: Light 22%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 22
+
+
+    - alias: Light 23%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 23
+
+
+    - alias: Light 24%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 24
+
+
+    - alias: Light 25%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 25
+
+
+    - alias: Light 26%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 26
+
+
+    - alias: Light 27%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 27
+
+
+    - alias: Light 28%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 28
+
+
+    - alias: Light 29%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 29
+
+
+    - alias: Light 30%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 30
+
+
+    - alias: Light 31%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 31
+
+
+    - alias: Light 32%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 32
+
+
+    - alias: Light 33%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 33
+
+
+    - alias: Light 34%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 34
+
+
+    - alias: Light 35%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 35
+
+
+    - alias: Light 36%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 36
+
+
+    - alias: Light 37%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 37
+
+    - alias: Light 38%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 38
+
+
+    - alias: Light 39%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 39
+
+
+    - alias: Light 40%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 40
+
+
+    - alias: Light 41%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 41
+
+
+    - alias: Light 42%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 42
+
+
+    - alias: Light 43%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 43
+
+
+    - alias: Light 44%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 44
+
+
+    - alias: Light 45%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 45
+
+
+    - alias: Light 46%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 46
+
+
+    - alias: Light 47%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 47
+
+
+    - alias: Light 48%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 48
+
+
+    - alias: Light 49%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 49
+
+
+    - alias: Light 50%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 50
+
+
+    - alias: Light 51%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 51
+
+
+    - alias: Light 52%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 52
+
+
+    - alias: Light 53%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 53
+
+
+    - alias: Light 54%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 54
+
+
+    - alias: Light 55%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 55
+
+
+    - alias: Light 56%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 56
+
+
+    - alias: Light 57%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 57
+
+
+    - alias: Light 58%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 58
+
+
+    - alias: Light 59%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 59
+
+
+    - alias: Light 60%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 60
+
+
+    - alias: Light 61%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 61
+
+
+    - alias: Light 62%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 62
+
+
+    - alias: Light 63%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 63
+
+
+    - alias: Light 64%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 64
+
+
+    - alias: Light 65%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 65
+
+
+    - alias: Light 66%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 66
+
+
+    - alias: Light 67%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 67
+
+
+    - alias: Light 68%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 68
+
+
+    - alias: Light 69%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 69
+
+
+    - alias: Light 70%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 70
+
+
+    - alias: Light 71%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 71
+
+
+    - alias: Light 72%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 72
+
+
+    - alias: Light 73%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 73
+
+
+    - alias: Light 74%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 74
+
+
+    - alias: Light 75%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 75
+
+
+    - alias: Light 76%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 76
+
+
+    - alias: Light 77%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 77
+
+
+    - alias: Light 78%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 78
+
+
+    - alias: Light 79%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 79
+
+
+    - alias: Light 80%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 80
+
+
+    - alias: Light 81%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 81
+
+
+    - alias: Light 82%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 82
+
+
+    - alias: Light 83%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 83
+
+
+    - alias: Light 84%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 84
+
+
+    - alias: Light 85%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 85
+
+
+    - alias: Light 86%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 86
+
+
+    - alias: Light 87%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 87
+
+
+    - alias: Light 88%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 88
+
+
+    - alias: Light 89%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 89
+
+
+    - alias: Light 90%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 90
+
+
+    - alias: Light 91%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 91
+
+
+    - alias: Light 92%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 92
+
+
+    - alias: Light 93%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 93
+
+
+    - alias: Light 94%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 94
+
+
+    - alias: Light 95%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 95
+
+
+    - alias: Light 96%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 96
+
+
+    - alias: Light 97%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 97
+
+
+    - alias: Light 98%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 98
+
+
+    - alias: Light 99%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 99
+
+    - alias: Light 100%
+      service: light.turn_on
+      data_template:
+        entity_id: "light.{{ states('input_select.alarm_clock_light').replace(' ', '_').replace(' & ', '_') | lower }}"
+        transition: 18
+        brightness: 100
