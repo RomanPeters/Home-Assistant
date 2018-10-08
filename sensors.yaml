@@ -93,7 +93,7 @@
     - "duration"
 
 - platform: "mqtt"
-  name: Stairway temperature
+  name: Hallway Temperature
   state_topic: "zigbee2mqtt/sensor_inside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
@@ -104,7 +104,7 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Stairway humidity
+  name: Hallway Humidity
   state_topic: "zigbee2mqtt/sensor_inside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
@@ -115,7 +115,7 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Stairway Pressure
+  name: Hallway Pressure
   state_topic: "zigbee2mqtt/sensor_inside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "Pa"

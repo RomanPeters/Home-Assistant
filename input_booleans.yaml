@@ -14,10 +14,7 @@ alarm_clock:
   name: Alarm
   icon: mdi:alarm
 
-alarm_coffee:
+alarm_clock_coffee:
   name: Coffee
   icon: mdi:coffee
 
-alarm_heater:
-  name: Heater
-  icon: mdi:heater-disabled

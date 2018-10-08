@@ -1,12 +1,14 @@
 input_apple_tv:
-  alias: Animal Planet
+  alias: Switch input to Apple TV
   sequence:
-    - alias: Send IR packet
-      service: switch.broadlink_send_packet_10_10_10_203
+    - alias: Move input
+      service: script.turn_on
       data_template:
-        packet: >
-          - "JgBwAE0VJhUSFSYVERUSFSYVJhUmFREWERUSFREAAz5MFSYVEhUmFREWERUmFSYVJhUSFREVEhURAAM9TRUmFREWJRYRFREWJhUmFSYVERYRFREWEQADPU0VJhURFSYWERURFiUWJRYmFREVEhURFRIADQUAAAAAAAAAAA"
-          - "JgCMAEwWERUSFSYVERYlFiUWJRYlFhEVEhURFRIAAz1OFBEVEhUmFREWJRYlFiYVJhURFRIVERYTAAM7ThQTExEWJRYTEyYVJhUoEyYVFBMTFBMTEwADPEwVEhURFiUWERUmFSYVJhUmFRIVERUSFREAAz5MFRIVERUmFRIVJhUmFSYVJhUSFREVEhURAA0FAAAAAAAAAAAAAAAA"
-          - "JgBwAE0VJhUSFSYVERUSFSYVJhUmFREWERUSFREAAz5MFSYVEhUmFREWERUmFSYVJhUSFREVEhURAAM9TRUmFREWJRYRFREWJhUmFSYVERYRFREWEQADPU0VJhURFSYWERURFiUWJRYmFREVEhURFRIADQUAAAAAAAAAAA"
-
-
+        entity_id: >
+          {% if is_state('input_select.tv_input', 'Television') %}
+            script.input_down
+          {% elif is_state('input_select.tv_input', 'HDMI') %}
+            script.input_up
+          {% else %}
+            script.nothing
+          {% endif %}
