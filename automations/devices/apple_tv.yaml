@@ -1,0 +1,11 @@
+# APPLE TV AIRPLAY AUDIO
+- id: apple_tv_airplay_audio
+  alias: Switch to AirPlay audio output on startup
+  trigger:
+    - platform: state
+      entity_id: media_player.apple_tv
+      from: 'off'
+      to: 'idle'
+  action:
+    - service: script.turn_on
+      entity_id: script.apple_tv_airplay

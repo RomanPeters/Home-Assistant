@@ -92,8 +92,9 @@
     - service: switch.turn_on
       entity_id: switch.air_purifier
     - service: climate.set_operation_mode
-      entity_id: climate.thermostat
-      operation_mode: "Off"
+      data:
+        entity_id: climate.thermostat
+        operation_mode: "Off"
     - service: notify.ios_iphone
       data:
         message: "Good bye!"
@@ -110,8 +111,9 @@
     - service: switch.turn_off
       entity_id: switch.air_purifier
     - service: climate.set_operation_mode
-      entity_id: climate.thermostat
-      operation_mode: "Heat"
+      data:
+        entity_id: climate.thermostat
+        operation_mode: "Heat"
 
 
 # ARRIVING,DARK, NM OFF

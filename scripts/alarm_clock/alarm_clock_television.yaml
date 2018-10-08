@@ -1,0 +1,12 @@
+alarm_clock_television:
+  alias: Alarm Clock Television
+  sequence:
+    - delay:
+        minutes: 28
+        seconds: 40
+
+    - alias: Turn on Television
+      service: switch.turn_on
+      entity_id: switch.television
+
+    # TODO volume up

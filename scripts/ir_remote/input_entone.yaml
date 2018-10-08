@@ -1,0 +1,16 @@
+input_entone:
+  alias: Switch input to Entone
+  sequence:
+    - alias: Move input
+      service: script.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state('input_select.tv_input', 'Apple TV') %}
+            script.input_up
+          {% elif is_state('input_select.tv_input', 'HDMI') %}
+            script.input_up2
+          {% else %}
+            script.nothing
+          {% endif %}
+
+

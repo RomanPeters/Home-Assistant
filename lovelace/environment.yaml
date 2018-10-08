@@ -1,16 +1,16 @@
 type: vertical-stack
 cards:
   - type: glance
-    title: Outdoors
+    title: Balcony
     entities:
-      - sensor.outside_temperature
-      - sensor.outside_humidity
-      - sensor.outside_pressure
+      - sensor.balcony_temperature
+      - sensor.balcony_humidity
+      - sensor.balcony_pressure
       - sensor.br_condition
+
   - type: glance
-    title: Indoors
+    title: Hallway
     entities:
-      - sensor.inside_temperature
-      - sensor.inside_humidity
-      - sensor.inside_pressure
-      - sensor.illuminance
+      - sensor.hallway_temperature
+      - sensor.hallway_humidity
+      - sensor.hallway_pressure

@@ -1,14 +1,16 @@
-input_apple_tv:
-  alias: Switch input to Apple TV
+input_hdmi:
+  alias: Switch input to HDMI
   sequence:
     - alias: Move input
       service: script.turn_on
       data_template:
         entity_id: >
           {% if is_state('input_select.tv_input', 'Television') %}
+            script.input_down2
+          {% elif is_state('input_select.tv_input', 'Apple TV') %}
             script.input_down
-          {% elif is_state('input_select.tv_input', 'HDMI') %}
-            script.input_up
           {% else %}
             script.nothing
           {% endif %}
+
+

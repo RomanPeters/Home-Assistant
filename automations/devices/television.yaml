@@ -1,0 +1,29 @@
+# INPUT APPLE TV
+- id: input_to_apple_tv
+  alias: Switch to Apple TV
+  trigger:
+    - platform: state
+      entity_id: media_player.apple_tv
+      to: 'playing'
+  condition:
+    - condition: template
+      value_template: "{{ states.media_player.apple_tv.attributes.media_duration | int >= 30}}"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.television
+    - service: script.turn_on
+      entity_id: script.input_apple_tv
+
+# INPUT ENTONE
+- id: input_to_entone
+  alias: Switch to Entone input
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.entone
+      to: 'on'
+  condition:
+    - condition: template
+      value_template: "{{ not is_state('apple_tv', 'playing') }}"
+  action:
+    - service: script.turn_on
+      entity_id: script.input_entone

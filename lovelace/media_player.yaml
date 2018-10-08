@@ -1,2 +1,2 @@
-type: media-control
+type: custom:mini-media-player
 entity: media_player.apple_tv
