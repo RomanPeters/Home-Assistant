@@ -1,0 +1,5 @@
+type: sensor
+entity: sensor.room_temperature
+name: Temperature
+graph: line
+hours_to_show: 1
