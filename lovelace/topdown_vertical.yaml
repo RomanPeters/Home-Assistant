@@ -140,7 +140,7 @@ elements:
       left: 88%
 
   - type: state-label
-    entity: sensor.balcony_temperature
+    entity: sensor.br_temperature
     style:
       color: white
       text-shadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black"

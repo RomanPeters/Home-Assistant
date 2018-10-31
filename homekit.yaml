@@ -20,6 +20,8 @@ filter:
     - sensor.mi_flora_moisture
     - sensor.mi_flora_temperature
     - sensor.thermostat_temperature
+    - sensor.hallway_temperature
+    - sensor.balcony_temperature
     - light.coffee_led
     - light.heater_led
     - light.sonoff_led
@@ -53,9 +55,11 @@ filter:
     - light.ambient_lights
     - light.led_strips
     - light.tv_light
+
   include_entities:
     - binary_sensor.door
     - binary_sensor.motion_sensor
+    - input_boolean.home
 
 entity_config:
   switch.socket:

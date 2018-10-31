@@ -1,4 +1,5 @@
-type: custom:thermostat-card
+#type: custom:thermostat-card
+type: thermostat
 entity: climate.thermostat
 
 

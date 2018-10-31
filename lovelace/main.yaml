@@ -1,0 +1,58 @@
+name: Home
+resources:
+  - url: /local/custom-lovelace/gauge-card/gauge-card.js?v=1
+    type: js
+  - url: /local/custom-lovelace/thermostat-card/thermostat-card.js?v=1
+    type: module
+  - url: /local/mini-media-player/mini-media-player.js
+    type: js
+views:
+  - title: Dashboard
+    tab_icon: mdi:home
+    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
+    cards:
+      - !include 'lovelace/topdown_vertical.yaml'
+      - !include 'lovelace/lights.yaml'
+      - !include 'lovelace/media_player.yaml'
+      - !include 'lovelace/remote_mini.yaml'
+#      - !include 'lovelace/temperature.yaml'
+      - !include 'lovelace/thermostat.yaml'
+#      - !include 'lovelace/appliances.yaml'
+#      - !include 'lovelace/coffee_maker.yaml'
+#      - !include 'lovelace/environment.yaml'
+#      - !include 'lovelace/alarm_clock.yaml'
+      - !include 'lovelace/activity.yaml'
+#      - !include 'lovelace/graphs.yaml'
+      - !include 'lovelace/plant.yaml'
+
+  - title: Room
+    tab_icon: mdi:home
+    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
+    panel: true
+    cards:
+      - !include 'lovelace/topdown_horizontal.yaml'
+
+#  - title: Camera
+#    tab_icon: mdi:eye
+#    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
+#    panel: true
+#    cards:
+#      - !include 'lovelace/camera_extended.yaml'
+
+  - title: Remote
+    tab_icon: mdi:remote
+    theme: remote
+    background: center / cover no-repeat url("/local/images/remote_bg_horizontal.png") fixed
+    panel: true
+    cards:
+      - !include 'lovelace/remote.yaml'
+
+  - title: Testing
+    tab_icon: mdi:flask
+    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
+    cards: !include 'lovelace/views/testing.yaml'
+
+  - title: Settings
+    tab_icon: mdi:cog
+    background: center / cover no-repeat url("/local/images/background_blur.jpg") fixed
+    cards: !include 'lovelace/views/settings.yaml'
