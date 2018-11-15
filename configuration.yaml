@@ -89,4 +89,4 @@ climate: !include climates.yaml
 timer: !include timers.yaml
 input_text: !include input_texts.yaml
 input_number: !include input_numbers.yaml
-
+device_tracker: !include device_trackers.yaml
