@@ -48,9 +48,9 @@
     - None
 #    - Random
     - Rainbow Effect
-  state_topic: "nodemcu_lolin/light/led_lights/state"
-  command_topic: "nodemcu_lolin/light/led_lights/command"
-  availability_topic: "nodemcu_lolin/status"
+  state_topic: "d1_mini_mm/light/led_lights/state"
+  command_topic: "d1_mini_mm/light/led_lights/command"
+  availability_topic: "d1_mini_mm/status"
 
 - platform: mqtt_json
   name: Coffee LED

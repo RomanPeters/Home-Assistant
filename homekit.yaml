@@ -8,10 +8,9 @@ filter:
     - cover
     - binary_sensor
     - alarm_control_panel
+    - device_tracker
   exclude_entities:
-    - device_tracker.iphone
     - sensor.room_temperature
-    - sensor.iphone_5c_battery_level
     - sensor.br_humidity
     - sensor.br_temperature
     - sensor.mi_flora_battery
@@ -60,6 +59,7 @@ filter:
     - binary_sensor.door
     - binary_sensor.motion_sensor
     - input_boolean.home
+    - device_tracker.nadine
 
 entity_config:
   switch.socket:
