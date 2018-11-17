@@ -35,6 +35,7 @@ config:
 hassio:
 history:
 logbook:
+map:
 python_script:
 sun:
 ios:

@@ -1,3 +1,17 @@
 - platform: tile
   username: !secret tile_username
   password: !secret tile_password
+  show_inactive: true
+
+- platform: bluetooth_le_tracker
+
+- platform: ping
+  hosts:
+    macbookpro: 10.10.10.1
+    iphone8: 10.10.10.2
+    nadine: 10.10.10.9
+
+- platform: icloud
+  username: icloud_username
+  password: icloud_password
+  account_name: Roman
