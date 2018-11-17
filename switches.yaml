@@ -5,7 +5,7 @@
   friendly_name: Power Strip
   slots:
      slot_1: Entone
-     slot_2: Socket behind TV  # For future use
+     slot_2: Air Purifier
      slot_3: Television
      slot_4: Speakers
 
@@ -32,7 +32,7 @@
       command_on: "sgsyABIGEQYGEREGEgYGEQcRBhERBgYRBxEGEQcREgYSBgcREgYGrBEGBxEGEQYRBxESBgcRAAAAAAAA"
       command_off: "sgoyABEGBhEGEQYREQYGEQYRBhEGEQcREQYGERIGBqwRBgYRBhEGEQYREQYGERIGEQYGEREGAAAAAAAA"
     air_purifier:  # socket 5
-      friendly_name: "Air Purifier"
+      friendly_name: "Socket 5"
       command_on: "sg4yABIGBhEGEQYRBhIRBgYREQYRBgYREQYRBgYRBhIGEREGBhEGEQYRBhERBgYREQYRBgasAAAAAAAA"
       command_off: "shEyABIGBhEGEQYRBhERBgYREQYRBgYREQYRBgYRBhEHEREGBhEGEQYRBxEHEQYREQYRBgesAAAAAAAA"
 
@@ -57,12 +57,12 @@
   command_topic: "sonoff_th10/switch/heater/command"
   availability_topic: "sonoff_th10/status"
 
-- platform: mqtt
-  name: Air Freshener
-  icon: "mdi:wind"
-  state_topic: "nodemcu_amica/switch/air_freshener/state"
-  command_topic: "nodemcu_amica/switch/air_freshener/command"
-  availability_topic: "nodemcu_amica/status"
+#- platform: mqtt
+#  name: Air Freshener
+#  icon: "mdi:wind"
+#  state_topic: "nodemcu_amica/switch/air_freshener/state"
+#  command_topic: "nodemcu_amica/switch/air_freshener/command"
+#  availability_topic: "nodemcu_amica/status"
 
 - platform: mqtt
   name: Camera H264

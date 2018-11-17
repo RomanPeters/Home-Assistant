@@ -1,9 +1,11 @@
 .homekit.state
 .ios.conf
+.tileromanpetersnl.tile.conf 
 .ssh/
 .storage/
 esphomeyaml/
 .uuid
+appdaemon/appdaemon.yaml
 appdaemon/compiled
 appdaemon/apps/__pycache__/
 custom_components/__pycache__/
