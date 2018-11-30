@@ -9,6 +9,7 @@ appdaemon/appdaemon.yaml
 appdaemon/compiled
 appdaemon/apps/__pycache__/
 custom_components/__pycache__/
+groups/persons.yaml
 entity_registry.yaml
 fullchain.pem
 home-assistant.log
@@ -19,4 +20,4 @@ secrets.yaml
 tts/
 deps/
 .DS_Store
-
+www/

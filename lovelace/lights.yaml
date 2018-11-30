@@ -1,8 +1,0 @@
-type: entities
-title: Lights
-show_header_toggle: false
-entities:
-  - light.standing_lamp
-  - light.ambient_lights
-  - light.balcony_lights
-  - input_number.light_effect_speed

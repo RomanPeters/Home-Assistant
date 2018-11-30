@@ -1,141 +1,35 @@
-# DOOR
-#- id: door_opens
-#  alias: Set home
-#  trigger:
-#    platform: state
-#    entity_id: binary_sensor.door
-#    to: 'on'
-#  action:
-#    - service: timer.cancel
-#      entity_id: timer.leaving
-#    - service: input_boolean.turn_on
-#      entity_id: input_boolean.home
-
-
-# notification
-- id: presence_change_home
-  alias: Presence change home
-  trigger: 
-    - platform: state
-      entity_id: input_boolean.home
-      from: 'off'
-      to: 'on'
-  action:
-    - service: notify.ios_iphone
-      data:
-        message: "Set to home"
-
-#- id: door_closes
-#  alias: Check for activity
-#  trigger:
-#    platform: state
-#    entity_id: binary_sensor.door
-#    to: 'off'
-#    for:
-#      seconds: 10
-#  action:
-#    - service: timer.start
-#      entity_id: timer.leaving
-
-#- id: timer_leaving_done
-#  alias: Timer Leaving done
-#  trigger:
-#    platform: event
-#    event_type: timer.finished
-#    event_data: 
-#      entity_id: timer.leaving
-#  action:
-#    - service: input_boolean.turn_off
-#      entity_id: input_boolean.home
-
-# CANCEL LEAVING
-#- id: not_leaving_motion
-#  alias: Motion detected
-#  trigger:
-#    - platform: state
-#      entity_id: binary_sensor.motion_sensor
-#      to: 'on'
-#  action:
-#    - service: timer.cancel
-#      entity_id: timer.leaving
-
-
-#- id: someone_home
-#  alias: Someone is home
-#  trigger:
-#    - platform: state
-#      entity_id: sensor.wall_switch
-#      to: 'right'
-#    - platform: state
-#      entity_id: sensor.wall_switch
-#      to: 'left'
-#    - platform: state
-#      entity_id: sensor.button
-#      to: 'single'
-#  action:
-#    - service: timer.cancel
-#      entity_id: timer.leaving
-#    - service: input_boolean.turn_on
-#      entity_id: input_boolean.home
-
-# LEAVING
-- id: leaving_home
-  alias: Leaving home
+- id: door_opens
+  alias: Set home
   trigger:
     - platform: state
-      entity_id: input_boolean.home
-      to: 'off'
+      entity_id: binary_sensor.door
+      to: 'on'
   action:
-    - service: notify.ios_iphone
+    - service: input_select.select_option
       data:
-        message: "Set to away" 
-#    - service: light.turn_off
-#      entity_id: group.all_lights
-#    - service: switch.turn_on
-#      entity_id: switch.air_purifier
-#    - service: climate.set_operation_mode
-#      data:
-#        entity_id: climate.thermostat
-#        operation_mode: "Off"
+        entity_id: input_select.home_status
+        option: Home
 
+- id: device_tracker_roman_home
+  alias: Roman is home
+  trigger:
+    - platform: state
+      entity_id: group.roman
+      to: Home
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_status
+        option: Home
 
-# ARRIVING, GENERAL  
-#- id: arriving_home           
-#  alias: Arriving home
-#  trigger:
-#    platform: state
-#    entity_id: input_boolean.home
-#    to: 'on'
-#  action:
-#    - service: switch.turn_off
-#      entity_id: switch.air_purifier
-#    - service: climate.set_operation_mode
-#      data:
-#        entity_id: climate.thermostat
-#        operation_mode: "Heat"
-
-
-# ARRIVING,DARK, NM OFF
-#- id: arriving_home_night
-#  alias: Arriving home night
-#  trigger:
-#    platform: state
-#    entity_id: input_boolean.home
-#    to: 'on'
-#  condition:
-#    condition: and
-#    conditions:
-#      - condition: or  # 'when dark' condition: either after sunset or before sunrise
-#        conditions:
-#          - condition: sun
-#            after: sunset
-#            after_offset: "-01:00:00"
-#          - condition: sun
-#            before: sunrise
-#      - condition: state
-#        entity_id: input_boolean.night_mode
-#        state: 'off'
-#  action:
-#    - service: light.turn_on
-#      entity_id: light.standing_lamp
-
+- id: device_tracker_roman_away
+  alias: Roman is away
+  trigger: 
+    - platform: state
+      entity_id: group.roman
+      to: Away
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_status
+        option: Away

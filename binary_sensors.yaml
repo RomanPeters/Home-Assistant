@@ -61,13 +61,20 @@
     - "voltage"
 
 - platform: "mqtt"
+  name: Heater button
+  state_topic: "sonoff2/binary_sensor/heater_button/state"
+  availability_topic: "sonoff2/status"
+  icon: "mdi:button"
+
+- platform: "mqtt"
   name: Coffee button
   state_topic: "sonoff/binary_sensor/coffee_button/state"
   availability_topic: "sonoff/status"
   icon: "mdi:coffee"
 
-- platform: "mqtt"
-  name: Camera motion sensor
-  icon: mdi:run-fast
-  state_topic: xiaomi/dafang/motion
-  device_class: motion
+
+#- platform: "mqtt"
+#  name: Camera motion sensor
+#  icon: mdi:run-fast
+#  state_topic: xiaomi/dafang/motion
+#  device_class: motion

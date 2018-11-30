@@ -1,6 +1,0 @@
-type: picture-entity
-entity: switch.coffee_maker
-tap_action: toggle
-image: /local/images/coffee_off.jpg
-state_image:
-  "on": /local/images/coffee_on.jpg

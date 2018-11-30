@@ -1,2 +1,5 @@
+input_select.home_status:
+  icon: mdi:home-outline
+
 input_select.button_single:
   icon: mdi:hockey-puck

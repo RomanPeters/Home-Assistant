@@ -1,4 +1,5 @@
 light.standing_lamp:
+  icon: mdi:floor-lamp
   assumed_state: false
 
 light.led_strip_n:
@@ -10,9 +11,11 @@ light.led_strip_s:
   assumed_state: false
 
 light.ceiling_lamp:
+  icon: mdi:ceiling-light
   assumed_state: false
 
 light.tv_backlight:
+  icon: mdi:blur
   assumed_state: false
 
 light.balcony_lights:
@@ -22,6 +25,7 @@ light.coffee_led:
   icon: mdi:led-off
 
 light.blinkt:
-  friendly_name: Bed LED
+  friendly_name: LED
   icon: mdi:raspberrypi
+
 

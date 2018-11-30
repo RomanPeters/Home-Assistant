@@ -1,0 +1,5 @@
+led_strips:
+  name: Led Strips
+  entities:
+    - light.led_strip_n
+    - light.led_strip_s

@@ -17,40 +17,40 @@
         type: white
         name: Standing Lamp
 
-- platform: mqtt_json
-  name: Blinkt
-  brightness: true
-  rgb: true
-  flash: true
-  effect: true
-  effect_list:
-    - None
-    - Binary Clock
-    - Binary Clock Meld
-    - Candle
-    - Larson
-    - Larson Hue
-    - Pulse
-    - Rainbow
-    - Tetris
-  state_topic: "zero_w/light/state"
-  command_topic: "zero_w/light/command"
-#  availability_topic: "zero_w/status"
+#- platform: mqtt_json
+#  name: Blinkt
+#  brightness: true
+#  rgb: true
+#  flash: true
+#  effect: true
+#  effect_list:
+#    - None
+#    - Binary Clock
+#    - Binary Clock Meld
+#    - Candle
+#    - Larson
+#    - Larson Hue
+#    - Pulse
+#    - Rainbow
+#    - Tetris
+#  state_topic: "zero_w/light/state"
+#  command_topic: "zero_w/light/command"
+##  availability_topic: "zero_w/status"
 
 
-- platform: mqtt_json
-  name: Balcony Lights
-  brightness: true
-  rgb: true
-  flash: true
-  effect: true
-  effect_list:
-    - None
+#- platform: mqtt_json
+#  name: Balcony Lights
+#  brightness: true
+#  rgb: true
+#  flash: true
+#  effect: true
+#  effect_list:
+#    - None
 #    - Random
-    - Rainbow Effect
-  state_topic: "d1_mini_mm/light/led_lights/state"
-  command_topic: "d1_mini_mm/light/led_lights/command"
-  availability_topic: "d1_mini_mm/status"
+#    - Rainbow Effect
+#  state_topic: "d1_mini_mm/light/led_lights/state"
+#  command_topic: "d1_mini_mm/light/led_lights/command"
+#  availability_topic: "d1_mini_mm/status"
 
 - platform: mqtt_json
   name: Coffee LED
@@ -64,9 +64,9 @@
   name: Heater LED
   brightness: true
   flash: true
-  state_topic: "sonoff_th10/light/heater_led/state"
-  command_topic: "sonoff_th10/light/heater_led/command"
-  availability_topic: "sonoff_th10/status"
+  state_topic: "sonoff2/light/heater_led/state"  #"sonoff_th10/light/heater_led/state"
+  command_topic: "sonoff2/light/heater_led/command"  #"sonoff_th10/light/heater_led/command"
+  availability_topic: "sonoff2/status"  #"sonoff_th10/status"
 
 - platform: template
   lights:
@@ -119,6 +119,6 @@
   name: White Lights
   entities:
     - light.standing_lamp
-    - light.spot
-    - light.tv_backlight
-    - light.ceiling_lamp
+#    - light.spot
+#    - light.tv_backlight
+#    - light.ceiling_lamp

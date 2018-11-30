@@ -3,8 +3,8 @@
   alias: Open window
   trigger:
     - platform: state
-      entity_id: input_boolean.home
-      to: 'home'
+      entity_id: input_select.home_status
+      to: Home
     - platform: state
       entity_id: binary_sensor.outside_cooler_than_inside
       to: 'on'
@@ -13,78 +13,41 @@
       entity_id: sensor.indside_temperature
       above: 25
     - condition: state
+      entity_id: input_select.home_status
+      state: Home
+    - condition: state
       entity_id: binary_sensor.outside_cooler_than_inside
       state: 'on'
-#    - condition: state
-#      entity_id: input_boolean.home
-#      state: 'home'
-#    - condition: state
-#      entity_id: input_boolean.sleeping
-#      state: 'off'
   action:
-    - service: notify.ios_iphone
+    - service: notify.notify
       data:
-        message: "Open your window to cool your room"
+        message: "Open your window to cool your room."
 
-# FAN
-- id: turn_on_fan_when_hot
-  alias: Too hot inside
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.inside_temperature
-      above: 27
-      for:
-        minutes: 10
-  condition:
-    - condition: state
-      entity_id: input_boolean.home
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.sleeping
-      state: 'off'
-  action:
-    - service: switch.turn_on
-      entity_id: switch.fan
-    - service: timer.start
-      entity_id: timer.fan_loop
-
-- id: fan_loop_continue
-  alias: Fan loop continue
-  trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data: 
-        entity_id: timer.fan_loop
-  condition:
-    - condition: numeric_state
-      entity_id: sensor.inside_temperature
-      above: 27
-  action:
-    - service: timer.start
-      entity_id: timer.fan_loop
-
-- id: fan_loop_finished
-  alias: Fan loop finished
-  trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data: 
-        entity_id: timer.fan_loop
-  condition:
-    - condition: numeric_state
-      entity_id: sensor.inside_temperature
-      below: 25
-  action:
-    - service: switch.turn_off
-      entity_id: switch.fan
-
-- id: fan_loop_cancelled
-  alias: Fan loop cancelled
+# CLIMATE ON
+- id: home_climate
+  alias: Turn on climate control
   trigger:
     - platform: state
-      entity_id: switch.fan
-      to: 'off'
+      entity_id: input_select.home_status
+      to: Home
   action:
-    - service: timer.cancel
-      entity_id: timer.fan_loop
+    - service: climate.turn_on
+      entity_id: climate.thermostat
+
+
+# CLIMATE OFF
+- id: away_climate
+  alias: Turn off climate control
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Away
+    - platform: state
+      entity_id: binary_sensor.door
+      to: 'on'
+      for:
+        seconds: 60
+  action:
+    - service: climate.turn_off 
+      entity_id: climate.thermostat
 

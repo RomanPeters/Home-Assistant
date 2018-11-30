@@ -8,7 +8,7 @@ switch.entone:
   icon: mdi:television-box
 
 switch.spot:
-  icon: mdi:lightbulb
+  icon: mdi:track-light
   assumed_state: false
 
 switch.camera:

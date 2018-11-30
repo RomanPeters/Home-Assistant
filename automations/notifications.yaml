@@ -1,0 +1,45 @@
+# iPhone Status
+- id: iphone_status
+  alias: iPhone is charging
+  trigger:
+    platform: state
+    entity_id: sensor.iphone_8_battery_state
+  action:
+    service: notify.notify
+    data_template:
+      message: "Your iPhone 8 is {{ states('sensor.iphone_5c_battery_state') | lower }}."
+
+# Home Status
+- id: home_status_changed
+  alias: Home Status changed
+  trigger: 
+    - platform: state
+      entity_id: input_select.home_status
+  action:
+    - service: notify.notify
+      data_template:
+        message: "Home Status set to {{ states(input_select.home_status) }}"
+
+# Thermosat Status
+- id: notification_thermostat_off
+  alias: Send a notification if the thermostat is off
+  trigger:
+    - platform: state
+      entity_id: climate.thermostat
+      to: 'off'
+  action:
+    - service: notify.notify
+      data_template:
+        message: "Climate control turned off."
+
+- id: notification_thermostat_on
+  alias: Send a notification if the thermostat is on
+  trigger:
+    - platform: state
+      entity_id: climate.thermostat
+      from: 'off'
+  action:
+    - service: notify.notify
+      data_template:
+        message: "Climate control turned on."
+

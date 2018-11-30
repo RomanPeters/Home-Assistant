@@ -22,26 +22,26 @@
   stations:
     - 'de Jongweg, Utrecht'
 
-#- platform: template
-#  sensors:
-#    air_quality_status:
-#      friendly_name: Air Quality Status
-#      value_template: >
-#        {% if states('sensor.waqi_de_jongweg_utrecht') | int <= 50 %}
-#          Good
-#        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 100 %}
-#          Moderate
-#        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 150 %}
-#          Unhealthy for Sensitive Groups
-#        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 200 %}
-#          Unhealthy
-#        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 300 %}
-#          Very Unhealthy
-#        {% elif states('sensor.waqi_de_jongweg_utrecht') | int > 300 %}
-#          Hazardous
-#        {% else %}
-#          Unknown
-#        (% endif %}
+- platform: template
+  sensors:
+    air_quality_status:
+      friendly_name: Air Quality Status
+      value_template: >
+        {% if states('sensor.waqi_de_jongweg_utrecht') | int <= 50 %}
+          Good
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 100 %}
+          Moderate
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 150 %}
+          Unhealthy for Sensitive Groups
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 200 %}
+          Unhealthy
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 300 %}
+          Very Unhealthy
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int > 300 %}
+          Hazardous
+        {% else %}
+          Unknown
+        {% endif %}
 
 - platform: template
   sensors:
@@ -93,7 +93,7 @@
     - "duration"
 
 - platform: "mqtt"
-  name: Hallway Temperature
+  name: Xiaomi Temperature
   state_topic: "zigbee2mqtt/sensor_inside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
@@ -104,7 +104,7 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Hallway Humidity
+  name: Xiaomi Humidity
   state_topic: "zigbee2mqtt/sensor_inside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
@@ -115,10 +115,10 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Hallway Pressure
+  name: Xiaomi Pressure
   state_topic: "zigbee2mqtt/sensor_inside"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "Pa"
+  unit_of_measurement: "hPa"
   icon: "mdi:speedometer"
   value_template: "{{ value_json.pressure }}"
   json_attributes: 
@@ -126,7 +126,7 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Balcony Temperature
+  name: Xiaomi Temperature 2
   state_topic: "zigbee2mqtt/sensor_outside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
@@ -137,7 +137,7 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Balcony Humidity
+  name: Xiaomi Humidity 2
   state_topic: "zigbee2mqtt/sensor_outside"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
@@ -148,10 +148,10 @@
     - "voltage"
 
 - platform: "mqtt"
-  name: Balcony Pressure
+  name: Xiaomi Pressure 2
   state_topic: "zigbee2mqtt/sensor_outside"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "Pa"
+  unit_of_measurement: "hPa"
   icon: "mdi:speedometer"
   value_template: "{{ value_json.pressure }}"
   json_attributes: 
@@ -169,37 +169,39 @@
     - "battery"
     - "voltage"
 
-- platform: "mqtt"
-  name: Camera Light Sensor
-  state_topic: xiaomi/dafang/brightness
-  icon: mdi:brightness-5
-  unit_of_measurement: "%"
+#- platform: "mqtt"
+#  name: Camera Light Sensor
+#  state_topic: xiaomi/dafang/brightness
+#  icon: mdi:brightness-5
+#  unit_of_measurement: "%"
 
-- platform: "mqtt"
-  name: Camera
-  state_topic: xiaomi/dafang
-  icon: "mdi:cctv"
-  json_attributes: 
-    - uptime
-    - load average
-    - ssid
-    - bitrate
-    - signal_level 
-    - link_quality
-    - noise_level
+#- platform: "mqtt"
+#  name: Camera
+#  state_topic: xiaomi/dafang
+#  icon: "mdi:cctv"
+#  json_attributes: 
+#    - uptime
+#    - load average
+#    - ssid
+#    - bitrate
+#    - signal_level 
+#    - link_quality
+#    - noise_level
 
-- platform:  "mqtt"
-  name: "Room Temperature"
-  state_topic: "sonoff_th10/sensor/thermostat_temperature/state"
-  availability_topic: "sonoff_th10/status"
-  unit_of_measurement: "°C"
-  expire_after: 675
 
-- platform:  "mqtt"
-  name: "Room Humidity"
-  icon: mdi:water-percent
-  state_topic: "sonoff_th10/sensor/thermostat_humidity/state"
-  availability_topic: "sonoff_th10/status"
-  unit_of_measurement: "%"
-  expire_after: 675
+# my sonoff th 10 broke :/
+#- platform:  "mqtt"
+#  name: "Sonoff Temperature"
+#  state_topic: "sonoff_th10/sensor/thermostat_temperature/state"
+#  availability_topic: "sonoff_th10/status"
+#  unit_of_measurement: "°C"
+#  expire_after: 675
+
+#- platform:  "mqtt"
+#  name: "Sonoff Humidity"
+#  icon: mdi:water-percent
+#  state_topic: "sonoff_th10/sensor/thermostat_humidity/state"
+#  availability_topic: "sonoff_th10/status"
+#  unit_of_measurement: "%"
+#  expire_after: 675
 

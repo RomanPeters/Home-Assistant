@@ -1,0 +1,47 @@
+- id: home_status_to_home_from_away
+  alias: Home Status to Home
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Home
+      from: Away
+  action:
+    - service: switch.turn_off
+      entity_id: switch.air_purifier
+
+- id: home_status_to_away
+  alias: Home Status to Away
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Away
+  action:
+    - service: switch.turn_on
+      entity_id: switch.air_purifier
+
+
+# Link Alarm System for HomeKit
+- id: home_status_to_alarm_system
+  alias: Home Status to Alarm System
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+  action:
+    - service_template: "alarm_control_panel.alarm_arm_{{ states('input_select.home_status') | lower }}"
+      entity_id: alarm_control_panel.home_status
+
+- id: alarm_system_to_home_status 
+  alias: Alarm System to Home Status
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_status
+  condition:
+    - condition: template
+      value_template: "{{ states('alarm_control_panel.home_status') != 'disarmed' }}"
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.home_status
+        option: "{{ states('alarm_control_panel.home_status').split('_')[-1] | title }}"
+
+
