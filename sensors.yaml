@@ -80,7 +80,7 @@
           {{ " " }}watching television.
         {%- elif (is_state("group.roman", "home") or is_state("group.nadine", "home")) and is_state("input_select.home_status", "Night") -%}
           {{ " " }}in bed.
-        {%- else -%}
+        {%- elif is_state("group.roman", "home") or is_state("group.nadine", "home") -%}
            {{ " " }}home.{%- endif -%}
         {%- if is_state("climate.thermostat", "idle") -%}
           {{ " " }}The thermostat is set to {{ states.climate.thermostat.attributes.temperature }} °C.
@@ -97,7 +97,7 @@
         {%- endfor -%}
         {%- if is_state("group.status", "off") and (is_state("climate.thermostat", "heat") or is_state("climate.thermostat", "idle") or is_state("switch.television", "on")) -%}
           {{ " " }}All other devices are off.
-        {%- else -%}
+        {%- elif is_state("group.status", "off") -%}
           {{ " " }}All devices are off.
         {%- endif %}
 ### MQTT
