@@ -39,3 +39,18 @@
       data:
         entity_id: input_select.home_status
         option: Home
+
+# ??:??
+- id: before_sunset_if_home
+  alias: Turn on the evening scene before the sun goes down
+  trigger: 
+    - platform: sun
+      event: sunset
+      offset: "-00:45:00"
+  condition:
+    - condition: state
+      entity_id: input_select.home_statuss
+      state: Home
+  action:
+    - service: scene.turn_on
+      entity_id: scene.evening
