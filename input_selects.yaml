@@ -1,3 +1,10 @@
+home_status:
+  name: Home Status
+  options:
+    - Home
+    - Away
+    - Night
+
 button_single:
   name: Button Single Click
   options:

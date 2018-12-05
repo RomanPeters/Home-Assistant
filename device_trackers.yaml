@@ -1,0 +1,11 @@
+- platform: tile
+  username: !secret tile_username
+  password: !secret tile_password
+  show_inactive: true
+
+- platform: bluetooth_tracker
+
+- platform: ping
+  hosts:
+    macbook_pro: 10.10.10.1
+    nadine: 10.10.10.9

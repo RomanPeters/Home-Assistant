@@ -5,9 +5,9 @@
   friendly_name: Power Strip
   slots:
      slot_1: Entone
-     slot_2: Socket behind TV  # For future use
+     slot_2: Air Purifier
      slot_3: Television
-     slot_4: Speakers
+     slot_4: Socket
 
 - platform: broadlink
   host: "10.10.10.203"
@@ -27,21 +27,14 @@
       friendly_name: "Camera"
       command_on: "sgoyABIGBxEHEQcRBhESBgcREgYSBQcREgUSBgcRBxEHERIFBxEGEQcRBhESBgcRBhESBgesAAAAAAAA"
       command_off: "sgYyAAasEQYHEQYRBxEGEREGBhESBhEGBhERBhIGBhEGEgYSEQYGEQYRBhEGEQYRBhEGEREGAAAAAAAA"
-    fan:  # socket 4
+    socket_4:  # socket 4
       friendly_name: "Fan"
       command_on: "sgsyABIGEQYGEREGEgYGEQcRBhERBgYRBxEGEQcREgYSBgcREgYGrBEGBxEGEQYRBxESBgcRAAAAAAAA"
       command_off: "sgoyABEGBhEGEQYREQYGEQYRBhEGEQcREQYGERIGBqwRBgYRBhEGEQYREQYGERIGEQYGEREGAAAAAAAA"
-    air_purifier:  # socket 5
-      friendly_name: "Air Purifier"
+    socket_5:  # socket 5
+      friendly_name: "Socket 5"
       command_on: "sg4yABIGBhEGEQYRBhIRBgYREQYRBgYREQYRBgYRBhIGEREGBhEGEQYRBhERBgYREQYRBgasAAAAAAAA"
       command_off: "shEyABIGBhEGEQYRBhERBgYREQYRBgYREQYRBgYRBhEHEREGBhEGEQYRBxEHEQYREQYRBgesAAAAAAAA"
-
-# Unused at this time
-#- platform: xiaomi_miio
-#  name: Socket
-#  host: "10.10.10.204"
-#  token: !secret xiaomi_plug_token
-#  model: chuangmi.plug.m1
 
 - platform: mqtt
   name: Coffee Maker
@@ -53,76 +46,9 @@
 - platform: mqtt
   name: Heater
   icon: "mdi:radiator-disabled"
-  state_topic: "sonoff_th10/switch/heater/state"
-  command_topic: "sonoff_th10/switch/heater/command"
-  availability_topic: "sonoff_th10/status"
-
-- platform: mqtt
-  name: Air Freshener
-  icon: "mdi:wind"
-  state_topic: "nodemcu_amica/switch/air_freshener/state"
-  command_topic: "nodemcu_amica/switch/air_freshener/command"
-  availability_topic: "nodemcu_amica/status"
-
-- platform: mqtt
-  name: Camera H264
-  icon": mdi:cctv
-  state_topic: xiaomi/dafang/rtsp_h264_server
-  command_topic: xiaomi/dafang/rtsp_h264_server/set
-
-- platform: mqtt
-  name: Camera MJPEG
-  icon: mdi:cctv
-  state_topic: xiaomi/dafang/rtsp_mjpeg_server
-  command_topic: xiaomi/dafang/rtsp_mjpeg_server/set
-
-- platform: mqtt
-  name: Camera IR Filter
-  icon: mdi:image-filter-black-white
-  state_topic: xiaomi/dafang/ir_cut
-  command_topic: xiaomi/dafang/ir_cut/set
-
-- platform: mqtt
-  name: Camera IR LED
-  icon: mdi:weather-night
-  state_topic: xiaomi/dafang/leds/ir
-  command_topic: xiaomi/dafang/leds/ir/set
-
-- platform: mqtt
-  name: Camera Night Mode
-  icon: mdi:weather-night
-  state_topic: xiaomi/dafang/night_mode
-  command_topic: xiaomi/dafang/night_mode/set
-
-- platform: mqtt
-  name: Camera Night Mode Auto
-  icon: mdi:weather-night
-  state_topic: xiaomi/dafang/night_mode/auto
-  command_topic: xiaomi/dafang/night_mode/auto/set
-
-- platform: mqtt
-  name: Camera Blue LED
-  icon: mdi:led-on
-  state_topic: xiaomi/dafang/leds/blue
-  command_topic: xiaomi/dafang/leds/blue/set
-
-- platform: mqtt
-  name: Camera Yellow LED
-  icon: mdi:led-on
-  state_topic: xiaomi/dafang/leds/yellow
-  command_topic: xiaomi/dafang/leds/yellow/set
-
-- platform: mqtt
-  name: Camera Motion Detection
-  icon: mdi:run
-  state_topic: xiaomi/dafang/motion/detection
-  command_topic: xiaomi/dafang/motion/detection/set
-
-- platform: mqtt
-  name: Camera Motion Tracking
-  icon: mdi:run
-  state_topic: xiaomi/dafang/motion/tracking
-  command_topic: xiaomi/dafang/motion/tracking/set  
+  state_topic: "sonoff2/switch/heater/state"  # "sonoff_th10/switch/heater/state"
+  command_topic: "sonoff2/switch/heater/command"  # "sonoff_th10/switch/heater/command"
+  availability_topic: "sonoff2/status"  # "sonoff_th10/status"
 
 - platform: mqtt
   name: zigbee2mqtt pairing
@@ -130,4 +56,81 @@
   command_topic: zigbee2mqtt/bridge/config/permit_join
   payload_on: "true"
   payload_off: "false"
+
+
+# unused stuff
+
+#- platform: xiaomi_miio
+#  name: Socket
+#  host: "10.10.10.204"
+#  token: !secret xiaomi_plug_token
+#  model: chuangmi.plug.m1
+
+#- platform: mqtt
+#  name: Air Freshener
+#  icon: "mdi:wind"
+#  state_topic: "nodemcu_amica/switch/air_freshener/state"
+#  command_topic: "nodemcu_amica/switch/air_freshener/command"
+#  availability_topic: "nodemcu_amica/status"
+
+#- platform: mqtt
+#  name: Camera H264
+#  icon": mdi:cctv
+#  state_topic: xiaomi/dafang/rtsp_h264_server
+#  command_topic: xiaomi/dafang/rtsp_h264_server/set
+
+#- platform: mqtt
+#  name: Camera MJPEG
+#  icon: mdi:cctv
+#  state_topic: xiaomi/dafang/rtsp_mjpeg_server
+#  command_topic: xiaomi/dafang/rtsp_mjpeg_server/set
+
+#- platform: mqtt
+#  name: Camera IR Filter
+#  icon: mdi:image-filter-black-white
+#  state_topic: xiaomi/dafang/ir_cut
+#  command_topic: xiaomi/dafang/ir_cut/set
+
+#- platform: mqtt
+#  name: Camera IR LED
+#  icon: mdi:weather-night
+#  state_topic: xiaomi/dafang/leds/ir
+#  command_topic: xiaomi/dafang/leds/ir/set
+
+#- platform: mqtt
+#  name: Camera Night Mode
+#  icon: mdi:weather-night
+#  state_topic: xiaomi/dafang/night_mode
+#  command_topic: xiaomi/dafang/night_mode/set
+
+#- platform: mqtt
+#  name: Camera Night Mode Auto
+#  icon: mdi:weather-night
+#  state_topic: xiaomi/dafang/night_mode/auto
+#  command_topic: xiaomi/dafang/night_mode/auto/set
+
+#- platform: mqtt
+#  name: Camera Blue LED
+#  icon: mdi:led-on
+#  state_topic: xiaomi/dafang/leds/blue
+#  command_topic: xiaomi/dafang/leds/blue/set
+
+#- platform: mqtt
+#  name: Camera Yellow LED
+#  icon: mdi:led-on
+#  state_topic: xiaomi/dafang/leds/yellow
+#  command_topic: xiaomi/dafang/leds/yellow/set
+
+#- platform: mqtt
+#  name: Camera Motion Detection
+#  icon: mdi:run
+#  state_topic: xiaomi/dafang/motion/detection
+#  command_topic: xiaomi/dafang/motion/detection/set
+
+#- platform: mqtt
+#  name: Camera Motion Tracking
+#  icon: mdi:run
+#  state_topic: xiaomi/dafang/motion/tracking
+#  command_topic: xiaomi/dafang/motion/tracking/set  
+
 

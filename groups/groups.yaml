@@ -1,0 +1,11 @@
+status:
+  name: Status
+  entities:
+    - light.ceiling_lamp
+    - light.standing_lamp
+    - light.spot
+    - light.led_strips
+    - light.tv_backlight
+    - switch.air_purifier
+    - switch.coffee_maker
+

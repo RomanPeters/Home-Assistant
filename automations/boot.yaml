@@ -3,11 +3,18 @@
   trigger:
     - platform: homeassistant
       event: start
-
   action:
-    - service: notify.ios_iphone
+    - service: notify.notify
       data:
         message: "Home Assistant is online"
     - service: frontend.set_theme
       data:
         name: neutral
+    - service: input_select.select_option
+      data_template:
+        option: >
+          {% if states('group.roman') == 'home' %}
+            Home
+          {% else %}
+            Away
+          {% endif %} }}"

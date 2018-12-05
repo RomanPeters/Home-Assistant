@@ -1,7 +1,7 @@
 - platform: manual
-  name: Alarm System
-  disarmed:
-    trigger_time: 0
+  name: Home Status
+#  disarmed:
+#    trigger_time: 0
   armed_home:
     pending_time: 0
   armed_away:

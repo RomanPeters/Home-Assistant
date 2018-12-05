@@ -1,3 +1,8 @@
+- name: Evening
+  entities:
+    light.standing_lamp:
+      state: on
+      brightness_pct: 60
 
 - name: Scene1
   entities:

@@ -7,11 +7,12 @@ filter:
     - remote
     - cover
     - binary_sensor
-    - alarm_control_panel
+    - device_tracker
+    - scene
   exclude_entities:
-    - device_tracker.iphone
+    - sensor.xiaomi_temperature
+    - sensor.xiaomi_temperature_2
     - sensor.room_temperature
-    - sensor.iphone_5c_battery_level
     - sensor.br_humidity
     - sensor.br_temperature
     - sensor.mi_flora_battery
@@ -48,8 +49,14 @@ filter:
     - switch.entone
     - switch.zigbee2mqtt_pairing
     - switch.heater
+    - switch.socket
     - switch.socket_1
+    - switch.socket_2
+    - switch.socket_3
+    - switch.socket_4
+    - switch.socket_5
     - switch.socket_behind_tv
+    - switch.spot
     - light.white_lights
     - light.all_ambient_lights
     - light.ambient_lights
@@ -59,8 +66,8 @@ filter:
   include_entities:
     - binary_sensor.door
     - binary_sensor.motion_sensor
-    - input_boolean.home
 
 entity_config:
   switch.socket:
     type: outlet
+

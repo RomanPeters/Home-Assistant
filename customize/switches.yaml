@@ -7,10 +7,6 @@ switch.television:
 switch.entone:
   icon: mdi:television-box
 
-switch.spot:
-  icon: mdi:lightbulb
-  assumed_state: false
-
 switch.camera:
   icon: mdi:webcam
   assumed_state: false

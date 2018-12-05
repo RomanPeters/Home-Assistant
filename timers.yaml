@@ -13,7 +13,7 @@ air_freshener:
 air_purifier:
   duration: '01:00:00'
 
-nightlight:
+night_light:
   duration: '00:01:00'
 
 fan_loop:
@@ -21,4 +21,3 @@ fan_loop:
 
 pre_alarm_clock:
 alarm_clock:
-
