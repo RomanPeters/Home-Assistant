@@ -23,25 +23,10 @@
       data:
         message: "Open your window to cool your room."
 
-# CLIMATE ON
-- id: home_climate
-  alias: Turn on climate control
-  trigger:
-    - platform: state
-      entity_id: input_select.home_status
-      to: Home
-  action:
-    - service: climate.turn_on
-      entity_id: climate.thermostat
-
-
 # CLIMATE OFF
-- id: away_climate
+- id: door_open_climate
   alias: Turn off climate control
   trigger:
-    - platform: state
-      entity_id: input_select.home_status
-      to: Away
     - platform: state
       entity_id: binary_sensor.door
       to: 'on'

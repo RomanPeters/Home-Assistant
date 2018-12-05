@@ -56,6 +56,7 @@ filter:
     - switch.socket_4
     - switch.socket_5
     - switch.socket_behind_tv
+    - switch.spot
     - light.white_lights
     - light.all_ambient_lights
     - light.ambient_lights

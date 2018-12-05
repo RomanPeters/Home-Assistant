@@ -7,11 +7,5 @@
 
 - platform: ping
   hosts:
-    macbookpro: 10.10.10.1
-#    iphone8: 10.10.10.2
+    macbook_pro: 10.10.10.1
     nadine: 10.10.10.9
-
-#- platform: icloud
-#  username: icloud_username
-#  password: icloud_password
-#  account_name: Roman

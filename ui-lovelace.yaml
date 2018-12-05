@@ -4,6 +4,8 @@ resources:
     type: js
   - url: /local/custom-lovelace/thermostat-card/thermostat-card.js?v=1
     type: module
+  - url: /local/lovelace-entity-markdown-card/entity-markdown.js
+    type: js
 views:
 ### VIEW 1
   - id: 0  # Automatically created id
@@ -13,12 +15,15 @@ views:
       fixed
     cards:
 # LIGHTS
+      - type: custom:entity-markdown
+        entity: sensor.status_summary
+
       - type: entities
         id: b0e3b0e36a9a4deba2b93ba14ef47001  # Automatically created id
         show_header_toggle: false
         entities:
           - light.standing_lamp
-          - switch.spot
+          - light.spot
           - light.ceiling_lamp
           - group.led_strips
           - light.tv_backlight

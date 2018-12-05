@@ -1,0 +1,34 @@
+- id: motion_detected_night
+  alias: Turn on night light
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor
+      to: 'on'
+  action:
+    - service: switch.on
+      entity_id: light.tv_backlight
+    - service: timer.start
+      entity_id: timer.night_light
+
+- id: night_light_timer_cancelled
+  alias: Night light cancel auto-off
+  trigger:
+    - platform: state
+      entity_id: light.tv_backlight
+      from: 'on'
+      to: 'off'
+  action:
+    - service: timer.cancel
+      entity_id: timer.night_light
+
+- id: night_light_timer_finished
+  alias: Night light auto-off
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data: 
+        entity_id: timer.night_light
+  action:
+    - service: switch.turn_off
+      entity_id: switch.tv_backlight
+

@@ -17,6 +17,10 @@
         type: white
         name: Standing Lamp
 
+- platform: switch
+  name: Spot
+  entity_id: switch.spot
+
 #- platform: mqtt_json
 #  name: Blinkt
 #  brightness: true

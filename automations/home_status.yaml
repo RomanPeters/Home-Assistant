@@ -1,14 +1,40 @@
+# HOME
 - id: home_status_to_home_from_away
-  alias: Home Status to Home
+  alias: Home Status to Home from Away
   trigger:
     - platform: state
       entity_id: input_select.home_status
       to: Home
       from: Away
   action:
+    - service: climate.turn_on
+      entity_id: climate.thermostat 
     - service: switch.turn_off
       entity_id: switch.air_purifier
 
+- id: home_status_to_home_from_away_at_night_time
+  alias: Home Status to Home from Away at night time
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Home
+      from: Away
+  action:
+    - service: scene.turn_on
+      entity_id: scene.evening 
+
+- id: home_status_to_home_from_night
+  alias: Home Status to Home from Night
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Home
+      from: Night
+  action:
+    - service: climate.turn_on
+      entity_id: climate.thermostat
+
+# AWAY
 - id: home_status_to_away
   alias: Home Status to Away
   trigger:
@@ -16,8 +42,38 @@
       entity_id: input_select.home_status
       to: Away
   action:
+    - service: light.turn_off
+      entity_id: group.all_lights
+    - service: climate.turn_off
+      entity_id: climate.thermostat
+
+- id: home_status_to_away_for_one_minute
+  alias: Home Status to Away for one minute
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Away
+      for:
+        minutes: 1
+  action:
     - service: switch.turn_on
       entity_id: switch.air_purifier
+
+# Night
+- id: home_status_to_night
+  alias: Home Status to Night
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Night
+  action:
+    - service: light.turn_off
+      entity_id: group.all_lights
+    - service: climate.turn_off
+      entity_id: climate.thermostat
+
+
+
 
 
 # Link Alarm System for HomeKit
@@ -29,7 +85,6 @@
   action:
     - service_template: "alarm_control_panel.alarm_arm_{{ states('input_select.home_status') | lower }}"
       entity_id: alarm_control_panel.home_status
-
 - id: alarm_system_to_home_status 
   alias: Alarm System to Home Status
   trigger:

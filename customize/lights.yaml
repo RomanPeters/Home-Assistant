@@ -28,4 +28,6 @@ light.blinkt:
   friendly_name: LED
   icon: mdi:raspberrypi
 
-
+light.spot:
+  icon: mdi:track-light
+  assumed_state: false

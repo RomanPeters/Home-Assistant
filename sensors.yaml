@@ -22,6 +22,7 @@
   stations:
     - 'de Jongweg, Utrecht'
 
+# Templates
 - platform: template
   sensors:
     air_quality_status:
@@ -43,8 +44,6 @@
           Unknown
         {% endif %}
 
-- platform: template
-  sensors:
     plant_emoji:
       friendly_name: "Plant"
       value_template: > 
@@ -66,6 +65,41 @@
           mdi:emoticon-sad
         {% endif %}
 
+    status_summary:
+      friendly_name: Status Summary
+      value_template: >
+        {% if is_state("group.roman", "home") and is_state("group.nadine", "home") -%}
+          Roman and Nadine are
+        {%- elif is_state("group.roman", "home") -%}
+          Roman is
+        {%- elif is_state("group.nadine", "home") -%}
+          Nadine is
+        {%- else -%}
+          No one is home. {%- endif -%}
+        {%- if (is_state("group.roman", "home") or is_state("group.nadine", "home")) and is_state("switch.television", "on") -%}
+          {{ " " }}watching television.
+        {%- elif (is_state("group.roman", "home") or is_state("group.nadine", "home")) and is_state("input_select.home_status", "Night") -%}
+          {{ " " }}in bed.
+        {%- else -%}
+           {{ " " }}home.{%- endif -%}
+        {%- if is_state("climate.thermostat", "idle") -%}
+          {{ " " }}The thermostat is set to {{ states.climate.thermostat.attributes.temperature }} °C.
+        {%- elif is_state("climate.thermostat", "heat") -%}
+          {{ " " }}The thermostat is heating to {{ states.climate.thermostat.attributes.temperature }} °C.
+        {%- endif -%}
+        {%- if is_state("binary_sensor.door", "on") -%}
+          {{ " " }}The door is open.
+        {%- endif %}
+        {%- for i in states.group.status.attributes.entity_id if is_state(i, 'on') -%}
+          {%- if loop.first %}{{ " " }}The {% elif loop.last %} and the {% else %}, the {% endif -%}
+          {{ state_attr(i, 'friendly_name') | lower }} is {{ states(i) }}
+          {%- if loop.last %}.{% endif -%}
+        {%- endfor -%}
+        {%- if is_state("group.status", "off") and (is_state("climate.thermostat", "heat") or is_state("climate.thermostat", "idle") or is_state("switch.television", "on")) -%}
+          {{ " " }}All other devices are off.
+        {%- else -%}
+          {{ " " }}All devices are off.
+        {%- endif %}
 ### MQTT
 
 - platform: "mqtt"
