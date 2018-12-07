@@ -232,6 +232,8 @@ views:
 # MEDIA PLAYER
           - type: conditional
             conditions:
+              - entity: switch.television
+                state: "on"
               - entity: input_select.tv_input
                 state: "Apple TV"
             card:
