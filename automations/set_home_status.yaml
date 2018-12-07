@@ -10,8 +10,8 @@
 #        entity_id: input_select.home_status
 #        option: Home
 
-- id: device_tracker_roman_home
-  alias: Roman is home
+- id: set_home_status_to_home
+  alias: Set Home Status to home
   trigger:
     - platform: state
       entity_id: group.roman
@@ -22,8 +22,8 @@
         entity_id: input_select.home_status
         option: Home
 
-- id: device_tracker_roman_away
-  alias: Roman is away
+- id: set_home_status_to_away
+  alias: Set Home Status to away
   trigger: 
     - platform: state
       entity_id: group.roman
@@ -33,3 +33,22 @@
       data:
         entity_id: input_select.home_status
         option: Away
+
+- id: correct_home_status 
+  alias: Correct Home Status 
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Night
+      for:
+        hours: 10
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.home_status
+        option: >   
+          {% if is_states('group.roman', 'home') %}
+            Home
+          {% else %}
+            Away
+          {% endif %}
