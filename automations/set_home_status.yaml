@@ -1,14 +1,16 @@
-#- id: door_opens
-#  alias: Set home
-#  trigger:
-#    - platform: state
-#      entity_id: binary_sensor.door
-#      to: 'on'
-#  action:
-#    - service: input_select.select_option
-#      data:
-#        entity_id: input_select.home_status
-#        option: Home
+- id: set_home_status_to_home_by_door
+  alias: Set Home Status to home by door
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door
+      to: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_status
+        option: Home
+    - service: timer.start
+      entity_id: timer.wait_for_presence
 
 - id: set_home_status_to_home
   alias: Set Home Status to home
@@ -21,6 +23,8 @@
       data:
         entity_id: input_select.home_status
         option: Home
+    - service: timer.cancel
+      entity_id: timer.wait_for_presence
 
 - id: set_home_status_to_away
   alias: Set Home Status to away
@@ -33,6 +37,8 @@
       data:
         entity_id: input_select.home_status
         option: Away
+    - service: timer.cancel
+      entity_id: timer.wait_for_presence
 
 - id: correct_home_status 
   alias: Correct Home Status 
@@ -42,6 +48,10 @@
       to: Night
       for:
         hours: 10
+    - platform: event
+      event_type: timer.finished
+      event_data: 
+        entity_id: timer.wait_for_presence
   action:
     - service: input_select.select_option
       data_template:

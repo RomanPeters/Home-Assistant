@@ -19,5 +19,8 @@ night_light:
 fan_loop:
   duration: '00:15:00'
 
+wait_for_presence:
+  duration: '00:01:00'
+
 pre_alarm_clock:
 alarm_clock:
