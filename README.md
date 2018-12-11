@@ -35,3 +35,7 @@
 
 #### Other
 - Some cheap RF socket switches
+
+![Alt text](/screenshots/screenshot_control_12_2018.png?raw=true "Control View")
+![Alt text](/screenshots/screenshot_status_12_2018.png?raw=true "Status View")
+![Alt text](/screenshots/screenshot_settings_12_2018.png?raw=true "Settings View")
