@@ -1,7 +1,0 @@
-air_freshener:
-  alias: Air Freshener
-  sequence:
-    - alias: Spray air freshener
-      service: switch.turn_on
-      data:
-        entity_id: switch.air_freshener
