@@ -3,3 +3,19 @@ led_strips:
   entities:
     - light.led_strip_n
     - light.led_strip_s
+
+room_lights:
+  name: Room Lights
+  entities:
+    - light.led_strip_n
+    - light.led_strip_s
+    - light.ceiling_lamp
+    - light.spot
+    - light.standing_lamp
+
+night_lights:
+  name: Night Lights
+  entities:
+    - light.ceiling_lamp
+    - light.standing_lamp
+

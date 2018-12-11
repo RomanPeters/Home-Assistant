@@ -1,150 +1,111 @@
-- id: alarm_clock_on
-  alias: Set alarm clock
+# Notification happens through automations/notifications.yaml
+# Home Status -> Home, happens through automations/set_home_status.yaml
+
+# Set Alarm
+- id: set_alarm_clock
+  alias: 'Set Alarm Clock'
   trigger:
     - platform: state
       entity_id: input_boolean.alarm_clock
       to: 'on'
     - platform: state
-      entity_id: input_select.alarm_clock_time
-    - platform: homeassistant
-      event: start
+      entity_id: input_select.home_status
+      to: 'Night'
   condition:
     - condition: state
       entity_id: input_boolean.alarm_clock
       state: 'on'
   action:
-    - service: timer.start
-      data_template:
-        entity_id: timer.alarm_clock
-        duration: >
-          {% set year_day = now().strftime("%Y.%j.") %}
-          {% set hour_minute = states("input_select.alarm_clock_time") %}
-          {% set alarm =  strptime( year_day + hour_minute, "%Y.%j.%H:%M" ) %}
+    - service: script.turn_on
+      entity_id: script.set_alarm_clock
 
-          {% if  as_timestamp(now()) > as_timestamp(alarm) %} 
-              {% set day = now().strftime("%j") %}
-              {% set day_plus = day | int + 1 %}
-              {% set day_plus_str = day_plus | string %}   
-              {% set year = now().strftime("%Y") %}
-              {% set alarm =  strptime( year + '.' + day_plus_str + '.' + hour_minute, "%Y.%j.%H:%M" ) %}
-          {% endif %}
- 
-          {% set duration = as_timestamp(alarm) - as_timestamp(now())  %}
-          {% set duration_str = duration | string %}
-          {{ duration_str.split('.')[0] }}
-    - service: timer.start
-      data_template:
-        entity_id: timer.alarm_clock
-        duration: >
-          {% set year_day = now().strftime("%Y.%j.") %}
-          {% set hour_minute = states("input_select.alarm_clock_time") %}
-          {% set alarm =  strptime( year_day + hour_minute, "%Y.%j.%H:%M" ) %}
-
-          {% if  as_timestamp(now()) > as_timestamp(alarm) %}
-              {% set day = now().strftime("%j") %}
-              {% set day_plus = day | int + 1 %}
-              {% set day_plus_str = day_plus | string %}
-              {% set year = now().strftime("%Y") %}
-              {% set alarm =  strptime( year + '.' + day_plus_str + '.' + hour_minute, "%Y.%j.%H:%M" ) %}
-          {% endif %}
- 
-          {% set duration = as_timestamp(alarm) - as_timestamp(now())  %}
-          {% set duration_pre = duration - 1800 %}
-
-          {% if  duration_pre < 0 %}
-              {% set duration_pre = 0 %}
-          {% endif %}
-
-          {% set duration_str = duration_pre | string %}
-          {{ duration_str.split('.')[0] }}
-    - service: notify.notify
-      data_template:
-        message: "Your alarm has been set for {{ states('input_select.alarm_clock_time') }}"
-
-- id: alarm_clock_off
-  alias: Stop alarm clock
+# Test Preview
+- id: test_alarm_clock_action
+  alias: 'Test Alarm Clock Action'
   trigger:
     - platform: state
-      entity_id: input_boolean.alarm_clock
-      to: 'off'
+      entity_id: input_select.alarm_clock_media
   action:
-    - service: timer.cancel
-      entity_id: timer.alarm_clock
+    - service: automation.trigger
+      entity_id: automation.alarm_clock_media
 
-- id: trigger_pre_alarm_clock
-  alias: Trigger pre-alarm clock
+# Action: Turn Off
+- id: alarm_clock_turn_off
+  alias: 'Alarm Clock Turn Off'
   trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.pre_alarm_clock
+    - platform: template
+      value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
   action:
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.thermostat
-        operation_mode: "Heat"
-    
-- id: trigger_alarm_clock_coffee
-  alias: Trigger Alarm Clock Coffee
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_clock
+
+# Action: Climate
+- id: alarm_clock_climate
+  alias: 'Alarm Clock Climate'
   trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.pre_alarm_clock
+    - platform: template
+      value_template: "{{ states('sensor.time') == ((states.input_datetime.alarm_clock.attributes.timestamp | int - 1800) | timestamp_custom('%H:%M', False)) }}"
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.home_status
+          state: 'Night'
+        - condition: state
+          entity_id: input_select.home_status
+          state: 'Home'
+  action:
+    - service: climate.turn_on
+      entity_id: climate.thermostat
+
+# Action: Lights
+- id: alarm_clock_lights
+  alias: 'Alarm Clock Lights'
+  trigger:
+    - platform: template
+      value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"  
   condition:
     - condition: state
-      entity_id: input_boolean.alarm_clock_coffee
+      entity_id: input_boolean.alarm_clock
+      state: 'on'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.morning
+
+# Action: Coffe
+- id: alarm_clock_coffee
+  alias: 'Alarm Clock Coffee'
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int - 480) | timestamp_custom('%H:%M', False)) }}"
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.home_status
+          state: 'Night'
+        - condition: state
+          entity_id: input_select.home_status
+          state: 'Home'
+    - condition: state
+      entity_id: input_boolean.alarm_clock
+      state: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.coffee_maker
+
+# Action: Media
+- id: alarm_clock_media
+  alias: 'Alarm Clock Media'
+  trigger:
+    - platform: template
+      value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_clock
       state: 'on'
   action:
     - service: script.turn_on
-      entity_id: script.alarm_clock_coffee
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.alarm_clock_coffee
+      data_template:
+        entity_id: "script.play_url_{{ states('input_select.alarm_clock_sound').replace(' ', '_') | lower }}"
 
-
-- id: trigger_alarm_clock_light
-  alias: Trigger Alarm Clock Coffee
-  trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.pre_alarm_clock
-  condition:
-    - condition: template
-      value_template: "{{ not is_state('input_select.alarm_clock_light', 'None') }}"
-  action:
-    - service: script.turn_on
-      entity_id: script.alarm_clock_light
-
-- id: trigger_alarm_clock_television
-  alias: Trigger Alarm Clock Television
-  trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.pre_alarm_clock
-  condition:
-    - condition: state
-      entity_id: input_select.alarm_clock_sound
-      state: 'Television'
-  action:
-    - service: script.turn_on
-      entity_id: script.alarm_clock_television 
-
-- id: trigger_alarm_clock_sound
-  alias: Trigger Alarm Clock Sound
-  trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.alarm_clock
-  condition:
-    - condition: template
-      value_template: "{{ not is_state('input_select.alarm_clock_sound', 'None') and not is_state('input_select.alarm_clock_sound', 'Television') }}"
-  action:
-    - service: script.turn_on
-      entity_id: script.alarm_clock_sound
-
-
-# script.snooze_alarm_clock
-# python_script.stop_alarm_clock     

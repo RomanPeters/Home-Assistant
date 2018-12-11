@@ -14,6 +14,10 @@ http:
 #  api_password: !secret http_password
   ip_ban_enabled: True
   login_attempts_threshold: 5
+#  ssl:
+#    ssl_certificate: /ssl/fullchain.pem 
+#    ssl_key: /ssl/privkey.pem
+
 
 updater:
   include_used_components: true
@@ -35,8 +39,12 @@ config:
 hassio:
 history:
 logbook:
+  exclude:
+    entities:
+      - sensor.time
 map:
 python_script:
+media_extractor:
 sun:
 ios:
   push:
@@ -58,6 +66,10 @@ ios:
             behavior: 'textInput'
             textInputButtonTitle: 'Silencio!'
             textInputPlaceholder: 'Placeholder'
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
 
 tts:
   - platform: google
@@ -84,11 +96,12 @@ plant: !include plants.yaml
 input_select: !include input_selects.yaml
 input_boolean: !include input_booleans.yaml
 scene: !include scenes.yaml
-camera: !include cameras.yaml
 climate: !include climates.yaml
 timer: !include timers.yaml
 input_text: !include input_texts.yaml
 input_number: !include input_numbers.yaml
+input_datetime: !include input_datetimes.yaml
 device_tracker: !include device_trackers.yaml
+notify: !include notifies.yaml
 media_player: !include media_players.yaml
-
+calendar: !include calendars.yaml

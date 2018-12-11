@@ -4,21 +4,19 @@
     - platform: state
       entity_id: binary_sensor.motion_sensor
       to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_select.home_status
+      state: Night
+    - condition: state
+      entity_id: group.room_lights
+      state: 'off'
   action:
-    - service: switch.on
-      entity_id: light.tv_backlight
+    - service: light.turn_on
+      data:
+        entity_id: group.night_lights
+        effect: night
     - service: timer.start
-      entity_id: timer.night_light
-
-- id: night_light_timer_cancelled
-  alias: Night light cancel auto-off
-  trigger:
-    - platform: state
-      entity_id: light.tv_backlight
-      from: 'on'
-      to: 'off'
-  action:
-    - service: timer.cancel
       entity_id: timer.night_light
 
 - id: night_light_timer_finished
@@ -28,7 +26,9 @@
       event_type: timer.finished
       event_data: 
         entity_id: timer.night_light
+  condition:
+    - condition: template
+      value_template: "{{ state_attr('light.ceiling_lamp', 'effect') == 'night' }}"
   action:
-    - service: switch.turn_off
-      entity_id: switch.tv_backlight
-
+    - service: light.turn_off
+      entity_id: group.night_lights

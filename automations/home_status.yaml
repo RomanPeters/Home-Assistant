@@ -1,3 +1,5 @@
+# Note: Climate Control is done in automation.temperature
+
 # HOME
 - id: home_status_to_home_from_away
   alias: Home Status to Home from Away
@@ -7,8 +9,6 @@
       to: Home
       from: Away
   action:
-    - service: climate.turn_on
-      entity_id: climate.thermostat 
     - service: switch.turn_off
       entity_id: switch.air_purifier
 
@@ -19,6 +19,14 @@
       entity_id: input_select.home_status
       to: Home
       from: Away
+  condition:
+    condition: or  # 'when dark' condition: either after sunset or before sunrise
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: "-00:15:00"
+      - condition: sun
+        before: sunrise
   action:
     - service: scene.turn_on
       entity_id: scene.evening 
@@ -30,9 +38,16 @@
       entity_id: input_select.home_status
       to: Home
       from: Night
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.illuminance
+      below: 6
+    - condition: time
+      after: '00:06:30'
   action:
-    - service: climate.turn_on
-      entity_id: climate.thermostat
+    - service: scene.turn_on
+      entity_id: scene.morning
+
 
 # AWAY
 - id: home_status_to_away
@@ -44,8 +59,6 @@
   action:
     - service: light.turn_off
       entity_id: group.all_lights
-    - service: climate.turn_off
-      entity_id: climate.thermostat
 
 - id: home_status_to_away_for_one_minute
   alias: Home Status to Away for one minute
@@ -69,12 +82,6 @@
   action:
     - service: light.turn_off
       entity_id: group.all_lights
-    - service: climate.turn_off
-      entity_id: climate.thermostat
-
-
-
-
 
 # Link Alarm System for HomeKit
 - id: home_status_to_alarm_system

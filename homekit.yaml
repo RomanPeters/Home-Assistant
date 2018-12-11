@@ -65,6 +65,7 @@ filter:
 
   include_entities:
     - binary_sensor.door
+    - binary_sensor.window
     - binary_sensor.motion_sensor
 
 entity_config:

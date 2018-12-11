@@ -13,29 +13,18 @@ button_single:
     - TV Backlight
     - Ambient Lights
 
-alarm_clock_time:
-  name: Time
-  options: !include templates/times.yaml
+alarm_clock_media:
+  name: Media
   icon: mdi:none
-
-alarm_clock_light:
-  name: Light
   options:
-    - None
-    - Bed LED
-    - Standing Lamp
-    - Ceiling Lamp
-    - Standing Lamp + Ceiling Lamp
-    - Bed LED + Standing Lamp + Ceiling Lamp        
-  initial: "None"
-  icon: mdi:none
-
-alarm_clock_sound:
-  name: Sound
-  options:
-    - None
     - Television
-  icon: mdi:none
+    - Rainy Jazz
+    - LoFi Hip Hop Mix
+    - Birds
+    - Forest
+    - Thunderstorm
+    - Fireplace
+    - Beach
 
 channel:
   name: Channel
