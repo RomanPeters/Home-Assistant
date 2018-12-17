@@ -1,0 +1,4 @@
+input_datetime.alarm_clock:
+  friendly_name: Time
+  icon: mdi:none
+

@@ -1,3 +1,5 @@
+# Note: Climate Control is done in automation.temperature
+
 # HOME
 - id: home_status_to_home_from_away
   alias: Home Status to Home from Away
@@ -7,8 +9,6 @@
       to: Home
       from: Away
   action:
-    - service: climate.turn_on
-      entity_id: climate.thermostat 
     - service: switch.turn_off
       entity_id: switch.air_purifier
 
@@ -19,20 +19,18 @@
       entity_id: input_select.home_status
       to: Home
       from: Away
+  condition:
+    condition: or  # 'when dark' condition: either after sunset or before sunrise
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: "-00:15:00"
+      - condition: sun
+        before: sunrise
   action:
     - service: scene.turn_on
       entity_id: scene.evening 
 
-- id: home_status_to_home_from_night
-  alias: Home Status to Home from Night
-  trigger:
-    - platform: state
-      entity_id: input_select.home_status
-      to: Home
-      from: Night
-  action:
-    - service: climate.turn_on
-      entity_id: climate.thermostat
 
 # AWAY
 - id: home_status_to_away
@@ -44,8 +42,6 @@
   action:
     - service: light.turn_off
       entity_id: group.all_lights
-    - service: climate.turn_off
-      entity_id: climate.thermostat
 
 - id: home_status_to_away_for_one_minute
   alias: Home Status to Away for one minute
@@ -69,11 +65,43 @@
   action:
     - service: light.turn_off
       entity_id: group.all_lights
-    - service: climate.turn_off
-      entity_id: climate.thermostat
 
+- id: home_status_to_night_auto_alarm_clock
+  alias: Home Status to Night Auto Alarm Clock
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Night
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_clock
+      state: 'off'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alarm_clock
+    - service: script.turn_on
+      entity_id: script.set_alarm_clock
 
+# OFF
+- id: home_status_to_off
+  alias: Home Status to Off
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: 'Off'
+  action:
+    - service: automation.turn_off
+      entity_id: group.home_Status_automations
 
+- id: home_status_from_off
+  alias: Home Status from Off
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      from: 'Off'
+  action:
+    - service: automation.turn_off
+      entity_id: group.home_Status_automations
 
 
 # Link Alarm System for HomeKit
@@ -90,13 +118,15 @@
   trigger:
     - platform: state
       entity_id: alarm_control_panel.home_status
-  condition:
-    - condition: template
-      value_template: "{{ states('alarm_control_panel.home_status') != 'disarmed' }}"
   action:
     - service: input_select.select_option
       data_template:
         entity_id: input_select.home_status
-        option: "{{ states('alarm_control_panel.home_status').split('_')[-1] | title }}"
+        option: >
+          {% if states('alarm_control_panel.home_status') == 'disarmed' %}
+            "Off"
+          {% else %}
+            {{ states('alarm_control_panel.home_status').split('_')[-1] | title }}
+          {% endif %}
 
 

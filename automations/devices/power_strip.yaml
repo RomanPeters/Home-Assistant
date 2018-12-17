@@ -69,7 +69,7 @@
       entity_id: media_player.apple_tv
       to: 'idle'
       for:
-        minutes: 10
+        minutes: 5
   condition:
     - condition: state
       entity_id: input_select.tv_input

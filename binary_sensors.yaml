@@ -34,6 +34,7 @@
       value_template: "{{ is_state('switch.entone', 'on') }}"
       delay_on: "00:01:20"
 
+
 - platform: "mqtt"
   name: Door
   state_topic: "zigbee2mqtt/door_sensor"
@@ -44,6 +45,21 @@
   value_template: "{{ value_json.contact }}"
   device_class: "door"
   json_attributes: 
+    - "linkquality"
+    - "battery"
+    - "voltage"
+
+- platform: "mqtt"
+  name: Window
+  state_topic: "zigbee2mqtt/window_sensor"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:window"
+  payload_on: false
+  payload_off: true
+  value_template: "{{ value_json.contact }}"
+  device_class: "window"
+  json_attributes: 
+    - "linkquality"
     - "battery"
     - "voltage"
 
@@ -57,6 +73,7 @@
   value_template: "{{ value_json.occupancy }}"
   device_class: "motion"
   json_attributes: 
+    - "linkquality"
     - "battery"
     - "voltage"
 

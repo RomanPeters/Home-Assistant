@@ -232,11 +232,17 @@ views:
 # MEDIA PLAYER
           - type: conditional
             conditions:
-              - entity: input_select.tv_input
-                state: "Apple TV"
+              - entity: media_player.apple_tv
+                state_not: "off"
             card:
               type: custom:mini-media-player
               entity: media_player.apple_tv
+
+# ALARM CLOCK
+      - type: entities
+        entities:
+          - input_boolean.alarm_clock
+          - input_datetime.alarm_clock
 
 # THERMOSTAT
       - id: 94388c17d89a4575a995a0cb181a5166  # Automatically created id
@@ -251,22 +257,27 @@ views:
     cards:
 
 # PERSONS
-      - id: 53ca9509f43e4e70a4149595b70533d7  # Automatically created id
-        type: entities
-        entities:
-          - group.roman
+#      - id: 53ca9509f43e4e70a4149595b70533d7  # Automatically created id
+#        type: entities
+#        entities:
+#          - group.roman
 #          - group.nadine
-          - group.laurens
-          - group.nikki
+#          - group.marijn
+#          - group.laurens
+#          - group.nikki
 
 
 # GRAPHS
       - id: f0ed4b3909ee45248717c962735db826  # Automatically created id
         type: history-graph
         entities:
-          - sensor.xiaomi_temperature
+          - input_select.home_status
+          - binary_sensor.door
+          - binary_sensor.window
+          - climate.thermostat
           - sensor.br_temperature
-          - sensor.mi_flora_temperature
+
+
 
 # PLANT
       - id: 640393e6744847de897efc1bc1189eca  # Automatically created id
@@ -283,3 +294,13 @@ views:
         type: entities
         entities:
           - input_select.home_status
+
+      - type: entities
+        entities:
+          - group.alarm_clock
+
+      - type: entities
+        title: Automations
+        entities:
+          - group.climate_control_automations
+          - group.notification_automations

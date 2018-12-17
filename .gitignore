@@ -3,6 +3,7 @@
 .tileromanpetersnl.tile.conf 
 .ssh/
 .storage/
+!.storage/lovelace
 esphomeyaml/
 .uuid
 appdaemon/appdaemon.yaml
@@ -21,3 +22,9 @@ tts/
 deps/
 .DS_Store
 www/
+www/*
+appdaemon/appdaemon.yaml
+zigbee2mqtt_configuration.yaml
+www/custom-lovelace/
+google_calendars.yaml
+.google.token

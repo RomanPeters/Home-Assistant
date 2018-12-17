@@ -8,34 +8,33 @@
     - service: climate.turn_off
       entity_id: climate.thermostat
 
-# 01:00
-- id: after_midnight_off_if_home
-  alias: Turn off things at one if home
+- id: midnight_dim
+  alias: Dim lights at midnight
   trigger:
-    - platform: time 
-      at: "01:00:00"
+    - platform: time
+      at: "00:00:00"
   condition:
     - condition: state
       entity_id: input_select.home_status
       state: Home
+#    - condition: state
+#      entity_id: group.room_lights
+#      state: on
   action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.home_status
-        option: Night 
+    - service: scene.turn_on
+      entity_id: scene.dark_mode
 
-# 09:00
-- id: in_the_morning_if_home
-  alias: Turn on things in the morning if home
-  trigger:
-    - platform: time
-      at: "09:00:00"
+# ??:??
+- id: before_sunset_if_home
+  alias: Turn on the evening scene before the sun goes down
+  trigger: 
+    - platform: sun
+      event: sunset
+      offset: "-00:15:00"
   condition:
     - condition: state
-      entity_id: input_select.home_status
-      state: Night
+      entity_id: input_select.home_statuss
+      state: Home
   action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.home_status
-        option: Home
+    - service: scene.turn_on
+      entity_id: scene.evening

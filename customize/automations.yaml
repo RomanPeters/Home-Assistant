@@ -1,0 +1,8 @@
+automation.alarm_clock_sound:
+  friendly_name: Sound
+
+automation.alarm_clock_lights:
+  friendly_name: Lights
+
+automation.alarm_clock_coffee:
+  friendely_name: Coffee

@@ -56,7 +56,7 @@
 #  command_topic: "d1_mini_mm/light/led_lights/command"
 #  availability_topic: "d1_mini_mm/status"
 
-- platform: mqtt_json
+- platform: mqtt
   name: Coffee LED
   brightness: true
   flash: true
@@ -64,7 +64,7 @@
   command_topic: "sonoff/light/coffee_led/command"
   availability_topic: "sonoff/status"
 
-- platform: mqtt_json
+- platform: mqtt
   name: Heater LED
   brightness: true
   flash: true

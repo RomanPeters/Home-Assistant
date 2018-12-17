@@ -1,45 +1,80 @@
+# Boot
+- id: notification_boot
+  alias: Notification Boot
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: notify.notify
+      data:
+        message: "Home Assistant is online"
+
 # iPhone Status
-- id: iphone_status
-  alias: iPhone is charging
+- id: notification_iphone_status
+  alias: Notification iPhone Status
   trigger:
-    platform: state
-    entity_id: sensor.iphone_8_battery_state
-  action:
-    service: notify.notify
-    data_template:
-      message: "Your iPhone 8 is {{ states('sensor.iphone_5c_battery_state') | lower }}."
-
-# Home Status
-- id: home_status_changed
-  alias: Home Status changed
-  trigger: 
     - platform: state
+      entity_id: sensor.iphone_8_battery_state
+  action:
+    - service: notify.notify
+      data_template:
+        message: "Your iPhone 8 is {{ states('sensor.iphone_8_battery_state') | lower }}."
+
+# Alarm Clock
+- id: notification_alarm_clock
+  alias: 'Notification Alarm Clock'
+  trigger:
+    - platform: template
+      value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_clock
+      state: 'on'
+    - condition: state
       entity_id: input_select.home_status
+      state: 'Away'
   action:
     - service: notify.notify
-      data_template:
-        message: "Home Status set to {{ states(input_select.home_status) }}"
+      data:
+        message: "Your alarm clock has been triggered!"
 
-# Thermosat Status
-- id: notification_thermostat_off
-  alias: Send a notification if the thermostat is off
+- id: notification_set_alarm_clock
+  alias: 'Notification set Alarm Clock'
   trigger:
     - platform: state
-      entity_id: climate.thermostat
-      to: 'off'
+      entity_id: script.set_alarm_clock
+      to: 'on'
   action:
     - service: notify.notify
       data_template:
-        message: "Climate control turned off."
+        message: "I'll wake you up at {{ states('input_datetime.alarm_clock')[:-3] }}"
 
-- id: notification_thermostat_on
-  alias: Send a notification if the thermostat is on
+
+# Low battery
+- id: notification_low_battery
+  alias: Notification Low Battery
   trigger:
-    - platform: state
-      entity_id: climate.thermostat
-      from: 'off'
+    - platform: numeric_state
+      entity_id: sensor.button     
+      value_template: '{{ state.attributes.battery }}'
+      below: 11
+    - platform: numeric_state
+      entity_id: sensor.illuminance
+      value_template: '{{ state.attributes.battery }}'
+      below: 11
+    - platform: numeric_state
+      entity_id: sensor.xiaomi_humidity    
+      value_template: '{{ state.attributes.battery }}'
+      below: 11
+    - platform: numeric_state
+      entity_id: sensor.wall_switch       
+      value_template: '{{ state.attributes.battery }}'
+      below: 11
+    - platform: numeric_state
+      entity_id: sensor.mi_flora_battery  
+      below: 11
   action:
-    - service: notify.notify
+    - service: persistent_notification.create
       data_template:
-        message: "Climate control turned on."
-
+        message: "{{ state_attr(trigger.entity_id, 'friendly_name') }} {{ trigger.entity_id.split('.')[0] }} is at {{ state_attr(trigger.entity_id, 'battery') | int }}% battery."
+        title: "Battery warning"

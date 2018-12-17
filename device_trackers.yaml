@@ -5,7 +5,9 @@
 
 - platform: bluetooth_tracker
 
+#- platform: bluetooth_le_tracker
+
 - platform: ping
   hosts:
     macbook_pro: 10.10.10.1
-    nadine: 10.10.10.9
+    samsung_galaxy_s7: 10.10.10.9

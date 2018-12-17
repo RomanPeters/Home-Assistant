@@ -22,6 +22,10 @@
   stations:
     - 'de Jongweg, Utrecht'
 
+- platform: time_date
+  display_options:
+    - 'time'
+
 # Templates
 - platform: template
   sensors:
@@ -80,15 +84,23 @@
           {{ " " }}watching television.
         {%- elif (is_state("group.roman", "home") or is_state("group.nadine", "home")) and is_state("input_select.home_status", "Night") -%}
           {{ " " }}in bed.
-        {%- else -%}
-           {{ " " }}home.{%- endif -%}
+        {%- elif is_state("group.roman", "home") or is_state("group.nadine", "home") -%}
+          {{ " " }}home.{%- endif -%}
+
+          {{ " " }}Current temperature is {{ state_attr('climate.thermostat', 'current_temperature') }}°
         {%- if is_state("climate.thermostat", "idle") -%}
-          {{ " " }}The thermostat is set to {{ states.climate.thermostat.attributes.temperature }} °C.
+          , guarded at {{ states.climate.thermostat.attributes.temperature }}°.
         {%- elif is_state("climate.thermostat", "heat") -%}
-          {{ " " }}The thermostat is heating to {{ states.climate.thermostat.attributes.temperature }} °C.
+          , warming to {{ states.climate.thermostat.attributes.temperature }}°.
+        {%- else -%}
+          .
         {%- endif -%}
-        {%- if is_state("binary_sensor.door", "on") -%}
+        {%- if is_state("binary_sensor.door", "on") and is_state("binary_sensor.window", "on") -%}
+          {{ " " }}The door and the window are both open.
+        {%- elif is_state("binary_sensor.door", "on") -%}
           {{ " " }}The door is open.
+        {%- elif is_state("binary_sensor.window", "on") -%}
+          {{ " " }}The window is open.
         {%- endif %}
         {%- for i in states.group.status.attributes.entity_id if is_state(i, 'on') -%}
           {%- if loop.first %}{{ " " }}The {% elif loop.last %} and the {% else %}, the {% endif -%}
@@ -97,9 +109,54 @@
         {%- endfor -%}
         {%- if is_state("group.status", "off") and (is_state("climate.thermostat", "heat") or is_state("climate.thermostat", "idle") or is_state("switch.television", "on")) -%}
           {{ " " }}All other devices are off.
-        {%- else -%}
+        {%- elif is_state("group.status", "off") -%}
           {{ " " }}All devices are off.
         {%- endif %}
+
+    next_event:
+      friendly_name: Next Event
+      value_template: >
+        {% set low = as_timestamp(state_attr('calendar.rum_dmc', 'start_time')) %}
+        {% set cal = 'calendar.rum_dmc' %}
+        {% if  as_timestamp(state_attr('calendar.werk', 'start_time')) and as_timestamp(state_attr('calendar.werk', 'start_time')) < low %}
+          {% set low = as_timestamp(state_attr('calendar.werk', 'start_time')) %}
+          {% set cal = 'calendar.werk' %}
+        {% endif %}
+        {% if  as_timestamp(state_attr('calendar.studie', 'start_time')) and as_timestamp(state_attr('calendar.studie', 'start_time')) < low %}
+          {% set low = as_timestamp(state_attr('calendar.studie', 'start_time')) %}
+          {% set cal = 'calendar.studie' %}
+        {% endif %}
+        {% if  as_timestamp(state_attr('calendar.e_surveillant', 'start_time')) and as_timestamp(state_attr('calendar.e_surveillant', 'start_time')) < low %}
+          {% set low = as_timestamp(state_attr('calendar.e_surveillant', 'start_time')) %}
+          {% set cal = 'calendar.e_surveillant' %}
+        {% endif %}
+        {% if  as_timestamp(state_attr('calendar.cursusplanner', 'start_time')) and as_timestamp(state_attr('calendar.cursusplanner', 'start_time')) < low %}
+          {% set low = as_timestamp(state_attr('calendar.cursusplanner', 'start_time')) %}
+          {% set cal = 'calendar.cursusplanner' %}
+        {% endif %}
+        {% if  as_timestamp(state_attr('calendar.ws70', 'start_time')) and as_timestamp(state_attr('calendar.ws70', 'start_time')) < low %}
+          {% set cal = 'calendar.ws70' %}
+        {% endif %}
+          {{ cal }}
+
+    smart_alarm_clock_time:
+      friendly_name: Smart Alarm Clock Time
+      value_template: >
+        {% set cal = states('sensor.next_event') %}
+        {% set alrm = as_timestamp(state_attr(cal, 'start_time')) - 3600 %}
+        {% set now_ts = as_timestamp(now()) %}
+        {% if  alrm - now_ts > 32400 and now().hour < 20 %}
+          {{ (now_ts + 1800) | timestamp_custom('%H:%M') }}
+        {% elif  alrm - now_ts > 32400 %}
+          {{ (now_ts + 32400) | timestamp_custom('%H:%M') }}
+        {% elif alrm - now_ts < 3600 %}
+          {{ (now_ts + 60) | timestamp_custom('%H:%M') }}
+        {% else %}
+          {{ alrm | timestamp_custom('%H:%M') }}
+        {% endif %}
+
+
+
 ### MQTT
 
 - platform: "mqtt"
@@ -109,6 +166,7 @@
   icon: "mdi:toggle-switch"
   value_template: "{{ value_json.click }}"
   json_attributes: 
+    - "linkquality"
     - "battery"
     - "voltage"
     - "action"
@@ -121,6 +179,7 @@
   icon: "mdi:toggle-switch"
   value_template: "{{ value_json.click }}"
   json_attributes: 
+    - "linkquality"
     - "battery"
     - "voltage"
     - "action"
@@ -134,6 +193,7 @@
   icon: "mdi:thermometer"
   value_template: "{{ value_json.temperature }}"
   json_attributes: 
+    - "linkquality"
     - "battery"
     - "voltage"
 
@@ -145,6 +205,7 @@
   icon: "mdi:water-percent"
   value_template: "{{ value_json.humidity }}"
   json_attributes: 
+    - "linkquality"
     - "battery"
     - "voltage"
 
@@ -156,6 +217,7 @@
   icon: "mdi:speedometer"
   value_template: "{{ value_json.pressure }}"
   json_attributes: 
+    - "linkquality"
     - "battery"
     - "voltage"
 
@@ -167,6 +229,7 @@
   icon: "mdi:thermometer"
   value_template: "{{ value_json.temperature }}"
   json_attributes: 
+    - "linkquality"
     - "battery"
     - "voltage"
 
@@ -178,6 +241,7 @@
   icon: "mdi:water-percent"
   value_template: "{{ value_json.humidity }}"
   json_attributes: 
+    - "linkquality"
     - "battery"
     - "voltage"
 
@@ -189,6 +253,7 @@
   icon: "mdi:speedometer"
   value_template: "{{ value_json.pressure }}"
   json_attributes: 
+    - "linkquality"
     - "battery"
     - "voltage"
 
@@ -200,27 +265,9 @@
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.illuminance }}"
   json_attributes: 
+    - "linkquality"
     - "battery"
     - "voltage"
-
-#- platform: "mqtt"
-#  name: Camera Light Sensor
-#  state_topic: xiaomi/dafang/brightness
-#  icon: mdi:brightness-5
-#  unit_of_measurement: "%"
-
-#- platform: "mqtt"
-#  name: Camera
-#  state_topic: xiaomi/dafang
-#  icon: "mdi:cctv"
-#  json_attributes: 
-#    - uptime
-#    - load average
-#    - ssid
-#    - bitrate
-#    - signal_level 
-#    - link_quality
-#    - noise_level
 
 
 # my sonoff th 10 broke :/

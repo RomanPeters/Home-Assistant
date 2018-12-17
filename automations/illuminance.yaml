@@ -1,0 +1,25 @@
+- id: turn_on_scene_if_dark_during_the_day
+  alias: Turn on scene if dark during the day
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.illuminance
+      below: 30
+    - platform: state
+      entity_id: input_select.home_status
+      to: Home
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.illuminance
+      below: 30
+    - condition: state
+      entity_id: input_select.home_status
+      state: Home
+    - condition: and
+      conditions:
+        - condition: sun
+          before: sunset
+        - condition: sun
+          after: sunrise
+  action:
+    - service: scene.turn_on
+      entity_id: scene.evening

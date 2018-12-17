@@ -1,7 +1,0 @@
-
-entity_id = data.get("entity_id")
-
-if entity_id is not None:
-    with open('.states/'+entity_id, 'w+') as f:
-        f.write(hass.states.get(entity_id))
-
