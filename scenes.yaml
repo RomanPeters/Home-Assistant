@@ -3,14 +3,14 @@
     light.standing_lamp:
       state: on
       brightness_pct: 60
-      color_temp: 100
+      color_temp: 370
 
 - name: Morning
   entities:
     light.standing_lamp:
       state: on
       brightness_pct: 10
-      color_temp: 200
+      color_temp: 154
 
 - name: Movie Mode
   entities:

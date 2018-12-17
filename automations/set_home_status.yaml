@@ -69,9 +69,6 @@
 - id: set_home_status_to_night
   alias: Set Home Status to night
   trigger:
-    - platform: state
-      entity_id: device_tracker.macbook_pro
-      to: 'not_home'
     - platform: time
       at: "01:00:00"
   condition:
@@ -80,6 +77,25 @@
       state: Home
     - condition: time
       after: '21:00:00'
+      before: '00:00:00'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_status
+        option: Night
+
+- id: set_home_status_to_night_late_at_night
+  alias: Set Home Status to night, late at night
+  trigger:
+    - platform: state
+      entity_id: device_tracker.macbook_pro
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: input_select.home_status
+      state: Home
+    - condition: time
+      after: '00:00:00'
       before: '07:00:00'
   action:
     - service: input_select.select_option
@@ -92,11 +108,6 @@
 - id: correct_home_status 
   alias: Correct Home Status 
   trigger:
-    - platform: state
-      entity_id: input_select.home_status
-      to: Night
-      for:
-        hours: 10
     - platform: event
       event_type: timer.finished
       event_data: 
@@ -111,3 +122,5 @@
           {% else %}
             Away
           {% endif %}
+
+

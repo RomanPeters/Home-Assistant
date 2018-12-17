@@ -31,23 +31,6 @@
     - service: scene.turn_on
       entity_id: scene.evening 
 
-- id: home_status_to_home_from_night
-  alias: Home Status to Home from Night
-  trigger:
-    - platform: state
-      entity_id: input_select.home_status
-      to: Home
-      from: Night
-  condition:
-    - condition: numeric_state
-      entity_id: sensor.illuminance
-      below: 6
-    - condition: time
-      after: '00:06:30'
-  action:
-    - service: scene.turn_on
-      entity_id: scene.morning
-
 
 # AWAY
 - id: home_status_to_away
@@ -83,6 +66,44 @@
     - service: light.turn_off
       entity_id: group.all_lights
 
+- id: home_status_to_night_auto_alarm_clock
+  alias: Home Status to Night Auto Alarm Clock
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Night
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_clock
+      state: 'off'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alarm_clock
+    - service: script.turn_on
+      entity_id: script.set_alarm_clock
+
+# OFF
+- id: home_status_to_off
+  alias: Home Status to Off
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: 'Off'
+  action:
+    - service: automation.turn_off
+      entity_id: group.home_Status_automations
+
+- id: home_status_from_off
+  alias: Home Status from Off
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      from: 'Off'
+  action:
+    - service: automation.turn_off
+      entity_id: group.home_Status_automations
+
+
 # Link Alarm System for HomeKit
 - id: home_status_to_alarm_system
   alias: Home Status to Alarm System
@@ -97,13 +118,15 @@
   trigger:
     - platform: state
       entity_id: alarm_control_panel.home_status
-  condition:
-    - condition: template
-      value_template: "{{ states('alarm_control_panel.home_status') != 'disarmed' }}"
   action:
     - service: input_select.select_option
       data_template:
         entity_id: input_select.home_status
-        option: "{{ states('alarm_control_panel.home_status').split('_')[-1] | title }}"
+        option: >
+          {% if states('alarm_control_panel.home_status') == 'disarmed' %}
+            "Off"
+          {% else %}
+            {{ states('alarm_control_panel.home_status').split('_')[-1] | title }}
+          {% endif %}
 
 

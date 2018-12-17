@@ -33,6 +33,7 @@ notification_automations:
     - automation.notification_boot
     - automation.notification_iphone_status
     - automation.notification_low_battery
+    - automation.notification_set_alarm_clock
     - automation.welcome_home_message
 
 alarm_clock:
@@ -43,3 +44,16 @@ alarm_clock:
     - automation.alarm_clock_media
     - automation.alarm_clock_lights
     - automation.alarm_clock_coffee
+
+home_status_automations:
+  name: Home Status Automations
+  entities:
+    - automation.home_status_to_home_from_away
+    - automation.home_status_to_home_from_away_at_night_time
+    - automation.home_status_to_home_from_night_in_the_morning
+
+    - automation.home_status_to_night
+    - automation.home_status_to_night_auto_alarm
+
+    - automation.home_status_to_away
+    - automation.home_status_to_away_for_one_minute

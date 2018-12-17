@@ -2,8 +2,9 @@ home_status:
   name: Home Status
   options:
     - Home
-    - Away
     - Night
+    - Away
+    - 'Off'
 
 button_single:
   name: Button Single Click

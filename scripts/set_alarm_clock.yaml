@@ -6,3 +6,7 @@ set_alarm_clock:
       data_template:
         entity_id: input_datetime.alarm_clock
         time: "{{ states('sensor.smart_alarm_clock_time') }}"
+
+    - alias: Delay so state changes
+      delay:
+        seconds: 3

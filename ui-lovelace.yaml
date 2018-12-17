@@ -257,14 +257,14 @@ views:
     cards:
 
 # PERSONS
-      - id: 53ca9509f43e4e70a4149595b70533d7  # Automatically created id
-        type: entities
-        entities:
-          - group.roman
-          - group.nadine
-          - group.marijn
-          - group.laurens
-          - group.nikki
+#      - id: 53ca9509f43e4e70a4149595b70533d7  # Automatically created id
+#        type: entities
+#        entities:
+#          - group.roman
+#          - group.nadine
+#          - group.marijn
+#          - group.laurens
+#          - group.nikki
 
 
 # GRAPHS
@@ -276,7 +276,6 @@ views:
           - binary_sensor.window
           - climate.thermostat
           - sensor.br_temperature
-          - sensor.illuminance
 
 
 
@@ -301,6 +300,7 @@ views:
           - group.alarm_clock
 
       - type: entities
+        title: Automations
         entities:
           - group.climate_control_automations
           - group.notification_automations

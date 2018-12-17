@@ -38,16 +38,16 @@
       data:
         message: "Your alarm clock has been triggered!"
 
-- id: notification_alarm_clock_set
-  alias: 'Notification Alarm Clock Set'
+- id: notification_set_alarm_clock
+  alias: 'Notification set Alarm Clock'
   trigger:
     - platform: state
       entity_id: script.set_alarm_clock
-      to: 'off'
+      to: 'on'
   action:
     - service: notify.notify
       data_template:
-        message: "Ill wake you up at {{ states('input_datetime.alarm_clock')[:-3] }}"
+        message: "I'll wake you up at {{ states('input_datetime.alarm_clock')[:-3] }}"
 
 
 # Low battery
