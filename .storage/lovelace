@@ -1,0 +1,423 @@
+{
+    "data": {
+        "config": {
+            "name": "Home",
+            "resources": [
+                {
+                    "type": "js",
+                    "url": "/local/mini-media-player/mini-media-player.js"
+                },
+                {
+                    "type": "module",
+                    "url": "/local/custom-lovelace/thermostat-card/thermostat-card.js?v=1"
+                },
+                {
+                    "type": "js",
+                    "url": "/local/lovelace-entity-markdown-card/entity-markdown.js"
+                }
+            ],
+            "views": [
+                {
+                    "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
+                    "cards": [
+                        {
+                            "entity": "sensor.status_summary",
+                            "type": "custom:entity-markdown"
+                        },
+                        {
+                            "entities": [
+                                "light.standing_lamp",
+                                "light.spot",
+                                "light.ceiling_lamp",
+                                "group.led_strips",
+                                "light.tv_backlight"
+                            ],
+                            "id": "b0e3b0e36a9a4deba2b93ba14ef47001",
+                            "show_header_toggle": false,
+                            "theme": "Backend-selected",
+                            "type": "entities"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "entity": [
+                                        "switch.air_purifier"
+                                    ],
+                                    "hold_action": "more-info",
+                                    "name": "Air",
+                                    "tap_action": "toggle",
+                                    "type": "entity-button"
+                                },
+                                {
+                                    "entity": [
+                                        "switch.coffee_maker"
+                                    ],
+                                    "hold_action": "more-info",
+                                    "name": "Coffee",
+                                    "tap_action": "toggle",
+                                    "type": "entity-button"
+                                },
+                                {
+                                    "entity": [
+                                        "switch.television"
+                                    ],
+                                    "hold_action": "more-info",
+                                    "name": "Television",
+                                    "tap_action": "toggle",
+                                    "type": "entity-button"
+                                }
+                            ],
+                            "id": "a028535ccd4e4ec498559ccc9a96eb89",
+                            "type": "horizontal-stack"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "card": {
+                                        "elements": [
+                                            {
+                                                "entity": "switch.television",
+                                                "style": {
+                                                    "left": "10%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "10%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "switch.entone",
+                                                "style": {
+                                                    "left": "30%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "text-shadow": "1px 1px 2px black, 0 0 25px blue, 0 0 5px white",
+                                                    "top": "10%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "input_select.tv_input",
+                                                "style": {
+                                                    "left": "60%",
+                                                    "top": "10%"
+                                                },
+                                                "type": "state-label"
+                                            },
+                                            {
+                                                "entity": "light.tv_backlight",
+                                                "style": {
+                                                    "left": "10%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "30%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.input_up",
+                                                "service": "script.turn_on",
+                                                "style": {
+                                                    "left": "90%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "10%"
+                                                },
+                                                "tap_action": "call-service",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.input_down",
+                                                "service": "script.turn_on",
+                                                "style": {
+                                                    "left": "90%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "30%"
+                                                },
+                                                "tap_action": "call-service",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.sony_theatre",
+                                                "style": {
+                                                    "left": "30%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "30%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.apple_up",
+                                                "style": {
+                                                    "left": "50%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "30%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.apple_left",
+                                                "style": {
+                                                    "left": "30%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "50%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "switch.television",
+                                                "style": {
+                                                    "left": "50%",
+                                                    "top": "50%"
+                                                },
+                                                "type": "state-label"
+                                            },
+                                            {
+                                                "entity": "script.apple_ok",
+                                                "style": {
+                                                    "left": "70%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "70%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.apple_right",
+                                                "style": {
+                                                    "left": "70%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "50%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.apple_back",
+                                                "style": {
+                                                    "left": "30%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "70%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.apple_down",
+                                                "style": {
+                                                    "left": "50%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "70%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.sony_mute",
+                                                "style": {
+                                                    "left": "10%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "90%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.sony_volume_lower",
+                                                "style": {
+                                                    "left": "30%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "90%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.sony_volume_higher",
+                                                "style": {
+                                                    "left": "50%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "90%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.entone_channel_down",
+                                                "style": {
+                                                    "left": "70%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "90%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            },
+                                            {
+                                                "entity": "script.entone_channel_up",
+                                                "style": {
+                                                    "left": "90%",
+                                                    "outline-color": "grey",
+                                                    "outline-style": "solid",
+                                                    "outline-width": "1px",
+                                                    "top": "90%"
+                                                },
+                                                "tap_action": "toggle",
+                                                "type": "state-icon"
+                                            }
+                                        ],
+                                        "image": "/local/images/white.jpg",
+                                        "type": "picture-elements"
+                                    },
+                                    "conditions": [
+                                        {
+                                            "entity": "switch.television",
+                                            "state": "on"
+                                        }
+                                    ],
+                                    "type": "conditional"
+                                },
+                                {
+                                    "card": {
+                                        "entity": "media_player.apple_tv",
+                                        "icon": false,
+                                        "more_info": true,
+                                        "type": "custom:mini-media-player"
+                                    },
+                                    "conditions": [
+                                        {
+                                            "entity": "media_player.apple_tv",
+                                            "state_not": "off"
+                                        }
+                                    ],
+                                    "type": "conditional"
+                                }
+                            ],
+                            "id": "93431bdc4fa94b12bf1e6901fcfbf3fe",
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "entities": [
+                                "input_boolean.alarm_clock",
+                                "input_datetime.alarm_clock"
+                            ],
+                            "type": "entities"
+                        },
+                        {
+                            "entity": "climate.thermostat",
+                            "id": "94388c17d89a4575a995a0cb181a5166",
+                            "type": "custom:thermostat-card"
+                        }
+                    ],
+                    "id": 0,
+                    "tab_icon": "mdi:home",
+                    "title": "Control"
+                },
+                {
+                    "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
+                    "cards": [
+                        {
+                            "entities": [
+                                "group.roman",
+                                "group.nadine",
+                                "group.marijn",
+                                "group.laurens",
+                                "group.nikki"
+                            ],
+                            "id": "53ca9509f43e4e70a4149595b70533d7",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "input_select.home_status",
+                                "binary_sensor.door",
+                                "binary_sensor.window",
+                                "climate.thermostat",
+                                "sensor.br_temperature"
+                            ],
+                            "id": "f0ed4b3909ee45248717c962735db826",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entity": "plant.plant",
+                            "id": "640393e6744847de897efc1bc1189eca",
+                            "type": "plant-status"
+                        }
+                    ],
+                    "id": 1,
+                    "title": "Status"
+                },
+                {
+                    "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
+                    "cards": [
+                        {
+                            "entities": [
+                                "input_select.home_status"
+                            ],
+                            "id": "a0f1fcd3c96f4debaa762ab298d0f419",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "group.alarm_clock"
+                            ],
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "switch.zigbee2mqtt_pairing"
+                            ],
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "group.climate_control_automations",
+                                "group.notification_automations"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Automations",
+                            "type": "entities"
+                        }
+                    ],
+                    "id": 2,
+                    "title": "Settings"
+                }
+            ]
+        }
+    },
+    "key": "lovelace",
+    "version": 1
+}
