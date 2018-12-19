@@ -1,0 +1,13 @@
+exclude:
+  entities:
+    - sensor.time
+    - sensor.status_summary
+  domains:
+    - group
+    - device_tracker
+include:
+  entities:
+    - device_tracker.macbook_pro
+    - device_tracker.iphone_8
+    - device_tracker.tile_506b6487eba64be9
+    - device_tracker.samsung_galaxy_s7
