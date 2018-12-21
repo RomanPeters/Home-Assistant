@@ -48,16 +48,40 @@
           Unknown
         {% endif %}
 
-    plant_emoji:
+    plant_summary:
       friendly_name: "Plant"
       value_template: > 
         {% if is_state('plant.plant', 'ok') %}
-          Perfect
+          Your plant is doing fantastic!
         {% elif is_state('plant.plant', 'unknown') %}
-          Unknown
-        {% else %}
-          {{ states.plant.plant.attributes.problem }}
+          I'm not sure how your plant is doing.
         {% endif %}
+
+        {% for problem in states.plant.plant.attributes.problem.split(', ') -%}
+          {%- if loop.first %}The plant {% elif loop.last %} and {% else %}, {% endif -%}
+
+          {%- if problem == 'moisture high' -%}
+            got too much water
+          {%- elif problem == 'moisture low' -%}
+            would like some water
+          {%- elif problem == 'batter low' -%}
+            sensor battery is almost empty
+          {%- elif problem ==  'temperature low' -%}
+            has it too cold
+          {%- elif problem == 'temperature high' -%}
+            has it too hot
+          {%- elif problem == 'conductivity high' -%}
+            got too much nutrients
+          {%- elif problem == 'conductivity low' -%}
+            got not enough nutrients
+          {%- elif problem == 'brightness high' -%}
+            recieves too much sunlight
+          {%- elif problem == 'brightness low' -%}
+            doesn't receive enough sunlight
+          {%- else -%}
+            {{ problem }}
+          {%- endif -%}
+        {%- endfor -%}.
       icon_template: >
         {% if is_state('sensor.plant_emoji', 'perfect') %}
           mdi:emoticon-happy
@@ -139,21 +163,6 @@
         {% endif %}
           {{ cal }}
 
-    smart_alarm_clock_time:
-      friendly_name: Smart Alarm Clock Time
-      value_template: >
-        {% set cal = states('sensor.next_event') %}
-        {% set alrm = as_timestamp(state_attr(cal, 'start_time')) - 3600 %}
-        {% set now_ts = as_timestamp(now()) %}
-        {% if  alrm - now_ts > 32400 and now().hour < 20 %}
-          {{ (now_ts + 1800) | timestamp_custom('%H:%M') }}
-        {% elif  alrm - now_ts > 32400 %}
-          {{ (now_ts + 32400) | timestamp_custom('%H:%M') }}
-        {% elif alrm - now_ts < 3600 %}
-          {{ (now_ts + 60) | timestamp_custom('%H:%M') }}
-        {% else %}
-          {{ alrm | timestamp_custom('%H:%M') }}
-        {% endif %}
 
 
 

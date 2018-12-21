@@ -372,9 +372,8 @@
                             "type": "history-graph"
                         },
                         {
-                            "entity": "plant.plant",
-                            "id": "640393e6744847de897efc1bc1189eca",
-                            "type": "plant-status"
+                            "entity": "sensor.plant_summary",
+                            "type": "custom:entity-markdown"
                         }
                     ],
                     "id": 1,
