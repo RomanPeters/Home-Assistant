@@ -373,6 +373,7 @@
                         },
                         {
                             "entity": "sensor.plant_summary",
+                            "title": "Plant",
                             "type": "custom:entity-markdown"
                         }
                     ],

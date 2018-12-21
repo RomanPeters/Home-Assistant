@@ -56,24 +56,22 @@
         {% elif is_state('plant.plant', 'unknown') %}
           I'm not sure how your plant is doing.
         {% endif %}
-
         {% for problem in states.plant.plant.attributes.problem.split(', ') -%}
           {%- if loop.first %}The plant {% elif loop.last %} and {% else %}, {% endif -%}
-
           {%- if problem == 'moisture high' -%}
-            got too much water
+            has too much water
           {%- elif problem == 'moisture low' -%}
             would like some water
           {%- elif problem == 'batter low' -%}
             sensor battery is almost empty
           {%- elif problem ==  'temperature low' -%}
-            has it too cold
+            is too cold
           {%- elif problem == 'temperature high' -%}
-            has it too hot
+            is too hot
           {%- elif problem == 'conductivity high' -%}
-            got too much nutrients
+            has too much nutrients
           {%- elif problem == 'conductivity low' -%}
-            got not enough nutrients
+            has not enough nutrients
           {%- elif problem == 'brightness high' -%}
             recieves too much sunlight
           {%- elif problem == 'brightness low' -%}
