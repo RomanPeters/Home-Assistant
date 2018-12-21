@@ -51,8 +51,8 @@
   availability_topic: "sonoff2/status"  # "sonoff_th10/status"
 
 - platform: mqtt
-  name: zigbee2mqtt pairing
-  icon: mdi:cellphone-wireless
+  name: zigbee2mqtt Pairing
+  icon: mdi:access-point
   command_topic: zigbee2mqtt/bridge/config/permit_join
   payload_on: "true"
   payload_off: "false"
