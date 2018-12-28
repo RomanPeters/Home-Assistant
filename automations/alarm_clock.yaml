@@ -70,7 +70,7 @@
       state: 'on'
   action:
     - service: scene.turn_on
-      entity_id: scene.morning
+      entity_id: scene.alarm_clock_lights
 
 # Action: Coffe
 - id: alarm_clock_coffee

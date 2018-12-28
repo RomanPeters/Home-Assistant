@@ -57,3 +57,7 @@
   payload_on: "true"
   payload_off: "false"
 
+#switch:
+#  - platform: flux
+#    lights:
+#     - light.white_bulb

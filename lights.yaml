@@ -21,40 +21,14 @@
   name: Spot
   entity_id: switch.spot
 
-#- platform: mqtt_json
-#  name: Blinkt
-#  brightness: true
-#  rgb: true
-#  flash: true
-#  effect: true
-#  effect_list:
-#    - None
-#    - Binary Clock
-#    - Binary Clock Meld
-#    - Candle
-#    - Larson
-#    - Larson Hue
-#    - Pulse
-#    - Rainbow
-#    - Tetris
-#  state_topic: "zero_w/light/state"
-#  command_topic: "zero_w/light/command"
-##  availability_topic: "zero_w/status"
-
-
-#- platform: mqtt_json
-#  name: Balcony Lights
-#  brightness: true
-#  rgb: true
-#  flash: true
-#  effect: true
-#  effect_list:
-#    - None
-#    - Random
-#    - Rainbow Effect
-#  state_topic: "d1_mini_mm/light/led_lights/state"
-#  command_topic: "d1_mini_mm/light/led_lights/command"
-#  availability_topic: "d1_mini_mm/status"
+- platform: mqtt
+  name: White Bulb
+  state_topic: "zigbee2mqtt/white_light"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  schema: "json"
+  command_topic: "zigbee2mqtt/white_light/set"
 
 - platform: mqtt
   name: Coffee LED
@@ -126,3 +100,5 @@
 #    - light.spot
 #    - light.tv_backlight
 #    - light.ceiling_lamp
+
+

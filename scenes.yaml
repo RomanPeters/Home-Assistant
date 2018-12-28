@@ -5,7 +5,7 @@
       brightness_pct: 60
       color_temp: 370
 
-- name: Morning
+- name: Alarm Clock Lights
   entities:
     light.standing_lamp:
       state: on
@@ -32,8 +32,8 @@
     light.spot: off
     light.led_strips:
       state: on
-      color_name: orange
+      rgb_color: [255, 93, 0]
       brightness_pct: 25
     light.tv_backlight:
       state: on
-      color_name: orange
+      rgb_color: [255, 93, 0]

@@ -31,7 +31,6 @@
     - service: scene.turn_on
       entity_id: scene.evening 
 
-
 # AWAY
 - id: home_status_to_away
   alias: Home Status to Away

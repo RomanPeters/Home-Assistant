@@ -32,6 +32,9 @@ weather:
   - platform: buienradar
     name: Utrecht
 
+#mqtt_eventstream:
+#  subscribe_topic: satellite/events
+
 auth:
 config:
 hassio:
@@ -39,12 +42,15 @@ history:
 map:
 python_script:
 media_extractor:
+conversation:
 sun:
 ios:
+
 
 google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
+
 
 tts:
   - platform: google

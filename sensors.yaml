@@ -8,12 +8,8 @@
     - precipitation_forecast_total
 
 
-- platform: miflora
-  mac: 'C4:7C:8D:66:42:FC'
-
-#- platform: serial_pm#  serial_device: /dev/ttyUSB0
-#  name: Particle Sensor
-#  brand: novafitness,sds011
+#- platform: miflora
+#  mac: 'C4:7C:8D:66:42:FC'
 
 - platform: waqi
   token: !secret waqi_token
@@ -48,6 +44,16 @@
           Unknown
         {% endif %}
 
+    waqi_particle_sensor_pm25:
+      friendly_name: WAQI PM2.5
+      unit_of_measurement: "μg/m3"
+      value_template: >
+        {{ state_attr('sensor.waqi_de_jongweg_utrecht', 'pm_2_5') }}
+    waqi_particle_sensor_pm10:
+      friendly_name: WAQI PM10
+      unit_of_measurement: "μg/m3"
+      value_template: >
+        {{ state_attr('sensor.waqi_de_jongweg_utrecht', 'pm_10') }}
     plant_summary:
       friendly_name: "Plant"
       value_template: > 
@@ -165,7 +171,6 @@
 
 
 ### MQTT
-
 - platform: "mqtt"
   name: Button
   state_topic: "zigbee2mqtt/button"
@@ -178,6 +183,7 @@
     - "voltage"
     - "action"
     - "duration"
+  force_update: true
 
 - platform: "mqtt"
   name: Wall switch
@@ -191,6 +197,7 @@
     - "voltage"
     - "action"
     - "duration"
+  force_update: true
 
 - platform: "mqtt"
   name: Xiaomi Temperature
@@ -276,20 +283,37 @@
     - "battery"
     - "voltage"
 
+- platform: "mqtt"
+  name: Mi Flora Moisture
+  state_topic: "satellite/sensor/mi_flora_moisture/state"
+  unit_of_measurement: "%"
 
-# my sonoff th 10 broke :/
-#- platform:  "mqtt"
-#  name: "Sonoff Temperature"
-#  state_topic: "sonoff_th10/sensor/thermostat_temperature/state"
-#  availability_topic: "sonoff_th10/status"
-#  unit_of_measurement: "°C"
-#  expire_after: 675
+- platform: "mqtt"
+  name: Mi Flora Conductivity
+  state_topic: "satellite/sensor/mi_flora_conductivity/state"
+  unit_of_measurement: "µS/cm"
 
-#- platform:  "mqtt"
-#  name: "Sonoff Humidity"
-#  icon: mdi:water-percent
-#  state_topic: "sonoff_th10/sensor/thermostat_humidity/state"
-#  availability_topic: "sonoff_th10/status"
-#  unit_of_measurement: "%"
-#  expire_after: 675
+- platform: "mqtt"
+  name: Mi Flora Temperature
+  state_topic: "satellite/sensor/mi_flora_temperature/state"
+  unit_of_measurement: "°C"
 
+- platform: "mqtt"
+  name: Mi Flora Light Intensity
+  state_topic: "satellite/sensor/mi_flora_light_intensity/state"
+  unit_of_measurement: "lx"
+
+- platform: "mqtt"
+  name: Mi Flora Battery
+  state_topic: "satellite/sensor/mi_flora_battery/state"
+  unit_of_measurement: "%"
+
+- platform: "mqtt"
+  name: Particle Sensor PM2.5
+  state_topic: "satellite/sensor/particle_sensor_pm25/state"
+  unit_of_measurement: "μg/m3"
+
+- platform: "mqtt"
+  name: Particle Sensor PM10
+  state_topic: "satellite/sensor/particle_sensor_pm10/state"
+  unit_of_measurement: "μg/m3"

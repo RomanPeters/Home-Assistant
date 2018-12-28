@@ -9,7 +9,7 @@ set_alarm_clock:
           {% set cal = states('sensor.next_event') %}
           {% set alrm = as_timestamp(state_attr(cal, 'start_time')) - 3600 %}
           {% set now_ts = as_timestamp(now()) %}
-          {% if  alrm - now_ts > 32400 and now().hour < 20 %}
+          {% if  alrm - now_ts > 32400 and now().hour < 20 and now().hour > 9 %}
             {{ (now_ts + 1800) | timestamp_custom('%H:%M') }}
           {% elif  alrm - now_ts > 32400 %}
             {{ (now_ts + 32400) | timestamp_custom('%H:%M') }}

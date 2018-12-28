@@ -28,7 +28,7 @@
                             "entities": [
                                 "light.standing_lamp",
                                 "light.spot",
-                                "light.ceiling_lamp",
+                                "light.white_bulb",
                                 "group.led_strips",
                                 "light.tv_backlight"
                             ],
@@ -352,10 +352,7 @@
                         {
                             "entities": [
                                 "group.roman",
-                                "group.nadine",
-                                "group.marijn",
-                                "group.laurens",
-                                "group.nikki"
+                                "group.nadine"
                             ],
                             "id": "53ca9509f43e4e70a4149595b70533d7",
                             "type": "entities"
@@ -364,17 +361,30 @@
                             "entities": [
                                 "input_select.home_status",
                                 "binary_sensor.door",
-                                "binary_sensor.window",
+                                "switch.air_purifier"
+                            ],
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
                                 "climate.thermostat",
                                 "sensor.br_temperature"
+                            ],
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.particle_sensor_pm25",
+                                "sensor.particle_sensor_pm10",
+                                "sensor.waqi_particle_sensor_pm25",
+                                "sensor.waqi_particle_sensor_pm10"
                             ],
                             "id": "f0ed4b3909ee45248717c962735db826",
                             "type": "history-graph"
                         },
                         {
-                            "entity": "sensor.plant_summary",
-                            "title": "Plant",
-                            "type": "custom:entity-markdown"
+                            "entity": "plant.plant",
+                            "type": "plant-status"
                         }
                     ],
                     "id": 1,
@@ -398,7 +408,8 @@
                         },
                         {
                             "entities": [
-                                "switch.zigbee2mqtt_pairing"
+                                "switch.zigbee2mqtt_pairing",
+                                "switch.flux"
                             ],
                             "type": "entities"
                         },
