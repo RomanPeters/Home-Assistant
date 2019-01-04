@@ -25,10 +25,104 @@
                             "type": "custom:entity-markdown"
                         },
                         {
+                            "elements": [
+                                {
+                                    "entity": "light.aqara_white_bulb",
+                                    "image": "/local/images/floorplan/darkness.png",
+                                    "state_filter": {
+                                        "off": "opacity(70%)",
+                                        "on": "opacity(0%)"
+                                    },
+                                    "style": {
+                                        "left": "47.5%",
+                                        "top": "45.9%",
+                                        "width": "53.5%"
+                                    },
+                                    "type": "image"
+                                },
+                                {
+                                    "entity": "light.aqara_white_bulb",
+                                    "image": "/local/images/floorplan/ceiling_lamp.png",
+                                    "state_filter": {
+                                        "on": "drop-shadow(0px 0px 10px black) drop-shadow(0px 0px 40px black) drop-shadow(0px 0px 60px black)"
+                                    },
+                                    "style": {
+                                        "left": "51%",
+                                        "top": "48%",
+                                        "width": "60%"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "image"
+                                },
+                                {
+                                    "entity": "sensor.xiaomi_temperature_2",
+                                    "style": {
+                                        "color": "white",
+                                        "left": "30%",
+                                        "text-shadow": "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black",
+                                        "top": "7%"
+                                    },
+                                    "type": "state-label"
+                                },
+                                {
+                                    "entity": "sensor.xiaomi_temperature",
+                                    "style": {
+                                        "color": "white",
+                                        "left": "30%",
+                                        "text-shadow": "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black",
+                                        "top": "22%"
+                                    },
+                                    "type": "state-label"
+                                },
+                                {
+                                    "entity": "binary_sensor.door",
+                                    "state_image": {
+                                        "off": "/local/images/floorplan/door_closed.png",
+                                        "on": "/local/images/floorplan/door_open.png"
+                                    },
+                                    "style": {
+                                        "left": "29%",
+                                        "top": "67.5%",
+                                        "width": "17%"
+                                    },
+                                    "type": "image"
+                                },
+                                {
+                                    "entity": "binary_sensor.window",
+                                    "state_image": {
+                                        "on": "/local/images/floorplan/window_open.png"
+                                    },
+                                    "style": {
+                                        "left": "44%",
+                                        "top": "23.4%",
+                                        "width": "11%"
+                                    },
+                                    "type": "image"
+                                },
+                                {
+                                    "entity": "light.aqara_white_bulb",
+                                    "icon": "mdi:none",
+                                    "style": {
+                                        "left": "32%",
+                                        "top": "37.3%",
+                                        "transform": "rotate(180deg)"
+                                    },
+                                    "tap_action": {
+                                        "action": "toggle"
+                                    },
+                                    "type": "icon"
+                                }
+                            ],
+                            "image": "/local/images/floorplan/floor.png",
+                            "type": "picture-elements"
+                        },
+                        {
                             "entities": [
-                                "light.standing_lamp",
+                                "light.aqara_white_bulb",
+                                "light.milight_rgbw_bulb",
                                 "light.spot",
-                                "light.white_bulb",
                                 "group.led_strips",
                                 "light.tv_backlight"
                             ],
@@ -38,37 +132,12 @@
                             "type": "entities"
                         },
                         {
-                            "cards": [
-                                {
-                                    "entity": [
-                                        "switch.air_purifier"
-                                    ],
-                                    "hold_action": "more-info",
-                                    "name": "Air",
-                                    "tap_action": "toggle",
-                                    "type": "entity-button"
-                                },
-                                {
-                                    "entity": [
-                                        "switch.coffee_maker"
-                                    ],
-                                    "hold_action": "more-info",
-                                    "name": "Coffee",
-                                    "tap_action": "toggle",
-                                    "type": "entity-button"
-                                },
-                                {
-                                    "entity": [
-                                        "switch.television"
-                                    ],
-                                    "hold_action": "more-info",
-                                    "name": "Television",
-                                    "tap_action": "toggle",
-                                    "type": "entity-button"
-                                }
+                            "entities": [
+                                "switch.television",
+                                "switch.air_purifier"
                             ],
                             "id": "a028535ccd4e4ec498559ccc9a96eb89",
-                            "type": "horizontal-stack"
+                            "type": "entities"
                         },
                         {
                             "cards": [
@@ -330,6 +399,16 @@
                             "type": "vertical-stack"
                         },
                         {
+                            "elements": [
+                                {
+                                    "entity": "light.aqara_white_bulb",
+                                    "type": "state-icon"
+                                }
+                            ],
+                            "image": "/local/images/floorplan/floor.png",
+                            "type": "picture-elements"
+                        },
+                        {
                             "entities": [
                                 "input_boolean.alarm_clock",
                                 "input_datetime.alarm_clock"
@@ -368,18 +447,35 @@
                         {
                             "entities": [
                                 "climate.thermostat",
-                                "sensor.br_temperature"
+                                "sensor.xiaomi_temperature_2",
+                                "sensor.dht_temperature"
                             ],
                             "type": "history-graph"
                         },
                         {
                             "entities": [
-                                "sensor.particle_sensor_pm25",
-                                "sensor.particle_sensor_pm10",
-                                "sensor.waqi_particle_sensor_pm25",
-                                "sensor.waqi_particle_sensor_pm10"
+                                "sensor.xiaomi_humidity",
+                                "sensor.xiaomi_humidity_2",
+                                "sensor.dht_humidity"
                             ],
-                            "id": "f0ed4b3909ee45248717c962735db826",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.xiaomi_pressure",
+                                "sensor.xiaomi_pressure_2"
+                            ],
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.air_quality_status",
+                                "sensor.world_air_quality_status",
+                                "sensor.waqi_particle_sensor_pm25",
+                                "sensor.waqi_particle_sensor_pm10",
+                                "sensor.particle_sensor_pm25",
+                                "sensor.particle_sensor_pm10"
+                            ],
                             "type": "history-graph"
                         },
                         {
@@ -408,8 +504,12 @@
                         },
                         {
                             "entities": [
-                                "switch.zigbee2mqtt_pairing",
-                                "switch.flux"
+                                {
+                                    "entity": "switch.pihole"
+                                },
+                                {
+                                    "entity": "switch.zigbee2mqtt_pairing"
+                                }
                             ],
                             "type": "entities"
                         },
