@@ -29,6 +29,16 @@
     - service: automation.trigger
       entity_id: automation.alarm_clock_media
 
+# Action: Turn On
+- id: alarm_clock_turn_on
+  alias: 'Alarm Clock Turn On'
+  trigger:
+    - platform: state
+      entity_id: input_datetime.alarm_clock
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alarm_clock
+
 # Action: Turn Off
 - id: alarm_clock_turn_off
   alias: 'Alarm Clock Turn Off'
@@ -44,7 +54,7 @@
   alias: 'Alarm Clock Climate'
   trigger:
     - platform: template
-      value_template: "{{ states('sensor.time') == ((states.input_datetime.alarm_clock.attributes.timestamp | int - 1800) | timestamp_custom('%H:%M', False)) }}"
+      value_template: "{{ states('sensor.time') == ((states.input_datetime.alarm_clock.attributes.timestamp | int - 900) | timestamp_custom('%H:%M', False)) }}"
   condition:
     - condition: or
       conditions:
@@ -63,16 +73,15 @@
   alias: 'Alarm Clock Lights'
   trigger:
     - platform: template
-      value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"  
+      value_template: "{{ states('sensor.time') == ((states.input_datetime.alarm_clock.attributes.timestamp | int - 1800) | timestamp_custom('%H:%M', False)) }}"  
   condition:
     - condition: state
       entity_id: input_boolean.alarm_clock
       state: 'on'
   action:
-    - service: scene.turn_on
-      entity_id: scene.morning
+    - service: python_script.wake_up_light
 
-# Action: Coffe
+# Action: Coffee
 - id: alarm_clock_coffee
   alias: 'Alarm Clock Coffee'
   trigger:

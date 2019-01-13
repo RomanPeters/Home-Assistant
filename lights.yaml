@@ -6,71 +6,65 @@
       groups:
       - number: 1
         type: rgbw
-        name: Ceiling Lamp
+        name: Milight RGBW Bulb
       - number: 2
         type: rgbw
-        name: LED Strip N
+        name: LED Strip 1
       - number: 3
         type: rgbw
-        name: LED strip S
+        name: LED Strip 2
       - number: 1
         type: white
-        name: Standing Lamp
+        name: Milight White Bulb
 
 - platform: switch
   name: Spot
   entity_id: switch.spot
 
-#- platform: mqtt_json
-#  name: Blinkt
-#  brightness: true
-#  rgb: true
-#  flash: true
-#  effect: true
-#  effect_list:
-#    - None
-#    - Binary Clock
-#    - Binary Clock Meld
-#    - Candle
-#    - Larson
-#    - Larson Hue
-#    - Pulse
-#    - Rainbow
-#    - Tetris
-#  state_topic: "zero_w/light/state"
-#  command_topic: "zero_w/light/command"
-##  availability_topic: "zero_w/status"
-
-
-#- platform: mqtt_json
-#  name: Balcony Lights
-#  brightness: true
-#  rgb: true
-#  flash: true
-#  effect: true
-#  effect_list:
-#    - None
-#    - Random
-#    - Rainbow Effect
-#  state_topic: "d1_mini_mm/light/led_lights/state"
-#  command_topic: "d1_mini_mm/light/led_lights/command"
-#  availability_topic: "d1_mini_mm/status"
+- platform: mqtt
+  name: Aqara White Bulb
+  state_topic: "zigbee2mqtt/white_light"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  schema: "json"
+  command_topic: "zigbee2mqtt/white_light/set"
 
 - platform: mqtt
-  name: Coffee LED
+  command_topic: "/satellite/ws281x/0/set"
+  state_topic: "/satellite/ws281x/0/get"
+  rgb: true
+  name: WS2811
   brightness: true
-  flash: true
-  state_topic: "sonoff/light/coffee_led/state"
-  command_topic: "sonoff/light/coffee_led/command"
-  availability_topic: "sonoff/status"
+  effect: true
+  effect_list:
+    - 'none'
+    - 'colorwipe'
+    - 'turntable'
+    - 'rainbow'
+    - 'colorshoot'
+    - 'confetti'
+    - 'fire'
+    - 'sinelon'
+    - 'testcolor'
+  retain: true    
 
-- platform: mqtt
-  name: Heater LED
-  brightness: true
-  flash: true
-  state_topic: "sonoff2/light/heater_led/state"  #"sonoff_th10/light/heater_led/state"
-  command_topic: "sonoff2/light/heater_led/command"  #"sonoff_th10/light/heater_led/command"
-  availability_topic: "sonoff2/status"  #"sonoff_th10/status"
+
+#- platform: mqtt
+#  name: Coffee LED
+#  brightness: true
+#  flash: true
+#  state_topic: "sonoff/light/coffee_led/state"
+#  command_topic: "sonoff/light/coffee_led/command"
+#  availability_topic: "sonoff/status"
+
+#- platform: mqtt
+#  name: Heater LED
+#  brightness: true
+#  flash: true
+#  state_topic: "sonoff2/light/heater_led/state"  #"sonoff_th10/light/heater_led/state"
+#  command_topic: "sonoff2/light/heater_led/command"  #"sonoff_th10/light/heater_led/command"
+#  availability_topic: "sonoff2/status"  #"sonoff_th10/status"
 
 - platform: template
   lights:
@@ -99,30 +93,17 @@
     - Fade 
     - RGB Fade
 
-- platform: group
-  name: LED Strips
-  entities:
-    - light.led_strip_n
-    - light.led_strip_s
 
+# Aliases
 - platform: group
-  name: Ambient Lights
+  name: "Ambient Lights"
   entities:
-    - light.led_strip_n
-    - light.led_strip_s
-    - light.ceiling_lamp
+    - light.milight_rgbw_bulb
+    - light.led_strip_1
+    - light.led_strip_2
     - light.tv_backlight
 
 - platform: group
-  name: All Ambient Lights
+  name: "Night Light"
   entities:
-    - light.ambient_lights
-    - light.balcony_lights
-
-- platform: group
-  name: White Lights
-  entities:
-    - light.standing_lamp
-#    - light.spot
-#    - light.tv_backlight
-#    - light.ceiling_lamp
+    - light.tv_backlight

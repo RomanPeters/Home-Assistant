@@ -6,6 +6,21 @@ home_status:
     - Away
     - 'Off'
 
+activity:
+  name: Activity
+  options:
+    - computering
+    - watching tv
+    - showering
+    - brushing teeth
+    - leaving
+    - going to bed
+    - in bed
+    - sleeping
+    - waking up
+    - going home
+    - none
+
 button_single:
   name: Button Single Click
   options:

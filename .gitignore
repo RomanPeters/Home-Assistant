@@ -11,6 +11,7 @@ appdaemon/compiled
 appdaemon/apps/__pycache__/
 custom_components/__pycache__/
 groups/persons.yaml
+customize/persons.yaml
 entity_registry.yaml
 fullchain.pem
 home-assistant.log
@@ -28,3 +29,4 @@ zigbee2mqtt_configuration.yaml
 www/custom-lovelace/
 google_calendars.yaml
 .google.token
+.tile_romanpeters_nl.tile.conf

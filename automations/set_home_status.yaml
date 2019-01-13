@@ -23,6 +23,9 @@
     - platform: state
       entity_id: group.presence
       to: home
+  condition:
+    - condition: template
+      value_template: "{{ not is_state('input_select.home_status', 'Off') }}"
   action:
     - service: input_select.select_option
       data:
@@ -31,8 +34,8 @@
     - service: timer.cancel
       entity_id: timer.wait_for_presence
 
-- id: set_home_status_to_home_from_night
-  alias: Set Home Status to home from night
+- id: set_home_status_to_home_from_night_by_alarm_clock
+  alias: Set Home Status to home from night by alarm clock
   trigger:
     - platform: template
       value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
@@ -49,6 +52,27 @@
         entity_id: input_select.home_status
         option: Home
 
+- id: set_home_status_to_home_from_night
+  alias: Set Home Status to home from night
+  trigger:
+    - platform: state
+      entity_id: sensor.iphone_8_battery_state
+      to: Unplugged
+    - platform: numeric_state
+      entity_id: sensor.illuminance
+      above: 7
+  condition:
+    - condition: state
+      entity_id: input_select.home_status
+      state: Night
+    - condition: time
+      after: '07:00:00'
+      before: '21:00:00'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_status
+        option: Home
 
 # Away
 - id: set_home_status_to_away
@@ -57,6 +81,10 @@
     - platform: state
       entity_id: group.presence
       to: not_home
+  condition:
+    - condition: state
+      entity_id: input_select.home_status
+      state: Home
   action:
     - service: input_select.select_option
       data:
@@ -90,6 +118,9 @@
     - platform: state
       entity_id: device_tracker.macbook_pro
       to: 'not_home'
+    - platform: state
+      entity_id: group.room_lights
+      to: 'off'
   condition:
     - condition: state
       entity_id: input_select.home_status
@@ -98,6 +129,7 @@
       after: '00:00:00'
       before: '07:00:00'
   action:
+    - wait_template: "{{ is_state('device_tracker.macbook_pro', 'not_home') }}"
     - service: input_select.select_option
       data:
         entity_id: input_select.home_status

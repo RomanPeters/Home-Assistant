@@ -17,7 +17,7 @@
     socket_1:
       friendly_name: "Socket 1"
       command_on: "sg0yAAcRBhESBgYRBhEGEQYREgYRBgYRBhEGrREGBhEGEQYRBxERBgYREQYSBgYREQYRBgYRAAAAAAAA"
-      # command_off is broken
+      #TODO command_off is broken
       command_off: "sg8yAAYREgYGERIGEgYGEhEGEgYGEQYRBhERBgYRBhEGEQYRBhEGEREGBhEGrBEGBhEGEQYRAAAAAAAA"
     spot:
       friendly_name: "Spot"
@@ -27,8 +27,8 @@
       friendly_name: "Camera"
       command_on: "sgoyABIGBxEHEQcRBhESBgcREgYSBQcREgUSBgcRBxEHERIFBxEGEQcRBhESBgcRBhESBgesAAAAAAAA"
       command_off: "sgYyAAasEQYHEQYRBxEGEREGBhESBhEGBhERBhIGBhEGEgYSEQYGEQYRBhEGEQYRBhEGEREGAAAAAAAA"
-    socket_4:  # socket 4
-      friendly_name: "Fan"
+    heater:  # socket 4
+      friendly_name: "Heater"
       command_on: "sgsyABIGEQYGEREGEgYGEQcRBhERBgYRBxEGEQcREgYSBgcREgYGrBEGBxEGEQYRBxESBgcRAAAAAAAA"
       command_off: "sgoyABEGBhEGEQYREQYGEQYRBhEGEQcREQYGERIGBqwRBgYRBhEGEQYREQYGERIGEQYGEREGAAAAAAAA"
     socket_5:  # socket 5
@@ -36,24 +36,27 @@
       command_on: "sg4yABIGBhEGEQYRBhIRBgYREQYRBgYREQYRBgYRBhIGEREGBhEGEQYRBhERBgYREQYRBgasAAAAAAAA"
       command_off: "shEyABIGBhEGEQYRBhERBgYREQYRBgYREQYRBgYRBhEHEREGBhEGEQYRBxEHEQYREQYRBgesAAAAAAAA"
 
-- platform: mqtt
-  name: Coffee Maker
-  icon: "mdi:coffee"
-  state_topic: "sonoff/switch/coffee_maker/state"
-  command_topic: "sonoff/switch/coffee_maker/command"
-  availability_topic: "sonoff/status"
+#- platform: mqtt
+#  name: Heater
+#  icon: "mdi:radiator-disabled"
+#  state_topic: "sonoff2/switch/heater/state"  # "sonoff_th10/switch/heater/state"
+#  command_topic: "sonoff2/switch/heater/command"  # "sonoff_th10/switch/heater/command"
+#  availability_topic: "sonoff2/status"  # "sonoff_th10/status"
 
 - platform: mqtt
-  name: Heater
-  icon: "mdi:radiator-disabled"
-  state_topic: "sonoff2/switch/heater/state"  # "sonoff_th10/switch/heater/state"
-  command_topic: "sonoff2/switch/heater/command"  # "sonoff_th10/switch/heater/command"
-  availability_topic: "sonoff2/status"  # "sonoff_th10/status"
-
-- platform: mqtt
-  name: zigbee2mqtt pairing
-  icon: mdi:cellphone-wireless
+  name: zigbee2mqtt Pairing
+  icon: mdi:access-point
+  state_topic: "zigbee2mqtt/bridge/config/permit_join"
   command_topic: zigbee2mqtt/bridge/config/permit_join
   payload_on: "true"
   payload_off: "false"
 
+- platform: command_line
+  switches:
+    pihole:
+      friendly_name: Pi-Hole Blocking
+      command_on: !secret pi_hole_command_on
+      command_off: !secret pi_hole_command_off
+# Disabled below, because it's not really necessary to keep checking whether it's on or off
+#      command_state: "curl -X GET 'http://10.10.10.101/admin/api.php?status'"
+#      value_template: "{{ value_json.status == 'enabled' }}"

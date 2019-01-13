@@ -14,6 +14,15 @@
       friendly_name: "Outside cooler than inside"
       value_template: "{{ (states('sensor.br_temperature') | float) < (states('sensor.inside_temperature') | float) }}"
 
+    plant_needs_water:
+      friendly_name: "Plant Needs Water"
+      value_template: >
+        {% if 'moisture low' in state_attr('plant.plant', 'problem') %}
+          True
+        {% else %}
+          False
+        {% endif %}
+
     door_icon:
       friendly_name: "Door"
       icon_template: >
@@ -44,10 +53,7 @@
   payload_off: true
   value_template: "{{ value_json.contact }}"
   device_class: "door"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/door_sensor" 
 
 - platform: "mqtt"
   name: Window
@@ -58,10 +64,7 @@
   payload_off: true
   value_template: "{{ value_json.contact }}"
   device_class: "window"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/window_sensor"
 
 - platform: "mqtt"
   name: Motion sensor
@@ -72,16 +75,13 @@
   payload_off: false
   value_template: "{{ value_json.occupancy }}"
   device_class: "motion"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/motion_sensor"
 
-- platform: "mqtt"
-  name: Heater button
-  state_topic: "sonoff2/binary_sensor/heater_button/state"
-  availability_topic: "sonoff2/status"
-  icon: "mdi:button"
+#- platform: "mqtt"
+#  name: Heater button
+#  state_topic: "sonoff2/binary_sensor/heater_button/state"
+#  availability_topic: "sonoff2/status"
+#  icon: "mdi:button"
 
 - platform: "mqtt"
   name: Coffee button
@@ -89,9 +89,8 @@
   availability_topic: "sonoff/status"
   icon: "mdi:coffee"
 
+- platform: "mqtt"
+  name: BS440
+  state_topic: "satellite/binary_sensor/bs440/state"
+  icon: "mdi:gauge"
 
-#- platform: "mqtt"
-#  name: Camera motion sensor
-#  icon: mdi:run-fast
-#  state_topic: xiaomi/dafang/motion
-#  device_class: motion

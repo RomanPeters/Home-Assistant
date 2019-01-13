@@ -4,6 +4,8 @@
     - platform: numeric_state
       entity_id: sensor.illuminance
       below: 30
+      for:
+        minutes: 10
     - platform: state
       entity_id: input_select.home_status
       to: Home

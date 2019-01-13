@@ -22,6 +22,7 @@ restoreable:
 climate_control_automations:
   name: Climate Control
   entities:
+    - climate.thermostat
     - automation.turn_on_climate_control
     - automation.turn_off_climate_control
     - automation.climate_control_disabled

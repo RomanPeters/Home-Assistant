@@ -1,23 +1,16 @@
 - name: Evening
   entities:
-    light.standing_lamp:
+    light.aqara_white_bulb:
       state: on
-      brightness_pct: 60
+      brightness: 160
       color_temp: 370
-
-- name: Morning
-  entities:
-    light.standing_lamp:
-      state: on
-      brightness_pct: 10
-      color_temp: 154
 
 - name: Movie Mode
   entities:
-    light.standing_lamp: off
-    light.led_strip_n: off
-    light.led_strip_s: off
-    light.ceiling_lamp: off
+    light.aqara_white_bulb: off
+    light.milight_rgbw_bulb: off
+    light.led_strip_1: off
+    light.led_strip_2: off
     light.spot: off
     switch.air_purifier: off
     switch.television: on
@@ -27,13 +20,13 @@
 
 - name: Dark Mode
   entities:
-    light.standing_lamp: off
-    light.ceiling_lamp: off
+    light.aqara_white_bulb: off
+    light.milight_rgbw_bulb: off
     light.spot: off
-    light.led_strips:
+    group.led_strips:
       state: on
-      color_name: orange
+      rgb_color: [255, 93, 0]
       brightness_pct: 25
     light.tv_backlight:
       state: on
-      color_name: orange
+      rgb_color: [255, 93, 0]

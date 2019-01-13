@@ -22,20 +22,25 @@ possible_colors["script.tv_backlight_r4"] = (255, 255, 0)
 possible_colors["script.tv_backlight_g4"] = (0, 255, 255)
 possible_colors["script.tv_backlight_b4"] = (255, 0, 255)
 
-def findNearestColorName(RGB, options):
-    RGB_tuple = tuple(int(i) for i in RGB.strip('()').split(','))
-    R = RGB_tuple[0]
-    G = RGB_tuple[1]
-    B = RGB_tuple[2]
-    mindiff = None
-    for d in options.keys():
-        r, g, b = options[d]
-        diff = abs(R -r)*256 + abs(G-g)* 256 + abs(B- b)* 256
-        if mindiff is None or diff < mindiff:
-            mindiff = diff
-            mincolorname = d
-    return mincolorname
 
-script = findNearestColorName(data["rgb_color"], possible_colors)
+
+
+RGB = data["rgb_color"]
+options = possible_colors
+
+RGB_tuple = tuple(int(i) for i in RGB.strip('()').split(','))
+R = RGB_tuple[0]
+G = RGB_tuple[1]
+B = RGB_tuple[2]
+mindiff = None
+for d in options.keys():
+    r, g, b = options[d]
+    diff = abs(R -r)*256 + abs(G-g)* 256 + abs(B- b)* 256
+    if mindiff is None or diff < mindiff:
+        mindiff = diff
+        mincolorname = d
+
+script = mincolorname
+
 hass.services.call('script', 'turn_on', {'entity_id': script}, False)
 

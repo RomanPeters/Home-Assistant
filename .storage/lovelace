@@ -25,10 +25,67 @@
                             "type": "custom:entity-markdown"
                         },
                         {
+                            "elements": [
+                                {
+                                    "entity": "sun.sun",
+                                    "filter": "opacity(0)",
+                                    "image": "/local/images/render/night.png",
+                                    "state_filter": {
+                                        "below_horizon": "opacity(0.5)"
+                                    },
+                                    "style": {
+                                        "left": "50%",
+                                        "top": "49.05%",
+                                        "width": "102.5%"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "image"
+                                },
+                                {
+                                    "entity": "light.aqara_white_bulb",
+                                    "image": "/local/images/render/lamp.png",
+                                    "state_filter": {
+                                        "off": "brightness(0.9)",
+                                        "on": "drop-shadow(0px 0px 40px white) drop-shadow(0px 0px 40px white) brightness(1.5)"
+                                    },
+                                    "style": {
+                                        "left": "50%",
+                                        "top": "46%",
+                                        "width": "100%"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "image"
+                                },
+                                {
+                                    "entity": "group.room_lights",
+                                    "filter": "opacity(0)",
+                                    "image": "/local/images/render/lights_off.png",
+                                    "state_filter": {
+                                        "off": "opacity(0.5)"
+                                    },
+                                    "style": {
+                                        "left": "50%",
+                                        "top": "49.05%",
+                                        "width": "102.5%"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "image"
+                                }
+                            ],
+                            "image": "/local/images/render/room.png",
+                            "type": "picture-elements"
+                        },
+                        {
                             "entities": [
-                                "light.standing_lamp",
+                                "light.aqara_white_bulb",
+                                "light.milight_rgbw_bulb",
                                 "light.spot",
-                                "light.ceiling_lamp",
                                 "group.led_strips",
                                 "light.tv_backlight"
                             ],
@@ -38,37 +95,12 @@
                             "type": "entities"
                         },
                         {
-                            "cards": [
-                                {
-                                    "entity": [
-                                        "switch.air_purifier"
-                                    ],
-                                    "hold_action": "more-info",
-                                    "name": "Air",
-                                    "tap_action": "toggle",
-                                    "type": "entity-button"
-                                },
-                                {
-                                    "entity": [
-                                        "switch.coffee_maker"
-                                    ],
-                                    "hold_action": "more-info",
-                                    "name": "Coffee",
-                                    "tap_action": "toggle",
-                                    "type": "entity-button"
-                                },
-                                {
-                                    "entity": [
-                                        "switch.television"
-                                    ],
-                                    "hold_action": "more-info",
-                                    "name": "Television",
-                                    "tap_action": "toggle",
-                                    "type": "entity-button"
-                                }
+                            "entities": [
+                                "switch.television",
+                                "switch.air_purifier"
                             ],
                             "id": "a028535ccd4e4ec498559ccc9a96eb89",
-                            "type": "horizontal-stack"
+                            "type": "entities"
                         },
                         {
                             "cards": [
@@ -330,6 +362,16 @@
                             "type": "vertical-stack"
                         },
                         {
+                            "elements": [
+                                {
+                                    "entity": "light.aqara_white_bulb",
+                                    "type": "state-icon"
+                                }
+                            ],
+                            "image": "/local/images/floorplan/floor.png",
+                            "type": "picture-elements"
+                        },
+                        {
                             "entities": [
                                 "input_boolean.alarm_clock",
                                 "input_datetime.alarm_clock"
@@ -352,10 +394,7 @@
                         {
                             "entities": [
                                 "group.roman",
-                                "group.nadine",
-                                "group.marijn",
-                                "group.laurens",
-                                "group.nikki"
+                                "group.nadine"
                             ],
                             "id": "53ca9509f43e4e70a4149595b70533d7",
                             "type": "entities"
@@ -364,16 +403,47 @@
                             "entities": [
                                 "input_select.home_status",
                                 "binary_sensor.door",
-                                "binary_sensor.window",
-                                "climate.thermostat",
-                                "sensor.br_temperature"
+                                "switch.air_purifier"
                             ],
-                            "id": "f0ed4b3909ee45248717c962735db826",
                             "type": "history-graph"
                         },
                         {
-                            "entity": "sensor.plant_summary",
-                            "type": "custom:entity-markdown"
+                            "entities": [
+                                "climate.thermostat",
+                                "sensor.xiaomi_temperature_2",
+                                "sensor.dht_temperature"
+                            ],
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.xiaomi_humidity",
+                                "sensor.xiaomi_humidity_2",
+                                "sensor.dht_humidity"
+                            ],
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.xiaomi_pressure",
+                                "sensor.xiaomi_pressure_2"
+                            ],
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.air_quality_status",
+                                "sensor.world_air_quality_status",
+                                "sensor.waqi_particle_sensor_pm25",
+                                "sensor.waqi_particle_sensor_pm10",
+                                "sensor.particle_sensor_pm25",
+                                "sensor.particle_sensor_pm10"
+                            ],
+                            "type": "history-graph"
+                        },
+                        {
+                            "entity": "plant.plant",
+                            "type": "plant-status"
                         }
                     ],
                     "id": 1,
@@ -397,7 +467,12 @@
                         },
                         {
                             "entities": [
-                                "switch.zigbee2mqtt_pairing"
+                                {
+                                    "entity": "switch.pihole"
+                                },
+                                {
+                                    "entity": "switch.zigbee2mqtt_pairing"
+                                }
                             ],
                             "type": "entities"
                         },
@@ -413,6 +488,70 @@
                     ],
                     "id": 2,
                     "title": "Settings"
+                },
+                {
+                    "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "elements": [
+                                {
+                                    "entity": "sun.sun",
+                                    "filter": "opacity(0)",
+                                    "image": "/local/images/render/night.png",
+                                    "state_filter": {
+                                        "below_horizon": "opacity(0.5)"
+                                    },
+                                    "style": {
+                                        "left": "50%",
+                                        "top": "49.05%",
+                                        "width": "102.5%"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "image"
+                                },
+                                {
+                                    "entity": "light.aqara_white_bulb",
+                                    "image": "/local/images/render/lamp.png",
+                                    "state_filter": {
+                                        "on": "drop-shadow(0px 0px 40px white) drop-shadow(0px 0px 40px white)"
+                                    },
+                                    "style": {
+                                        "left": "50%",
+                                        "top": "46%",
+                                        "width": "100%"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "image"
+                                },
+                                {
+                                    "entity": "group.room_lights",
+                                    "filter": "opacity(0)",
+                                    "image": "/local/images/render/lights_off.png",
+                                    "state_filter": {
+                                        "off": "opacity(0.5)"
+                                    },
+                                    "style": {
+                                        "left": "50%",
+                                        "top": "49.05%",
+                                        "width": "102.5%"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "image"
+                                }
+                            ],
+                            "image": "/local/images/render/room.png",
+                            "type": "picture-elements"
+                        }
+                    ],
+                    "panel": true,
+                    "title": "Room"
                 }
             ]
         }

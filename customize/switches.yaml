@@ -7,10 +7,6 @@ switch.television:
 switch.entone:
   icon: mdi:television-box
 
-switch.camera:
-  icon: mdi:webcam
-  assumed_state: false
-
 switch.fan:
   icon: mdi:fan
   assumed_state: false
@@ -24,4 +20,8 @@ switch.air_purifier:
   assumed_state: false
 
 switch.zigbee2mqtt_pairing:
-  assumed_state: false
+  assumed_state: true
+
+switch.pihole:
+  icon: mdi:raspberrypi
+  assumed_state: true

@@ -39,8 +39,7 @@ darkred:
 neutral:
   primary-color: "#99aac6"
   primary-font-family: "Arial, Helvetica, sans-serif"
-#  paper-item-icon_-_color: "var(--primary-color)"
-#  --paper-item-icon-color: "var(--primary-color)"
+  '--state-icon-active-color': "var(--primary-color)"
   
   paper-font-common-base_-_font-family: "var(--primary-font-family)"
   paper-font-common-code_-_font-family: "var(--primary-font-family)"

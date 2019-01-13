@@ -17,16 +17,16 @@
     - condition: state
       entity_id: input_select.home_status
       state: Home
-#    - condition: state
-#      entity_id: group.room_lights
-#      state: on
+    - condition: state
+      entity_id: group.room_lights
+      state: 'on'
   action:
     - service: scene.turn_on
       entity_id: scene.dark_mode
 
 # ??:??
 - id: before_sunset_if_home
-  alias: Turn on the evening scene before the sun goes down
+  alias: Before sunset if home
   trigger: 
     - platform: sun
       event: sunset
@@ -36,5 +36,4 @@
       entity_id: input_select.home_statuss
       state: Home
   action:
-    - service: scene.turn_on
-      entity_id: scene.evening
+    - service: python_script.sunset

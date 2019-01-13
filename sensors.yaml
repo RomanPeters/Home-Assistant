@@ -7,14 +7,6 @@
     - precipitation
     - precipitation_forecast_total
 
-
-- platform: miflora
-  mac: 'C4:7C:8D:66:42:FC'
-
-#- platform: serial_pm#  serial_device: /dev/ttyUSB0
-#  name: Particle Sensor
-#  brand: novafitness,sds011
-
 - platform: waqi
   token: !secret waqi_token
   locations:
@@ -30,7 +22,25 @@
 - platform: template
   sensors:
     air_quality_status:
-      friendly_name: Air Quality Status
+      friendly_name: AQI
+      # Based on EPA AQI: https://en.wikipedia.org/wiki/Air_quality_index#Computing_the_AQI
+      value_template: >
+        {% if states('sensor.particle_sensor_pm25') | int <= 12 and states('sensor.particle_sensor_pm10') | int <= 54 %}
+          Good
+        {% elif states('sensor.particle_sensor_pm25') | float <= 35.4 and states('sensor.particle_sensor_pm10') | int <= 154 %}
+          Moderate
+        {% elif states('sensor.particle_sensor_pm25') | float <= 55.4 and states('sensor.particle_sensor_pm10') | int <= 254 %}
+          Unhealthy for Sensitive Groups
+        {% elif states('sensor.particle_sensor_pm25') | float <= 150.4 and states('sensor.particle_sensor_pm10') | int <= 354 %}
+          Unhealthy
+        {% elif states('sensor.particle_sensor_pm25') | float <= 250.4 and states('sensor.particle_sensor_pm10') | int <= 424 %}
+          Very Unhealthy
+        {% else %}
+          Hazardous
+        {% endif %}
+
+    world_air_quality_status:
+      friendly_name: WAQI
       value_template: >
         {% if states('sensor.waqi_de_jongweg_utrecht') | int <= 50 %}
           Good
@@ -42,11 +52,20 @@
           Unhealthy
         {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 300 %}
           Very Unhealthy
-        {% elif states('sensor.waqi_de_jongweg_utrecht') | int > 300 %}
-          Hazardous
         {% else %}
-          Unknown
+          Hazardous
         {% endif %}
+
+    waqi_particle_sensor_pm25:
+      friendly_name: WAQI PM2.5
+      unit_of_measurement: "μg/m3"
+      value_template: >
+        {{ state_attr('sensor.waqi_de_jongweg_utrecht', 'pm_2_5') }}
+    waqi_particle_sensor_pm10:
+      friendly_name: WAQI PM10
+      unit_of_measurement: "μg/m3"
+      value_template: >
+        {{ state_attr('sensor.waqi_de_jongweg_utrecht', 'pm_10') }}
 
     plant_summary:
       friendly_name: "Plant"
@@ -56,24 +75,22 @@
         {% elif is_state('plant.plant', 'unknown') %}
           I'm not sure how your plant is doing.
         {% endif %}
-
         {% for problem in states.plant.plant.attributes.problem.split(', ') -%}
           {%- if loop.first %}The plant {% elif loop.last %} and {% else %}, {% endif -%}
-
           {%- if problem == 'moisture high' -%}
-            got too much water
+            has too much water
           {%- elif problem == 'moisture low' -%}
             would like some water
           {%- elif problem == 'batter low' -%}
             sensor battery is almost empty
           {%- elif problem ==  'temperature low' -%}
-            has it too cold
+            is too cold
           {%- elif problem == 'temperature high' -%}
-            has it too hot
+            is too hot
           {%- elif problem == 'conductivity high' -%}
-            got too much nutrients
+            has too much nutrients
           {%- elif problem == 'conductivity low' -%}
-            got not enough nutrients
+            has not enough nutrients
           {%- elif problem == 'brightness high' -%}
             recieves too much sunlight
           {%- elif problem == 'brightness low' -%}
@@ -102,8 +119,10 @@
           Roman is
         {%- elif is_state("group.nadine", "home") -%}
           Nadine is
+        {%- elif now().timestamp() - states.group.roman.last_changed.timestamp() < 86400 -%}
+          Roman left at {{ (states.group.roman.last_changed | string )[11:16] }}.
         {%- else -%}
-          No one is home. {%- endif -%}
+          No one is home.{%- endif -%}
         {%- if (is_state("group.roman", "home") or is_state("group.nadine", "home")) and is_state("switch.television", "on") -%}
           {{ " " }}watching television.
         {%- elif (is_state("group.roman", "home") or is_state("group.nadine", "home")) and is_state("input_select.home_status", "Night") -%}
@@ -126,6 +145,9 @@
         {%- elif is_state("binary_sensor.window", "on") -%}
           {{ " " }}The window is open.
         {%- endif %}
+        {%- if is_state('sensor.dht_temperature', 'unavailable') -%}
+          {{ " " }}The secondary Home Assistant instance seems to be offline.
+        {%- endif %}
         {%- for i in states.group.status.attributes.entity_id if is_state(i, 'on') -%}
           {%- if loop.first %}{{ " " }}The {% elif loop.last %} and the {% else %}, the {% endif -%}
           {{ state_attr(i, 'friendly_name') | lower }} is {{ states(i) }}
@@ -137,49 +159,18 @@
           {{ " " }}All devices are off.
         {%- endif %}
 
-    next_event:
-      friendly_name: Next Event
-      value_template: >
-        {% set low = as_timestamp(state_attr('calendar.rum_dmc', 'start_time')) %}
-        {% set cal = 'calendar.rum_dmc' %}
-        {% if  as_timestamp(state_attr('calendar.werk', 'start_time')) and as_timestamp(state_attr('calendar.werk', 'start_time')) < low %}
-          {% set low = as_timestamp(state_attr('calendar.werk', 'start_time')) %}
-          {% set cal = 'calendar.werk' %}
-        {% endif %}
-        {% if  as_timestamp(state_attr('calendar.studie', 'start_time')) and as_timestamp(state_attr('calendar.studie', 'start_time')) < low %}
-          {% set low = as_timestamp(state_attr('calendar.studie', 'start_time')) %}
-          {% set cal = 'calendar.studie' %}
-        {% endif %}
-        {% if  as_timestamp(state_attr('calendar.e_surveillant', 'start_time')) and as_timestamp(state_attr('calendar.e_surveillant', 'start_time')) < low %}
-          {% set low = as_timestamp(state_attr('calendar.e_surveillant', 'start_time')) %}
-          {% set cal = 'calendar.e_surveillant' %}
-        {% endif %}
-        {% if  as_timestamp(state_attr('calendar.cursusplanner', 'start_time')) and as_timestamp(state_attr('calendar.cursusplanner', 'start_time')) < low %}
-          {% set low = as_timestamp(state_attr('calendar.cursusplanner', 'start_time')) %}
-          {% set cal = 'calendar.cursusplanner' %}
-        {% endif %}
-        {% if  as_timestamp(state_attr('calendar.ws70', 'start_time')) and as_timestamp(state_attr('calendar.ws70', 'start_time')) < low %}
-          {% set cal = 'calendar.ws70' %}
-        {% endif %}
-          {{ cal }}
-
 
 
 
 ### MQTT
-
 - platform: "mqtt"
   name: Button
   state_topic: "zigbee2mqtt/button"
   availability_topic: "zigbee2mqtt/bridge/state"
   icon: "mdi:toggle-switch"
   value_template: "{{ value_json.click }}"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
-    - "action"
-    - "duration"
+  json_attributes_topic: "zigbee2mqtt/button"
+  force_update: true
 
 - platform: "mqtt"
   name: Wall switch
@@ -187,12 +178,8 @@
   availability_topic: "zigbee2mqtt/bridge/state"
   icon: "mdi:toggle-switch"
   value_template: "{{ value_json.click }}"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
-    - "action"
-    - "duration"
+  json_attributes_topic: "zigbee2mqtt/wall_switch"
+  force_update: true
 
 - platform: "mqtt"
   name: Xiaomi Temperature
@@ -201,10 +188,7 @@
   unit_of_measurement: "°C"
   icon: "mdi:thermometer"
   value_template: "{{ value_json.temperature }}"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/sensor_inside"
 
 - platform: "mqtt"
   name: Xiaomi Humidity
@@ -213,10 +197,7 @@
   unit_of_measurement: "%"
   icon: "mdi:water-percent"
   value_template: "{{ value_json.humidity }}"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/sensor_inside"
 
 - platform: "mqtt"
   name: Xiaomi Pressure
@@ -225,10 +206,7 @@
   unit_of_measurement: "hPa"
   icon: "mdi:speedometer"
   value_template: "{{ value_json.pressure }}"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/sensor_inside"
 
 - platform: "mqtt"
   name: Xiaomi Temperature 2
@@ -237,10 +215,7 @@
   unit_of_measurement: "°C"
   icon: "mdi:thermometer"
   value_template: "{{ value_json.temperature }}"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/sensor_outside"
 
 - platform: "mqtt"
   name: Xiaomi Humidity 2
@@ -249,10 +224,7 @@
   unit_of_measurement: "%"
   icon: "mdi:water-percent"
   value_template: "{{ value_json.humidity }}"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/sensor_outside"
 
 - platform: "mqtt"
   name: Xiaomi Pressure 2
@@ -261,10 +233,7 @@
   unit_of_measurement: "hPa"
   icon: "mdi:speedometer"
   value_template: "{{ value_json.pressure }}"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/sensor_outside"
 
 - platform: "mqtt"
   name: Illuminance
@@ -273,25 +242,67 @@
   unit_of_measurement: "lx"
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.illuminance }}"
-  json_attributes: 
-    - "linkquality"
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/motion_sensor"
 
+- platform: "mqtt"
+  name: Mi Flora Moisture
+  state_topic: "satellite/sensor/mi_flora_moisture/state"
+#  availability_topic: "satellite/state"
+  unit_of_measurement: "%"
 
-# my sonoff th 10 broke :/
-#- platform:  "mqtt"
-#  name: "Sonoff Temperature"
-#  state_topic: "sonoff_th10/sensor/thermostat_temperature/state"
-#  availability_topic: "sonoff_th10/status"
-#  unit_of_measurement: "°C"
-#  expire_after: 675
+- platform: "mqtt"
+  name: Mi Flora Conductivity
+  state_topic: "satellite/sensor/mi_flora_conductivity/state"
+#  availability_topic: "satellite/state"
+  unit_of_measurement: "µS/cm"
 
-#- platform:  "mqtt"
-#  name: "Sonoff Humidity"
-#  icon: mdi:water-percent
-#  state_topic: "sonoff_th10/sensor/thermostat_humidity/state"
-#  availability_topic: "sonoff_th10/status"
-#  unit_of_measurement: "%"
-#  expire_after: 675
+- platform: "mqtt"
+  name: Mi Flora Temperature
+  state_topic: "satellite/sensor/mi_flora_temperature/state"
+#  availability_topic: "satellite/state"
+  unit_of_measurement: "°C"
 
+- platform: "mqtt"
+  name: Mi Flora Light Intensity
+  state_topic: "satellite/sensor/mi_flora_light_intensity/state"
+#  availability_topic: "satellite/state"
+  unit_of_measurement: "lx"
+
+- platform: "mqtt"
+  name: Mi Flora Battery
+  state_topic: "satellite/sensor/mi_flora_battery/state"
+#  availability_topic: "satellite/state"
+  unit_of_measurement: "%"
+
+- platform: "mqtt"
+  name: Particle Sensor PM2.5
+  state_topic: "satellite/sensor/pm25/state"
+#  availability_topic: "satellite/state"
+  unit_of_measurement: "μg/m3"
+
+- platform: "mqtt"
+  name: Particle Sensor PM10
+  state_topic: "satellite/sensor/pm10/state"
+#  availability_topic: "satellite/state"
+  unit_of_measurement: "μg/m3"
+
+- platform: "mqtt"
+  name: DHT Temperature
+  state_topic: "satellite/sensor/dht_sensor_temperature/state"
+#  availability_topic: "satellite/state"
+  unit_of_measurement: "°C"
+
+- platform: "mqtt"
+  name: DHT Humidity
+  state_topic: "satellite/sensor/dht_sensor_humidity/state"
+#  availability_topic: "satellite/state"
+  unit_of_measurement: "%"
+
+- platform: "mqtt"
+  name: BS440 Person 1
+  state_topic: "satellite/sensor/bs440/person1/state"
+#  availability_topic: "satellite/state"
+  unit_of_measurement: "kg"
+  icon: "mdi:gauge"
+  value_template: "{{ value_json.weight }}"
+  json_attributes_topic: "satellite/sensor/bs440/person1/state"

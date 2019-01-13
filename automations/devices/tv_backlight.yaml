@@ -40,5 +40,5 @@
     - service: python_script.tv_backlight_nearest_color
       data_template:
         rgb_color: "{{ states.light.tv_backlight.attributes.rgb_color }}"
-    - service: python_script.tv_backlight_brightness
+#    - service: python_script.tv_backlight_brightness
       
