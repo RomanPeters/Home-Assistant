@@ -12,6 +12,24 @@
     - service: switch.turn_off
       entity_id: switch.air_purifier
 
+- id: home_status_to_home_from_away_during_sunset
+  alias: Home Status to Home from Away during Sunset
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Home
+      from: Away
+  condition:
+    condition: and
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: "-00:15:00"
+      - condition: sun
+        before: sunrise
+  action:
+    - service: python_script.sunset
+
 - id: home_status_to_home_from_away_at_night_time
   alias: Home Status to Home from Away at night time
   trigger:
@@ -24,12 +42,12 @@
     conditions:
       - condition: sun
         after: sunset
-        after_offset: "-00:15:00"
       - condition: sun
         before: sunrise
   action:
     - service: scene.turn_on
-      entity_id: scene.evening 
+      entity_id: scene.evening
+
 
 # AWAY
 - id: home_status_to_away
@@ -99,8 +117,8 @@
       entity_id: input_select.home_status
       from: 'Off'
   action:
-    - service: automation.turn_off
-      entity_id: group.home_Status_automations
+    - service: automation.turn_on
+      entity_id: group.home_status_automations
 
 
 # Link Alarm System for HomeKit

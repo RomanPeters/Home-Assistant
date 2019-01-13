@@ -27,29 +27,16 @@
                         {
                             "elements": [
                                 {
-                                    "entity": "light.aqara_white_bulb",
-                                    "image": "/local/images/floorplan/darkness.png",
+                                    "entity": "sun.sun",
+                                    "filter": "opacity(0)",
+                                    "image": "/local/images/render/night.png",
                                     "state_filter": {
-                                        "off": "opacity(70%)",
-                                        "on": "opacity(0%)"
+                                        "below_horizon": "opacity(0.5)"
                                     },
                                     "style": {
-                                        "left": "47.5%",
-                                        "top": "45.9%",
-                                        "width": "53.5%"
-                                    },
-                                    "type": "image"
-                                },
-                                {
-                                    "entity": "light.aqara_white_bulb",
-                                    "image": "/local/images/floorplan/ceiling_lamp.png",
-                                    "state_filter": {
-                                        "on": "drop-shadow(0px 0px 10px black) drop-shadow(0px 0px 40px black) drop-shadow(0px 0px 60px black)"
-                                    },
-                                    "style": {
-                                        "left": "51%",
-                                        "top": "48%",
-                                        "width": "60%"
+                                        "left": "50%",
+                                        "top": "49.05%",
+                                        "width": "102.5%"
                                     },
                                     "tap_action": {
                                         "action": "none"
@@ -57,65 +44,41 @@
                                     "type": "image"
                                 },
                                 {
-                                    "entity": "sensor.xiaomi_temperature_2",
-                                    "style": {
-                                        "color": "white",
-                                        "left": "30%",
-                                        "text-shadow": "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black",
-                                        "top": "7%"
-                                    },
-                                    "type": "state-label"
-                                },
-                                {
-                                    "entity": "sensor.xiaomi_temperature",
-                                    "style": {
-                                        "color": "white",
-                                        "left": "30%",
-                                        "text-shadow": "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black",
-                                        "top": "22%"
-                                    },
-                                    "type": "state-label"
-                                },
-                                {
-                                    "entity": "binary_sensor.door",
-                                    "state_image": {
-                                        "off": "/local/images/floorplan/door_closed.png",
-                                        "on": "/local/images/floorplan/door_open.png"
-                                    },
-                                    "style": {
-                                        "left": "29%",
-                                        "top": "67.5%",
-                                        "width": "17%"
-                                    },
-                                    "type": "image"
-                                },
-                                {
-                                    "entity": "binary_sensor.window",
-                                    "state_image": {
-                                        "on": "/local/images/floorplan/window_open.png"
-                                    },
-                                    "style": {
-                                        "left": "44%",
-                                        "top": "23.4%",
-                                        "width": "11%"
-                                    },
-                                    "type": "image"
-                                },
-                                {
                                     "entity": "light.aqara_white_bulb",
-                                    "icon": "mdi:none",
+                                    "image": "/local/images/render/lamp.png",
+                                    "state_filter": {
+                                        "off": "brightness(0.9)",
+                                        "on": "drop-shadow(0px 0px 40px white) drop-shadow(0px 0px 40px white) brightness(1.5)"
+                                    },
                                     "style": {
-                                        "left": "32%",
-                                        "top": "37.3%",
-                                        "transform": "rotate(180deg)"
+                                        "left": "50%",
+                                        "top": "46%",
+                                        "width": "100%"
                                     },
                                     "tap_action": {
-                                        "action": "toggle"
+                                        "action": "none"
                                     },
-                                    "type": "icon"
+                                    "type": "image"
+                                },
+                                {
+                                    "entity": "group.room_lights",
+                                    "filter": "opacity(0)",
+                                    "image": "/local/images/render/lights_off.png",
+                                    "state_filter": {
+                                        "off": "opacity(0.5)"
+                                    },
+                                    "style": {
+                                        "left": "50%",
+                                        "top": "49.05%",
+                                        "width": "102.5%"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "image"
                                 }
                             ],
-                            "image": "/local/images/floorplan/floor.png",
+                            "image": "/local/images/render/room.png",
                             "type": "picture-elements"
                         },
                         {
@@ -525,6 +488,70 @@
                     ],
                     "id": 2,
                     "title": "Settings"
+                },
+                {
+                    "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "elements": [
+                                {
+                                    "entity": "sun.sun",
+                                    "filter": "opacity(0)",
+                                    "image": "/local/images/render/night.png",
+                                    "state_filter": {
+                                        "below_horizon": "opacity(0.5)"
+                                    },
+                                    "style": {
+                                        "left": "50%",
+                                        "top": "49.05%",
+                                        "width": "102.5%"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "image"
+                                },
+                                {
+                                    "entity": "light.aqara_white_bulb",
+                                    "image": "/local/images/render/lamp.png",
+                                    "state_filter": {
+                                        "on": "drop-shadow(0px 0px 40px white) drop-shadow(0px 0px 40px white)"
+                                    },
+                                    "style": {
+                                        "left": "50%",
+                                        "top": "46%",
+                                        "width": "100%"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "image"
+                                },
+                                {
+                                    "entity": "group.room_lights",
+                                    "filter": "opacity(0)",
+                                    "image": "/local/images/render/lights_off.png",
+                                    "state_filter": {
+                                        "off": "opacity(0.5)"
+                                    },
+                                    "style": {
+                                        "left": "50%",
+                                        "top": "49.05%",
+                                        "width": "102.5%"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "image"
+                                }
+                            ],
+                            "image": "/local/images/render/room.png",
+                            "type": "picture-elements"
+                        }
+                    ],
+                    "panel": true,
+                    "title": "Room"
                 }
             ]
         }

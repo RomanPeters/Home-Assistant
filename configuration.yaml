@@ -27,13 +27,20 @@ frontend:
 mqtt:
 #  discovery: true
   broker: core-mosquitto
+  client_id: home-assistant
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
 
 weather:
   - platform: buienradar
     name: Utrecht
 
-#mqtt_eventstream:
-#  subscribe_topic: satellite/events
+mqtt_eventstream:
+  subscribe_topic: satellite/events
 
 auth:
 config:

@@ -89,3 +89,17 @@
       data:
         message: "The thermostat didn't turn on because the window is open"
 
+- id: climate_alarm
+  alias: Climate Alarm
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.inside_temperature
+      above: 23
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.outside_temperature
+      below: 21
+  action:
+    - service: notify.notify
+      data:
+        message: "Warning! It's very hot inside"

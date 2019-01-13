@@ -1,17 +1,19 @@
+- platform: bluetooth_tracker
+
 - platform: tile
   username: !secret tile_username
   password: !secret tile_password
   show_inactive: true
-
-#- platform: bluetooth_tracker
-#- platform: bluetooth_le_tracker
 
 - platform: mqtt
   devices:
     macbook_pro: satellite/device_tracker/macbook_pro/state
     ipad: satellite/device_tracker/ipad/state
     iphone_8: satellite/device_tracker/iphone_8/state
+    tile: satellite/device_tracker/tile/state
     samsung_galaxy_s7: satellite/device_tracker/samsung_galaxy_s7/state
+    mh01: satellite/device_tracker/mh01/state
+    flower_care: satellite/device_tracker/flower_care/state
 
 - platform: ping
   hosts:

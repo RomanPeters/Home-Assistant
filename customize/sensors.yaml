@@ -1,11 +1,11 @@
 sensor.br_temperature:
-  friendly_name: Outside Temperature
+  friendly_name: BR Temperature
 
 sensor.br_humidity:
-  friendly_name: Outside Humidity
+  friendly_name: BR Humidity
 
 sensor.br_pressure:
-  friendly_name: Outside Pressure
+  friendly_name: BR Pressure
 
 sensor.br_condition:
   friendly_name: Condition
@@ -14,19 +14,29 @@ sensor.xiaomi_temperature:
   friendly_name: Inside Temperature
 
 sensor.xiaomi_humidity:
+  device_class: humidity
   friendly_name: Inside Humidity
 
 sensor.xiaomi_pressure:
   friendly_name: Inside Pressure
 
 sensor.xiaomi_temperature_2:
-  friendly_name: Inside Temperature 2
+  friendly_name: Outside Temperature
 
 sensor.xiaomi_humidity_2:
-  friendly_name: Inside Humidity 2
+  device_class: humidity
+  friendly_name: Outside Humidity
 
 sensor.xiaomi_pressure_2:
-  friendly_name: Inside Pressure 2
+  friendly_name: Outside Pressure
+
+sensor.waqi_particle_sensor_pm25:
+  friendly_name: WAQI PM2.5
+  icon: mdi:salesforce
+
+sensor.waqi_particle_sensor_pm10: 
+  friendly_name: WAQI PM10
+  icon: mdi:salesforce
 
 sensor.particle_sensor_pm25:
   friendly_name: PM2.5

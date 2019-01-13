@@ -2,3 +2,5 @@
   name: Thermostat
   heater: switch.heater
   target_sensor: sensor.xiaomi_temperature
+  hot_tolerance: -0.4
+  initial_operation_mode: 'auto'

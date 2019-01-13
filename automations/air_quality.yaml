@@ -1,51 +1,28 @@
-- id: pm25
-  alias: Too much PM2.5
+- id: air_quality_low
+  alias: Air Quality Low
   trigger:
-    platform: numeric_state
-    entity_id: sensor.particle_sensor_pm25    
-    above: 5
+    - platform: state
+      entity_id: sensor.air_quality_status    
+      from: "Good"
   action:
     - service: switch.turn_on
       entity_id: switch.air_purifier
     - service: notify.notify
-      data:
-        message: "Too much PM2.5, turning on air purifier."
-
-- id: pm10            
-  alias: Too much PM10  
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.particle_sensor_pm25
-    above: 10
-  action:
-    - service: switch.turn_on
-      entity_id: switch.air_purifier
-    - service: notify.notify
-      data:
-        message: "Too much PM10, turning on air purifier."
+      data_template:
+        message: "The air quality in your room degraded, turning on air purifier."
 
   
-- id: clean
-  alias: Air is clean
+- id: air_quality_high
+  alias: Air Quality High
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.particle_sensor_pm25
-      below: 3
-    - platform: numeric_state
-      entity_id: sensor.particle_sensor_pm10
-      below: 10
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: '{{ states.sensor.particle_sensor_pm25.state | int  < 3 }}'
-      - condition: template
-        value_template: '{{ states.sensor.particle_sensor_pm10.state | int < 10 }}'
+    - platform: state
+      entity_id: sensor.air_quality_status
+      to: "Good"
   action:
     - service: switch.turn_off
       entity_id: switch.air_purifier
     - service: notify.notify
       data:
-        message: "Room air quality returned to excellent."
+        message: "The air quality in your room has improved."
 
 

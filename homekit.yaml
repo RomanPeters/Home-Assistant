@@ -11,8 +11,8 @@ filter:
     - scene
   exclude_entities:
     - sensor.xiaomi_temperature
-    - sensor.xiaomi_temperature_2
-    - sensor.room_temperature
+    - sensor.dht_temperature
+    - sensor.dht_humidity
     - sensor.br_humidity
     - sensor.br_temperature
     - sensor.mi_flora_battery
@@ -21,11 +21,13 @@ filter:
     - sensor.mi_flora_moisture
     - sensor.mi_flora_temperature
     - sensor.thermostat_temperature
-    - sensor.hallway_temperature
-    - sensor.balcony_temperature
+    - light.tv_light
+    - light.night_light
     - light.coffee_led
     - light.heater_led
     - light.sonoff_led
+    - light.milight_white_bulb
+    - light.ambient_lights
     - light.blinkt_0
     - light.blinkt_1
     - light.blinkt_2
@@ -34,6 +36,7 @@ filter:
     - light.blinkt_5
     - light.blinkt_6
     - light.blinkt_7
+    - switch.flux
     - switch.air_freshener
     - switch.camera
     - switch.camera_blue_led
@@ -57,11 +60,7 @@ filter:
     - switch.socket_5
     - switch.socket_behind_tv
     - switch.spot
-    - light.white_lights
-    - light.all_ambient_lights
-    - light.ambient_lights
-    - light.led_strips
-    - light.tv_light
+    - switch.pihole
 
   include_entities:
     - binary_sensor.door

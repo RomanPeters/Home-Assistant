@@ -1,7 +1,6 @@
-# single
-
-- id: button_night_light_on
-  alias: button night light on
+# SINGLE PRESS
+- id: single_press_morning
+  alias: Single Press Morning 
   trigger:
     - platform: mqtt
       topic: zigbee2mqtt/button
@@ -9,50 +8,52 @@
     - condition: template
       value_template: "{{ trigger.payload_json.click == 'single' }}"
     - condition: state
-      entity_id: light.standing_lamp
-      state: 'off'
+      entity_id: input_select.home_status
+      state: 'Home'
+    - condition: time
+      after: '06:00:00'
+      before: '12:00:00'
   action:
-    - service_template: >
-          {% if is_state('input_select.button_single', 'Fan') %}
-            switch.toggle
-          {% elif is_state('input_select.button_single', 'Standing Lamp') %}
-            light.toggle
-          {% elif is_state('input_select.button_single', 'TV Backlight') %}
-            light.toggle
-          {% elif is_state('input_select.button_single', 'Ambient Lights') %}
-            light.toggle
-          {% endif %}
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_clock
 
-      data_template:
-        entity_id: >
-          {% if is_state('input_select.button_single', 'Fan') %}
-            switch.fan
-          {% elif is_state('input_select.button_single', 'Standing Lamp') %}
-            light.standing_lamp
-          {% elif is_state('input_select.button_single', 'TV Backlight') %}
-            light.tv_backlight
-          {% elif is_state('input_select.button_single', 'Ambient Lights') %}
-            light.ambient_lights
-          {% endif %}
+- id: single_press_dark_mode
+  alias: Single Press Dark Mode
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/button
+  condition:
+    - condition: template
+      value_template: "{{ trigger.payload_json.click == 'single' }}"
+    - condition: state
+      entity_id: input_select.home_status
+      state: 'Home'
+    - condition: or  # 'when dark' condition: either after sunset or before sunrise
+      conditions:
+        - condition: sun
+          after: sunset
+        - condition: sun
+          before: sunrise
+  action:
+    - service: scene.turn_on
+      entity_id: scene.dark_mode
 
+- id: single_press_night 
+  alias: Single Press Night
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/button
+  condition:
+    - condition: template
+      value_template: "{{ trigger.payload_json.click == 'single' }}"
+    - condition: state
+      entity_id: input_select.home_status
+      state: 'Night'
+  action:
+    - service: light.toggle
+      entity_id: light.night_light
 
-#- id: button_night_light_off
-#  alias: button night light off
-#  trigger:
-#    - platform: mqtt
-#      topic: zigbee2mqtt/button
-#  condition:
-#    - condition: template
-#      value_template: "{{ trigger.payload_json.click == 'single' }}"
-#    - condition: state
-#      entity_id: light.standing_lamp
-#      state: 'on'
-#  action:
-#    - service: light.turn_off  
-#      entity_id: light.standing_lamp
-
-# double
-
+# DOUBLE PRESS
 - id: button_toggle_air_purifier
   alias: toggle air purifier
   trigger:
@@ -65,30 +66,31 @@
     - service: switch.toggle
       entity_id: switch.air_purifier
 
-# triple
+# TRIPLE PRESS
 
-# quadruple
+# QUADRUPLE PRESS
 
-# many
+# MANY PRESS
 
-# long
-
-- id: button_long_press
-  alias: Button long press
+# LONG PRESS
+- id: long_press_home_status
+  alias: Long Press in the evening
   trigger:
-    - platform: state
-      entity_id: sensor.button
-      to: 'long'
+    - platform: mqtt
+      topic: zigbee2mqtt/button
+  condition:
+    - condition: template
+      value_template: "{{ trigger.payload_json.click == 'long' }}"
   action:
-    - service: python_script.brighten
+    - service: input_select.select_option
+      entity_id: input_select.home_status
+      data_template:
+        option: >
+          {% if states('input_select.home_status') == 'Home' %}
+            Night
+          {% else %}
+            Home
+          {% endif %}
 
-# long_release
-#- id: button_long_release
-#  alias: Button long release
-#  trigger:
-#    - platform: state
-#      entity_id: sensor.button
-#      to: 'long_release'
-#  action:
-#    - service: script.turn_off
-#      entity_id: script.button_dim_up
+# LONG_RELEASE PRESS
+# TODO tts home status

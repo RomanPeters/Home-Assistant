@@ -1,17 +1,19 @@
-light.standing_lamp:
+light.milight_rgbw_bulb:
+  friendly_name: Standing Lamp
   icon: mdi:floor-lamp
   assumed_state: false
 
-light.led_strip_n:
-  icon: mdi:blur-linear
-  assumed_state: false
-
-light.led_strip_s:
-  icon: mdi:blur-linear
-  assumed_state: false
-
-light.ceiling_lamp:
+light.milight_white_bulb:
+  friendly_name: White Bulb
   icon: mdi:ceiling-light
+  assumed_state: false
+
+light.led_strip_1:
+  icon: mdi:blur-linear
+  assumed_state: false
+
+light.led_strip_2:
+  icon: mdi:blur-linear
   assumed_state: false
 
 light.tv_backlight:
@@ -31,3 +33,7 @@ light.blinkt:
 light.spot:
   icon: mdi:track-light
   assumed_state: false
+
+light.aqara_white_bulb:
+  friendly_name: Ceiling Lamp
+  icon: mdi:ceiling-light

@@ -1,21 +1,21 @@
 led_strips:
   name: Led Strips
   entities:
-    - light.led_strip_n
-    - light.led_strip_s
+    - light.led_strip_1
+    - light.led_strip_2
 
 room_lights:
   name: Room Lights
   entities:
-    - light.led_strip_n
-    - light.led_strip_s
-    - light.ceiling_lamp
+    - light.led_strip_1
+    - light.led_strip_2
+    - light.aqara_white_bulb
+    - light.milight_rgbw_bulb
     - light.spot
-    - light.standing_lamp
 
 night_lights:
   name: Night Lights
   entities:
-    - light.ceiling_lamp
-    - light.standing_lamp
+    - light.milight_rgbw_bulb
+    - light.milight_white_bulb
 

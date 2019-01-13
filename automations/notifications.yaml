@@ -8,6 +8,18 @@
     - service: notify.notify
       data:
         message: "Home Assistant is online"
+
+# Satellite status
+- id: notification_satellite
+  alias: Notification Satellite
+  trigger:
+    - platform: mqtt
+      topic: satellite/state
+  action:
+    - service: notify.notify
+      data_template:
+        message: "Satellite is {{ trigger.payload }}"
+
 # iPhone Status
 - id: notification_iphone_status
   alias: Notification iPhone Status
@@ -68,9 +80,52 @@
     - service: notify.notify
       data_template:
         message: >
-          {{ trigger.event.data.host_name }}
+          {% if trigger.event.data.host_name %}
+            {{ trigger.event.data.host_name }}
+          {% else %}
+            {{ trigger.event.data.mac }}
+          {% endif %}
         title: New device
 
+# Keys left at home
+- id: keys_left_in_room
+  alias: Keys Left in Room
+  trigger:
+    - platform: state
+      entity_id: device_tracker.tile
+      to: 'home'
+      from: 'not_home'
+  action:
+    - service: notify.notify
+      data:
+        message: "Your keys are still in your room"
+
+# Plant needs water
+- id: plant_needs_water
+  alias: Plant Needs Water
+  trigger:
+    - platform: state
+      entity_id: sensor.plant_needs_water
+      to: 'on'
+  action:
+    - wait_template: "{{ is_state('input_select.home_status', 'Home') }}"    
+    - service: notify.notify
+      data_template:
+        message: "The plant could use some water, it's moisture level has fallen to {{ states('sensor.mi_flora_moisture') }}"
+
+# Helmet BT
+- id: helmet_bt_still_on
+  alias: Helmet BT still on
+  trigger:
+    - platform: state
+      entity_id: device_tracker.mh01
+      to: 'home'
+      for:
+        minutes: 5
+  action:
+    - service: notify.notify
+      data:
+        message: "Your helmet's bluetooth headset is still active, but not connected"
 
 # Low battery
 - id: notification_low_battery
@@ -92,11 +147,38 @@
       entity_id: sensor.wall_switch       
       value_template: '{{ state.attributes.battery }}'
       below: 11
-    - platform: numeric_state
-      entity_id: sensor.mi_flora_battery  
-      below: 11
   action:
     - service: persistent_notification.create
       data_template:
         message: "{{ state_attr(trigger.entity_id, 'friendly_name') }} {{ trigger.entity_id.split('.')[0] }} is at {{ state_attr(trigger.entity_id, 'battery') | int }}% battery."
         title: "Battery warning"
+
+- id: notification_low_battery_mi_flora
+  alias: Notification Low Battery Mi Flora
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.mi_flora_battery
+      below: 11
+  action:
+    - service: persistent_notification.create
+      data_template:
+        message: "Plant sensor is at {{ states('sensor.mi_flora_battery') | int }}% battery."
+        title: "Battery warning"
+
+# Scale
+- id: notification_scale_measurement
+  alias: Notification Scale Measurement
+  trigger:
+    - platform: mqtt
+      topic: satellite/sensor/bs440/person1/state
+  action:
+    - service: notify.notify
+      data_template:
+        title: "Scale Measurement"
+        message: >
+          Weight: {{ trigger.payload_json.weight }}kg,
+          Muscle Mass: {{ trigger.payload_json.muscle }}%,
+          Body Water: {{ trigger.payload_json.tbw }}%,
+          Body Fat: {{ trigger.payload_json.fat }}%,
+          Bone Mass: {{ trigger.payload_json.bone }}%, 
+          DCI: {{ trigger.payload_json.kcal }} kcal
