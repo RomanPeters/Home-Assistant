@@ -20,8 +20,8 @@ switch.air_purifier:
   assumed_state: false
 
 switch.zigbee2mqtt_pairing:
-  assumed_state: true
+  assumed_state: false
 
 switch.pihole:
   icon: mdi:raspberrypi
-  assumed_state: true
+  assumed_state: false

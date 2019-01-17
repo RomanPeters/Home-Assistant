@@ -381,7 +381,7 @@
                         {
                             "entity": "climate.thermostat",
                             "id": "94388c17d89a4575a995a0cb181a5166",
-                            "type": "custom:thermostat-card"
+                            "type": "thermostat"
                         }
                     ],
                     "id": 0,
@@ -436,7 +436,7 @@
                                 "sensor.world_air_quality_status",
                                 "sensor.waqi_particle_sensor_pm25",
                                 "sensor.waqi_particle_sensor_pm10",
-                                "sensor.particle_sensor_pm25",
+                                "sensor.particle_sensor_pm2_5",
                                 "sensor.particle_sensor_pm10"
                             ],
                             "type": "history-graph"
@@ -453,105 +453,47 @@
                     "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
                     "cards": [
                         {
-                            "entities": [
-                                "input_select.home_status"
-                            ],
-                            "id": "a0f1fcd3c96f4debaa762ab298d0f419",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "group.alarm_clock"
-                            ],
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
+                            "cards": [
                                 {
-                                    "entity": "switch.pihole"
+                                    "entities": [
+                                        "input_select.home_status",
+                                        "input_select.activity"
+                                    ],
+                                    "id": "a0f1fcd3c96f4debaa762ab298d0f419",
+                                    "type": "entities"
                                 },
                                 {
-                                    "entity": "switch.zigbee2mqtt_pairing"
+                                    "entities": [
+                                        "group.alarm_clock"
+                                    ],
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "switch.pihole"
+                                        },
+                                        {
+                                            "entity": "switch.zigbee2mqtt_pairing"
+                                        }
+                                    ],
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        "group.climate_control_automations",
+                                        "group.notification_automations"
+                                    ],
+                                    "show_header_toggle": false,
+                                    "title": "Automations",
+                                    "type": "entities"
                                 }
                             ],
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "group.climate_control_automations",
-                                "group.notification_automations"
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Automations",
-                            "type": "entities"
+                            "type": "vertical-stack"
                         }
                     ],
                     "id": 2,
                     "title": "Settings"
-                },
-                {
-                    "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "elements": [
-                                {
-                                    "entity": "sun.sun",
-                                    "filter": "opacity(0)",
-                                    "image": "/local/images/render/night.png",
-                                    "state_filter": {
-                                        "below_horizon": "opacity(0.5)"
-                                    },
-                                    "style": {
-                                        "left": "50%",
-                                        "top": "49.05%",
-                                        "width": "102.5%"
-                                    },
-                                    "tap_action": {
-                                        "action": "none"
-                                    },
-                                    "type": "image"
-                                },
-                                {
-                                    "entity": "light.aqara_white_bulb",
-                                    "image": "/local/images/render/lamp.png",
-                                    "state_filter": {
-                                        "on": "drop-shadow(0px 0px 40px white) drop-shadow(0px 0px 40px white)"
-                                    },
-                                    "style": {
-                                        "left": "50%",
-                                        "top": "46%",
-                                        "width": "100%"
-                                    },
-                                    "tap_action": {
-                                        "action": "none"
-                                    },
-                                    "type": "image"
-                                },
-                                {
-                                    "entity": "group.room_lights",
-                                    "filter": "opacity(0)",
-                                    "image": "/local/images/render/lights_off.png",
-                                    "state_filter": {
-                                        "off": "opacity(0.5)"
-                                    },
-                                    "style": {
-                                        "left": "50%",
-                                        "top": "49.05%",
-                                        "width": "102.5%"
-                                    },
-                                    "tap_action": {
-                                        "action": "none"
-                                    },
-                                    "type": "image"
-                                }
-                            ],
-                            "image": "/local/images/render/room.png",
-                            "type": "picture-elements"
-                        }
-                    ],
-                    "panel": true,
-                    "title": "Room"
                 }
             ]
         }

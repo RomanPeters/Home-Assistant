@@ -29,9 +29,10 @@
 - CC2531 USB Zigbee stick, flashed with [zigbee2mqtt](https://github.com/Koenkk/zigbee2mqtt/wiki) as hub replacement
 - [Button](https://www.home-assistant.io/components/xiaomi_aqara/)
 - [Double wall switch](https://www.home-assistant.io/components/xiaomi_aqara/)
-- [Temperature and pressure sensor](https://www.home-assistant.io/components/xiaomi_aqara/)
-- [Door sensor](https://www.home-assistant.io/components/xiaomi_aqara/)
+- [Temperature and pressure sensor](https://www.home-assistant.io/components/xiaomi_aqara/) x2
+- [Door sensor](https://www.home-assistant.io/components/xiaomi_aqara/) x2
 - [Chuangmi Plug V1](https://www.home-assistant.io/components/switch.xiaomi_miio/)
+- Aqara Tuneable White Bulb
 
 #### Other
 - Some cheap RF socket switches

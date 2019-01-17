@@ -24,9 +24,12 @@ deps/
 .DS_Store
 www/
 www/*
+icloud/
+icloud/*
 appdaemon/appdaemon.yaml
 zigbee2mqtt_configuration.yaml
 www/custom-lovelace/
 google_calendars.yaml
 .google.token
 .tile_romanpeters_nl.tile.conf
+zones.yaml
