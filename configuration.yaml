@@ -94,3 +94,4 @@ device_tracker: !include device_trackers.yaml
 notify: !include notifies.yaml
 media_player: !include media_players.yaml
 calendar: !include calendars.yaml
+zone: !include zones.yaml

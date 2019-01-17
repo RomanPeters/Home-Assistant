@@ -34,6 +34,25 @@
     - service: timer.cancel
       entity_id: timer.wait_for_presence
 
+- id: home_status_to_home_from_night_by_motion  
+  alias: Home Status to Home from Night by Motion
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor
+      to: 'on'
+  condition:
+    - condition: time
+      after: '09:00:00'
+      before: '21:00:00'
+    - condition: state
+      entity_id: input_select.home_status
+      state: 'Night'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_status
+        option: Home
+
 - id: set_home_status_to_home_from_night_by_alarm_clock
   alias: Set Home Status to home from night by alarm clock
   trigger:
