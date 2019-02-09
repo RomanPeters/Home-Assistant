@@ -1,73 +1,30 @@
 filter:
-  exclude_domains:
-    - script
-    - automation
-    - camera
-    - input_boolean
-    - remote
-    - cover
-    - binary_sensor
-    - device_tracker
-    - scene
-  exclude_entities:
-    - sensor.xiaomi_temperature
-    - sensor.dht_temperature
-    - sensor.dht_humidity
-    - sensor.br_humidity
-    - sensor.br_temperature
-    - sensor.mi_flora_battery
-    - sensor.mi_flora_conductivity
-    - sensor.mi_flora_light_intensity
-    - sensor.mi_flora_moisture
-    - sensor.mi_flora_temperature
-    - sensor.thermostat_temperature
-    - light.tv_light
-    - light.night_light
-    - light.coffee_led
-    - light.heater_led
-    - light.sonoff_led
-    - light.milight_white_bulb
-    - light.ambient_lights
-    - light.blinkt_0
-    - light.blinkt_1
-    - light.blinkt_2
-    - light.blinkt_3
-    - light.blinkt_4
-    - light.blinkt_5
-    - light.blinkt_6
-    - light.blinkt_7
-    - switch.flux
-    - switch.air_freshener
-    - switch.camera
-    - switch.camera_blue_led
-    - switch.camera_yellow_led
-    - switch.camera_h264
-    - switch.camera_ir_filter
-    - switch.camera_ir_led
-    - switch.camera_mjpeg
-    - switch.camera_motion_detection
-    - switch.camera_motion_tracking
-    - switch.camera_night_mode
-    - switch.camera_night_mode_auto
-    - switch.entone
-    - switch.zigbee2mqtt_pairing
-    - switch.heater
-    - switch.socket
-    - switch.socket_1
-    - switch.socket_2
-    - switch.socket_3
-    - switch.socket_4
-    - switch.socket_5
-    - switch.socket_behind_tv
-    - switch.spot
-    - switch.pihole
-
   include_entities:
+    - alarm_control_panel.home_status
     - binary_sensor.door
     - binary_sensor.window
-    - binary_sensor.motion_sensor
+    - binary_sensor.aqara_motion_sensor
+    - climate.thermostat
+    - light.aqara_white_bulb
+    - light.milight_rgbw_bulb
+    - light.candela
+    - light.spot
+    - light.tv_backlight
+    - light.spot
+    - light.led_strip_1
+    - light.led_strip_2
+    - sensor.aqara_illuminance
+    - sensor.aqara_humidity
+    - sensor.particle_sensor_pm2_5
+    - switch.air_purifier
+    - switch.television
+    - switch.socket
+    - switch.tradfri_control_outlet
 
 entity_config:
   switch.socket:
     type: outlet
+  switch.tradfri_control_outlet:
+    type: outlet
+  
 

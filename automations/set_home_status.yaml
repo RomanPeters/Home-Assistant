@@ -24,8 +24,9 @@
       entity_id: group.presence
       to: home
   condition:
-    - condition: template
-      value_template: "{{ not is_state('input_select.home_status', 'Off') }}"
+    - condition: state      
+      entity_id: input_selct.home_status
+      state: 'Away'
   action:
     - service: input_select.select_option
       data:
@@ -78,7 +79,7 @@
       entity_id: sensor.iphone_8_battery_state
       to: Unplugged
     - platform: numeric_state
-      entity_id: sensor.illuminance
+      entity_id: sensor.aqara_illuminance
       above: 7
   condition:
     - condition: state
@@ -175,3 +176,13 @@
           {% endif %}
 
 
+# Activity Scene
+- id: set_activity_scene
+  alias: Set Activity Scene
+  trigger:
+    - platform: state
+      entity_id: input_select.activity
+  action:
+    - service: scene.turn_on
+      data_template:
+        entity_id: "scene.{{ states('input_select.activity') }}"

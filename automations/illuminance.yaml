@@ -2,7 +2,7 @@
   alias: Turn on scene if dark during the day
   trigger:
     - platform: numeric_state
-      entity_id: sensor.illuminance
+      entity_id: sensor.aqara_illuminance
       below: 30
       for:
         minutes: 10
@@ -11,7 +11,7 @@
       to: Home
   condition:
     - condition: numeric_state
-      entity_id: sensor.illuminance
+      entity_id: sensor.aqara_illuminance
       below: 30
     - condition: state
       entity_id: input_select.home_status

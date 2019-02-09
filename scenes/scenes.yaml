@@ -4,6 +4,9 @@
       state: on
       brightness: 160
       color_temp: 370
+    light.candela:
+      state: on
+      brightness: 160
 
 - name: Movie Mode
   entities:
@@ -12,6 +15,7 @@
     light.led_strip_1: off
     light.led_strip_2: off
     light.spot: off
+    light.candela: off
     switch.air_purifier: off
     switch.television: on
     light.tv_backlight:
@@ -23,6 +27,7 @@
     light.aqara_white_bulb: off
     light.milight_rgbw_bulb: off
     light.spot: off
+    light.candela: off
     group.led_strips:
       state: on
       rgb_color: [255, 93, 0]

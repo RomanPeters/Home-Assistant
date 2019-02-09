@@ -30,11 +30,3 @@
   action:
     - service: switch.turn_off
       entity_id: switch.air_purifier         
-
-
-
-
-
-
-
-

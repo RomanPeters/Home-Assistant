@@ -1,23 +1,13 @@
 status:
   name: Status
   entities:
-    - light.ceiling_lamp
-    - light.standing_lamp
+    - light.aqara_white_bulb
+    - light.milight_rgbw_bulb
     - light.spot
     - light.led_strips
     - light.tv_backlight
     - switch.air_purifier
     - switch.coffee_maker
-
-restoreable:
-  name: Restoreable
-  entities:
-    - light.ceiling_lamp
-    - light.standing_lamp
-    - light.spot
-    - light.led_strips
-    - light.tv_backlight
-    - switch.television
 
 climate_control_automations:
   name: Climate Control

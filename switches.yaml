@@ -19,16 +19,16 @@
       command_on: "sg0yAAcRBhESBgYRBhEGEQYREgYRBgYRBhEGrREGBhEGEQYRBxERBgYREQYSBgYREQYRBgYRAAAAAAAA"
       #TODO command_off is broken
       command_off: "sg8yAAYREgYGERIGEgYGEhEGEgYGEQYRBhERBgYRBhEGEQYRBhEGEREGBhEGrBEGBhEGEQYRAAAAAAAA"
-    spot:
-      friendly_name: "Spot"
+    socket_2:
+      friendly_name: "Socket 2"
       command_on: "sgsyAAYSBhEHEQcREQcGEhEGBxEGrREGBhIGEQYRBhERBgYSEQYRBgcREQYRBwYRBhEGEREHAAAAAAAA"
       command_off: "skcyABEGBhEGEQYRBhESBgYREQYRBgcREgYSBgYRBhEHEREGBhEGEQYRBhEGEQYREgYGEQasAAAAAAAA"
-    camera:
-      friendly_name: "Camera"
+    socket_3:
+      friendly_name: "Socket 3"
       command_on: "sgoyABIGBxEHEQcRBhESBgcREgYSBQcREgUSBgcRBxEHERIFBxEGEQcRBhESBgcRBhESBgesAAAAAAAA"
       command_off: "sgYyAAasEQYHEQYRBxEGEREGBhESBhEGBhERBhIGBhEGEgYSEQYGEQYRBhEGEQYRBhEGEREGAAAAAAAA"
-    heater:  # socket 4
-      friendly_name: "Heater"
+    socket_4:  # socket 4
+      friendly_name: "Socket 4"
       command_on: "sgsyABIGEQYGEREGEgYGEQcRBhERBgYRBxEGEQcREgYSBgcREgYGrBEGBxEGEQYRBxESBgcRAAAAAAAA"
       command_off: "sgoyABEGBhEGEQYREQYGEQYRBhEGEQcREQYGERIGBqwRBgYRBhEGEQYREQYGERIGEQYGEREGAAAAAAAA"
     socket_5:  # socket 5
@@ -45,11 +45,39 @@
 
 - platform: mqtt
   name: zigbee2mqtt Pairing
-  icon: mdi:access-point
+  icon: mdi:zigbee
   state_topic: "zigbee2mqtt/bridge/config/permit_join"
   command_topic: zigbee2mqtt/bridge/config/permit_join
   payload_on: "true"
   payload_off: "false"
+
+- platform: mqtt
+  name: zigbee2mqtt LED
+  icon: mdi:led
+  state_topic: "zigbee2mqtt/bridge/config/disable_led"
+  command_topic: "zigbee2mqtt/bridge/config/disable_led"
+  payload_on: "true"
+  payload_off: "false"
+
+- platform: "mqtt"
+  name: Tradfri Control Outlet
+  state_topic: "zigbee2mqtt/tradfri_control_outlet"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_off: "OFF"
+  payload_on: "ON"
+  value_template: "{{ value_json.state }}"
+  command_topic: "zigbee2mqtt/tradfri_control_outlet/set"
+
+- platform: "mqtt"
+  name: Spot #Tradfri Control Outlet 2
+  state_topic: "zigbee2mqtt/tradfri_control_outlet_2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_off: "OFF"
+  payload_on: "ON"
+  value_template: "{{ value_json.state }}"
+  command_topic: "zigbee2mqtt/tradfri_control_outlet_2/set"
+
+
 
 - platform: command_line
   switches:
@@ -60,3 +88,5 @@
 # Disabled below, because it's not really necessary to keep checking whether it's on or off
 #      command_state: "curl -X GET 'http://10.10.10.101/admin/api.php?status'"
 #      value_template: "{{ value_json.status == 'enabled' }}"
+
+

@@ -21,6 +21,22 @@
                     "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
                     "cards": [
                         {
+                            "card": {
+                                "entities": [
+                                    "sensor.travel_time",
+                                    "sensor.travel_description"
+                                ],
+                                "type": "entities"
+                            },
+                            "conditions": [
+                                {
+                                    "entity": "input_select.activity",
+                                    "state": "leaving"
+                                }
+                            ],
+                            "type": "conditional"
+                        },
+                        {
                             "entity": "sensor.status_summary",
                             "type": "custom:entity-markdown"
                         },
@@ -86,20 +102,13 @@
                                 "light.aqara_white_bulb",
                                 "light.milight_rgbw_bulb",
                                 "light.spot",
+                                "light.candela",
                                 "group.led_strips",
                                 "light.tv_backlight"
                             ],
                             "id": "b0e3b0e36a9a4deba2b93ba14ef47001",
                             "show_header_toggle": false,
                             "theme": "Backend-selected",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "switch.television",
-                                "switch.air_purifier"
-                            ],
-                            "id": "a028535ccd4e4ec498559ccc9a96eb89",
                             "type": "entities"
                         },
                         {
@@ -382,6 +391,75 @@
                             "entity": "climate.thermostat",
                             "id": "94388c17d89a4575a995a0cb181a5166",
                             "type": "thermostat"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "switch.tradfri_control_outlet",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "name": "Outlet 1",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "entity-button"
+                                        },
+                                        {
+                                            "entity": "switch.socket",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "name": "Outlet 2",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "entity-button"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "switch.television",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "entity-button"
+                                        },
+                                        {
+                                            "entity": "switch.entone",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "name": "box",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "entity-button"
+                                        },
+                                        {
+                                            "entity": "switch.air_purifier",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "name": "Air",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "entity-button"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                }
+                            ],
+                            "type": "vertical-stack"
                         }
                     ],
                     "id": 0,
@@ -410,23 +488,24 @@
                         {
                             "entities": [
                                 "climate.thermostat",
-                                "sensor.xiaomi_temperature_2",
-                                "sensor.dht_temperature"
+                                "sensor.aqara_temperature_2",
+                                "sensor.br_temperature"
                             ],
                             "type": "history-graph"
                         },
                         {
                             "entities": [
-                                "sensor.xiaomi_humidity",
-                                "sensor.xiaomi_humidity_2",
-                                "sensor.dht_humidity"
+                                "sensor.aqara_humidity",
+                                "sensor.aqara_humidity_2",
+                                "sensor.br_humidity"
                             ],
                             "type": "history-graph"
                         },
                         {
                             "entities": [
-                                "sensor.xiaomi_pressure",
-                                "sensor.xiaomi_pressure_2"
+                                "sensor.aqara_pressure",
+                                "sensor.aqara_pressure_2",
+                                "sensor.br_pressure"
                             ],
                             "type": "history-graph"
                         },
@@ -475,6 +554,9 @@
                                         },
                                         {
                                             "entity": "switch.zigbee2mqtt_pairing"
+                                        },
+                                        {
+                                            "entity": "script.zigbee2mqtt_map"
                                         }
                                     ],
                                     "type": "entities"
@@ -485,7 +567,16 @@
                                         "group.notification_automations"
                                     ],
                                     "show_header_toggle": false,
-                                    "title": "Automations",
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        "sensor.disk_use_percent",
+                                        "sensor.memory_use_percent",
+                                        "sensor.load_5m",
+                                        "sensor.last_boot"
+                                    ],
+                                    "show_header_toggle": false,
                                     "type": "entities"
                                 }
                             ],

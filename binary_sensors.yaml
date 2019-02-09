@@ -1,18 +1,12 @@
 - platform: "template"
   sensors:
-    home:
-      friendly_name: "Home"
-      icon_template: mdi:home
-      value_template: "{{ states('input_boolean.home') == 'on' }}"
-      device_class: presence
-
     dark:
       friendly_name: "It's dark"
       value_template: "{{ not is_state('sun.sun', 'above_horizon') and is_state('group.lights', 'off') }}"
 
     outside_cooler_than_inside:
       friendly_name: "Outside cooler than inside"
-      value_template: "{{ (states('sensor.br_temperature') | float) < (states('sensor.inside_temperature') | float) }}"
+      value_template: "{{ (states('sensor.br_temperature') | float) < (states('sensor.aqara_temperature') | float) }}"
 
     plant_needs_water:
       friendly_name: "Plant Needs Water"
@@ -46,51 +40,36 @@
 
 - platform: "mqtt"
   name: Door
-  state_topic: "zigbee2mqtt/door_sensor"
+  state_topic: "zigbee2mqtt/aqara_contact_sensor"
   availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:door"
   payload_on: false
   payload_off: true
   value_template: "{{ value_json.contact }}"
   device_class: "door"
-  json_attributes_topic: "zigbee2mqtt/door_sensor" 
+  json_attributes_topic: "zigbee2mqtt/aqara_contact_sensor" 
 
 - platform: "mqtt"
   name: Window
-  state_topic: "zigbee2mqtt/window_sensor"
+  state_topic: "zigbee2mqtt/aqara_contact_sensor_2"
   availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:window"
   payload_on: false
   payload_off: true
   value_template: "{{ value_json.contact }}"
   device_class: "window"
-  json_attributes_topic: "zigbee2mqtt/window_sensor"
+  json_attributes_topic: "zigbee2mqtt/aqara_contact_sensor_2"
 
 - platform: "mqtt"
-  name: Motion sensor
-  state_topic: "zigbee2mqtt/motion_sensor"
+  name: Aqara motion sensor
+  state_topic: "zigbee2mqtt/aqara_motion_sensor"
   availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:run-fast"
   payload_on: true
   payload_off: false
   value_template: "{{ value_json.occupancy }}"
   device_class: "motion"
-  json_attributes_topic: "zigbee2mqtt/motion_sensor"
-
-#- platform: "mqtt"
-#  name: Heater button
-#  state_topic: "sonoff2/binary_sensor/heater_button/state"
-#  availability_topic: "sonoff2/status"
-#  icon: "mdi:button"
+  json_attributes_topic: "zigbee2mqtt/aqara_motion_sensor"
 
 - platform: "mqtt"
   name: Coffee button
   state_topic: "sonoff/binary_sensor/coffee_button/state"
   availability_topic: "sonoff/status"
-  icon: "mdi:coffee"
-
-- platform: "mqtt"
-  name: BS440
-  state_topic: "satellite/binary_sensor/bs440/state"
-  icon: "mdi:gauge"
 

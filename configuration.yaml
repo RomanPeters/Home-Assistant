@@ -26,7 +26,7 @@ frontend:
 
 mqtt:
 #  discovery: true
-  broker: core-mosquitto
+#  broker: core-mosquitto
   client_id: home-assistant
   birth_message:
     topic: 'hass/status'
@@ -39,12 +39,22 @@ weather:
   - platform: buienradar
     name: Utrecht
 
-mqtt_eventstream:
-  subscribe_topic: satellite/events
+transmission:
+  host: 10.10.10.20
+  username: ""
+  password: ""
 
+#mqtt_eventstream:
+#  subscribe_topic: satellite/events
+#  publish_topic: hass/events
+#  ignore_event:
+#    - state_changed
+
+system_health:
+webhook:
+zigbee2mqtt_networkmap:
 auth:
 config:
-hassio:
 history:
 map:
 python_script:
@@ -84,7 +94,7 @@ alarm_control_panel: !include alarm_control_panels.yaml
 plant: !include plants.yaml
 input_select: !include input_selects.yaml
 input_boolean: !include input_booleans.yaml
-scene: !include scenes.yaml
+scene: !include_dir_merge_named scenes
 climate: !include climates.yaml
 timer: !include timers.yaml
 input_text: !include input_texts.yaml
@@ -93,5 +103,4 @@ input_datetime: !include input_datetimes.yaml
 device_tracker: !include device_trackers.yaml
 notify: !include notifies.yaml
 media_player: !include media_players.yaml
-calendar: !include calendars.yaml
 zone: !include zones.yaml

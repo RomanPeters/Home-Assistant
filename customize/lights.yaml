@@ -37,3 +37,10 @@ light.spot:
 light.aqara_white_bulb:
   friendly_name: Ceiling Lamp
   icon: mdi:ceiling-light
+
+light.candela:
+  friendly_name: Candle
+  icon: mdi:battery-30
+
+light.macbook_screen:
+  icon: mdi:laptop-mac

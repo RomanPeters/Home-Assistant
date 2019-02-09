@@ -132,19 +132,23 @@
   alias: Notification Low Battery
   trigger:
     - platform: numeric_state
-      entity_id: sensor.button     
+      entity_id: sensor.aqara_button     
       value_template: '{{ state.attributes.battery }}'
       below: 11
     - platform: numeric_state
-      entity_id: sensor.illuminance
+      entity_id: sensor.aqara_illuminance
       value_template: '{{ state.attributes.battery }}'
       below: 11
     - platform: numeric_state
-      entity_id: sensor.xiaomi_humidity    
+      entity_id: sensor.aqara_temperature    
       value_template: '{{ state.attributes.battery }}'
       below: 11
     - platform: numeric_state
-      entity_id: sensor.wall_switch       
+      entity_id: sensor.aqara_temperature_2
+      value_template: '{{ state.attributes.battery }}'
+      below: 11
+    - platform: numeric_state
+      entity_id: sensor.mijia_switch       
       value_template: '{{ state.attributes.battery }}'
       below: 11
   action:
@@ -182,3 +186,39 @@
           Body Fat: {{ trigger.payload_json.fat }}%,
           Bone Mass: {{ trigger.payload_json.bone }}%, 
           DCI: {{ trigger.payload_json.kcal }} kcal
+
+# zigbee2mqtt
+- id: notification_zigbee2mqtt
+  alias: Notification zigbee2mqtt
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/bridge/log
+  action:
+    - service: notify.notify
+      data_template:
+        title: "zigbee2mqtt: {{ trigger.payload_json['type'] }}"
+        message: "{{ trigger.payload_json['message'] | capitalize }}"
+
+# PostNL
+- id: notification_postnl
+  alias: Notification PostNL
+  trigger: 
+    - platform: state
+      entity_id: sensor.postnl
+  action:
+    - service: notify.notify
+      data_template:
+        title: "PostNL"
+        message: "{{ trigger.to_state }}"
+
+# transmission
+- id: notification_torrent_complete
+  alias: Notification Torrent Complete
+  trigger:
+    platform: event
+    event_type: transmission_downloaded_torrent
+  action:
+    service: notify.notify
+    data_template:
+      title: "Download finished"
+      message: ""

@@ -1,3 +1,8 @@
+#- platform: yeelight_bt
+#  devices:
+#    candela:
+#      mac: 'f8:24:41:c1:6b:f4'
+
 - platform: limitlessled
   bridges:
     - host: "10.10.10.201"
@@ -23,32 +28,27 @@
 
 - platform: mqtt
   name: Aqara White Bulb
-  state_topic: "zigbee2mqtt/white_light"
+  state_topic: "zigbee2mqtt/aqara_white_bulb"
   availability_topic: "zigbee2mqtt/bridge/state"
   brightness: true
   color_temp: true
   schema: "json"
-  command_topic: "zigbee2mqtt/white_light/set"
+  command_topic: "zigbee2mqtt/aqara_white_bulb/set"
 
 - platform: mqtt
-  command_topic: "/satellite/ws281x/0/set"
-  state_topic: "/satellite/ws281x/0/get"
-  rgb: true
-  name: WS2811
+  name: MacBook Screen
   brightness: true
-  effect: true
-  effect_list:
-    - 'none'
-    - 'colorwipe'
-    - 'turntable'
-    - 'rainbow'
-    - 'colorshoot'
-    - 'confetti'
-    - 'fire'
-    - 'sinelon'
-    - 'testcolor'
-  retain: true    
+  schema: "json"
+  command_topic: "macbook/screen/set"
+  state_topic: "macbook/screen"
+  availability_topic: "mqtthawk/state"
 
+- platform: mqtt
+  name: Candela
+  state_topic: "satellite/light/candela/state"
+  brightness_command_topic: "satellite/light/candela/brightness"
+  command_topic: "satellite/light/candela/command"
+#  availability_topic: "satellite/status"
 
 #- platform: mqtt
 #  name: Coffee LED
