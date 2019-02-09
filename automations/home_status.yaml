@@ -108,7 +108,7 @@
       to: 'Off'
   action:
     - service: automation.turn_off
-      entity_id: group.home_Status_automations
+      entity_id: group.home_status_automations
 
 - id: home_status_from_off
   alias: Home Status from Off

@@ -9,19 +9,26 @@ switch.entone:
 
 switch.fan:
   icon: mdi:fan
-  assumed_state: false
+
+switch.tradfri_control_outlet:
+  icon: mdi:power-socket-eu
+
+switch.tradfri_control_outlet_2:
+  icon: mdi:power-socket-eu
 
 switch.socket:
   icon: mdi:power-socket-eu
-  assumed_state: false
   
 switch.air_purifier:
   icon: mdi:weather-windy
-  assumed_state: false
 
 switch.zigbee2mqtt_pairing:
-  assumed_state: true
+  icon: mdi:zigbee
+  assumed_state: false
 
 switch.pihole:
   icon: mdi:raspberrypi
-  assumed_state: true
+  assumed_state: false
+
+switch.zigbee2mqtt_pairing:
+  icon: mdi:network

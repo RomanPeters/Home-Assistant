@@ -1,8 +1,0 @@
-- platform: caldav
-  url: !secret icloud_caldav_url
-  username: !secret icloud_username
-  password: !secret icloud_app_password
-  calendars:
-    - Activiteiten
-    - Werk
-    - Studie

@@ -8,6 +8,11 @@ configurator:
   icon: mdi:wrench
   url: https://10.10.10.11:3218
 
+networkmap:
+  title: 'Zigbee Map'
+  url: '/local/zigbee2mqtt_networkmap/map.html'
+  icon: 'mdi:graphql'
+
 #remote:
 #  title: Remote
 #  icon: mdi:remote

@@ -1,34 +1,34 @@
 sensor.br_temperature:
-  friendly_name: BR Temperature
+  friendly_name: Outside Temperature
 
 sensor.br_humidity:
-  friendly_name: BR Humidity
+  friendly_name: Outside Humidity
 
 sensor.br_pressure:
-  friendly_name: BR Pressure
+  friendly_name: Outside Pressure
 
 sensor.br_condition:
   friendly_name: Condition
 
-sensor.xiaomi_temperature:
+sensor.aqara_temperature:
   friendly_name: Inside Temperature
 
-sensor.xiaomi_humidity:
+sensor.aqara_humidity:
   device_class: humidity
   friendly_name: Inside Humidity
 
-sensor.xiaomi_pressure:
+sensor.aqara_pressure:
   friendly_name: Inside Pressure
 
-sensor.xiaomi_temperature_2:
-  friendly_name: Outside Temperature
+sensor.aqara_temperature_2:
+  friendly_name: Temperature 2
 
-sensor.xiaomi_humidity_2:
+sensor.aqara_humidity_2:
   device_class: humidity
-  friendly_name: Outside Humidity
+  friendly_name: Humidity 2
 
-sensor.xiaomi_pressure_2:
-  friendly_name: Outside Pressure
+sensor.aqara_pressure_2:
+  friendly_name: Pressure 2
 
 sensor.waqi_particle_sensor_pm25:
   friendly_name: WAQI PM2.5
@@ -48,3 +48,13 @@ sensor.particle_sensor_pm10:
 
 sensor.mi_flora_sensor_temperature:
   friendly_name: Inside Temperature 3
+
+sensor.travel_description:
+  icon: mdi:map-marker-distance
+
+sensor.travel_time:
+  icon: mdi:motorbike
+
+sensor.disk_use_percent:
+  icon: mdi:micro-sd
+

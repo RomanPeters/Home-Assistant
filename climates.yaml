@@ -1,6 +1,6 @@
 - platform: generic_thermostat
   name: Thermostat
   heater: switch.heater
-  target_sensor: sensor.xiaomi_temperature
+  target_sensor: sensor.aqara_temperature
   hot_tolerance: -0.4
-  initial_operation_mode: 'auto'
+
