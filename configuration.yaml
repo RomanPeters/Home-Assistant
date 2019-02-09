@@ -26,7 +26,7 @@ frontend:
 
 mqtt:
 #  discovery: true
-  broker: core-mosquitto
+  broker: 10.10.10.20
   client_id: home-assistant
   birth_message:
     topic: 'hass/status'
@@ -42,9 +42,9 @@ weather:
 mqtt_eventstream:
   subscribe_topic: satellite/events
 
+system_health:
 auth:
 config:
-hassio:
 history:
 map:
 python_script:

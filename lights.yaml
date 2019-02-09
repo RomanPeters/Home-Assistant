@@ -30,24 +30,6 @@
   schema: "json"
   command_topic: "zigbee2mqtt/white_light/set"
 
-- platform: mqtt
-  command_topic: "/satellite/ws281x/0/set"
-  state_topic: "/satellite/ws281x/0/get"
-  rgb: true
-  name: WS2811
-  brightness: true
-  effect: true
-  effect_list:
-    - 'none'
-    - 'colorwipe'
-    - 'turntable'
-    - 'rainbow'
-    - 'colorshoot'
-    - 'confetti'
-    - 'fire'
-    - 'sinelon'
-    - 'testcolor'
-  retain: true    
 
 
 #- platform: mqtt

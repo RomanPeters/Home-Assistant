@@ -48,7 +48,6 @@
   name: Door
   state_topic: "zigbee2mqtt/door_sensor"
   availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:door"
   payload_on: false
   payload_off: true
   value_template: "{{ value_json.contact }}"
@@ -59,7 +58,6 @@
   name: Window
   state_topic: "zigbee2mqtt/window_sensor"
   availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:window"
   payload_on: false
   payload_off: true
   value_template: "{{ value_json.contact }}"
@@ -70,7 +68,6 @@
   name: Motion sensor
   state_topic: "zigbee2mqtt/motion_sensor"
   availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:run-fast"
   payload_on: true
   payload_off: false
   value_template: "{{ value_json.occupancy }}"
@@ -81,16 +78,10 @@
 #  name: Heater button
 #  state_topic: "sonoff2/binary_sensor/heater_button/state"
 #  availability_topic: "sonoff2/status"
-#  icon: "mdi:button"
 
 - platform: "mqtt"
   name: Coffee button
   state_topic: "sonoff/binary_sensor/coffee_button/state"
   availability_topic: "sonoff/status"
-  icon: "mdi:coffee"
 
-- platform: "mqtt"
-  name: BS440
-  state_topic: "satellite/binary_sensor/bs440/state"
-  icon: "mdi:gauge"
 
