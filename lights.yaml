@@ -1,7 +1,7 @@
-#- platform: yeelight_bt
-#  devices:
-#    candela:
-#      mac: 'f8:24:41:c1:6b:f4'
+- platform: yeelight_bt
+  devices:
+    candela:
+      mac: 'f8:24:41:c1:6b:f4'
 
 - platform: limitlessled
   bridges:
@@ -35,6 +35,36 @@
   schema: "json"
   command_topic: "zigbee2mqtt/aqara_white_bulb/set"
 
+- platform: mqtt
+  name: MacBook Screen
+  brightness: true
+  schema: "json"
+  command_topic: "macbook/screen/set"
+  state_topic: "macbook/screen"
+  availability_topic: "mqtthawk/state"
+
+- platform: mqtt
+  name: Candela
+  state_topic: "satellite/light/candela/state"
+  brightness_command_topic: "satellite/light/candela/brightness"
+  command_topic: "satellite/light/candela/command"
+#  availability_topic: "satellite/status"
+
+#- platform: mqtt
+#  name: Coffee LED
+#  brightness: true
+#  flash: true
+#  state_topic: "sonoff/light/coffee_led/state"
+#  command_topic: "sonoff/light/coffee_led/command"
+#  availability_topic: "sonoff/status"
+
+#- platform: mqtt
+#  name: Heater LED
+#  brightness: true
+#  flash: true
+#  state_topic: "sonoff2/light/heater_led/state"  #"sonoff_th10/light/heater_led/state"
+#  command_topic: "sonoff2/light/heater_led/command"  #"sonoff_th10/light/heater_led/command"
+#  availability_topic: "sonoff2/status"  #"sonoff_th10/status"
 
 - platform: template
   lights:

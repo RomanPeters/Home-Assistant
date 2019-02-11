@@ -69,6 +69,9 @@ tts:
 recorder:
   db_url: !secret db_url
 
+influxdb:
+  host: 10.10.10.20
+
 apple_tv:
   - host: 10.10.10.4
     login_id: !secret apple_tv_id
