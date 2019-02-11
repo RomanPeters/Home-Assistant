@@ -4,6 +4,8 @@
 .ssh/
 .storage/
 !.storage/lovelace
+.stignore
+.stversions/
 esphomeyaml/
 .uuid
 appdaemon/appdaemon.yaml
