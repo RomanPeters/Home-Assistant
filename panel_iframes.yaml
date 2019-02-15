@@ -1,12 +1,12 @@
-terminal:
-  title: Terminal
-  icon: mdi:console
-  url: https://10.10.10.11:7681
+#terminal:
+#  title: Terminal
+#  icon: mdi:console
+#  url: https://10.10.10.11:7681
 
-configurator:
-  title: Configurator
-  icon: mdi:wrench
-  url: https://10.10.10.11:3218
+#configurator:
+#  title: Configurator
+#  icon: mdi:wrench
+#  url: https://10.10.10.11:3218
 
 networkmap:
   title: 'Zigbee Map'

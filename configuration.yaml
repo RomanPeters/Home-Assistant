@@ -12,7 +12,7 @@ http:
   login_attempts_threshold: 5
   use_x_forwarded_for: True
   trusted_proxies:
-    - 10.10.10.10
+    - 172.17.0.14
 #  trusted_networks:
 #    - 10.10.10.10
 

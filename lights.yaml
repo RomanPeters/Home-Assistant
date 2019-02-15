@@ -1,7 +1,7 @@
-- platform: yeelight_bt
-  devices:
-    candela:
-      mac: 'f8:24:41:c1:6b:f4'
+#- platform: yeelight_bt
+#  devices:
+#    candela:
+#      mac: 'f8:24:41:c1:6b:f4'
 
 - platform: limitlessled
   bridges:

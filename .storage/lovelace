@@ -102,7 +102,6 @@
                                 "light.aqara_white_bulb",
                                 "light.milight_rgbw_bulb",
                                 "light.spot",
-                                "light.candela",
                                 "group.led_strips",
                                 "light.tv_backlight"
                             ],
@@ -381,46 +380,12 @@
                             "type": "picture-elements"
                         },
                         {
-                            "entities": [
-                                "input_boolean.alarm_clock",
-                                "input_datetime.alarm_clock"
-                            ],
-                            "type": "entities"
-                        },
-                        {
                             "entity": "climate.thermostat",
                             "id": "94388c17d89a4575a995a0cb181a5166",
                             "type": "thermostat"
                         },
                         {
                             "cards": [
-                                {
-                                    "cards": [
-                                        {
-                                            "entity": "switch.tradfri_control_outlet",
-                                            "hold_action": {
-                                                "action": "more-info"
-                                            },
-                                            "name": "Outlet 1",
-                                            "tap_action": {
-                                                "action": "toggle"
-                                            },
-                                            "type": "entity-button"
-                                        },
-                                        {
-                                            "entity": "switch.socket",
-                                            "hold_action": {
-                                                "action": "more-info"
-                                            },
-                                            "name": "Outlet 2",
-                                            "tap_action": {
-                                                "action": "toggle"
-                                            },
-                                            "type": "entity-button"
-                                        }
-                                    ],
-                                    "type": "horizontal-stack"
-                                },
                                 {
                                     "cards": [
                                         {
@@ -443,13 +408,29 @@
                                                 "action": "toggle"
                                             },
                                             "type": "entity-button"
-                                        },
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "cards": [
                                         {
                                             "entity": "switch.air_purifier",
                                             "hold_action": {
                                                 "action": "more-info"
                                             },
                                             "name": "Air",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "entity-button"
+                                        },
+                                        {
+                                            "entity": "switch.socket",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "name": "Outlet",
                                             "tap_action": {
                                                 "action": "toggle"
                                             },

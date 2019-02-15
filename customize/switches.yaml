@@ -30,5 +30,3 @@ switch.pihole:
   icon: mdi:raspberrypi
   assumed_state: false
 
-switch.zigbee2mqtt_pairing:
-  icon: mdi:network

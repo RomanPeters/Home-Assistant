@@ -35,3 +35,4 @@ google_calendars.yaml
 .google.token
 .tile_romanpeters_nl.tile.conf
 zones.yaml
+*.pyc

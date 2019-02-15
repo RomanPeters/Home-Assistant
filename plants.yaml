@@ -5,7 +5,7 @@ Plant:
     temperature: sensor.mi_flora_temperature
     conductivity: sensor.mi_flora_conductivity
     brightness: sensor.mi_flora_light_intensity
-  min_moisture: 15
+  min_moisture: 30
   max_moisture: 60
   min_battery: 5
   min_temperature: 10
