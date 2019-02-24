@@ -42,10 +42,6 @@
       entity_id: binary_sensor.heater_button
       from: 'off'
       to: 'on'
-  condition:
-    - condition: state
-      entity_id: climate.thermostat
-      state: 'off'
   action: 
     - service_template: "climate.turn_{{ 'on' if is_state('climate.thermostat', 'off') else 'off' }}"
       entity_id: climate.thermostat

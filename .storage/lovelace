@@ -21,22 +21,6 @@
                     "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
                     "cards": [
                         {
-                            "card": {
-                                "entities": [
-                                    "sensor.travel_time",
-                                    "sensor.travel_description"
-                                ],
-                                "type": "entities"
-                            },
-                            "conditions": [
-                                {
-                                    "entity": "input_select.activity",
-                                    "state": "leaving"
-                                }
-                            ],
-                            "type": "conditional"
-                        },
-                        {
                             "entity": "sensor.status_summary",
                             "type": "custom:entity-markdown"
                         },

@@ -222,3 +222,14 @@
     data_template:
       title: "Download finished"
       message: ""
+# minecraft
+- id: notification_joined_minecraft
+  alias: Notification Joined Minecraft
+  trigger: 
+    - platform: template
+      value_template: "{{ 'joined the game' in states('sensor.minecraft_log') or 'left the game' in states('sensor.minecraft_log') }}"
+  action:
+    service: notify.notify
+    data_template:
+      title: "Minecraft Server"
+      message: "{{ states('sensor.minecraft_log') }}"
