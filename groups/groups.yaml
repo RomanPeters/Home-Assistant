@@ -27,15 +27,6 @@ notification_automations:
     - automation.notification_set_alarm_clock
     - automation.welcome_home_message
 
-alarm_clock:
-  name: Alarm Clock
-  control: hidden
-  entities:
-    - input_select.alarm_clock_media
-    - automation.alarm_clock_media
-    - automation.alarm_clock_lights
-    - automation.alarm_clock_coffee
-
 home_status_automations:
   name: Home Status Automations
   entities:
