@@ -1,0 +1,199 @@
+camera:
+  - platform: ffmpeg
+    name: Camera
+    input: -rtsp_transport tcp -i rtsp://10.10.10.205:8554/unicast
+    extra_arguments: '-vf scale=800:450'
+
+sensor:
+  - platform: "mqtt"
+    name: Camera
+    state_topic: xiaomi/dafang
+    icon: "mdi:cctv"
+    json_attributes_topic: xiaomi/dafang
+
+  - platform: "mqtt"
+    name: Camera Light Sensor
+    state_topic: xiaomi/dafang/brightness
+    icon: mdi:brightness-5
+    unit_of_measurement: "%"
+
+switch:
+  - platform: mqtt
+    name: Camera H264
+    icon: mdi:cctv
+    state_topic: xiaomi/dafang/rtsp_h264_server
+    command_topic: xiaomi/dafang/rtsp_h264_server/set
+
+  - platform: mqtt
+    name: Camera IR LED
+    icon: mdi:led-off
+    state_topic: xiaomi/dafang/leds/ir
+    command_topic: xiaomi/dafang/leds/ir/set
+
+  - platform: mqtt
+    name: Camera IR Cut
+    icon: mdi:image-filter-black-white
+    state_topic: xiaomi/dafang/ir_cut
+    command_topic: xiaomi/dafang/ir_cut/set
+
+cover:
+  - platform: "mqtt"
+    name: "Camera up/down"
+    command_topic: "xiaomi/dafang/motors/vertical/set"
+    position_topic: "xiaomi/dafang/motors/vertical"
+    payload_close: "down"
+    payload_open: "up"
+    optimistic: false
+    value_template: "{{((value|int)/7.3)|round }}"
+
+  - platform: "mqtt"
+    name: "Camera left/right"
+    command_topic: "xiaomi/dafang/motors/horizontal/set"
+    position_topic: "xiaomi/dafang/motors/horizontal"
+    payload_close: "right"
+    payload_open: "left"
+    optimistic: false
+    value_template: "{{ ((value|int)/27)|round }}" 
+
+input_boolean:
+  camera:
+    icon: mdi:cctv
+
+  camera_night_mode:
+    icon: mdi:weather-night
+
+script:
+  camera_left:
+    alias: Camera Left
+    sequence:
+      - service: cover.open_cover
+        data:
+          entity_id: cover.camera_left_right
+
+  camera_right:
+    alias: Camera Right
+    sequence:
+      - service: cover.close_cover
+        data:
+          entity_id: cover.camera_left_right
+
+  camera_up:
+    alias: Camera Up
+    sequence:
+      - service: cover.open_cover
+        data:
+          entity_id: cover.camera_up_down
+
+  camera_down:
+    alias: Camera Down
+    sequence:
+      - service: cover.close_cover
+        data:
+          entity_id: cover.camera_up_down   
+
+  camera_on:
+    alias: Camera On
+    sequence:
+      - alias: Turn on camera H264
+        service: switch.turn_on
+        entity_id: switch.camera_h264
+
+      - service: script.turn_on
+        entity_id: script.camera_left
+
+      - service: script.turn_on
+        entity_id: script.camera_left
+
+      - service: script.turn_on
+        entity_id: script.camera_left
+
+  camera_off:
+    alias: Camera Off
+    sequence:
+      - alias: Turn off camera H264
+        service: switch.turn_off
+        entity_id: switch.camera_h264
+
+      - service: script.turn_on
+        entity_id: script.camera_right
+
+      - service: script.turn_on
+        entity_id: script.camera_right
+
+      - service: script.turn_on
+        entity_id: script.camera_right
+
+  camera_night_mode_on:
+    alias: Camera night mode on
+    sequence:
+      - alias: Turn on IR LED
+        service: switch.turn_on
+        entity_id: switch.camera_ir_led
+
+      - alias: Turn off IR cut
+        service: switch.turn_off
+        entity_id: switch.camera_ir_cut
+
+  camera_night_mode_off:
+    alias: Camera night mode off
+    sequence:
+      - alias: Turn off IR LED
+        service: switch.turn_off
+        entity_id: switch.camera_ir_led
+
+      - alias: Turn on IR cut
+        service: switch.turn_on
+        entity_id: switch.camera_ir_cut
+
+automation:
+  - id: toggle_camera
+    alias: Toggle camera
+    trigger:
+      - platform: state
+        entity_id: input_boolean.camera
+    action:
+      - service: script.turn_on
+        data_template:
+          entity_id: "script.camera_{{ trigger.to_state.state }}"
+
+  - id: toggle_camera_night_mode
+    alias: Toggle camera night mode
+    trigger:
+      - platform: state
+        entity_id: input_boolean.camera_night_mode
+    action:
+      - service: script.turn_on
+        data_template:
+          entity_id: "script.camera_night_mode_{{ trigger.to_state.state }}"
+
+  - id: camera_home_status_to_home
+    alias: Camera Home Status to Home
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+        to: 'Home'
+    action:
+      - service: script.turn_on
+        entity_id: script.camera_off
+
+  - id: camera_home_status_from_home
+    alias: Camera Home Status from Off
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+        from: 'Home'
+    action:
+      - service: script.turn_on
+        entity_id: script.camera_on
+
+
+homeassistant:
+  customize:
+    script.camera_up: 
+      icon: mdi:arrow-up-bold
+    script.camera_down: 
+      icon: mdi:arrow-down-bold
+    script.camera_left: 
+      icon: mdi:arrow-left-bold
+    script.camera_right: 
+      icon: mdi:arrow-right-bold
