@@ -13,7 +13,7 @@
     - type: disk_use_percent
       arg: /
     - type: memory_use_percent
-    - type: load_5m
+    - type: processor_use
 
 - platform: miflora
   mac: 'C4:7C:8D:66:42:FC'
@@ -221,15 +221,6 @@
   icon: "mdi:toggle-switch"
   value_template: "{{ value_json.click }}"
   json_attributes_topic: "zigbee2mqtt/mijia_button"
-  force_update: true
-
-- platform: "mqtt"
-  name: Aqara Wall Switch
-  state_topic: "zigbee2mqtt/aqara_wall_switch"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:toggle-switch"
-  value_template: "{{ value_json.click }}"
-  json_attributes_topic: "zigbee2mqtt/aqara_wall_switch"
   force_update: true
 
 - platform: "mqtt"
