@@ -1,8 +1,0 @@
-tv_backlight_r:
-  alias: TV Backlight red
-  sequence:
-    - alias: Send IR packet
-      service: switch.broadlink_send_packet_10_10_10_203
-      data:
-        packet:
-          - "JgBYAAABJpYRFBE4EjgQFRAVERQRFBE4EjgQOREUEjgQFRE4ETkRFBA5ETgSFBEUEDkRFBEUERQRFBIUEDkQOREUEjgQORE4EQAFGwABJkwRAAxNAAEmSxEADQU"

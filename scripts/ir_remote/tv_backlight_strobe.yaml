@@ -1,8 +1,0 @@
-tv_backlight_strobe:
-  alias: TV Backlight strobe
-  sequence:
-    - alias: Send IR packet
-      service: switch.broadlink_send_packet_10_10_10_203
-      data:
-        packet:
-          - "JgBYAAABJ5USExE4EjgRFBEUEhMSExI4ETgROBITEjgRFBE4EjgRFBE4EjcSFBE4EhMSExEUERQSFBEUETgSExI3EjgROBI4EAAFHAABJksRAAxNAAEnShIADQU"
