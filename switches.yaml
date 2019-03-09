@@ -60,7 +60,7 @@
   payload_off: "false"
 
 - platform: "mqtt"
-  name: Spot #Tradfri Control Outlet 2
+  name: Spot
   state_topic: "zigbee2mqtt/tradfri_control_outlet"
   availability_topic: "zigbee2mqtt/bridge/state"
   payload_off: "OFF"

@@ -73,3 +73,6 @@
   state_topic: "sonoff/binary_sensor/coffee_button/state"
   availability_topic: "sonoff/status"
 
+- platform: "mqtt"
+  name: Minecraft Server
+  state_topic: "minecraft/state"

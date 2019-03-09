@@ -66,33 +66,6 @@
 #  command_topic: "sonoff2/light/heater_led/command"  #"sonoff_th10/light/heater_led/command"
 #  availability_topic: "sonoff2/status"  #"sonoff_th10/status"
 
-- platform: template
-  lights:
-    tv_light:
-      friendly_name: "TV Light"
-      turn_on:
-        service: switch.broadlink_send_packet_10_10_10_203
-        data:
-          packet:
-          - "JgBYAAABJpYSExI4ETgRFBITEhQQFRE4EjcSOBAVETgSExI4ETgSExEVETgRFBITEhMRFBIUERQROBITEjgROBI3ETkROBI4EQAFGwABJ0sRAAxPAAEmTBAADQU"
-      turn_off:
-        service: switch.broadlink_send_packet_10_10_10_203
-        data:
-          packet:
-          - "JgBYAAABJpYRFBE5EDkRFRAVEBQRFRA5EDkSORAVDzkRFRE4EDkSFBAVETkQFRAUETkQFg8WDxYQORAVEDkROREUEDkRORA5EAAFHQABJ0sRAAxQAAElTBEADQU"
-
-- platform: mqtt
-  name: "TV Backlight"
-  command_topic: "homeassistant/light/tv_backlight/command"
-  brightness_command_topic: "homeassistant/light/tv_backlight/brightness"
-  rgb_command_topic: "homeassistant/light/tv_backlight/rgb"
-  effect_command_topic: "homeassistant/light/tv_backlight/effect"
-  effect_list:
-    - Strobe
-    - Flash
-    - Fade 
-    - RGB Fade
-
 
 # Aliases
 - platform: group

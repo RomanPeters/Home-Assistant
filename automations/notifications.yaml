@@ -35,41 +35,6 @@
       data_template:
         message: "Your iPhone 8 is {{ states('sensor.iphone_8_battery_state') | lower }}."
 
-# Alarm Clock
-- id: notification_alarm_clock
-  alias: 'Notification Alarm Clock'
-  trigger:
-    - platform: template
-      value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
-  condition:
-    - condition: state
-      entity_id: input_boolean.alarm_clock
-      state: 'on'
-    - condition: state
-      entity_id: input_select.home_status
-      state: 'Away'
-  action:
-    - service: notify.notify
-      data:
-        message: "Your alarm clock has been triggered!"
-
-- id: notification_set_alarm_clock
-  alias: 'Notification set Alarm Clock'
-  trigger:
-    - platform: state
-      entity_id: input_select.home_status
-      to: Night
-      for:
-        seconds: 3
-  condition:
-    - condition: state
-      entity_id: input_boolean.alarm_clock
-      state: 'on'
-  action:
-    - service: notify.notify
-      data_template:
-        message: "I'll wake you up at {{ states('input_datetime.alarm_clock')[:-3] }}"
-
 # Device tracker
 - id: notification_new_device
   alias: Notification New Device
@@ -100,18 +65,6 @@
       data:
         message: "Your keys are still in your room"
 
-# Plant needs water
-- id: plant_needs_water
-  alias: Plant Needs Water
-  trigger:
-    - platform: state
-      entity_id: sensor.plant_needs_water
-      to: 'on'
-  action:
-    - wait_template: "{{ is_state('input_select.home_status', 'Home') }}"    
-    - service: notify.notify
-      data_template:
-        message: "The plant could use some water, it's moisture level has fallen to {{ states('sensor.mi_flora_moisture') }}"
 
 # Helmet BT
 - id: helmet_bt_still_on
@@ -222,6 +175,7 @@
     data_template:
       title: "Download finished"
       message: ""
+      
 # minecraft
 - id: notification_joined_minecraft
   alias: Notification Joined Minecraft
@@ -233,3 +187,14 @@
     data_template:
       title: "Minecraft Server"
       message: "{{ states('sensor.minecraft_log') }}"
+
+- id: notification_minecraft_server
+  alias: Notification Minecraft Server
+  trigger: 
+    - platform: mqtt
+      topic: minecraft/state 
+  action:
+    service: notify.notify
+    data_template:
+      title: "Minecraft Server"
+      message: "Server turned {{ trigger.payload | lower }}"

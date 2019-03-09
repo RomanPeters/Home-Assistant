@@ -8,10 +8,10 @@
   password: !secret tile_password
   show_inactive: true
 
-- platform: icloud
-  username: !secret icloud_username
-  password: !secret icloud_password
-  account_name: icloud_roman
+#- platform: icloud
+#  username: !secret icloud_username
+#  password: !secret icloud_password
+#  account_name: icloud_roman
 
 - platform: ping
   hosts:

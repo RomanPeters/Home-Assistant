@@ -1,0 +1,91 @@
+plant:
+  Plant:
+    sensors:
+      moisture: sensor.mi_flora_moisture
+      battery: sensor.mi_flora_battery
+      temperature: sensor.mi_flora_temperature
+      conductivity: sensor.mi_flora_conductivity
+      brightness: sensor.mi_flora_light_intensity
+    min_moisture: 30
+    max_moisture: 60
+    min_battery: 5
+    min_temperature: 10
+    max_temperature: 35
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 2000
+    max_brightness: 4800
+
+notification:
+  - id: plant_needs_water
+    alias: Plant Needs Water
+    trigger:
+      - platform: state
+        entity_id: sensor.plant_needs_water
+        to: 'on'
+    action:
+      - wait_template: "{{ is_state('input_select.home_status', 'Home') }}"    
+      - service: notify.notify
+        data_template:
+          message: "The plant could use some water, it's moisture level has fallen to {{ states('sensor.mi_flora_moisture') }}"
+
+binary_sensor:
+  - platform: "template"
+    sensors:
+      plant_needs_water:
+        friendly_name: "Plant Needs Water"
+        value_template: >
+          {% if 'moisture low' in state_attr('plant.plant', 'problem') %}
+            True
+          {% else %}
+            False
+          {% endif %}
+          
+sensor:
+  - platform: miflora
+    mac: 'C4:7C:8D:66:42:FC'
+
+  - platform: template
+    sensors:
+      plant_summary:
+        friendly_name: "Plant"
+        value_template: > 
+          {% if is_state('plant.plant', 'ok') %}
+            Your plant is doing fantastic!
+          {% elif is_state('plant.plant', 'unknown') %}
+            I'm not sure how your plant is doing.
+          {% endif %}
+          {% for problem in states.plant.plant.attributes.problem.split(', ') -%}
+            {%- if loop.first %}The plant {% elif loop.last %} and {% else %}, {% endif -%}
+            {%- if problem == 'moisture high' -%}
+              has too much water
+            {%- elif problem == 'moisture low' -%}
+              would like some water
+            {%- elif problem == 'batter low' -%}
+              sensor battery is almost empty
+            {%- elif problem ==  'temperature low' -%}
+              is too cold
+            {%- elif problem == 'temperature high' -%}
+              is too hot
+            {%- elif problem == 'conductivity high' -%}
+              has too much nutrients
+            {%- elif problem == 'conductivity low' -%}
+              has not enough nutrients
+            {%- elif problem == 'brightness high' -%}
+              recieves too much sunlight
+            {%- elif problem == 'brightness low' -%}
+              doesn't receive enough sunlight
+            {%- else -%}
+              {{ problem }}
+            {%- endif -%}
+          {%- endfor -%}.
+        icon_template: >
+          {% if is_state('sensor.plant_emoji', 'perfect') %}
+            mdi:emoticon-happy
+          {% elif is_state('sensor.plant_emoji', 'unkown') %}
+            mdi:help-circle
+          {% elif states('sensor.plant_emoji').split(',') | length == 1  %}
+            mdi:emoticon-neutral
+          {% else %}
+            mdi:emoticon-sad
+          {% endif %}

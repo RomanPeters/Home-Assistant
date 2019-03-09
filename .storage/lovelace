@@ -354,16 +354,6 @@
                             "type": "vertical-stack"
                         },
                         {
-                            "elements": [
-                                {
-                                    "entity": "light.aqara_white_bulb",
-                                    "type": "state-icon"
-                                }
-                            ],
-                            "image": "/local/images/floorplan/floor.png",
-                            "type": "picture-elements"
-                        },
-                        {
                             "entity": "climate.thermostat",
                             "id": "94388c17d89a4575a995a0cb181a5166",
                             "type": "thermostat"
@@ -425,6 +415,28 @@
                                 }
                             ],
                             "type": "vertical-stack"
+                        },
+                        {
+                            "card": {
+                                "camera_image": "camera.camera",
+                                "entities": [
+                                    "input_boolean.camera",
+                                    "input_boolean.camera_night_mode",
+                                    "script.camera_up",
+                                    "script.camera_down",
+                                    "script.camera_left",
+                                    "script.camera_right"
+                                ],
+                                "title": "Camera",
+                                "type": "picture-glance"
+                            },
+                            "conditions": [
+                                {
+                                    "entity": "person.roman",
+                                    "state": "not_home"
+                                }
+                            ],
+                            "type": "conditional"
                         }
                     ],
                     "id": 0,
@@ -436,8 +448,8 @@
                     "cards": [
                         {
                             "entities": [
-                                "group.roman",
-                                "group.nadine"
+                                "person.roman",
+                                "person.nadine"
                             ],
                             "id": "53ca9509f43e4e70a4149595b70533d7",
                             "type": "entities"
@@ -508,20 +520,11 @@
                                 },
                                 {
                                     "entities": [
-                                        "group.alarm_clock"
-                                    ],
-                                    "type": "entities"
-                                },
-                                {
-                                    "entities": [
                                         {
                                             "entity": "switch.pihole"
                                         },
                                         {
                                             "entity": "switch.zigbee2mqtt_pairing"
-                                        },
-                                        {
-                                            "entity": "script.zigbee2mqtt_map"
                                         }
                                     ],
                                     "type": "entities"
@@ -538,7 +541,7 @@
                                     "entities": [
                                         "sensor.disk_use_percent",
                                         "sensor.memory_use_percent",
-                                        "sensor.load_5m",
+                                        "sensor.processor_use",
                                         "sensor.last_boot"
                                     ],
                                     "show_header_toggle": false,

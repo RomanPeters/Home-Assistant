@@ -1,4 +1,0 @@
-script.zigbee2mqtt_map:
-  friendly_name: Update ZigBee Map
-  icon: 'mdi:graphql'
-  

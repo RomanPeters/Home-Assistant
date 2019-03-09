@@ -38,40 +38,9 @@
   display_options:
     - 'time'
 
-#- platform: waze_travel_time
-#  name: Travel Time 
-#  origin: device_tracker.iphone8
-#  destination: sensor.travel_destination
-#  region: 'EU'
-
-#- platform: waze_travel_time
-#  name: Travel time to home
-#  origin: device_tracker.iphone8
-#  destination: zone.home
-#  region: 'EU'
-
 # Templates
 - platform: template
   sensors:
-    travel_destination:
-      value_template: >-
-        {%- if is_state("group.roman", "not_home")  -%}
-          {{ state_attr('zone.home', 'latitude') }}, {{ state_attr('zone.home', 'longitude') }}
-        {%- elif state_attr('calendar.werk', 'start_time') and as_timestamp(state_attr('calendar.activiteiten', 'start_time')) - as_timestamp(now()) < 5400 -%}
-          {{ state_attr('zone.work', 'latitude') }}, {{ state_attr('zone.work', 'longitude') }}
-        {%- else -%}
-          {{ state_attr('zone.university', 'latitude') }}, {{ state_attr('zone.university', 'longitude') }}
-        {%- endif -%}
-    travel_description:
-      friendly_name: Destination
-      value_template: >-
-        {%- if is_state("group.roman", "not_home")  -%}
-          Home via {{ state_attr('sensor.travel_time', 'route') }}
-        {%- elif state_attr('calendar.werk', 'start_time') and as_timestamp(state_attr('calendar.activiteiten', 'start_time')) - as_timestamp(now()) < 5400 -%}
-          Work via {{ state_attr('sensor.travel_time', 'route') }}
-        {%- else -%}
-          University via {{ state_attr('sensor.travel_time', 'route') }}
-        {%- endif -%}
     air_quality_status:
       friendly_name: AQI
       # Based on EPA AQI: https://en.wikipedia.org/wiki/Air_quality_index#Computing_the_AQI
@@ -164,21 +133,21 @@
     status_summary:
       friendly_name: Status Summary
       value_template: >
-        {% if is_state("group.roman", "home") and is_state("group.nadine", "home") -%}
+        {% if is_state("person.roman", "home") and is_state("person.nadine", "home") -%}
           Roman and Nadine are
-        {%- elif is_state("group.roman", "home") -%}
+        {%- elif is_state("person.roman", "home") -%}
           Roman is
-        {%- elif is_state("group.nadine", "home") -%}
+        {%- elif is_state("person.nadine", "home") -%}
           Nadine is
-        {%- elif now().timestamp() - states.group.roman.last_changed.timestamp() < 86400 -%}
-          Roman left at {{ (states.group.roman.last_changed | string )[11:16] }}.
+        {%- elif now().timestamp() - states.person.roman.last_changed.timestamp() < 86400 -%}
+          Roman left at {{ (states.person.roman.last_changed | string )[11:16] }}.
         {%- else -%}
           No one is home.{%- endif -%}
-        {%- if (is_state("group.roman", "home") or is_state("group.nadine", "home")) and is_state("switch.television", "on") -%}
+        {%- if (is_state("person.roman", "home") or is_state("person.nadine", "home")) and is_state("switch.television", "on") -%}
           {{ " " }}watching television.
-        {%- elif (is_state("group.roman", "home") or is_state("group.nadine", "home")) and is_state("input_select.home_status", "Night") -%}
+        {%- elif (is_state("person.roman", "home") or is_state("person.nadine", "home")) and is_state("input_select.home_status", "Night") -%}
           {{ " " }}in bed.
-        {%- elif is_state("group.roman", "home") or is_state("group.nadine", "home") -%}
+        {%- elif is_state("person.roman", "home") or is_state("person.nadine", "home") -%}
           {{ " " }}home.{%- endif -%}
 
           {{ " " }}Current temperature is {{ state_attr('climate.thermostat', 'current_temperature') }}°
@@ -196,9 +165,6 @@
         {%- elif is_state("binary_sensor.window", "on") -%}
           {{ " " }}The window is open.
         {%- endif %}
-        {%- if is_state('sensor.dht_temperature', 'unavailable') -%}
-          {{ " " }}The secondary Home Assistant instance seems to be offline.
-        {%- endif %}
         {%- for i in states.group.status.attributes.entity_id if is_state(i, 'on') -%}
           {%- if loop.first %}{{ " " }}The {% elif loop.last %} and the {% else %}, the {% endif -%}
           {{ state_attr(i, 'friendly_name') | lower }} is {{ states(i) }}
@@ -214,14 +180,6 @@
 
 
 ### MQTT
-- platform: "mqtt"
-  name: Mijia Button
-  state_topic: "zigbee2mqtt/mijia_button"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:toggle-switch"
-  value_template: "{{ value_json.click }}"
-  json_attributes_topic: "zigbee2mqtt/mijia_button"
-  force_update: true
 
 - platform: "mqtt"
   name: Aqara Temperature
@@ -285,45 +243,6 @@
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.illuminance }}"
   json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
-
-- platform: "mqtt"
-  name: Tradfri Dimmer
-  state_topic: "zigbee2mqtt/tradfri_dimmer"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "brightness"
-  icon: "mdi:brightness-5"
-  value_template: "{{ value_json.brightness }}"
-  json_attributes_topic: "zigbee2mqtt/tradfri_dimmer"
-
-#- platform: "mqtt"
-#  name: Mi Flora Moisture
-#  state_topic: "satellite/sensor/mi_flora_moisture/state"
-#  availability_topic: "satellite/state"
-#  unit_of_measurement: "%"
-
-#- platform: "mqtt"
-#  name: Mi Flora Conductivity
-#  state_topic: "satellite/sensor/mi_flora_conductivity/state"
-#  availability_topic: "satellite/state"
-#  unit_of_measurement: "µS/cm"
-
-#- platform: "mqtt"
-#  name: Mi Flora Temperature
-#  state_topic: "satellite/sensor/mi_flora_temperature/state"
-#  availability_topic: "satellite/state"
-#  unit_of_measurement: "°C"
-
-#- platform: "mqtt"
-#  name: Mi Flora Light Intensity
-#  state_topic: "satellite/sensor/mi_flora_light_intensity/state"
-#  availability_topic: "satellite/state"
-#  unit_of_measurement: "lx"
-
-#- platform: "mqtt"
-#  name: Mi Flora Battery
-#  state_topic: "satellite/sensor/mi_flora_battery/state"
-#  availability_topic: "satellite/state"
-#  unit_of_measurement: "%"
 
 - platform: "mqtt"
   name: Particle Sensor PM2.5

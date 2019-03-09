@@ -1,0 +1,41 @@
+binary_sensor:
+  - platform: "template"
+    sensors:
+      television:
+        friendly_name: "TV is on"
+        value_template: "{{ is_state('switch.television', 'on') }}"
+        delay_on: "00:00:10"
+
+automation:
+  # TELEVISION ON
+  - id: television_backlight_on
+    alias: Television backlight on
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'on'
+    action:
+      - service: light.turn_on
+        entity_id: light.tv_backlight
+        data:
+          color_name: white
+      - service: switch.turn_on
+        entity_id: switch.entone
+      - service: remote.send_command
+        data:
+          entity_id: remote.apple_tv
+          command:
+            - 'top_menu'
+  
+  # TELEVISION OFF
+  - id: television_backlight_off
+    alias: Television backlight off
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'off'
+    action:
+      - service: light.turn_off
+        entity_id: light.tv_backlight
+      - service: switch.turn_off
+        entity_id: switch.entone

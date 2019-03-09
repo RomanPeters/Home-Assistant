@@ -1,7 +1,0 @@
-alarm_clock:
-  name: Alarm Clock
-  icon: mdi:alarm
-
-night_light:
-  name: Night Light
-  icon: mdi:light-bulb

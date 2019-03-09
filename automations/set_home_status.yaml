@@ -17,70 +17,12 @@
     - service: timer.start
       entity_id: timer.wait_for_presence
 
-- id: set_home_status_to_home
-  alias: Set Home Status to home
-  trigger:
-    - platform: state
-      entity_id: group.presence
-      to: home
-  condition:
-    - condition: state      
-      entity_id: input_selct.home_status
-      state: 'Away'
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.home_status
-        option: Home
-    - service: timer.cancel
-      entity_id: timer.wait_for_presence
-
-- id: home_status_to_home_from_night_by_motion  
-  alias: Home Status to Home from Night by Motion
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor
-      to: 'on'
-  condition:
-    - condition: time
-      after: '09:00:00'
-      before: '21:00:00'
-    - condition: state
-      entity_id: input_select.home_status
-      state: 'Night'
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.home_status
-        option: Home
-
-- id: set_home_status_to_home_from_night_by_alarm_clock
-  alias: Set Home Status to home from night by alarm clock
-  trigger:
-    - platform: template
-      value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
-  condition:
-    - condition: state
-      entity_id: input_select.home_status
-      state: Night
-    - condition: state
-      entity_id: input_boolean.alarm_clock
-      state: 'on'
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.home_status
-        option: Home
-
 - id: set_home_status_to_home_from_night
   alias: Set Home Status to home from night
   trigger:
     - platform: state
       entity_id: sensor.iphone_8_battery_state
       to: Unplugged
-    - platform: numeric_state
-      entity_id: sensor.aqara_illuminance
-      above: 7
   condition:
     - condition: state
       entity_id: input_select.home_status
@@ -156,33 +98,3 @@
         option: Night
 
 
-# Home/Away
-- id: correct_home_status 
-  alias: Correct Home Status 
-  trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data: 
-        entity_id: timer.wait_for_presence
-  action:
-    - service: input_select.select_option
-      data_template:
-        entity_id: input_select.home_status
-        option: >   
-          {% if is_state('group.presence', 'home') %}
-            Home
-          {% else %}
-            Away
-          {% endif %}
-
-
-# Activity Scene
-- id: set_activity_scene
-  alias: Set Activity Scene
-  trigger:
-    - platform: state
-      entity_id: input_select.activity
-  action:
-    - service: scene.turn_on
-      data_template:
-        entity_id: "scene.{{ states('input_select.activity') }}"

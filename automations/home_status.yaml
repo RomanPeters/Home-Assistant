@@ -38,7 +38,7 @@
       to: Home
       from: Away
   condition:
-    condition: or  # 'when dark' condition: either after sunset or before sunrise
+    condition: or  # 'when dark' condition either after sunset or before sunrise
     conditions:
       - condition: sun
         after: sunset
