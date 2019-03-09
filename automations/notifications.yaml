@@ -191,10 +191,10 @@
 - id: notification_minecraft_server
   alias: Notification Minecraft Server
   trigger: 
-    - platform: mqtt
-      topic: minecraft/state 
+    - platform: state
+      entity_id: sensor.minecraft_server
   action:
     service: notify.notify
     data_template:
       title: "Minecraft Server"
-      message: "Server turned {{ trigger.payload | lower }}"
+      message: "Server turned {{ trigger.to_state }}"
