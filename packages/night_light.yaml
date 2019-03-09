@@ -11,61 +11,61 @@ automation:
   - id:  night_light_triggering_on
     alias: Turn on night light
     trigger:
-    - platform: state
-      entity_id: binary_sensor.aqara_motion_sensor
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door
-      to: 'off'
+      - platform: state
+        entity_id: binary_sensor.aqara_motion_sensor
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door
+        to: 'off'
     condition:
-    - condition: state
-      entity_id: input_select.home_status
-      state: Night
-    - condition: state
-      entity_id: group.room_lights
-      state: 'off'
+      - condition: state
+        entity_id: input_select.home_status
+        state: Night
+      - condition: state
+        entity_id: group.room_lights
+        state: 'off'
     action:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.night_light
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.night_light
     
-    - id: night_light_auto_off
+  - id: night_light_auto_off
     alias: Night light auto-off
     trigger:
-    - platform: state
-      entity_id: binary_sensor.aqara_motion_sensor
-      to: 'off'
-      for:
-        seconds: 60
-    - platform: state
-      entity_id: binary_sensor.door
-      to: 'off'
-      for:
-        seconds: 10
+      - platform: state
+        entity_id: binary_sensor.aqara_motion_sensor
+        to: 'off'
+        for:
+          seconds: 60
+      - platform: state
+        entity_id: binary_sensor.door
+        to: 'off'
+        for:
+          seconds: 10
     action:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.night_light
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.night_light
     
-    - id: night_light_on
+  - id: night_light_on
     alias: Night Light On
     trigger:
-    - platform: state
-      entity_id: input_boolean.night_light
-      to: 'on'
+      - platform: state
+        entity_id: input_boolean.night_light
+        to: 'on'
     action:
-    - service: light.turn_on
-      data:
-        entity_id: light.candela
-        brightness: 3
+      - service: light.turn_on
+        data:
+          entity_id: light.candela
+          brightness: 3
     
-    - id: night_light_on
+  - id: night_light_on
     alias: Night Light On
     trigger: 
-    - platform: state
-      entity_id: input_boolean.night_light
-      to: 'off'
+      - platform: state
+        entity_id: input_boolean.night_light
+        to: 'off'
     condition:
-    - condition: template
-      value_template: "{{ state_attr('light.candela', 'brightness') == 3 }}"
+      - condition: template
+        value_template: "{{ state_attr('light.candela', 'brightness') == 3 }}"
     action:
-    - service: light.turn_off      
-      entity_id: light.candela
+      - service: light.turn_off      
+        entity_id: light.candela

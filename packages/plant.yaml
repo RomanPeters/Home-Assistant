@@ -16,7 +16,7 @@ plant:
     min_brightness: 2000
     max_brightness: 4800
 
-notification:
+automation:
   - id: plant_needs_water
     alias: Plant Needs Water
     trigger:
