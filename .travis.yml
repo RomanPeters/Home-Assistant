@@ -6,6 +6,7 @@ before_install:
 - "sed '/  db_url: !secret db_url/d' < configuration.yaml > travis_configuration.yaml"
 - "mv travis_configuration.yaml configuration.yaml"
 - "touch zones.yaml"
+- "mkdir config"
 install:
 - "pip3 install homeassistant"
 script:
