@@ -3,4 +3,4 @@
   heater: switch.heater
   target_sensor: sensor.aqara_temperature
   hot_tolerance: -0.4
-
+  min_cycle_duration: 600

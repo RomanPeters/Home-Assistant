@@ -44,7 +44,7 @@ mqtt:
 weather:
   - platform: buienradar
     name: Utrecht
-
+    
 transmission:
   host: 10.10.10.20
   username: ""

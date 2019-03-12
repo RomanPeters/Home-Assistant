@@ -1,5 +1,5 @@
 - platform: vlc
-  name: Intel NUC8i5BEK
+  name: Intel NUC
 
 - platform: plex
 

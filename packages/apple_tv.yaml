@@ -11,6 +11,18 @@ automation:
       - service: script.turn_on
         entity_id: script.apple_tv_airplay
 
+  - id: apple_tv_started_playing
+    alias: Apple TV started playing
+    trigger:
+      - platform: state
+        entity_id: media_player.apple_tv
+        to: 'playing'
+    action:
+      - service: switch.turn_on
+        entity_id: switch.television
+      - service: switch.turn_off
+        entity_id: switch.entone
+
 script:
   apple_tv_airplay:
     alias: Apple TV AirPort Audio Output

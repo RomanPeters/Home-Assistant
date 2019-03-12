@@ -4,4 +4,4 @@
 
 - name: Speech
   platform: command_line
-  command: "espeak -vmb/mb-us1"
+  command: "espeak"

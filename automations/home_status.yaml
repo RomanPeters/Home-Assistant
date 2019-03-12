@@ -11,6 +11,8 @@
   action:
     - service: switch.turn_off
       entity_id: switch.air_purifier
+    - service: switch.turn_on
+      entity_id: switch.chromecast
 
 - id: home_status_to_home_from_away_during_sunset
   alias: Home Status to Home from Away during Sunset
@@ -59,6 +61,8 @@
   action:
     - service: light.turn_off
       entity_id: group.all_lights
+    - service: switch.turn_off
+      entity_id: switch.chromecast
 
 - id: home_status_to_away_for_one_minute
   alias: Home Status to Away for one minute
@@ -82,6 +86,8 @@
   action:
     - service: light.turn_off
       entity_id: group.all_lights
+    - service: switch.turn_off
+      entity_id: switch.chromecast
 
 - id: home_status_to_night_auto_alarm_clock
   alias: Home Status to Night Auto Alarm Clock

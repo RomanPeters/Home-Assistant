@@ -1,0 +1,10 @@
+# Boot
+- id: speech_boot
+  alias: Speech Boot
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: notify.speech
+      data:
+        message: "Home Assistant is online"

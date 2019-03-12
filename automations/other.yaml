@@ -1,4 +1,4 @@
-- id: pihole_aut_off
+- id: pihole_auto_off
   alias: Pi-Hole auto-off
   trigger:
     - platform: state

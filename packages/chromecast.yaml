@@ -1,0 +1,9 @@
+cast:
+  media_player:
+    - host: 10.10.10.18
+
+homeassistant:
+  customize:
+    switch.chromecast:
+      icon: mdi:cast
+

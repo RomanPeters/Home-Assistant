@@ -7,9 +7,8 @@ binary_sensor:
         delay_on: "00:00:10"
 
 automation:
-  # TELEVISION ON
-  - id: television_backlight_on
-    alias: Television backlight on
+  - id: television_turned_on
+    alias: Television turned on
     trigger:
       - platform: state
         entity_id: switch.television
@@ -19,17 +18,29 @@ automation:
         entity_id: light.tv_backlight
         data:
           color_name: white
+
+  - id: television_turns_on_extra
+    alias: Television turns on extra
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'on'
+    condition:
+      - condition: template
+        value_template: "{{ not is_state('media_player.apple_tv', 'playing') and not is_state('media_player.chromecast', 'playing') }}"
+    action:
       - service: switch.turn_on
         entity_id: switch.entone
+      - service: switch.turn_on
+        entity_id: switch.chromecast
       - service: remote.send_command
         data:
           entity_id: remote.apple_tv
           command:
             - 'top_menu'
-  
-  # TELEVISION OFF
-  - id: television_backlight_off
-    alias: Television backlight off
+
+  - id: television_turned_off
+    alias: Television turned off
     trigger:
       - platform: state
         entity_id: switch.television
@@ -39,3 +50,5 @@ automation:
         entity_id: light.tv_backlight
       - service: switch.turn_off
         entity_id: switch.entone
+
+
