@@ -1,0 +1,28 @@
+automation:
+  - id: home_status_to_night
+    alias: Home Status to Night
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+        to: Night
+    action:
+      - service: light.turn_off
+        entity_id: group.all_lights
+      - service: switch.turn_off
+        entity_id: switch.chromecast
+  
+  - id: home_status_to_night_auto_alarm_clock
+    alias: Home Status to Night Auto Alarm Clock
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+        to: Night
+    condition:
+      - condition: state
+        entity_id: input_boolean.alarm_clock
+        state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.alarm_clock
+      - service: script.turn_on
+        entity_id: script.set_alarm_clock
