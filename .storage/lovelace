@@ -418,8 +418,8 @@
                             },
                             "conditions": [
                                 {
-                                    "entity": "person.roman",
-                                    "state": "not_home"
+                                    "entity": "camera.camera",
+                                    "state": "on"
                                 }
                             ],
                             "type": "conditional"
@@ -436,10 +436,6 @@
                     "cards": [
                         {
                             "entity": "media_player.apple_tv",
-                            "type": "media-control"
-                        },
-                        {
-                            "entity": "media_player.chromecast",
                             "type": "media-control"
                         },
                         {

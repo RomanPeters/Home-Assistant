@@ -53,6 +53,7 @@ transmission:
 ffmpeg:
   ffmpeg_bin: /usr/bin/ffmpeg
 
+stream:
 person:
 system_health:
 auth:
@@ -70,6 +71,8 @@ google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
 
+shell_command:
+  install_deps: 'apt install -y vlc espeak'
 
 tts:
   - platform: google
@@ -99,7 +102,6 @@ history_graph: !include history_graphs.yaml
 input_select: !include input_selects.yaml
 scene: !include_dir_merge_named scenes
 climate: !include climates.yaml
-timer: !include timers.yaml
 input_text: !include input_texts.yaml
 input_number: !include input_numbers.yaml
 device_tracker: !include device_trackers.yaml

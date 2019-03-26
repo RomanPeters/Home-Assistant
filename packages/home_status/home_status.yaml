@@ -1,3 +1,12 @@
+input_select:
+  home_status:
+    name: Home Status
+    options:
+      - 'Home'
+      - 'Night'
+      - 'Away'
+      - 'Off'
+
 alarm_control_panel:
   - platform: manual
     name: Home Status
@@ -20,6 +29,7 @@ automation:
     action:
       - service_template: "alarm_control_panel.alarm_arm_{{ states('input_select.home_status') | lower }}"
         entity_id: alarm_control_panel.home_status
+        
   - id: alarm_system_to_home_status 
     alias: Alarm System to Home Status
     trigger:

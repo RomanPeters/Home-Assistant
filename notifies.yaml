@@ -2,6 +2,3 @@
   platform: command_line
   command: "ssh -i /data/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.10.10.3"
 
-- name: Speech
-  platform: command_line
-  command: "espeak"

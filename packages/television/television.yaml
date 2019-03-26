@@ -1,3 +1,24 @@
+input_select:
+  channel:
+    name: Channel
+    options: !include ../../templates/channels.yaml
+    initial: Unknown
+    icon: mdi:television-classic
+
+  tv_input:
+    name: Input
+    options:
+      - TV
+      - AV1
+      - AV2
+      - AV3
+      - Television
+      - Apple TV
+      - Chromecast
+      - Composite
+      - PC
+
+
 binary_sensor:
   - platform: "template"
     sensors:

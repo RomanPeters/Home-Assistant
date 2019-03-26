@@ -1,8 +1,0 @@
-leaving:
-  duration: '00:10:00'
-
-fan_loop:
-  duration: '00:15:00'
-
-wait_for_presence:
-  duration: '00:01:00'
