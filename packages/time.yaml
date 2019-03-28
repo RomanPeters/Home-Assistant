@@ -16,7 +16,7 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.it_s_bed_time
-        state: 'on'
+        to: 'on'
     action:
       - service: climate.turn_off
         entity_id: climate.thermostat
@@ -26,7 +26,7 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.it_s_bed_time
-        state: 'on'
+        to: 'on'
     condition:
       - condition: state
         entity_id: input_select.home_status
@@ -43,7 +43,7 @@ automation:
     trigger: 
       - platform: state
         entity_id: binary_sensor.it_s_dark_outside
-        state: 'on'
+        to: 'on'
     condition:
       - condition: state
         entity_id: input_select.home_statuss

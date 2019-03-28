@@ -72,7 +72,7 @@ google:
   client_secret: !secret google_client_secret
 
 shell_command:
-  install_deps: 'apt install -y vlc espeak'
+  install_deps: 'apt update && apt install -y vlc'
 
 tts:
   - platform: google
@@ -88,7 +88,7 @@ apple_tv:
     login_id: !secret apple_tv_id
 
 logbook: !include logbook.yaml
-automation: !include automations.yaml
+#automation: !include automations.yaml
 automation yaml: !include_dir_merge_list automations
 light: !include lights.yaml
 group: !include_dir_merge_named groups

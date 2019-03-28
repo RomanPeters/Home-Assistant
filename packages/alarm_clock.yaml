@@ -66,8 +66,6 @@ automation:
         data_template:
           entity_id: "script.play_url_{{ states('input_select.alarm_clock_sound').replace(' ', '_') | lower }}"
 
-
-
 script:
   set_alarm_clock:
     alias: Set Alarm Clock Automatically
