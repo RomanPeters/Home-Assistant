@@ -1,0 +1,28 @@
+automation:
+  - id: home_status_to_away
+    alias: Home Status to Away
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+        to: Away
+    action:
+      - service: light.turn_off
+        entity_id: group.all_lights
+      - service: switch.turn_off
+        entity_id: switch.chromecast
+  
+  - id: home_status_to_away_for_one_minute
+    alias: Home Status to Away for one minute
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+        to: Away
+        for:
+          minutes: 1
+    action:
+      - service: tts.google_say
+        data:
+          entity_id: media_player.intel_nuc
+          message: "Away mode enabled. Hey Siri, stop"
+      - service: switch.turn_on
+        entity_id: switch.air_purifier

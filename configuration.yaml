@@ -44,7 +44,7 @@ mqtt:
 weather:
   - platform: buienradar
     name: Utrecht
-
+    
 transmission:
   host: 10.10.10.20
   username: ""
@@ -53,10 +53,9 @@ transmission:
 ffmpeg:
   ffmpeg_bin: /usr/bin/ffmpeg
 
+stream:
 person:
 system_health:
-webhook:
-zigbee2mqtt_networkmap:
 auth:
 config:
 history:
@@ -72,6 +71,8 @@ google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
 
+shell_command:
+  install_deps: 'apt update && apt install -y vlc'
 
 tts:
   - platform: google
@@ -87,7 +88,8 @@ apple_tv:
     login_id: !secret apple_tv_id
 
 logbook: !include logbook.yaml
-automation: !include_dir_merge_list automations
+#automation: !include automations.yaml
+automation yaml: !include_dir_merge_list automations
 light: !include lights.yaml
 group: !include_dir_merge_named groups
 switch: !include switches.yaml
@@ -97,16 +99,11 @@ panel_iframe: !include panel_iframes.yaml
 script: !include_dir_merge_named scripts
 homekit: !include homekit.yaml
 history_graph: !include history_graphs.yaml
-alarm_control_panel: !include alarm_control_panels.yaml
-plant: !include plants.yaml
 input_select: !include input_selects.yaml
-input_boolean: !include input_booleans.yaml
 scene: !include_dir_merge_named scenes
 climate: !include climates.yaml
-timer: !include timers.yaml
 input_text: !include input_texts.yaml
 input_number: !include input_numbers.yaml
-input_datetime: !include input_datetimes.yaml
 device_tracker: !include device_trackers.yaml
 notify: !include notifies.yaml
 media_player: !include media_players.yaml

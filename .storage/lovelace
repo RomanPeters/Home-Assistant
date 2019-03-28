@@ -19,6 +19,7 @@
             "views": [
                 {
                     "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
+                    "badges": [],
                     "cards": [
                         {
                             "entity": "sensor.status_summary",
@@ -80,19 +81,6 @@
                             ],
                             "image": "/local/images/render/room.png",
                             "type": "picture-elements"
-                        },
-                        {
-                            "entities": [
-                                "light.aqara_white_bulb",
-                                "light.milight_rgbw_bulb",
-                                "light.spot",
-                                "group.led_strips",
-                                "light.tv_backlight"
-                            ],
-                            "id": "b0e3b0e36a9a4deba2b93ba14ef47001",
-                            "show_header_toggle": false,
-                            "theme": "Backend-selected",
-                            "type": "entities"
                         },
                         {
                             "cards": [
@@ -333,35 +321,31 @@
                                         }
                                     ],
                                     "type": "conditional"
-                                },
-                                {
-                                    "card": {
-                                        "entity": "media_player.apple_tv",
-                                        "icon": false,
-                                        "more_info": true,
-                                        "type": "custom:mini-media-player"
-                                    },
-                                    "conditions": [
-                                        {
-                                            "entity": "media_player.apple_tv",
-                                            "state_not": "off"
-                                        }
-                                    ],
-                                    "type": "conditional"
                                 }
                             ],
                             "id": "93431bdc4fa94b12bf1e6901fcfbf3fe",
                             "type": "vertical-stack"
                         },
                         {
-                            "elements": [
+                            "entities": [
                                 {
-                                    "entity": "light.aqara_white_bulb",
-                                    "type": "state-icon"
+                                    "entity": "input_text.siri"
                                 }
                             ],
-                            "image": "/local/images/floorplan/floor.png",
-                            "type": "picture-elements"
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "light.aqara_white_bulb",
+                                "light.milight_rgbw_bulb",
+                                "light.spot",
+                                "group.led_strips",
+                                "light.tv_backlight"
+                            ],
+                            "id": "b0e3b0e36a9a4deba2b93ba14ef47001",
+                            "show_header_toggle": false,
+                            "theme": "Backend-selected",
+                            "type": "entities"
                         },
                         {
                             "entity": "climate.thermostat",
@@ -387,7 +371,7 @@
                                             "hold_action": {
                                                 "action": "more-info"
                                             },
-                                            "name": "box",
+                                            "name": "Entone",
                                             "tap_action": {
                                                 "action": "toggle"
                                             },
@@ -414,7 +398,7 @@
                                             "hold_action": {
                                                 "action": "more-info"
                                             },
-                                            "name": "Outlet",
+                                            "name": "Socket",
                                             "tap_action": {
                                                 "action": "toggle"
                                             },
@@ -425,19 +409,297 @@
                                 }
                             ],
                             "type": "vertical-stack"
+                        },
+                        {
+                            "card": {
+                                "camera_image": "camera.camera",
+                                "entities": [
+                                    "input_boolean.camera",
+                                    "input_boolean.camera_night_mode",
+                                    "script.camera_up",
+                                    "script.camera_down",
+                                    "script.camera_left",
+                                    "script.camera_right"
+                                ],
+                                "title": "Camera",
+                                "type": "picture-glance"
+                            },
+                            "conditions": [
+                                {
+                                    "entity": "camera.camera",
+                                    "state": "on"
+                                }
+                            ],
+                            "type": "conditional"
                         }
                     ],
                     "id": 0,
+                    "path": "control",
                     "tab_icon": "mdi:home",
                     "title": "Control"
                 },
                 {
                     "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entity": "media_player.apple_tv",
+                            "type": "media-control"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "entity": "switch.television",
+                                    "style": {
+                                        "left": "10%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "10%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "switch.entone",
+                                    "style": {
+                                        "left": "30%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "text-shadow": "1px 1px 2px black, 0 0 25px blue, 0 0 5px white",
+                                        "top": "10%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "switch.chromecast",
+                                    "style": {
+                                        "left": "50%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "text-shadow": "1px 1px 2px black, 0 0 25px blue, 0 0 5px white",
+                                        "top": "10%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "input_select.tv_input",
+                                    "style": {
+                                        "left": "70%",
+                                        "top": "10%"
+                                    },
+                                    "type": "state-label"
+                                },
+                                {
+                                    "entity": "light.tv_backlight",
+                                    "style": {
+                                        "left": "10%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "30%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.input_up",
+                                    "service": "script.turn_on",
+                                    "style": {
+                                        "left": "90%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "10%"
+                                    },
+                                    "tap_action": "call-service",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.input_down",
+                                    "service": "script.turn_on",
+                                    "style": {
+                                        "left": "90%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "30%"
+                                    },
+                                    "tap_action": "call-service",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.sony_theatre",
+                                    "style": {
+                                        "left": "30%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "30%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.apple_up",
+                                    "style": {
+                                        "left": "50%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "30%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.apple_left",
+                                    "style": {
+                                        "left": "30%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "50%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "switch.television",
+                                    "style": {
+                                        "left": "50%",
+                                        "top": "50%"
+                                    },
+                                    "type": "state-label"
+                                },
+                                {
+                                    "entity": "script.apple_ok",
+                                    "style": {
+                                        "left": "70%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "70%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.apple_right",
+                                    "style": {
+                                        "left": "70%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "50%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.apple_back",
+                                    "style": {
+                                        "left": "30%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "70%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.apple_down",
+                                    "style": {
+                                        "left": "50%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "70%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.sony_mute",
+                                    "style": {
+                                        "left": "10%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "90%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.sony_volume_lower",
+                                    "style": {
+                                        "left": "30%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "90%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.sony_volume_higher",
+                                    "style": {
+                                        "left": "50%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "90%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.entone_channel_down",
+                                    "style": {
+                                        "left": "70%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "90%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                },
+                                {
+                                    "entity": "script.entone_channel_up",
+                                    "style": {
+                                        "left": "90%",
+                                        "outline-color": "grey",
+                                        "outline-style": "solid",
+                                        "outline-width": "1px",
+                                        "top": "90%"
+                                    },
+                                    "tap_action": "toggle",
+                                    "type": "state-icon"
+                                }
+                            ],
+                            "image": "/local/images/white.jpg",
+                            "type": "picture-elements"
+                        }
+                    ],
+                    "path": "media",
+                    "title": "Media"
+                },
+                {
+                    "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
+                    "badges": [],
                     "cards": [
                         {
                             "entities": [
-                                "group.roman",
-                                "group.nadine"
+                                "person.roman",
+                                "person.nadine"
                             ],
                             "id": "53ca9509f43e4e70a4149595b70533d7",
                             "type": "entities"
@@ -491,10 +753,12 @@
                         }
                     ],
                     "id": 1,
+                    "path": "status",
                     "title": "Status"
                 },
                 {
                     "background": "center / cover no-repeat url(\"/local/images/background_blur.jpg\") fixed",
+                    "badges": [],
                     "cards": [
                         {
                             "cards": [
@@ -508,20 +772,11 @@
                                 },
                                 {
                                     "entities": [
-                                        "group.alarm_clock"
-                                    ],
-                                    "type": "entities"
-                                },
-                                {
-                                    "entities": [
                                         {
                                             "entity": "switch.pihole"
                                         },
                                         {
                                             "entity": "switch.zigbee2mqtt_pairing"
-                                        },
-                                        {
-                                            "entity": "script.zigbee2mqtt_map"
                                         }
                                     ],
                                     "type": "entities"
@@ -529,7 +784,8 @@
                                 {
                                     "entities": [
                                         "group.climate_control_automations",
-                                        "group.notification_automations"
+                                        "group.notification_automations",
+                                        "input_boolean.spoken_notifications"
                                     ],
                                     "show_header_toggle": false,
                                     "type": "entities"
@@ -538,7 +794,7 @@
                                     "entities": [
                                         "sensor.disk_use_percent",
                                         "sensor.memory_use_percent",
-                                        "sensor.load_5m",
+                                        "sensor.processor_use",
                                         "sensor.last_boot"
                                     ],
                                     "show_header_toggle": false,
@@ -549,6 +805,7 @@
                         }
                     ],
                     "id": 2,
+                    "path": "settings",
                     "title": "Settings"
                 }
             ]

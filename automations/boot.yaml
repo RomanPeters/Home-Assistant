@@ -1,11 +1,10 @@
+
 - id: boot
   alias: At start
   trigger:
     - platform: homeassistant
       event: start
   action:
-    - service: switch.turn_on
-      entity_id: switch.pihole
-    - service: switch.turn_on
-      entity_id: switch.zigbee2mqtt_pairing
-
+    - service: group.turn_on
+      entity_id: group.all_automations
+    - service: shell_command.install_deps

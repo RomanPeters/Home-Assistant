@@ -1,0 +1,46 @@
+input_boolean:
+  spoken_notifications:
+    name: Spoken Notifications
+    icon: mdi:voice
+
+script:
+  broadcast: 
+    alias: Broadcast
+    sequence:
+      - alias: Choose method
+        service_template: >
+          {% if is_state('input_select.home_status', 'Home') and is_state('input_boolean.spoken_notifications', 'on') %}
+            script.announce
+          {% else %}
+            script.notificate
+          {% endif %}
+        data_template:
+            title: "{{ title }}"
+            message: "{{ message }}"
+
+  notificate:
+    alias: Notificate
+    sequence: 
+      - alias: Send Notification
+        service: notify.notify
+        data_template:
+          title: "{{ title }}"
+          message: "{{ message }}"
+
+  announce:
+    alias: Announce
+    sequence:
+      - alias: Play Sound Effect
+        service: media_player.play_media
+        data:
+          entity_id: media_player.intel_nuc
+          media_content_type: "music"
+          media_content_id: "/config/audio/sound_effects/Ping.aiff"
+      - delay:
+          seconds: 1
+      - alias: Play Message
+        service: tts.google_say
+        data_template:
+          entity_id: media_player.intel_nuc
+          message: "{{ message }}"
+      

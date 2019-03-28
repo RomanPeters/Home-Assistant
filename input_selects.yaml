@@ -1,11 +1,3 @@
-home_status:
-  name: Home Status
-  options:
-    - Home
-    - Night
-    - Away
-    - 'Off'
-
 activity:
   name: Activity
   options:
@@ -44,21 +36,3 @@ alarm_clock_media:
     - Fireplace
     - Beach
 
-channel:
-  name: Channel
-  options: !include templates/channels.yaml
-  initial: Unknown
-  icon: mdi:television-classic
-
-tv_input:
-  name: Input
-  options:
-    - TV
-    - AV1
-    - AV2
-    - AV3
-    - Television
-    - Apple TV
-    - HDMI
-    - Composite
-    - PC

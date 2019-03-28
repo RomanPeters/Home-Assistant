@@ -1,0 +1,75 @@
+input_select:
+  channel:
+    name: Channel
+    options: !include ../../templates/channels.yaml
+    initial: Unknown
+    icon: mdi:television-classic
+
+  tv_input:
+    name: Input
+    options:
+      - TV
+      - AV1
+      - AV2
+      - AV3
+      - Television
+      - Apple TV
+      - Chromecast
+      - Composite
+      - PC
+
+
+binary_sensor:
+  - platform: "template"
+    sensors:
+      television:
+        friendly_name: "TV is on"
+        value_template: "{{ is_state('switch.television', 'on') }}"
+        delay_on: "00:00:10"
+
+automation:
+  - id: television_turned_on
+    alias: Television turned on
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'on'
+    action:
+      - service: light.turn_on
+        entity_id: light.tv_backlight
+        data:
+          color_name: white
+
+  - id: television_turns_on_extra
+    alias: Television turns on extra
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'on'
+    condition:
+      - condition: template
+        value_template: "{{ not is_state('media_player.apple_tv', 'playing') and not is_state('media_player.chromecast', 'playing') }}"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.entone
+      - service: switch.turn_on
+        entity_id: switch.chromecast
+      - service: remote.send_command
+        data:
+          entity_id: remote.apple_tv
+          command:
+            - 'top_menu'
+
+  - id: television_turned_off
+    alias: Television turned off
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'off'
+    action:
+      - service: light.turn_off
+        entity_id: light.tv_backlight
+      - service: switch.turn_off
+        entity_id: switch.entone
+
+

@@ -1,0 +1,124 @@
+input_datetime:
+  alarm_clock:
+    name: Alarm Clock
+    has_date: false
+    has_time: true
+
+input_boolean:
+  alarm_clock:
+    name: Alarm Clock
+    icon: mdi:alarm
+
+automation:
+  - id: alarm_clock_turn_off
+    alias: 'Alarm Clock Turn Off'
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.alarm_clock
+  
+  - id: alarm_clock_climate
+    alias: 'Alarm Clock Climate'
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == ((states.input_datetime.alarm_clock.attributes.timestamp | int - 900 ) | timestamp_custom('%H:%M', False)) }}"
+    condition:
+      - condition: state
+        entity_id: input_boolean.alarm_clock
+        state: 'on'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_select.home_status
+            state: 'Night'
+          - condition: state
+            entity_id: input_select.home_status
+            state: 'Home'
+    action:
+      - service: climate.turn_on
+        entity_id: climate.thermostat
+  
+  - id: alarm_clock_lights
+    alias: 'Alarm Clock Lights'
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int - 1800 | timestamp_custom('%H:%M', False)) }}"  
+    condition:
+      - condition: state
+        entity_id: input_boolean.alarm_clock
+        state: 'on'
+    action:
+      - service: python_script.wake_up_light
+  
+  - id: alarm_clock_media
+    alias: 'Alarm Clock Media'
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+    condition:
+      - condition: state
+        entity_id: input_boolean.alarm_clock
+        state: 'on'
+    action:
+      - service: script.turn_on
+        data_template:
+          entity_id: "script.play_url_{{ states('input_select.alarm_clock_sound').replace(' ', '_') | lower }}"
+
+script:
+  set_alarm_clock:
+    alias: Set Alarm Clock Automatically
+    sequence:
+      - alias: Set time
+        service: input_datetime.set_datetime
+        data_template:
+          entity_id: input_datetime.alarm_clock
+          time: "{{ wake_time }}"
+      - alias: Turn on
+        service: input_boolean.turn_on
+        entity_id: input_boolean.alarm_clock
+
+  set_alarm_clock_automatically:
+    alias: Set Alarm Clock Automatically
+    sequence:
+      - alias: Set time
+        service: input_datetime.set_datetime
+        data_template:
+          entity_id: input_datetime.alarm_clock
+          time: >
+            {% set low = as_timestamp(state_attr('calendar.rum_dmc', 'start_time')) %}
+            {% set cal = 'calendar.rum_dmc' %}
+            {% if  as_timestamp(state_attr('calendar.werk', 'start_time')) and as_timestamp(state_attr('calendar.werk', 'start_time')) < low %}
+              {% set low = as_timestamp(state_attr('calendar.werk', 'start_time')) %}
+              {% set cal = 'calendar.werk' %}
+            {% endif %}
+            {% if  as_timestamp(state_attr('calendar.studie', 'start_time')) and as_timestamp(state_attr('calendar.studie', 'start_time')) < low %}
+              {% set low = as_timestamp(state_attr('calendar.studie', 'start_time')) %}
+              {% set cal = 'calendar.studie' %}
+            {% endif %}
+            {% if  as_timestamp(state_attr('calendar.e_surveillant', 'start_time')) and as_timestamp(state_attr('calendar.e_surveillant', 'start_time')) < low %}
+              {% set low = as_timestamp(state_attr('calendar.e_surveillant', 'start_time')) %}
+              {% set cal = 'calendar.e_surveillant' %}
+            {% endif %}
+            {% if  as_timestamp(state_attr('calendar.cursusplanner', 'start_time')) and as_timestamp(state_attr('calendar.cursusplanner', 'start_time')) < low %}
+              {% set low = as_timestamp(state_attr('calendar.cursusplanner', 'start_time')) %}
+              {% set cal = 'calendar.cursusplanner' %}
+            {% endif %}
+            {% if  as_timestamp(state_attr('calendar.ws70', 'start_time')) and as_timestamp(state_attr('calendar.ws70', 'start_time')) < low %}
+              {% set cal = 'calendar.ws70' %}
+            {% endif %}
+            {% set alrm = as_timestamp(state_attr(cal, 'start_time')) - 3600 %}
+            {% set now_ts = as_timestamp(now()) %}
+            {% if  alrm - now_ts > 32400 and now().hour < 20 and now().hour > 9 %}
+              {{ (now_ts + 1800) | timestamp_custom('%H:%M') }}
+            {% elif  alrm - now_ts > 32400 %}
+              {{ (now_ts + 32400) | timestamp_custom('%H:%M') }}
+            {% elif alrm - now_ts < 3600 %}
+              {{ (now_ts + 60) | timestamp_custom('%H:%M') }}
+            {% else %}
+              {{ alrm | timestamp_custom('%H:%M') }}
+            {% endif %}
+      - alias: Delay so state changes
+        delay:
+          seconds: 3

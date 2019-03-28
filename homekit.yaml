@@ -18,7 +18,8 @@ filter:
     - sensor.particle_sensor_pm2_5
     - switch.air_purifier
     - switch.television
-    - switch.socket
+    - switch.chromecast
+    - switch.entone
     - switch.tradfri_control_outlet
 
 entity_config:

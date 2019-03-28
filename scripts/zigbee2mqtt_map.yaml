@@ -1,3 +1,0 @@
-zigbee2mqtt_map:
-  sequence:
-    - service: zigbee2mqtt_networkmap.update

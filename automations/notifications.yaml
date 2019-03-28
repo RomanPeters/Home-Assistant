@@ -5,70 +5,24 @@
     - platform: homeassistant
       event: start
   action:
-    - service: notify.notify
+    - service: script.broadcast
       data:
         message: "Home Assistant is online"
 
-# Satellite status
-- id: notification_satellite
-  alias: Notification Satellite
-  trigger:
-    - platform: mqtt
-      topic: satellite/state
-  action:
-    - service: notify.notify
-      data_template:
-        message: "Satellite is {{ trigger.payload }}"
-
-# iPhone Status
-- id: notification_iphone_status
-  alias: Notification iPhone Status
-  trigger:
-    - platform: state
-      entity_id: sensor.iphone_8_battery_state
-      from: Unplugged
-    - platform: state
-      entity_id: sensor.iphone_8_battery_state
-      to: Unplugged
-  action:
-    - service: notify.notify
-      data_template:
-        message: "Your iPhone 8 is {{ states('sensor.iphone_8_battery_state') | lower }}."
-
-# Alarm Clock
-- id: notification_alarm_clock
-  alias: 'Notification Alarm Clock'
-  trigger:
-    - platform: template
-      value_template: "{{ states('sensor.time') == (states.input_datetime.alarm_clock.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
-  condition:
-    - condition: state
-      entity_id: input_boolean.alarm_clock
-      state: 'on'
-    - condition: state
-      entity_id: input_select.home_status
-      state: 'Away'
-  action:
-    - service: notify.notify
-      data:
-        message: "Your alarm clock has been triggered!"
-
-- id: notification_set_alarm_clock
-  alias: 'Notification set Alarm Clock'
-  trigger:
-    - platform: state
-      entity_id: input_select.home_status
-      to: Night
-      for:
-        seconds: 3
-  condition:
-    - condition: state
-      entity_id: input_boolean.alarm_clock
-      state: 'on'
-  action:
-    - service: notify.notify
-      data_template:
-        message: "I'll wake you up at {{ states('input_datetime.alarm_clock')[:-3] }}"
+# # iPhone Status
+# - id: notification_iphone_status
+#   alias: Notification iPhone Status
+#   trigger:
+#     - platform: state
+#       entity_id: sensor.iphone_8_battery_state
+#       from: Unplugged
+#     - platform: state
+#       entity_id: sensor.iphone_8_battery_state
+#       to: Unplugged
+#   action:
+#     - service: notify.notify
+#       data_template:
+#         message: "Your iPhone 8 is {{ states('sensor.iphone_8_battery_state') | lower }}."
 
 # Device tracker
 - id: notification_new_device
@@ -100,19 +54,6 @@
       data:
         message: "Your keys are still in your room"
 
-# Plant needs water
-- id: plant_needs_water
-  alias: Plant Needs Water
-  trigger:
-    - platform: state
-      entity_id: sensor.plant_needs_water
-      to: 'on'
-  action:
-    - wait_template: "{{ is_state('input_select.home_status', 'Home') }}"    
-    - service: notify.notify
-      data_template:
-        message: "The plant could use some water, it's moisture level has fallen to {{ states('sensor.mi_flora_moisture') }}"
-
 # Helmet BT
 - id: helmet_bt_still_on
   alias: Helmet BT still on
@@ -123,69 +64,9 @@
       for:
         minutes: 5
   action:
-    - service: notify.notify
+    - service: script.broadcast
       data:
         message: "Your helmet's bluetooth headset is still active, but not connected"
-
-# Low battery
-- id: notification_low_battery
-  alias: Notification Low Battery
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.aqara_button     
-      value_template: '{{ state.attributes.battery }}'
-      below: 11
-    - platform: numeric_state
-      entity_id: sensor.aqara_illuminance
-      value_template: '{{ state.attributes.battery }}'
-      below: 11
-    - platform: numeric_state
-      entity_id: sensor.aqara_temperature    
-      value_template: '{{ state.attributes.battery }}'
-      below: 11
-    - platform: numeric_state
-      entity_id: sensor.aqara_temperature_2
-      value_template: '{{ state.attributes.battery }}'
-      below: 11
-    - platform: numeric_state
-      entity_id: sensor.mijia_switch       
-      value_template: '{{ state.attributes.battery }}'
-      below: 11
-  action:
-    - service: persistent_notification.create
-      data_template:
-        message: "{{ state_attr(trigger.entity_id, 'friendly_name') }} {{ trigger.entity_id.split('.')[0] }} is at {{ state_attr(trigger.entity_id, 'battery') | int }}% battery."
-        title: "Battery warning"
-
-- id: notification_low_battery_mi_flora
-  alias: Notification Low Battery Mi Flora
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.mi_flora_battery
-      below: 11
-  action:
-    - service: persistent_notification.create
-      data_template:
-        message: "Plant sensor is at {{ states('sensor.mi_flora_battery') | int }}% battery."
-        title: "Battery warning"
-
-# Scale
-- id: notification_scale_measurement
-  alias: Notification Scale Measurement
-  trigger:
-    - platform: mqtt
-      topic: satellite/sensor/bs440/person1/state
-  action:
-    - service: notify.notify
-      data_template:
-        title: "Scale Measurement"
-        message: >
-          Weight: {{ trigger.payload_json.weight }}kg,
-          Muscle Mass: {{ trigger.payload_json.muscle }}%,
-          Body Water: {{ trigger.payload_json.tbw }}%,
-          Body Fat: {{ trigger.payload_json.fat }}%,
-          Bone Mass: {{ trigger.payload_json.bone }}%, 
-          DCI: {{ trigger.payload_json.kcal }} kcal
 
 # zigbee2mqtt
 - id: notification_zigbee2mqtt
@@ -196,7 +77,7 @@
   action:
     - service: notify.notify
       data_template:
-        title: "zigbee2mqtt: {{ trigger.payload_json['type'] }}"
+        title: "zigbee2mqtt"
         message: "{{ trigger.payload_json['message'] | capitalize }}"
 
 # PostNL
@@ -218,18 +99,7 @@
     platform: event
     event_type: transmission_downloaded_torrent
   action:
-    service: notify.notify
+    service: script.broadcast
     data_template:
-      title: "Download finished"
-      message: ""
-# minecraft
-- id: notification_joined_minecraft
-  alias: Notification Joined Minecraft
-  trigger: 
-    - platform: template
-      value_template: "{{ 'joined the game' in states('sensor.minecraft_log') or 'left the game' in states('sensor.minecraft_log') }}"
-  action:
-    service: notify.notify
-    data_template:
-      title: "Minecraft Server"
-      message: "{{ states('sensor.minecraft_log') }}"
+      title: "Download Completed"
+      message: "{{ trigger }}"

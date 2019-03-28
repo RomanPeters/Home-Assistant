@@ -1,53 +1,14 @@
 - platform: "template"
   sensors:
-    dark:
-      friendly_name: "It's dark"
-      value_template: "{{ not is_state('sun.sun', 'above_horizon') and is_state('group.lights', 'off') }}"
-
     outside_cooler_than_inside:
       friendly_name: "Outside cooler than inside"
       value_template: "{{ (states('sensor.br_temperature') | float) < (states('sensor.aqara_temperature') | float) }}"
-
-    plant_needs_water:
-      friendly_name: "Plant Needs Water"
-      value_template: >
-        {% if 'moisture low' in state_attr('plant.plant', 'problem') %}
-          True
-        {% else %}
-          False
-        {% endif %}
-
-    door_icon:
-      friendly_name: "Door"
-      icon_template: >
-        {% if is_state('binary_sensor.door', 'on') %}
-          mdi:door-open
-        {% else %}
-          mdi:door
-        {% endif %}
-      value_template: "{{ is_state('binary_sensor.door', 'on') }}"
-
-    television:
-      friendly_name: "TV is on"
-      value_template: "{{ is_state('switch.television', 'on') }}"
-      delay_on: "00:00:10"
 
     entone:
       friendly_name: "Entone is on"
       value_template: "{{ is_state('switch.entone', 'on') }}"
       delay_on: "00:01:20"
-
-
-- platform: "mqtt"
-  name: Door
-  state_topic: "zigbee2mqtt/aqara_contact_sensor"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  payload_on: false
-  payload_off: true
-  value_template: "{{ value_json.contact }}"
-  device_class: "door"
-  json_attributes_topic: "zigbee2mqtt/aqara_contact_sensor" 
-
+      
 - platform: "mqtt"
   name: Window
   state_topic: "zigbee2mqtt/aqara_contact_sensor_2"
@@ -67,9 +28,3 @@
   value_template: "{{ value_json.occupancy }}"
   device_class: "motion"
   json_attributes_topic: "zigbee2mqtt/aqara_motion_sensor"
-
-- platform: "mqtt"
-  name: Coffee button
-  state_topic: "sonoff/binary_sensor/coffee_button/state"
-  availability_topic: "sonoff/status"
-

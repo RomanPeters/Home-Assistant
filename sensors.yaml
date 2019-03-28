@@ -1,8 +1,3 @@
-- platform: file
-  name: Minecraft Log
-  file_path: /config/minecraft.log
-  value_template: "{{ ':'.join(value.split(':')[3:]) }}"
-
 - platform: postnl
   username: !secret mail
   password: !secret postnl_password
@@ -13,10 +8,7 @@
     - type: disk_use_percent
       arg: /
     - type: memory_use_percent
-    - type: load_5m
-
-- platform: miflora
-  mac: 'C4:7C:8D:66:42:FC'
+    - type: processor_use
 
 - platform: buienradar
   monitored_conditions:
@@ -38,40 +30,9 @@
   display_options:
     - 'time'
 
-#- platform: waze_travel_time
-#  name: Travel Time 
-#  origin: device_tracker.iphone8
-#  destination: sensor.travel_destination
-#  region: 'EU'
-
-#- platform: waze_travel_time
-#  name: Travel time to home
-#  origin: device_tracker.iphone8
-#  destination: zone.home
-#  region: 'EU'
-
 # Templates
 - platform: template
   sensors:
-    travel_destination:
-      value_template: >-
-        {%- if is_state("group.roman", "not_home")  -%}
-          {{ state_attr('zone.home', 'latitude') }}, {{ state_attr('zone.home', 'longitude') }}
-        {%- elif state_attr('calendar.werk', 'start_time') and as_timestamp(state_attr('calendar.activiteiten', 'start_time')) - as_timestamp(now()) < 5400 -%}
-          {{ state_attr('zone.work', 'latitude') }}, {{ state_attr('zone.work', 'longitude') }}
-        {%- else -%}
-          {{ state_attr('zone.university', 'latitude') }}, {{ state_attr('zone.university', 'longitude') }}
-        {%- endif -%}
-    travel_description:
-      friendly_name: Destination
-      value_template: >-
-        {%- if is_state("group.roman", "not_home")  -%}
-          Home via {{ state_attr('sensor.travel_time', 'route') }}
-        {%- elif state_attr('calendar.werk', 'start_time') and as_timestamp(state_attr('calendar.activiteiten', 'start_time')) - as_timestamp(now()) < 5400 -%}
-          Work via {{ state_attr('sensor.travel_time', 'route') }}
-        {%- else -%}
-          University via {{ state_attr('sensor.travel_time', 'route') }}
-        {%- endif -%}
     air_quality_status:
       friendly_name: AQI
       # Based on EPA AQI: https://en.wikipedia.org/wiki/Air_quality_index#Computing_the_AQI
@@ -118,67 +79,24 @@
       value_template: >
         {{ state_attr('sensor.waqi_de_jongweg_utrecht', 'pm_10') }}
 
-    plant_summary:
-      friendly_name: "Plant"
-      value_template: > 
-        {% if is_state('plant.plant', 'ok') %}
-          Your plant is doing fantastic!
-        {% elif is_state('plant.plant', 'unknown') %}
-          I'm not sure how your plant is doing.
-        {% endif %}
-        {% for problem in states.plant.plant.attributes.problem.split(', ') -%}
-          {%- if loop.first %}The plant {% elif loop.last %} and {% else %}, {% endif -%}
-          {%- if problem == 'moisture high' -%}
-            has too much water
-          {%- elif problem == 'moisture low' -%}
-            would like some water
-          {%- elif problem == 'batter low' -%}
-            sensor battery is almost empty
-          {%- elif problem ==  'temperature low' -%}
-            is too cold
-          {%- elif problem == 'temperature high' -%}
-            is too hot
-          {%- elif problem == 'conductivity high' -%}
-            has too much nutrients
-          {%- elif problem == 'conductivity low' -%}
-            has not enough nutrients
-          {%- elif problem == 'brightness high' -%}
-            recieves too much sunlight
-          {%- elif problem == 'brightness low' -%}
-            doesn't receive enough sunlight
-          {%- else -%}
-            {{ problem }}
-          {%- endif -%}
-        {%- endfor -%}.
-      icon_template: >
-        {% if is_state('sensor.plant_emoji', 'perfect') %}
-          mdi:emoticon-happy
-        {% elif is_state('sensor.plant_emoji', 'unkown') %}
-          mdi:help-circle
-        {% elif states('sensor.plant_emoji').split(',') | length == 1  %}
-          mdi:emoticon-neutral
-        {% else %}
-          mdi:emoticon-sad
-        {% endif %}
-
     status_summary:
       friendly_name: Status Summary
       value_template: >
-        {% if is_state("group.roman", "home") and is_state("group.nadine", "home") -%}
+        {% if is_state("person.roman", "home") and is_state("person.nadine", "home") -%}
           Roman and Nadine are
-        {%- elif is_state("group.roman", "home") -%}
+        {%- elif is_state("person.roman", "home") -%}
           Roman is
-        {%- elif is_state("group.nadine", "home") -%}
+        {%- elif is_state("person.nadine", "home") -%}
           Nadine is
-        {%- elif now().timestamp() - states.group.roman.last_changed.timestamp() < 86400 -%}
-          Roman left at {{ (states.group.roman.last_changed | string )[11:16] }}.
+        {%- elif now().timestamp() - states.person.roman.last_changed.timestamp() < 86400 -%}
+          Roman left at {{ (states.person.roman.last_changed | string )[11:16] }}.
         {%- else -%}
           No one is home.{%- endif -%}
-        {%- if (is_state("group.roman", "home") or is_state("group.nadine", "home")) and is_state("switch.television", "on") -%}
+        {%- if (is_state("person.roman", "home") or is_state("person.nadine", "home")) and is_state("switch.television", "on") -%}
           {{ " " }}watching television.
-        {%- elif (is_state("group.roman", "home") or is_state("group.nadine", "home")) and is_state("input_select.home_status", "Night") -%}
+        {%- elif (is_state("person.roman", "home") or is_state("person.nadine", "home")) and is_state("input_select.home_status", "Night") -%}
           {{ " " }}in bed.
-        {%- elif is_state("group.roman", "home") or is_state("group.nadine", "home") -%}
+        {%- elif is_state("person.roman", "home") or is_state("person.nadine", "home") -%}
           {{ " " }}home.{%- endif -%}
 
           {{ " " }}Current temperature is {{ state_attr('climate.thermostat', 'current_temperature') }}°
@@ -196,9 +114,6 @@
         {%- elif is_state("binary_sensor.window", "on") -%}
           {{ " " }}The window is open.
         {%- endif %}
-        {%- if is_state('sensor.dht_temperature', 'unavailable') -%}
-          {{ " " }}The secondary Home Assistant instance seems to be offline.
-        {%- endif %}
         {%- for i in states.group.status.attributes.entity_id if is_state(i, 'on') -%}
           {%- if loop.first %}{{ " " }}The {% elif loop.last %} and the {% else %}, the {% endif -%}
           {{ state_attr(i, 'friendly_name') | lower }} is {{ states(i) }}
@@ -214,23 +129,6 @@
 
 
 ### MQTT
-- platform: "mqtt"
-  name: Mijia Button
-  state_topic: "zigbee2mqtt/mijia_button"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:toggle-switch"
-  value_template: "{{ value_json.click }}"
-  json_attributes_topic: "zigbee2mqtt/mijia_button"
-  force_update: true
-
-- platform: "mqtt"
-  name: Aqara Wall Switch
-  state_topic: "zigbee2mqtt/aqara_wall_switch"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:toggle-switch"
-  value_template: "{{ value_json.click }}"
-  json_attributes_topic: "zigbee2mqtt/aqara_wall_switch"
-  force_update: true
 
 - platform: "mqtt"
   name: Aqara Temperature
@@ -296,45 +194,6 @@
   json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
 
 - platform: "mqtt"
-  name: Tradfri Dimmer
-  state_topic: "zigbee2mqtt/tradfri_dimmer"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "brightness"
-  icon: "mdi:brightness-5"
-  value_template: "{{ value_json.brightness }}"
-  json_attributes_topic: "zigbee2mqtt/tradfri_dimmer"
-
-#- platform: "mqtt"
-#  name: Mi Flora Moisture
-#  state_topic: "satellite/sensor/mi_flora_moisture/state"
-#  availability_topic: "satellite/state"
-#  unit_of_measurement: "%"
-
-#- platform: "mqtt"
-#  name: Mi Flora Conductivity
-#  state_topic: "satellite/sensor/mi_flora_conductivity/state"
-#  availability_topic: "satellite/state"
-#  unit_of_measurement: "µS/cm"
-
-#- platform: "mqtt"
-#  name: Mi Flora Temperature
-#  state_topic: "satellite/sensor/mi_flora_temperature/state"
-#  availability_topic: "satellite/state"
-#  unit_of_measurement: "°C"
-
-#- platform: "mqtt"
-#  name: Mi Flora Light Intensity
-#  state_topic: "satellite/sensor/mi_flora_light_intensity/state"
-#  availability_topic: "satellite/state"
-#  unit_of_measurement: "lx"
-
-#- platform: "mqtt"
-#  name: Mi Flora Battery
-#  state_topic: "satellite/sensor/mi_flora_battery/state"
-#  availability_topic: "satellite/state"
-#  unit_of_measurement: "%"
-
-- platform: "mqtt"
   name: Particle Sensor PM2.5
   state_topic: "satellite/sensor/pm25/state"
 #  availability_topic: "satellite/state"
@@ -346,23 +205,3 @@
 #  availability_topic: "satellite/state"
   unit_of_measurement: "μg/m3"
 
-#- platform: "mqtt"
-#  name: DHT Temperature
-#  state_topic: "satellite/sensor/dht_sensor_temperature/state"
-##  availability_topic: "satellite/state"
-#  unit_of_measurement: "°C"
-
-#- platform: "mqtt"
-#  name: DHT Humidity
-#  state_topic: "satellite/sensor/dht_sensor_humidity/state"
-##  availability_topic: "satellite/state"
-#  unit_of_measurement: "%"
-
-#- platform: "mqtt"
-#  name: BS440 Person 1
-#  state_topic: "satellite/sensor/bs440/person1/state"
-##  availability_topic: "satellite/state"
-#  unit_of_measurement: "kg"
-#  icon: "mdi:gauge"
-#  value_template: "{{ value_json.weight }}"
-#  json_attributes_topic: "satellite/sensor/bs440/person1/state"

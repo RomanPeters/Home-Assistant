@@ -1,0 +1,48 @@
+input_select:
+  home_status:
+    name: Home Status
+    options:
+      - 'Home'
+      - 'Night'
+      - 'Away'
+      - 'Off'
+
+alarm_control_panel:
+  - platform: manual
+    name: Home Status
+#    disarmed:
+#      trigger_time: 0
+    armed_home:
+      pending_time: 0
+    armed_away:
+      pending_time: 0
+    armed_night:
+      pending_time: 0
+
+
+automation:
+  - id: home_status_to_alarm_system
+    alias: Home Status to Alarm System
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+    action:
+      - service_template: "alarm_control_panel.alarm_arm_{{ states('input_select.home_status') | lower }}"
+        entity_id: alarm_control_panel.home_status
+        
+  - id: alarm_system_to_home_status 
+    alias: Alarm System to Home Status
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.home_status
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.home_status
+          option: >
+            {% if states('alarm_control_panel.home_status') == 'disarmed' %}
+              "Off"
+            {% else %}
+              {{ states('alarm_control_panel.home_status').split('_')[-1] | title }}
+            {% endif %}
+

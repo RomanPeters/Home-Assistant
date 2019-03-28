@@ -1,3 +1,10 @@
+presence:
+  name: Presence
+  icon: mdi:account-group
+  entities:
+    - person.roman
+    - person.nadine
+
 status:
   name: Status
   entities:

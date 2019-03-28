@@ -36,13 +36,6 @@
       command_on: "sg4yABIGBhEGEQYRBhIRBgYREQYRBgYREQYRBgYRBhIGEREGBhEGEQYRBhERBgYREQYRBgasAAAAAAAA"
       command_off: "shEyABIGBhEGEQYRBhERBgYREQYRBgYREQYRBgYRBhEHEREGBhEGEQYRBxEHEQYREQYRBgesAAAAAAAA"
 
-#- platform: mqtt
-#  name: Heater
-#  icon: "mdi:radiator-disabled"
-#  state_topic: "sonoff2/switch/heater/state"  # "sonoff_th10/switch/heater/state"
-#  command_topic: "sonoff2/switch/heater/command"  # "sonoff_th10/switch/heater/command"
-#  availability_topic: "sonoff2/status"  # "sonoff_th10/status"
-
 - platform: mqtt
   name: zigbee2mqtt Pairing
   icon: mdi:zigbee
@@ -60,7 +53,7 @@
   payload_off: "false"
 
 - platform: "mqtt"
-  name: Spot #Tradfri Control Outlet 2
+  name: Spot
   state_topic: "zigbee2mqtt/tradfri_control_outlet"
   availability_topic: "zigbee2mqtt/bridge/state"
   payload_off: "OFF"
