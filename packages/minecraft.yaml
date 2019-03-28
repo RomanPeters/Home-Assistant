@@ -1,0 +1,33 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Minecraft Server
+    state_topic: "minecraft/state"
+
+sensor:
+  - platform: file
+    name: Minecraft Log
+    file_path: /config/minecraft.log
+    value_template: "{{ ':'.join(value.split(':')[3:]) }}"
+
+automation:
+  - id: notification_joined_minecraft
+    alias: Notification Joined Minecraft
+    trigger: 
+      - platform: template
+        value_template: "{{ 'joined the game' in states('sensor.minecraft_log') or 'left the game' in states('sensor.minecraft_log') }}"
+    action:
+      service: script.broadcast
+      data_template:
+        title: "Minecraft Server"
+        message: "{{ states('sensor.minecraft_log') }}"
+
+  - id: notification_minecraft_server
+    alias: Notification Minecraft Server
+    trigger: 
+      - platform: state
+        entity_id: sensor.minecraft_server
+    action:
+      service: script.broadcast
+      data_template:
+        title: "Minecraft Server"
+        message: "Server turned {{ trigger.to_state }}"

@@ -1,9 +1,5 @@
 - platform: "template"
   sensors:
-    dark:
-      friendly_name: "It's dark"
-      value_template: "{{ not is_state('sun.sun', 'above_horizon') and is_state('group.lights', 'off') }}"
-
     outside_cooler_than_inside:
       friendly_name: "Outside cooler than inside"
       value_template: "{{ (states('sensor.br_temperature') | float) < (states('sensor.aqara_temperature') | float) }}"
@@ -32,7 +28,3 @@
   value_template: "{{ value_json.occupancy }}"
   device_class: "motion"
   json_attributes_topic: "zigbee2mqtt/aqara_motion_sensor"
-
-- platform: "mqtt"
-  name: Minecraft Server
-  state_topic: "minecraft/state"

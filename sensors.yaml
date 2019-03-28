@@ -1,8 +1,3 @@
-- platform: file
-  name: Minecraft Log
-  file_path: /config/minecraft.log
-  value_template: "{{ ':'.join(value.split(':')[3:]) }}"
-
 - platform: postnl
   username: !secret mail
   password: !secret postnl_password
@@ -210,23 +205,3 @@
 #  availability_topic: "satellite/state"
   unit_of_measurement: "μg/m3"
 
-#- platform: "mqtt"
-#  name: DHT Temperature
-#  state_topic: "satellite/sensor/dht_sensor_temperature/state"
-##  availability_topic: "satellite/state"
-#  unit_of_measurement: "°C"
-
-#- platform: "mqtt"
-#  name: DHT Humidity
-#  state_topic: "satellite/sensor/dht_sensor_humidity/state"
-##  availability_topic: "satellite/state"
-#  unit_of_measurement: "%"
-
-#- platform: "mqtt"
-#  name: BS440 Person 1
-#  state_topic: "satellite/sensor/bs440/person1/state"
-##  availability_topic: "satellite/state"
-#  unit_of_measurement: "kg"
-#  icon: "mdi:gauge"
-#  value_template: "{{ value_json.weight }}"
-#  json_attributes_topic: "satellite/sensor/bs440/person1/state"
