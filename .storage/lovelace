@@ -328,6 +328,14 @@
                         },
                         {
                             "entities": [
+                                {
+                                    "entity": "input_text.siri"
+                                }
+                            ],
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
                                 "light.aqara_white_bulb",
                                 "light.milight_rgbw_bulb",
                                 "light.spot",
@@ -386,11 +394,11 @@
                                             "type": "entity-button"
                                         },
                                         {
-                                            "entity": "switch.chromecast",
+                                            "entity": "switch.socket",
                                             "hold_action": {
                                                 "action": "more-info"
                                             },
-                                            "name": "Chromecast",
+                                            "name": "Socket",
                                             "tap_action": {
                                                 "action": "toggle"
                                             },
@@ -776,7 +784,8 @@
                                 {
                                     "entities": [
                                         "group.climate_control_automations",
-                                        "group.notification_automations"
+                                        "group.notification_automations",
+                                        "input_boolean.spoken_notifications"
                                     ],
                                     "show_header_toggle": false,
                                     "type": "entities"
