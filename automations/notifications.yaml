@@ -5,35 +5,24 @@
     - platform: homeassistant
       event: start
   action:
-    - service: notify.notify
+    - service: script.broadcast
       data:
         message: "Home Assistant is online"
 
-# Satellite status
-- id: notification_satellite
-  alias: Notification Satellite
-  trigger:
-    - platform: mqtt
-      topic: satellite/state
-  action:
-    - service: notify.notify
-      data_template:
-        message: "Satellite is {{ trigger.payload }}"
-
-# iPhone Status
-- id: notification_iphone_status
-  alias: Notification iPhone Status
-  trigger:
-    - platform: state
-      entity_id: sensor.iphone_8_battery_state
-      from: Unplugged
-    - platform: state
-      entity_id: sensor.iphone_8_battery_state
-      to: Unplugged
-  action:
-    - service: notify.notify
-      data_template:
-        message: "Your iPhone 8 is {{ states('sensor.iphone_8_battery_state') | lower }}."
+# # iPhone Status
+# - id: notification_iphone_status
+#   alias: Notification iPhone Status
+#   trigger:
+#     - platform: state
+#       entity_id: sensor.iphone_8_battery_state
+#       from: Unplugged
+#     - platform: state
+#       entity_id: sensor.iphone_8_battery_state
+#       to: Unplugged
+#   action:
+#     - service: notify.notify
+#       data_template:
+#         message: "Your iPhone 8 is {{ states('sensor.iphone_8_battery_state') | lower }}."
 
 # Device tracker
 - id: notification_new_device
@@ -76,7 +65,7 @@
       for:
         minutes: 5
   action:
-    - service: notify.notify
+    - service: script.broadcast
       data:
         message: "Your helmet's bluetooth headset is still active, but not connected"
 
@@ -122,24 +111,6 @@
         message: "Plant sensor is at {{ states('sensor.mi_flora_battery') | int }}% battery."
         title: "Battery warning"
 
-# Scale
-- id: notification_scale_measurement
-  alias: Notification Scale Measurement
-  trigger:
-    - platform: mqtt
-      topic: satellite/sensor/bs440/person1/state
-  action:
-    - service: notify.notify
-      data_template:
-        title: "Scale Measurement"
-        message: >
-          Weight: {{ trigger.payload_json.weight }}kg,
-          Muscle Mass: {{ trigger.payload_json.muscle }}%,
-          Body Water: {{ trigger.payload_json.tbw }}%,
-          Body Fat: {{ trigger.payload_json.fat }}%,
-          Bone Mass: {{ trigger.payload_json.bone }}%, 
-          DCI: {{ trigger.payload_json.kcal }} kcal
-
 # zigbee2mqtt
 - id: notification_zigbee2mqtt
   alias: Notification zigbee2mqtt
@@ -171,11 +142,11 @@
     platform: event
     event_type: transmission_downloaded_torrent
   action:
-    service: notify.notify
+    service: script.broadcast
     data_template:
-      title: "Download finished"
-      message: ""
-      
+      title: "Download Completed"
+      message: "{{ trigger }}"
+
 # minecraft
 - id: notification_joined_minecraft
   alias: Notification Joined Minecraft
@@ -183,7 +154,7 @@
     - platform: template
       value_template: "{{ 'joined the game' in states('sensor.minecraft_log') or 'left the game' in states('sensor.minecraft_log') }}"
   action:
-    service: notify.notify
+    service: script.broadcast
     data_template:
       title: "Minecraft Server"
       message: "{{ states('sensor.minecraft_log') }}"
@@ -194,7 +165,7 @@
     - platform: state
       entity_id: sensor.minecraft_server
   action:
-    service: notify.notify
+    service: script.broadcast
     data_template:
       title: "Minecraft Server"
       message: "Server turned {{ trigger.to_state }}"
