@@ -54,7 +54,6 @@
       data:
         message: "Your keys are still in your room"
 
-
 # Helmet BT
 - id: helmet_bt_still_on
   alias: Helmet BT still on
@@ -69,48 +68,6 @@
       data:
         message: "Your helmet's bluetooth headset is still active, but not connected"
 
-# Low battery
-- id: notification_low_battery
-  alias: Notification Low Battery
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.aqara_button     
-      value_template: '{{ state.attributes.battery }}'
-      below: 11
-    - platform: numeric_state
-      entity_id: sensor.aqara_illuminance
-      value_template: '{{ state.attributes.battery }}'
-      below: 11
-    - platform: numeric_state
-      entity_id: sensor.aqara_temperature    
-      value_template: '{{ state.attributes.battery }}'
-      below: 11
-    - platform: numeric_state
-      entity_id: sensor.aqara_temperature_2
-      value_template: '{{ state.attributes.battery }}'
-      below: 11
-    - platform: numeric_state
-      entity_id: sensor.mijia_switch       
-      value_template: '{{ state.attributes.battery }}'
-      below: 11
-  action:
-    - service: persistent_notification.create
-      data_template:
-        message: "{{ state_attr(trigger.entity_id, 'friendly_name') }} {{ trigger.entity_id.split('.')[0] }} is at {{ state_attr(trigger.entity_id, 'battery') | int }}% battery."
-        title: "Battery warning"
-
-- id: notification_low_battery_mi_flora
-  alias: Notification Low Battery Mi Flora
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.mi_flora_battery
-      below: 11
-  action:
-    - service: persistent_notification.create
-      data_template:
-        message: "Plant sensor is at {{ states('sensor.mi_flora_battery') | int }}% battery."
-        title: "Battery warning"
-
 # zigbee2mqtt
 - id: notification_zigbee2mqtt
   alias: Notification zigbee2mqtt
@@ -120,7 +77,7 @@
   action:
     - service: notify.notify
       data_template:
-        title: "zigbee2mqtt: {{ trigger.payload_json['type'] }}"
+        title: "zigbee2mqtt"
         message: "{{ trigger.payload_json['message'] | capitalize }}"
 
 # PostNL
@@ -146,26 +103,3 @@
     data_template:
       title: "Download Completed"
       message: "{{ trigger }}"
-
-# minecraft
-- id: notification_joined_minecraft
-  alias: Notification Joined Minecraft
-  trigger: 
-    - platform: template
-      value_template: "{{ 'joined the game' in states('sensor.minecraft_log') or 'left the game' in states('sensor.minecraft_log') }}"
-  action:
-    service: script.broadcast
-    data_template:
-      title: "Minecraft Server"
-      message: "{{ states('sensor.minecraft_log') }}"
-
-- id: notification_minecraft_server
-  alias: Notification Minecraft Server
-  trigger: 
-    - platform: state
-      entity_id: sensor.minecraft_server
-  action:
-    service: script.broadcast
-    data_template:
-      title: "Minecraft Server"
-      message: "Server turned {{ trigger.to_state }}"
