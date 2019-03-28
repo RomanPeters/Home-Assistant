@@ -20,5 +20,9 @@ automation:
         for:
           minutes: 1
     action:
+      - service: tts.google_say
+        data:
+          entity_id: media_player.intel_nuc
+          message: "Away mode enabled. Hey Siri, stop"
       - service: switch.turn_on
         entity_id: switch.air_purifier
