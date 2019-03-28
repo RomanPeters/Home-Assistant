@@ -329,7 +329,7 @@
                         {
                             "entities": [
                                 {
-                                    "entity": "input_text.siri"
+                                    "entity": "input_text.hey_siri"
                                 }
                             ],
                             "type": "entities"
@@ -464,19 +464,6 @@
                                     "entity": "switch.entone",
                                     "style": {
                                         "left": "30%",
-                                        "outline-color": "grey",
-                                        "outline-style": "solid",
-                                        "outline-width": "1px",
-                                        "text-shadow": "1px 1px 2px black, 0 0 25px blue, 0 0 5px white",
-                                        "top": "10%"
-                                    },
-                                    "tap_action": "toggle",
-                                    "type": "state-icon"
-                                },
-                                {
-                                    "entity": "switch.chromecast",
-                                    "style": {
-                                        "left": "50%",
                                         "outline-color": "grey",
                                         "outline-style": "solid",
                                         "outline-width": "1px",
@@ -722,6 +709,16 @@
                         },
                         {
                             "entities": [
+                                "sensor.disk_use_percent",
+                                "sensor.memory_use_percent",
+                                "sensor.processor_use",
+                                "sensor.last_boot"
+                            ],
+                            "show_header_toggle": false,
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
                                 "sensor.aqara_humidity",
                                 "sensor.aqara_humidity_2",
                                 "sensor.br_humidity"
@@ -764,8 +761,7 @@
                             "cards": [
                                 {
                                     "entities": [
-                                        "input_select.home_status",
-                                        "input_select.activity"
+                                        "input_select.home_status"
                                     ],
                                     "id": "a0f1fcd3c96f4debaa762ab298d0f419",
                                     "type": "entities"
@@ -786,16 +782,6 @@
                                         "group.climate_control_automations",
                                         "group.notification_automations",
                                         "input_boolean.spoken_notifications"
-                                    ],
-                                    "show_header_toggle": false,
-                                    "type": "entities"
-                                },
-                                {
-                                    "entities": [
-                                        "sensor.disk_use_percent",
-                                        "sensor.memory_use_percent",
-                                        "sensor.processor_use",
-                                        "sensor.last_boot"
                                     ],
                                     "show_header_toggle": false,
                                     "type": "entities"
