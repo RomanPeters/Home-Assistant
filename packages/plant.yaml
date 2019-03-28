@@ -16,19 +16,6 @@ plant:
     min_brightness: 2000
     max_brightness: 4800
 
-automation:
-  - id: plant_needs_water
-    alias: Plant Needs Water
-    trigger:
-      - platform: state
-        entity_id: sensor.plant_needs_water
-        to: 'on'
-    action:
-      - wait_template: "{{ is_state('input_select.home_status', 'Home') }}"    
-      - service: notify.notify
-        data_template:
-          message: "The plant could use some water, it's moisture level has fallen to {{ states('sensor.mi_flora_moisture') }}"
-
 binary_sensor:
   - platform: "template"
     sensors:
@@ -40,7 +27,30 @@ binary_sensor:
           {% else %}
             False
           {% endif %}
-          
+
+automation:
+  - id: plant_needs_water
+    alias: Plant Needs Water
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.plant_needs_water
+        to: 'on'
+      - platform: state
+        entity_id: input_select.home_status
+        to: 'Home'
+        for:
+          hours: 1
+    condition:
+      - condition: state
+        entity_id: binary_sensor.plant_needs_water
+        state: 'on'
+    action:
+      - wait_template: "{{ is_state('input_select.home_status', 'Home') }}"    
+      - service: script.broadcast
+        data_template:
+          message: "The plant could use some water, it's moisture level has fallen to {{ states('sensor.mi_flora_moisture') }}"
+
+
 sensor:
   - platform: miflora
     mac: 'C4:7C:8D:66:42:FC'
@@ -89,3 +99,4 @@ sensor:
           {% else %}
             mdi:emoticon-sad
           {% endif %}
+
