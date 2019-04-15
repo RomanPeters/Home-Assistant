@@ -39,19 +39,3 @@ automation:
       - service: media_player.media_play
         entity_id: media_player.apple_tv
   
-  - id: pause_chromecast_when_door_opens
-    alias: Pause Chromecast when door opens
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.door
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: media_player.chromecast
-        state: 'playing'
-    action:
-      - service: media_player.media_pause
-        entity_id: media_player.chromecast
-      - wait_template: "{{ is_state('binary_sensor.door', 'off') }}"
-      - service: media_player.media_play
-        entity_id: media_player.chromecast

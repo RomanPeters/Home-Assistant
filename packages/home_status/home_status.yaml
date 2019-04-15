@@ -7,6 +7,10 @@ input_select:
       - 'Away'
       - 'Off'
 
+input_boolean:
+  home:
+    name: Home
+
 alarm_control_panel:
   - platform: manual
     name: Home Status
@@ -21,6 +25,26 @@ alarm_control_panel:
 
 
 automation:
+  - id: input_boolean_home_to_alarm_system
+    alias: Input Boolean Home to Alarm System
+    trigger:
+      - platform: state
+        entity_id: input_boolean.home
+    condition:
+      - condition: template
+        value_template: "{{ not is_state('input_select.home_status', 'Off') }}"
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.home_status
+          option: >
+            {%- if is_state('input_boolean.home', 'on') -%}
+              Home
+            {%- else -%}
+              Away
+            {% endif %}
+
+
   - id: home_status_to_alarm_system
     alias: Home Status to Alarm System
     trigger:
@@ -41,7 +65,7 @@ automation:
           entity_id: input_select.home_status
           option: >
             {% if states('alarm_control_panel.home_status') == 'disarmed' %}
-              "Off"
+              Off
             {% else %}
               {{ states('alarm_control_panel.home_status').split('_')[-1] | title }}
             {% endif %}
