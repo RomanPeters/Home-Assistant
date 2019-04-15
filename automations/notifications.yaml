@@ -102,4 +102,17 @@
     service: script.broadcast
     data_template:
       title: "Download Completed"
-      message: "{{ trigger }}"
+      message: "{{ (trigger.event | string).split('=')[1].replace('.', ' ').replace('>', '').split('720p')[0].split('1080p')[0].strip() }}"
+
+# Disk space
+- id: disk_space_running_low
+  alias: Disk Space Running Low
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.disk_use_percent
+    above: 89
+  action:
+    service: notify.notify
+    data:
+      title: "Warning"
+      message: "Disk usage is at {{ states('sensor.disk_use_percent') }}%"

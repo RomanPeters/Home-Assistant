@@ -5,6 +5,7 @@ filter:
     - binary_sensor.window
     - binary_sensor.aqara_motion_sensor
     - climate.thermostat
+    - input_boolean.home
     - light.aqara_white_bulb
     - light.milight_rgbw_bulb
     - light.candela

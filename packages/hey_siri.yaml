@@ -1,0 +1,34 @@
+script:
+  hey_siri:
+    alias: Hey Siri
+    sequence:
+      - service: tts.google_say
+        data_template:
+          entity_id: media_player.intel_nuc
+          message: "Hey Siri, {{ command }}"
+    
+input_text:
+  hey_siri:
+    name: Hey Siri
+    initial: ""
+
+automation:
+  - alias: Ask Siri
+    trigger:
+      platform: state
+      entity_id: input_text.hey_siri
+      from: ""
+    action:
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.hey_siri
+          value: ""
+      - service: tts.google_say
+        data_template:
+          entity_id: media_player.intel_nuc
+          message: "Hey Siri, {{ trigger.to_state.state }}"
+
+homeassistant:
+  customize:
+    input_text.hey_siri:
+      icon: mdi:apple-finder
