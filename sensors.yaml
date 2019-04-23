@@ -2,14 +2,6 @@
   username: !secret mail
   password: !secret postnl_password
 
-- platform: systemmonitor
-  resources:
-    - type: last_boot
-    - type: disk_use_percent
-      arg: /
-    - type: memory_use_percent
-    - type: processor_use
-
 - platform: buienradar
   monitored_conditions:
     - condition
