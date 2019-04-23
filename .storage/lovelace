@@ -709,10 +709,21 @@
                         },
                         {
                             "entities": [
-                                "sensor.disk_use_percent",
-                                "sensor.memory_use_percent",
-                                "sensor.processor_use",
-                                "sensor.last_boot"
+                                {
+                                    "entity": "sensor.glances_disk_used"
+                                },
+                                {
+                                    "entity": "sensor.glances_ram_used"
+                                },
+                                {
+                                    "entity": "sensor.processor_use"
+                                },
+                                {
+                                    "entity": "sensor.glances_cpu_temp"
+                                },
+                                {
+                                    "entity": "sensor.last_boot"
+                                }
                             ],
                             "show_header_toggle": false,
                             "type": "entities"
@@ -747,6 +758,24 @@
                         {
                             "entity": "plant.plant",
                             "type": "plant-status"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.glances_containers_active"
+                                },
+                                {
+                                    "entity": "sensor.glances_containers_ram_used"
+                                },
+                                {
+                                    "entity": "sensor.glances_containers_cpu_used"
+                                },
+                                {
+                                    "entity": "binary_sensor.minecraft_server"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "type": "entities"
                         }
                     ],
                     "id": 1,

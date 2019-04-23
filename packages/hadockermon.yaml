@@ -1,0 +1,5 @@
+switch:
+  - platform: hadockermon
+    host: 10.10.10.20
+    port: 8126
+
