@@ -1,7 +1,8 @@
 binary_sensor:
-  - platform: "mqtt"
-    name: Minecraft Server
-    state_topic: "minecraft/state"
+  - platform: "template"
+    sensors:
+      minecraft_server:
+        value_template: "{{ is_state('switch.ha_dockermon_minecraft_server', 'on') }}"
 
 sensor:
   - platform: file
@@ -30,4 +31,10 @@ automation:
       service: script.broadcast
       data_template:
         title: "Minecraft Server"
-        message: "Server turned {{ trigger.to_state }}"
+        message: "Server turned {{ trigger.to_state.state }}"
+
+homeassistant:
+  customize:
+    binary_sensor.minecraft_server:
+      icon: mdi:minecraft
+      friendly_name: Minecraft Server

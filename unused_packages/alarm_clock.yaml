@@ -122,3 +122,20 @@ script:
       - alias: Delay so state changes
         delay:
           seconds: 3
+
+  - id: home_status_to_night_auto_alarm_clock
+    alias: Home Status to Night Auto Alarm Clock
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+        to: Night
+    condition:
+      - condition: state
+        entity_id: input_boolean.alarm_clock
+        state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.alarm_clock
+      - service: script.turn_on
+        entity_id: script.set_alarm_clock
+

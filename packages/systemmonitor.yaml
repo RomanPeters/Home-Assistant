@@ -1,0 +1,42 @@
+sensor:
+  - platform: systemmonitor
+    resources:
+      - type: last_boot
+      - type: processor_use
+
+  - platform: glances
+    host: "glances.romanpeters.nl"
+    port: 443
+    ssl: true
+    version: 3
+    resources:
+      - disk_use_percent
+        #      - disk_use
+        #      - disk_free
+      - memory_use_percent
+        #    - memory_use
+        #    - memory_free
+        #    - processor_load
+        #    - cpu_use_percent  # this is bugged
+      - cpu_temp
+      - docker_active
+      - docker_cpu_use
+      - docker_memory_use
+
+homeassistant:
+  customize:
+    sensor.glances_containers_active:
+      friendly_name: Containers active
+    sensor.glances_containers_cpu_used:
+      friendly_name: Containers CPU
+    sensor.glances_containers_ram_used:
+      friendly_name: Containers RAM
+    sensor.glances_cpu_temp:
+      friendly_name: CPU temperature
+    sensor.glances_disk_used:
+      friendly_name: Disk usage
+    sensor.glances_ram_used:
+      friendly_name: RAM usage
+
+    sensor.processor_use:
+      friendly_name: CPU usage

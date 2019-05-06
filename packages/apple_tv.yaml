@@ -20,8 +20,33 @@ automation:
     action:
       - service: switch.turn_on
         entity_id: switch.television
+      - service: scene.turn_on
+        entity_id: scene.movie_mode
+
+  - id: apple_tv_stopped_playing
+    alias: Apple TV stopped playing
+    trigger:
+      - platform: state
+        entity_id: media_player.apple_tv
+        to: 'idle'
+        for:
+          minutes: 15
+      - platform: state
+        entity_id: media_player.apple_tv
+        to: 'off' 
+    action:
       - service: switch.turn_off
-        entity_id: switch.entone
+        entity_id: switch.television
+
+  - id: television_turned_off_stop_apple_tv
+    alias: Television turned off stop Apple TV
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'off'
+    action:
+      - service: media_player.media_stop
+        entity_id: media_player.apple_tv
 
 script:
   apple_tv_airplay:

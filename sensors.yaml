@@ -2,14 +2,6 @@
   username: !secret mail
   password: !secret postnl_password
 
-- platform: systemmonitor
-  resources:
-    - type: last_boot
-    - type: disk_use_percent
-      arg: /
-    - type: memory_use_percent
-    - type: processor_use
-
 - platform: buienradar
   monitored_conditions:
     - condition
@@ -192,16 +184,4 @@
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.illuminance }}"
   json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
-
-- platform: "mqtt"
-  name: Particle Sensor PM2.5
-  state_topic: "satellite/sensor/pm25/state"
-#  availability_topic: "satellite/state"
-  unit_of_measurement: "μg/m3"
-
-- platform: "mqtt"
-  name: Particle Sensor PM10
-  state_topic: "satellite/sensor/pm10/state"
-#  availability_topic: "satellite/state"
-  unit_of_measurement: "μg/m3"
 

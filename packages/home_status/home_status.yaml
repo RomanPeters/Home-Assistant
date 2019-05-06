@@ -7,66 +7,20 @@ input_select:
       - 'Away'
       - 'Off'
 
-input_boolean:
-  home:
-    name: Home
-
-alarm_control_panel:
-  - platform: manual
-    name: Home Status
-#    disarmed:
-#      trigger_time: 0
-    armed_home:
-      pending_time: 0
-    armed_away:
-      pending_time: 0
-    armed_night:
-      pending_time: 0
-
-
-automation:
-  - id: input_boolean_home_to_alarm_system
-    alias: Input Boolean Home to Alarm System
-    trigger:
-      - platform: state
-        entity_id: input_boolean.home
-    condition:
-      - condition: template
-        value_template: "{{ not is_state('input_select.home_status', 'Off') }}"
-    action:
-      - service: input_select.select_option
-        data_template:
-          entity_id: input_select.home_status
-          option: >
-            {%- if is_state('input_boolean.home', 'on') -%}
-              Home
-            {%- else -%}
-              Away
-            {% endif %}
-
-
-  - id: home_status_to_alarm_system
-    alias: Home Status to Alarm System
-    trigger:
-      - platform: state
-        entity_id: input_select.home_status
-    action:
-      - service_template: "alarm_control_panel.alarm_arm_{{ states('input_select.home_status') | lower }}"
-        entity_id: alarm_control_panel.home_status
-        
-  - id: alarm_system_to_home_status 
-    alias: Alarm System to Home Status
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.home_status
-    action:
-      - service: input_select.select_option
-        data_template:
-          entity_id: input_select.home_status
-          option: >
-            {% if states('alarm_control_panel.home_status') == 'disarmed' %}
-              Off
-            {% else %}
-              {{ states('alarm_control_panel.home_status').split('_')[-1] | title }}
-            {% endif %}
-
+sensor:
+  - platform: template
+    sensors:
+      home_status:
+        friendly_name: "Home Status"
+        value_template: >-
+          {{ states("input_select.home_status") }}
+        icon_template: >-
+          {% if is_state('input_select.home_status', 'Home') %}
+            mdi:home-account
+          {% elif is_state('input_select.home_status', 'Night') %}
+            mdi:weather-night
+          {% elif is_state('input_select.home_status', 'Away') %}
+            mdi:home
+          {% elif is_state('input_select.home_status', 'Off') %}
+            mdi:power-off
+          {% endif %}

@@ -5,10 +5,9 @@ filter:
     - binary_sensor.window
     - binary_sensor.aqara_motion_sensor
     - climate.thermostat
-    - input_boolean.home
+    - input_boolean.autowake
     - light.aqara_white_bulb
     - light.milight_rgbw_bulb
-    - light.candela
     - light.spot
     - light.tv_backlight
     - light.spot
@@ -18,8 +17,8 @@ filter:
     - sensor.aqara_humidity
     - sensor.particle_sensor_pm2_5
     - switch.air_purifier
+    - switch.home
     - switch.television
-    - switch.chromecast
     - switch.entone
     - switch.tradfri_control_outlet
 
