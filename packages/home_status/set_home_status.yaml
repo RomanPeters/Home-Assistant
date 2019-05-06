@@ -1,11 +1,4 @@
-timer:
-  wait_for_presence:
-    duration: '00:01:00'
-
-  leaving:
-    duration: '00:10:00'
-
-
+# Home
 automation:
   - id: set_home_status_to_home_by_door
     alias: Set Home Status to home by door
@@ -22,8 +15,6 @@ automation:
         data:
           entity_id: input_select.home_status
           option: Home
-      - service: timer.start
-        entity_id: timer.wait_for_presence
   
   - id: set_home_status_to_home_from_night
     alias: Set Home Status to home from night
@@ -31,13 +22,13 @@ automation:
       - platform: state
         entity_id: sensor.iphone_8_battery_state
         to: Unplugged
+      - platform: state
+        entity_id: input_boolean.autowake
+        to: 'off'
     condition:
       - condition: state
         entity_id: input_select.home_status
         state: Night
-      - condition: time
-        after: '07:00:00'
-        before: '21:00:00'
     action:
       - service: input_select.select_option
         data:
@@ -64,8 +55,24 @@ automation:
         entity_id: timer.wait_for_presence
   
   # Night
-  - id: set_home_status_to_night
-    alias: Set Home Status to night
+  - id: set_home_status_by_autowake
+    alias: Set Home Status by AutoWake
+    trigger:
+      - platform: state
+        entity_id: input_boolean.autowake
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_select.home_status
+        state: Home
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_status
+          option: Night
+  
+  - id: set_home_status_to_night_early_at_night
+    alias: Set Home Status to night early at night
     trigger:
       - platform: time
         at: "01:00:00"
@@ -83,7 +90,7 @@ automation:
           option: Night
   
   - id: set_home_status_to_night_late_at_night
-    alias: Set Home Status to night, late at night
+    alias: Set Home Status to night late at night
     trigger:
       - platform: state
         entity_id: device_tracker.macbook_pro

@@ -2,7 +2,7 @@ language: python
 python:
 - 3.6.4
 before_install:
-- "sed '9:10d' configuration.yaml"
+  #- "sed '9:10d' configuration.yaml"
 - "mv travis_secrets.yaml secrets.yaml"
 - "sed '/  db_url: !secret db_url/d' < configuration.yaml > travis_configuration.yaml"
 - "mv travis_configuration.yaml configuration.yaml"

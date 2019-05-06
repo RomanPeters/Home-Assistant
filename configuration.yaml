@@ -65,7 +65,7 @@ media_extractor:
 conversation:
 sun:
 ios:
-
+mobile_app:
 
 google:
   client_id: !secret google_client_id
@@ -75,7 +75,7 @@ shell_command:
   install_deps: 'apt update && apt install -y vlc'
 
 tts:
-  - platform: google
+  - platform: google_translate
 
 recorder:
   db_url: !secret db_url

@@ -72,5 +72,3 @@
 # Disabled below, because it's not really necessary to keep checking whether it's on or off
 #      command_state: "curl -X GET 'http://10.10.10.101/admin/api.php?status'"
 #      value_template: "{{ value_json.status == 'enabled' }}"
-
-

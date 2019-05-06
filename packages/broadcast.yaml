@@ -39,7 +39,7 @@ script:
       - delay:
           seconds: 1
       - alias: Play Message
-        service: tts.google_say
+        service: tts.google_translate_say
         data_template:
           entity_id: media_player.intel_nuc
           message: "{{ message }}"

@@ -38,3 +38,4 @@ zones.yaml
 *.pyc
 minecraft.log
 audio/
+plex.conf

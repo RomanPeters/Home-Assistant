@@ -22,10 +22,6 @@
                     "badges": [],
                     "cards": [
                         {
-                            "entity": "sensor.status_summary",
-                            "type": "custom:entity-markdown"
-                        },
-                        {
                             "elements": [
                                 {
                                     "entity": "sun.sun",
@@ -81,6 +77,10 @@
                             ],
                             "image": "/local/images/render/room.png",
                             "type": "picture-elements"
+                        },
+                        {
+                            "entity": "sensor.home_status",
+                            "type": "sensor"
                         },
                         {
                             "cards": [
@@ -327,12 +327,53 @@
                             "type": "vertical-stack"
                         },
                         {
+                            "card": {
+                                "cards": [
+                                    {
+                                        "entity": "sensor.aqara_temperature",
+                                        "name": "Inside",
+                                        "type": "sensor"
+                                    },
+                                    {
+                                        "entity": "sensor.br_temperature",
+                                        "name": "Outside",
+                                        "type": "sensor"
+                                    }
+                                ],
+                                "type": "horizontal-stack"
+                            },
+                            "conditions": [
+                                {
+                                    "entity": "group.climate_control_automations",
+                                    "state": "off"
+                                },
+                                {
+                                    "entity": "climate.thermostat",
+                                    "state": "off"
+                                }
+                            ],
+                            "type": "conditional"
+                        },
+                        {
                             "entities": [
                                 {
                                     "entity": "input_text.hey_siri"
                                 }
                             ],
                             "type": "entities"
+                        },
+                        {
+                            "card": {
+                                "entity": "climate.thermostat",
+                                "type": "thermostat"
+                            },
+                            "conditions": [
+                                {
+                                    "entity": "group.climate_control_automations",
+                                    "state": "on"
+                                }
+                            ],
+                            "type": "conditional"
                         },
                         {
                             "entities": [
@@ -348,9 +389,26 @@
                             "type": "entities"
                         },
                         {
-                            "entity": "climate.thermostat",
-                            "id": "94388c17d89a4575a995a0cb181a5166",
-                            "type": "thermostat"
+                            "card": {
+                                "camera_image": "camera.camera",
+                                "entities": [
+                                    "input_boolean.camera",
+                                    "input_boolean.camera_night_mode",
+                                    "script.camera_up",
+                                    "script.camera_down",
+                                    "script.camera_left",
+                                    "script.camera_right"
+                                ],
+                                "title": "Camera",
+                                "type": "picture-glance"
+                            },
+                            "conditions": [
+                                {
+                                    "entity": "camera.camera",
+                                    "state": "on"
+                                }
+                            ],
+                            "type": "conditional"
                         },
                         {
                             "cards": [
@@ -412,22 +470,17 @@
                         },
                         {
                             "card": {
-                                "camera_image": "camera.camera",
-                                "entities": [
-                                    "input_boolean.camera",
-                                    "input_boolean.camera_night_mode",
-                                    "script.camera_up",
-                                    "script.camera_down",
-                                    "script.camera_left",
-                                    "script.camera_right"
-                                ],
-                                "title": "Camera",
-                                "type": "picture-glance"
+                                "entity": "climate.thermostat",
+                                "type": "thermostat"
                             },
                             "conditions": [
                                 {
-                                    "entity": "camera.camera",
-                                    "state": "on"
+                                    "entity": "group.climate_control_automations",
+                                    "state": "off"
+                                },
+                                {
+                                    "entity": "climate.thermostat",
+                                    "state_not": "off"
                                 }
                             ],
                             "type": "conditional"
