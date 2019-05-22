@@ -55,8 +55,8 @@ automation:
         entity_id: timer.wait_for_presence
   
   # Night
-  - id: set_home_status_by_autowake
-    alias: Set Home Status by AutoWake
+  - id: set_home_status_to_night_by_autowake
+    alias: Set Home Status to Night by AutoWake
     trigger:
       - platform: state
         entity_id: input_boolean.autowake
@@ -70,46 +70,4 @@ automation:
         data:
           entity_id: input_select.home_status
           option: Night
-  
-  - id: set_home_status_to_night_early_at_night
-    alias: Set Home Status to night early at night
-    trigger:
-      - platform: time
-        at: "01:00:00"
-    condition:
-      - condition: state
-        entity_id: input_select.home_status
-        state: Home
-      - condition: time
-        after: '21:00:00'
-        before: '00:00:00'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_status
-          option: Night
-  
-  - id: set_home_status_to_night_late_at_night
-    alias: Set Home Status to night late at night
-    trigger:
-      - platform: state
-        entity_id: device_tracker.macbook_pro
-        to: 'not_home'
-      - platform: state
-        entity_id: group.room_lights
-        to: 'off'
-    condition:
-      - condition: state
-        entity_id: input_select.home_status
-        state: Home
-      - condition: time
-        after: '00:00:00'
-        before: '07:00:00'
-    action:
-      - wait_template: "{{ is_state('device_tracker.macbook_pro', 'not_home') }}"
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_status
-          option: Night
-  
   
