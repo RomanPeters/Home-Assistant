@@ -738,16 +738,9 @@
                     "cards": [
                         {
                             "entities": [
-                                "person.roman",
-                                "person.nadine"
-                            ],
-                            "id": "53ca9509f43e4e70a4149595b70533d7",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
                                 "input_select.home_status",
                                 "binary_sensor.door",
+                                "input_boolean.room_presence",
                                 "switch.air_purifier"
                             ],
                             "type": "history-graph"

@@ -1,3 +1,9 @@
+# When spoken notifications is turned on
+# notifications will be played over the speakers with TTS if:
+# someone is in the room and the door is closed 
+# else the notification will be sent as a push notification on mobile
+
+
 input_boolean:
   spoken_notifications:
     name: Spoken Notifications
@@ -9,7 +15,7 @@ script:
     sequence:
       - alias: Choose method
         service_template: >
-          {% if is_state('input_select.home_status', 'Home') and is_state('input_boolean.spoken_notifications', 'on') %}
+          {% if is_state('input_boolean.room_presence', 'on') and is_state('input_boolean.spoken_notifications', 'on') and is_state('binary_sensor.door', 'off') %}
             script.announce
           {% else %}
             script.notificate
@@ -37,7 +43,7 @@ script:
           media_content_type: "music"
           media_content_id: "/config/audio/sound_effects/Ping.aiff"
       - delay:
-          seconds: 1
+          seconds: 0.5
       - alias: Play Message
         service: tts.google_translate_say
         data_template:
