@@ -1,3 +1,36 @@
+media_player:
+  - platform: universal
+    name: Television
+    children:
+      - media_player.apple_tv
+    commands:
+      turn_on:
+        service: switch.turn_on
+        data:
+          entity_id: switch.television
+      turn_off:
+        service: switch.turn_off
+        data:
+          entity_id: switch.television
+      volume_up:
+        service: script.turn_on
+        data:
+          entity_id: script.sony_volume_higher
+      volume_down:
+        service: script.turn_on
+        data:
+          entity_id: script.sony_volume_lower
+      volume_mute:
+        service: script.turn_on
+        data:
+          entity_id: script.sony_mute
+      select_source:
+        service: input_select.select_option
+        data_template:
+          entity_id: input_select.tv_input
+          source: '{{ source }}'
+
+
 input_select:
   channel:
     name: Channel
@@ -8,15 +41,9 @@ input_select:
   tv_input:
     name: Input
     options:
-      - TV
-      - AV1
-      - AV2
-      - AV3
       - Television
       - Apple TV
-      - Chromecast
-      - Composite
-      - PC
+      - Pi
 
 
 binary_sensor:
@@ -72,4 +99,7 @@ automation:
       - service: switch.turn_off
         entity_id: switch.entone
 
-
+homeassistant:
+  customize:
+    media_player.television:
+      device_class: tv

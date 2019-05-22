@@ -83,10 +83,6 @@ recorder:
 influxdb:
   host: 10.10.10.20
 
-apple_tv:
-  - host: 10.10.10.4
-    login_id: !secret apple_tv_id
-
 logbook: !include logbook.yaml
 #automation: !include automations.yaml
 automation yaml: !include_dir_merge_list automations
@@ -97,7 +93,6 @@ sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
 panel_iframe: !include panel_iframes.yaml
 script: !include_dir_merge_named scripts
-homekit: !include homekit.yaml
 history_graph: !include history_graphs.yaml
 input_select: !include input_selects.yaml
 scene: !include_dir_merge_named scenes

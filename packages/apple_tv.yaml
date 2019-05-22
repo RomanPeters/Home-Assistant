@@ -1,3 +1,7 @@
+apple_tv:
+  - host: 10.10.10.4
+    login_id: !secret apple_tv_id
+
 automation:
   - id: apple_tv_airplay_audio
     alias: Switch to AirPlay audio output on startup
@@ -22,21 +26,6 @@ automation:
         entity_id: switch.television
       - service: scene.turn_on
         entity_id: scene.movie_mode
-
-  - id: apple_tv_stopped_playing
-    alias: Apple TV stopped playing
-    trigger:
-      - platform: state
-        entity_id: media_player.apple_tv
-        to: 'idle'
-        for:
-          minutes: 15
-      - platform: state
-        entity_id: media_player.apple_tv
-        to: 'off' 
-    action:
-      - service: switch.turn_off
-        entity_id: switch.television
 
   - id: television_turned_off_stop_apple_tv
     alias: Television turned off stop Apple TV

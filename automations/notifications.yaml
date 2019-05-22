@@ -80,18 +80,6 @@
         title: "zigbee2mqtt"
         message: "{{ trigger.payload_json['message'] | capitalize }}"
 
-# PostNL
-- id: notification_postnl
-  alias: Notification PostNL
-  trigger: 
-    - platform: state
-      entity_id: sensor.postnl
-  action:
-    - service: notify.notify
-      data_template:
-        title: "PostNL"
-        message: "{{ trigger.to_state }}"
-
 # transmission
 - id: notification_torrent_complete
   alias: Notification Torrent Complete
