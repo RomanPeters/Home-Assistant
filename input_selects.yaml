@@ -1,38 +1,38 @@
-alarm_time:
-  name: "Time"
-  initial: "08:00"
-  options: !include times.yaml
-
-alarm_mode:
-  name: Mode
+activity:
+  name: Activity
   options:
-    - Night sleep
-    - Power nap
+    - computering
+    - watching tv
+    - showering
+    - brushing teeth
+    - leaving
+    - going to bed
+    - in bed
+    - sleeping
+    - waking up
+    - going home
+    - at work
+    - at the university
+    - none
 
-transition:
-  name: "Transitions"
+button_single:
+  name: Button Single Click
   options:
-    - None
-    - blue_furry
-    - under_water
+    - Fan
+    - Standing Lamp
+    - TV Backlight
+    - Ambient Lights
 
-scene:
-  name: Scenes
+alarm_clock_media:
+  name: Media
+  icon: mdi:none
   options:
-    - None
-    - movie
-    - romantic
-    - white
-    - dim
+    - Television
+    - Rainy Jazz
+    - LoFi Hip Hop Mix
+    - Birds
+    - Forest
+    - Thunderstorm
+    - Fireplace
+    - Beach
 
-power_off:
-  name: Power off
-  options:
-    - 0
-    - 1
-    - 5
-    - 15
-    - 30
-    - 60
-    - 120
-  initial: 0

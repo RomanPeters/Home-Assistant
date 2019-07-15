@@ -1,82 +1,103 @@
 homeassistant:
-  name: Dashboard
-  latitude: !secret latitude
-  longitude: !secret longitude
-  elevation: 40
-  unit_system: metric
-  time_zone: Europe/Amsterdam
-  customize: !include customize.yaml
-frontend:
-  themes:
-    steelblue:
-      primary-color: steelblue
-    darkred:
-      primary-color: darkred
-    black:
-      primary-color: black
-    darkgray:
-      primary-color: slategray
-config:
-updater:
-discovery:
-ios:
-conversation:
-#history:
-#datadog:
-logbook:
+        #  name: Home
+  #  latitude: !secret latitude
+  #  longitude: !secret longitude
+  #  elevation: 40
+  #  unit_system: metric
+  #  time_zone: Europe/Amsterdam
+  customize: !include_dir_merge_named customize
+  whitelist_external_dirs:
+    - /config
+  packages: !include_dir_named packages
+
+
 http:
-  development: False
-  api_password: !secret api_password
   ip_ban_enabled: True
-  login_attempts_threshold: 3
+  login_attempts_threshold: 5
+  use_x_forwarded_for: True
+  trusted_proxies:
+    - 172.1.1.1
+    - 172.17.0.0/24
+    - 10.10.10.20
 
-group: !include groups.yaml
-zone: !include zones.yaml
-sensor: !include sensors.yaml
-light: !include lights.yaml
-switch: !include switches.yaml
-input_select: !include input_selects.yaml
+#  trusted_networks:
+#    - 10.10.10.10
 
-automation: !include_dir_merge_named automations
-script: !include_dir_named scripts
-scene: !include_dir_merge_named scenes
+#  ssl:
+#    ssl_certificate: /ssl/fullchain.pem 
+#    ssl_key: /ssl/privkey.pem
 
-sun:  
+frontend:
+#  javascript_version: es5
+  themes: !include themes.yaml
 
-#device_sun_light_trigger:
-#  light_group: group.lichten
-#  light_profile: relax
-#  device_group: group.person_roman
+mqtt:
+#  discovery: true
+  broker: 10.10.10.20
+  client_id: home-assistant
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
 
-google:
-  client_id: !secret google_client_id
-  client_secret: !secret google_client_secret
+weather:
+  - platform: buienradar
+    name: Utrecht
+    
+transmission:
+  host: transmission
+  username: ""
+  password: ""
+
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+stream:
+person:
+system_health:
+auth:
+config:
+history:
+map:
+python_script:
+media_extractor:
+conversation:
+sun:
+ios:
+mobile_app:
+
+shell_command:
+  install_deps: 'apt update && apt install -y vlc'
 
 tts:
-  platform: google
+  - platform: google_translate
 
-media_player:
-  - platform: apple_tv
-    host: !secret apple_tv_ip
-    login_id: !secret apple_tv_id
+recorder:
+  db_url: !secret db_url
 
-input_boolean:
-  smart_alarm:
-    name: Smart alarm
-    initial: off
-    icon: mdi:alarm
+  #influxdb:
+  #  host: 10.10.10.20
 
-input_slider:
-  light_transition:
-    name: Delay
-    initial: 9
-    min: 1
-    max: 9
-    step: 1
-
-
-
-
-
-
+logbook: !include logbook.yaml
+#automation: !include automations.yaml
+automation yaml: !include_dir_merge_list automations
+light: !include lights.yaml
+group: !include_dir_merge_named groups
+switch: !include switches.yaml
+sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
+panel_iframe: !include panel_iframes.yaml
+script: !include_dir_merge_named scripts
+history_graph: !include history_graphs.yaml
+input_select: !include input_selects.yaml
+scene: !include_dir_merge_named scenes
+climate: !include climates.yaml
+input_text: !include input_texts.yaml
+input_number: !include input_numbers.yaml
+device_tracker: !include device_trackers.yaml
+notify: !include notifies.yaml
+media_player: !include media_players.yaml
+zone: !include zones.yaml
 

@@ -1,30 +1,183 @@
-- platform: darksky
-  api_key: !secret darksky_api_key
+- platform: buienradar
   monitored_conditions:
-    - summary
+    - condition
+    - humidity
     - temperature
-    - hourly_summary
-    - temperature_min
-    - temperature_max
-  update_interval: '00:15'
+    - pressure
+    - precipitation
+    - precipitation_forecast_total
 
-- platform: minecraft
-  name: Minecraft
-  server: !secret minecraft_server
+- platform: waqi
+  token: !secret waqi_token
+  locations:
+    - 'utrecht'
+  stations:
+    - 'de Jongweg, Utrecht'
 
-- platform: broadlink
-  host: !secret broadlink_ip
-  mac: !secret broadlink_mac
-  monitored_conditions:
-    - temperature
+- platform: time_date
+  display_options:
+    - 'time'
 
+# Templates
 - platform: template
   sensors:
-    inside_temperature:
+    air_quality_status:
+      friendly_name: AQI
+      # Based on EPA AQI: https://en.wikipedia.org/wiki/Air_quality_index#Computing_the_AQI
       value_template: >
-          {% if states.sensor.broadlink_sensor_temperature.state == float %}
-          {{  states.sensor.broadlink_sensor_temperature.state | float - 3 }}  # Offset sensor by 3 degrees
-          {% else %} 
-          -
-          Unavailable
-          {% endif %}
+        {% if states('sensor.particle_sensor_pm25') | int <= 12 and states('sensor.particle_sensor_pm10') | int <= 54 %}
+          Good
+        {% elif states('sensor.particle_sensor_pm25') | float <= 35.4 and states('sensor.particle_sensor_pm10') | int <= 154 %}
+          Moderate
+        {% elif states('sensor.particle_sensor_pm25') | float <= 55.4 and states('sensor.particle_sensor_pm10') | int <= 254 %}
+          Unhealthy for Sensitive Groups
+        {% elif states('sensor.particle_sensor_pm25') | float <= 150.4 and states('sensor.particle_sensor_pm10') | int <= 354 %}
+          Unhealthy
+        {% elif states('sensor.particle_sensor_pm25') | float <= 250.4 and states('sensor.particle_sensor_pm10') | int <= 424 %}
+          Very Unhealthy
+        {% else %}
+          Hazardous
+        {% endif %}
+
+    world_air_quality_status:
+      friendly_name: WAQI
+      value_template: >
+        {% if states('sensor.waqi_de_jongweg_utrecht') | int <= 50 %}
+          Good
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 100 %}
+          Moderate
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 150 %}
+          Unhealthy for Sensitive Groups
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 200 %}
+          Unhealthy
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 300 %}
+          Very Unhealthy
+        {% else %}
+          Hazardous
+        {% endif %}
+
+    waqi_particle_sensor_pm25:
+      friendly_name: WAQI PM2.5
+      unit_of_measurement: "μg/m3"
+      value_template: >
+        {{ state_attr('sensor.waqi_de_jongweg_utrecht', 'pm_2_5') }}
+    waqi_particle_sensor_pm10:
+      friendly_name: WAQI PM10
+      unit_of_measurement: "μg/m3"
+      value_template: >
+        {{ state_attr('sensor.waqi_de_jongweg_utrecht', 'pm_10') }}
+
+    status_summary:
+      friendly_name: Status Summary
+      value_template: >
+        {% if is_state("person.roman", "home") and is_state("person.nadine", "home") -%}
+          Roman and Nadine are
+        {%- elif is_state("person.roman", "home") -%}
+          Roman is
+        {%- elif is_state("person.nadine", "home") -%}
+          Nadine is
+        {%- elif now().timestamp() - states.person.roman.last_changed.timestamp() < 86400 -%}
+          Roman left at {{ (states.person.roman.last_changed | string )[11:16] }}.
+        {%- else -%}
+          No one is home.{%- endif -%}
+        {%- if (is_state("person.roman", "home") or is_state("person.nadine", "home")) and is_state("switch.television", "on") -%}
+          {{ " " }}watching television.
+        {%- elif (is_state("person.roman", "home") or is_state("person.nadine", "home")) and is_state("input_select.home_status", "Night") -%}
+          {{ " " }}in bed.
+        {%- elif is_state("person.roman", "home") or is_state("person.nadine", "home") -%}
+          {{ " " }}home.{%- endif -%}
+
+          {{ " " }}Current temperature is {{ state_attr('climate.thermostat', 'current_temperature') }}°
+        {%- if is_state("climate.thermostat", "idle") -%}
+          , guarded at {{ states.climate.thermostat.attributes.temperature }}°.
+        {%- elif is_state("climate.thermostat", "heat") -%}
+          , warming to {{ states.climate.thermostat.attributes.temperature }}°.
+        {%- else -%}
+          .
+        {%- endif -%}
+        {%- if is_state("binary_sensor.door", "on") and is_state("binary_sensor.window", "on") -%}
+          {{ " " }}The door and the window are both open.
+        {%- elif is_state("binary_sensor.door", "on") -%}
+          {{ " " }}The door is open.
+        {%- elif is_state("binary_sensor.window", "on") -%}
+          {{ " " }}The window is open.
+        {%- endif %}
+        {%- for i in states.group.status.attributes.entity_id if is_state(i, 'on') -%}
+          {%- if loop.first %}{{ " " }}The {% elif loop.last %} and the {% else %}, the {% endif -%}
+          {{ state_attr(i, 'friendly_name') | lower }} is {{ states(i) }}
+          {%- if loop.last %}.{% endif -%}
+        {%- endfor -%}
+        {%- if is_state("group.status", "off") and (is_state("climate.thermostat", "heat") or is_state("climate.thermostat", "idle") or is_state("switch.television", "on")) -%}
+          {{ " " }}All other devices are off.
+        {%- elif is_state("group.status", "off") -%}
+          {{ " " }}All devices are off.
+        {%- endif %}
+
+
+
+
+### MQTT
+
+- platform: "mqtt"
+  name: Aqara Temperature
+  state_topic: "zigbee2mqtt/aqara_temperature_sensor"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  icon: "mdi:thermometer"
+  value_template: "{{ value_json.temperature }}"
+  json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor"
+
+- platform: "mqtt"
+  name: Aqara Humidity
+  state_topic: "zigbee2mqtt/aqara_temperature_sensor"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  icon: "mdi:water-percent"
+  value_template: "{{ value_json.humidity }}"
+  json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor"
+
+- platform: "mqtt"
+  name: Aqara Pressure
+  state_topic: "zigbee2mqtt/aqara_temperature_sensor"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "hPa"
+  icon: "mdi:speedometer"
+  value_template: "{{ value_json.pressure }}"
+  json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor"
+
+- platform: "mqtt"
+  name: Aqara Temperature 2
+  state_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  icon: "mdi:thermometer"
+  value_template: "{{ value_json.temperature }}"
+  json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+
+- platform: "mqtt"
+  name: Aqara Humidity 2
+  state_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  icon: "mdi:water-percent"
+  value_template: "{{ value_json.humidity }}"
+  json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+
+- platform: "mqtt"
+  name: Aqara Pressure 2
+  state_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "hPa"
+  icon: "mdi:speedometer"
+  value_template: "{{ value_json.pressure }}"
+  json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+
+- platform: "mqtt"
+  name: Aqara Illuminance
+  state_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "lx"
+  icon: "mdi:theme-light-dark"
+  value_template: "{{ value_json.illuminance }}"
+  json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+

@@ -1,34 +1,74 @@
 - platform: broadlink
-  host: !secret broadlinkmp1_ip
-  mac: !secret broadlinkmp1_mac
-  type: mp1-1
-  friendly_name: E
-- platform: broadlink
-  host: !secret broadlinkmp1_ip
-  mac: !secret broadlinkmp1_mac
-  type: mp1-2
-  friendly_name: F
-- platform: broadlink
-  host: !secret broadlinkmp1_ip
-  mac: !secret broadlinkmp1_mac
-  type: mp1-3
-  friendly_name: G
-- platform: broadlink
-  host: !secret broadlinkmp1_ip
-  mac: !secret broadlinkmp1_mac
-  type: mp1-4
-  friendly_name: H
+  host: "10.10.10.202"
+  mac: "b4:43:0d:db:97:6c"
+  type: mp1
+  friendly_name: Power Strip
+  slots:
+     slot_1: Entone
+     slot_2: Air Purifier
+     slot_3: Television
+     slot_4: Socket
 
 - platform: broadlink
-  host: !secret broadlink_ip
-  mac: !secret broadlink_mac
-
-- platform: template
+  host: "10.10.10.203"
+  mac: "b4:43:0d:db:97:6c"
+  type: rm2_pro_plus
   switches:
-    tv:
-      friendly_name: 'Television'
-      value_template: "{{ is_state('states.switch.g', 'on')  }}"
-      turn_on:
-        service: script.tv_on
-      turn_off:
-        service: script.tv_off
+    socket_1:
+      friendly_name: "Socket 1"
+      command_on: "sg0yAAcRBhESBgYRBhEGEQYREgYRBgYRBhEGrREGBhEGEQYRBxERBgYREQYSBgYREQYRBgYRAAAAAAAA"
+      #TODO command_off is broken
+      command_off: "sg8yAAYREgYGERIGEgYGEhEGEgYGEQYRBhERBgYRBhEGEQYRBhEGEREGBhEGrBEGBhEGEQYRAAAAAAAA"
+    socket_2:
+      friendly_name: "Socket 2"
+      command_on: "sgsyAAYSBhEHEQcREQcGEhEGBxEGrREGBhIGEQYRBhERBgYSEQYRBgcREQYRBwYRBhEGEREHAAAAAAAA"
+      command_off: "skcyABEGBhEGEQYRBhESBgYREQYRBgcREgYSBgYRBhEHEREGBhEGEQYRBhEGEQYREgYGEQasAAAAAAAA"
+    socket_3:
+      friendly_name: "Socket 3"
+      command_on: "sgoyABIGBxEHEQcRBhESBgcREgYSBQcREgUSBgcRBxEHERIFBxEGEQcRBhESBgcRBhESBgesAAAAAAAA"
+      command_off: "sgYyAAasEQYHEQYRBxEGEREGBhESBhEGBhERBhIGBhEGEgYSEQYGEQYRBhEGEQYRBhEGEREGAAAAAAAA"
+    socket_4:  # socket 4
+      friendly_name: "Socket 4"
+      command_on: "sgsyABIGEQYGEREGEgYGEQcRBhERBgYRBxEGEQcREgYSBgcREgYGrBEGBxEGEQYRBxESBgcRAAAAAAAA"
+      command_off: "sgoyABEGBhEGEQYREQYGEQYRBhEGEQcREQYGERIGBqwRBgYRBhEGEQYREQYGERIGEQYGEREGAAAAAAAA"
+    socket_5:  # socket 5
+      friendly_name: "Socket 5"
+      command_on: "sg4yABIGBhEGEQYRBhIRBgYREQYRBgYREQYRBgYRBhIGEREGBhEGEQYRBhERBgYREQYRBgasAAAAAAAA"
+      command_off: "shEyABIGBhEGEQYRBhERBgYREQYRBgYREQYRBgYRBhEHEREGBhEGEQYRBxEHEQYREQYRBgesAAAAAAAA"
+
+- platform: mqtt
+  name: zigbee2mqtt Pairing
+  icon: mdi:zigbee
+  state_topic: "zigbee2mqtt/bridge/config/permit_join"
+  command_topic: zigbee2mqtt/bridge/config/permit_join
+  payload_on: "true"
+  payload_off: "false"
+
+- platform: mqtt
+  name: zigbee2mqtt LED
+  icon: mdi:led
+  state_topic: "zigbee2mqtt/bridge/config/disable_led"
+  command_topic: "zigbee2mqtt/bridge/config/disable_led"
+  payload_on: "true"
+  payload_off: "false"
+
+- platform: "mqtt"
+  name: Spot
+  state_topic: "zigbee2mqtt/tradfri_control_outlet"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_off: "OFF"
+  payload_on: "ON"
+  value_template: "{{ value_json.state }}"
+  command_topic: "zigbee2mqtt/tradfri_control_outlet/set"
+
+
+
+- platform: command_line
+  switches:
+    pihole:
+      friendly_name: Pi-Hole Blocking
+      command_on: !secret pi_hole_command_on
+      command_off: !secret pi_hole_command_off
+# Disabled below, because it's not really necessary to keep checking whether it's on or off
+#      command_state: "curl -X GET 'http://10.10.10.101/admin/api.php?status'"
+#      value_template: "{{ value_json.status == 'enabled' }}"
