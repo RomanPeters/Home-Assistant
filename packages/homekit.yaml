@@ -8,6 +8,9 @@ homekit:
       - light.gateway_light_7811dce1e53e
       - media_player.television
       - sensor.aqara_humidity
+      - sensor.aqara_humidity_2
+      - sensor.aqara_temperature
+      - sensor.aqara_temperature_2
       - switch.air_purifier
       - switch.home
       - switch.entone
