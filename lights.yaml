@@ -3,29 +3,6 @@
 #    candela:
 #      mac: 'f8:24:41:c1:6b:f4'
 
-- platform: limitlessled
-  bridges:
-    - host: "10.10.10.201"
-      port: 8899
-      version: 5
-      groups:
-      - number: 1
-        type: rgbw
-        name: Milight RGBW Bulb
-      - number: 2
-        type: rgbw
-        name: LED Strip 1
-      - number: 3
-        type: rgbw
-        name: LED Strip 2
-      - number: 1
-        type: white
-        name: Milight White Bulb
-
-- platform: switch
-  name: Spot
-  entity_id: switch.spot
-
 - platform: mqtt
   name: Aqara White Bulb
   state_topic: "zigbee2mqtt/aqara_white_bulb"
@@ -34,14 +11,6 @@
   color_temp: true
   schema: "json"
   command_topic: "zigbee2mqtt/aqara_white_bulb/set"
-
-- platform: mqtt
-  name: MacBook Screen
-  brightness: true
-  schema: "json"
-  command_topic: "macbook/screen/set"
-  state_topic: "macbook/screen"
-  availability_topic: "mqtthawk/state"
 
 - platform: mqtt
   name: Candela
@@ -67,16 +36,3 @@
 #  availability_topic: "sonoff2/status"  #"sonoff_th10/status"
 
 
-# Aliases
-- platform: group
-  name: "Ambient Lights"
-  entities:
-    - light.milight_rgbw_bulb
-    - light.led_strip_1
-    - light.led_strip_2
-    - light.tv_backlight
-
-- platform: group
-  name: "Night Light"
-  entities:
-    - light.tv_backlight
