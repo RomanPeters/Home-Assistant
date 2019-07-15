@@ -1,23 +1,13 @@
 homekit:
   filter:
     include_entities:
-      - alarm_control_panel.home_status
       - binary_sensor.door
       - binary_sensor.window
-      - binary_sensor.aqara_motion_sensor
-      - climate.thermostat
-      - input_boolean.autowake
+      - binary_sensor.motion_sensor_sensor
       - light.aqara_white_bulb
-      - light.milight_rgbw_bulb
-      - light.spot
-      - light.tv_backlight
-      - light.spot
-      - light.led_strip_1
-      - light.led_strip_2
+      - light.gateway_light_7811dce1e53e
       - media_player.television
-      - sensor.aqara_illuminance
       - sensor.aqara_humidity
-      - sensor.particle_sensor_pm2_5
       - switch.air_purifier
       - switch.home
       - switch.entone
