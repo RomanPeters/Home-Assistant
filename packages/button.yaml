@@ -2,7 +2,7 @@ sensor:
   - platform: "mqtt"
     name: Mijia Button
     state_topic: "zigbee2mqtt/mijia_button"
-    availability_topic: "zigbee2mqtt/bridge/state"
+    #    availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:toggle-switch"
     value_template: "{{ value_json.click }}"
     json_attributes_topic: "zigbee2mqtt/mijia_button"

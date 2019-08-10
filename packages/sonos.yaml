@@ -1,0 +1,11 @@
+input_number:
+  spoken_notifications_volume:
+    name: Spoken Notifications Volume
+    min: 0
+    max: 1
+    step: 0.1
+
+homeassistant:
+  customize:
+    input_number.spoken_notifications_volume:
+      icon: mdi:volume-high

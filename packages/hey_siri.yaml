@@ -2,11 +2,19 @@ script:
   hey_siri:
     alias: Hey Siri
     sequence:
-      - service: tts.google_say
+      - service: sonos.snapshot
+      - service: media_player.volume_set
         data_template:
-          entity_id: media_player.intel_nuc
+          entity_id: media_player.sonos
+          volume_level: "{{ states('input_number.spoken_notifications_volume') }}"
+      - service: tts.google_translate_say
+        data_template:
+          entity_id: media_player.sonos
           message: "Hey Siri, {{ command }}"
-    
+      - delay:
+          seconds: 5
+      - service: sonos.restore
+
 input_text:
   hey_siri:
     name: Hey Siri
@@ -20,13 +28,12 @@ automation:
       from: ""
     action:
       - service: input_text.set_value
-        data_template:
+        data:
           entity_id: input_text.hey_siri
           value: ""
-      - service: tts.google_say
+      - service: script.hey_siri
         data_template:
-          entity_id: media_player.intel_nuc
-          message: "Hey Siri, {{ trigger.to_state.state }}"
+          command: "{{ trigger.to_state.state }}"
 
 homeassistant:
   customize:

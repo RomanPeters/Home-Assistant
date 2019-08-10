@@ -1,32 +1,23 @@
+switch:
+  - platform: rest
+    resource: http://10.10.10.20:8126/container/minecraft-server
+    name: Minecraft Server
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
 binary_sensor:
   - platform: "template"
     sensors:
       minecraft_server:
-        value_template: "{{ is_state('switch.ha_dockermon_minecraft_server', 'on') }}"
-
-sensor:
-  - platform: file
-    name: Minecraft Log
-    file_path: /config/minecraft.log
-    value_template: "{{ ':'.join(value.split(':')[3:]) }}"
+        value_template: "{{ is_state('switch.minecraft_server', 'on') }}"
 
 automation:
-  - id: notification_joined_minecraft
-    alias: Notification Joined Minecraft
-    trigger: 
-      - platform: template
-        value_template: "{{ 'joined the game' in states('sensor.minecraft_log') or 'left the game' in states('sensor.minecraft_log') }}"
-    action:
-      service: script.broadcast
-      data_template:
-        title: "Minecraft Server"
-        message: "{{ states('sensor.minecraft_log') }}"
-
   - id: notification_minecraft_server
     alias: Notification Minecraft Server
     trigger: 
       - platform: state
-        entity_id: sensor.minecraft_server
+        entity_id: binary_sensor.minecraft_server
     action:
       service: script.broadcast
       data_template:

@@ -62,10 +62,8 @@ automation:
         entity_id: switch.television
         to: 'on'
     action:
-      - service: light.turn_on
-        entity_id: light.tv_backlight
-        data:
-          color_name: white
+      - service: media_player.turn_on
+        entity_id: media_player.apple_tv
 
   - id: television_turns_on_extra
     alias: Television turns on extra
@@ -94,8 +92,6 @@ automation:
         entity_id: switch.television
         to: 'off'
     action:
-      - service: light.turn_off
-        entity_id: light.tv_backlight
       - service: switch.turn_off
         entity_id: switch.entone
 

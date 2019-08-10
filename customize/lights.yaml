@@ -1,21 +1,3 @@
-light.milight_rgbw_bulb:
-  friendly_name: Standing Lamp
-  icon: mdi:floor-lamp
-  assumed_state: false
-
-light.milight_white_bulb:
-  friendly_name: White Bulb
-  icon: mdi:ceiling-light
-  assumed_state: false
-
-light.led_strip_1:
-  icon: mdi:blur-linear
-  assumed_state: false
-
-light.led_strip_2:
-  icon: mdi:blur-linear
-  assumed_state: false
-
 light.tv_backlight:
   icon: mdi:blur
   assumed_state: false
@@ -35,7 +17,11 @@ light.spot:
   assumed_state: false
 
 light.aqara_white_bulb:
-  friendly_name: Ceiling Lamp
+  friendly_name: Kitchen Light
+  icon: mdi:ceiling-light
+
+light.tradfri_rgbw_bulb:
+  friendly_name: Living Room Light
   icon: mdi:ceiling-light
 
 light.candela:

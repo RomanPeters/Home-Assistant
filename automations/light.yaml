@@ -1,0 +1,22 @@
+- id: bathroom_light_on
+  alias: Bathroom Light On
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.aqara_motion_sensor
+      to: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.tradfri_control_outlet_light
+
+
+- id: bathroom_light_off
+  alias: Bathroom Light Off
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.aqara_motion_sensor
+      to: 'off'
+      for:
+        minutes: 3
+  action:
+    - service: light.turn_off
+      entity_id: light.tradfri_control_outlet_light

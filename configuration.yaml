@@ -47,7 +47,7 @@ weather:
     name: Utrecht
     
 transmission:
-  host: 10.10.10.20
+  host: transmission
   username: ""
   password: ""
 
@@ -75,10 +75,10 @@ tts:
   - platform: google_translate
 
 recorder:
-  db_url: !secret db_url
+        #  db_url: !secret db_url
 
-influxdb:
-  host: 10.10.10.20
+        #influxdb:
+        #  host: 10.10.10.20
 
 logbook: !include logbook.yaml
 #automation: !include automations.yaml

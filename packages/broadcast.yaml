@@ -4,18 +4,13 @@
 # else the notification will be sent as a push notification on mobile
 
 
-input_boolean:
-  spoken_notifications:
-    name: Spoken Notifications
-    icon: mdi:voice
-
 script:
   broadcast: 
     alias: Broadcast
     sequence:
       - alias: Choose method
         service_template: >
-          {% if is_state('input_boolean.room_presence', 'on') and is_state('input_boolean.spoken_notifications', 'on') and is_state('binary_sensor.door', 'off') %}
+          {% if is_state('switch.do_not_disturb', 'off') %}
             script.announce
           {% else %}
             script.notificate
@@ -36,17 +31,34 @@ script:
   announce:
     alias: Announce
     sequence:
+      - service: sonos.snapshot        
+      - service: media_player.volume_set
+        data_template:
+          entity_id: media_player.sonos
+          volume_level: "{{ states('input_number.spoken_notifications_volume') }}"
       - alias: Play Sound Effect
         service: media_player.play_media
         data:
-          entity_id: media_player.intel_nuc
-          media_content_type: "music"
-          media_content_id: "/config/audio/sound_effects/Ping.aiff"
+          entity_id: media_player.sonos
+          media_content_type: "audio/mp3"
+          media_content_id: "http://10.10.10.20:8123/local/sound_effects/ping.wav"
       - delay:
-          seconds: 0.5
+              seconds: 1
       - alias: Play Message
         service: tts.google_translate_say
         data_template:
-          entity_id: media_player.intel_nuc
+          entity_id: media_player.sonos
           message: "{{ message }}"
-      
+      - delay:
+          seconds: 5
+      - service: sonos.restore
+
+automation:
+  - alias: Test Spoken Notification
+    trigger:
+      platform: state
+      entity_id: input_number.spoken_notifications_volume
+    action:
+      - service: script.broadcast
+        data_template:
+          message: "New volume set"
