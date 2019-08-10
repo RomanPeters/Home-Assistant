@@ -12,7 +12,7 @@
 - platform: "mqtt"
   name: Window
   state_topic: "zigbee2mqtt/aqara_contact_sensor_2"
-  availability_topic: "zigbee2mqtt/bridge/state"
+  #  availability_topic: "zigbee2mqtt/bridge/state"
   payload_on: false
   payload_off: true
   value_template: "{{ value_json.contact }}"
@@ -22,7 +22,7 @@
 - platform: "mqtt"
   name: Aqara motion sensor
   state_topic: "zigbee2mqtt/aqara_motion_sensor"
-  availability_topic: "zigbee2mqtt/bridge/state"
+  #  availability_topic: "zigbee2mqtt/bridge/state"
   payload_on: true
   payload_off: false
   value_template: "{{ value_json.occupancy }}"

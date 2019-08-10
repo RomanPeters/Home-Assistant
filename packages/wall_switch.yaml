@@ -2,7 +2,7 @@ sensor:
   - platform: "mqtt"
     name: Aqara Wall Switch
     state_topic: "zigbee2mqtt/aqara_wall_switch"
-    availability_topic: "zigbee2mqtt/bridge/state"
+    #    availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:toggle-switch"
     value_template: "{{ value_json.click }}"
     json_attributes_topic: "zigbee2mqtt/aqara_wall_switch"
@@ -31,7 +31,7 @@ automation:
         value_template: "{{ trigger.payload_json.click == 'right' }}"
     action:
       - service: light.toggle
-        entity_id: light.ambient_lights
+        entity_id: light.tradfri_rgbw_bulb
   
   - id: wall_switch_both
     alias: wall switch both
@@ -42,7 +42,5 @@ automation:
       - condition: template
         value_template: "{{ trigger.payload_json.click == 'both' }}"
     action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.home_status
-          option: 'Away'
+      - service: light.turn_off
+        entity_id: group.all_lights

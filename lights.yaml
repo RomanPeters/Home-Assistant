@@ -13,6 +13,16 @@
   command_topic: "zigbee2mqtt/aqara_white_bulb/set"
 
 - platform: mqtt
+  name: Tradfri RGBW Bulb
+  state_topic: "zigbee2mqtt/tradfri_rgbw_bulb"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  xy: true
+  schema: "json"
+  command_topic: "zigbee2mqtt/tradfri_rgbw_bulb/set"
+
+- platform: mqtt
   name: Candela
   state_topic: "satellite/light/candela/state"
   brightness_command_topic: "satellite/light/candela/brightness"

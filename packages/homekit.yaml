@@ -5,6 +5,8 @@ homekit:
       - binary_sensor.window
       - binary_sensor.motion_sensor_sensor
       - light.aqara_white_bulb
+      - light.tradfri_rgbw_bulb
+      - light.tradfri_control_outlet_light
       - light.gateway_light_7811dce1e53e
       - media_player.television
       - sensor.aqara_humidity
@@ -15,6 +17,7 @@ homekit:
       - switch.home
       - switch.entone
       - switch.tradfri_control_outlet
+      - input_boolean.do_not_disturb
 
   entity_config:
     binary_sensor.door:
@@ -49,6 +52,12 @@ switch:
     command_topic: 'homekit/home'
     payload_on: 'home'
     payload_off: 'not_home'
+
+  - platform: mqtt
+    name: Do Not Disturb
+    command_topic: 'homekit/dnd'
+    icon: mdi:moon-waning-crescent
+
 
 input_boolean:
   autowake:

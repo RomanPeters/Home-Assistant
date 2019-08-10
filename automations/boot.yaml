@@ -7,4 +7,4 @@
   action:
     - service: group.turn_on
       entity_id: group.all_automations
-    - service: shell_command.install_deps
+      #    - service: shell_command.install_deps

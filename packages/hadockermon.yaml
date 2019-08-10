@@ -3,6 +3,7 @@ switch:
     host: 10.10.10.20
     port: 8126
 
+
     #script:
     #  restart_plex:
     #    sequence:
