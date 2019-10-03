@@ -3,18 +3,6 @@ apple_tv:
     login_id: !secret apple_tv_id
 
 automation:
-  - id: apple_tv_airplay_audio
-    alias: Switch to AirPlay audio output on startup
-    trigger:
-      - platform: state
-        entity_id: media_player.apple_tv
-        from: 'off'
-    action:
-      - delay:
-          seconds: 10
-      - service: script.turn_on
-        entity_id: script.apple_tv_airplay
-
   - id: apple_tv_started_playing
     alias: Apple TV started playing
     trigger:
@@ -22,23 +10,43 @@ automation:
         entity_id: media_player.apple_tv
         to: 'playing'
     action:
+      - wait_template: "{{ is_state('binary_sensor.television', 'on') }}"
+        timeout: '00:01:00'
+        continue_on_timeout: 'false'
       - service_template: input_boolean.turn_on
         entity_id: input_boolean.do_not_disturb
-      - service: switch.turn_on
-        entity_id: switch.television
-      - service: scene.turn_on
-        entity_id: scene.movie_mode
+      - service: media_player.media_pause
+        entity_id: media_player.sonos
 
-  - id: apple_tv_stopped_playing
-    alias: Apple TV stopped playing
+        #- id: apple_tv_stopped_playing
+        #    alias: Apple TV stopped playing
+        #    trigger:
+        #      - platform: state
+        #        entity_id: media_player.apple_tv
+        #        from: 'playing'
+        #    action:
+        #      - service_template: input_boolean.turn_off
+        #        entity_id: input_boolean.do_not_disturb
+
+  - id: pause_apple_tv
+    alias: Pause Apple TV
     trigger:
       - platform: state
+        entity_id: binary_sensor.contact_sensor
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.bathroom_occupied
+        to: 'on'
+    condition:
+      - condition: state
         entity_id: media_player.apple_tv
-        from: 'playing'
+        state: 'playing'
     action:
-      - service_template: input_boolean.turn_off
-        entity_id: input_boolean.do_not_disturb
-
+      - service: media_player.media_pause
+        entity_id: media_player.apple_tv
+      - wait_template: "{{ is_state(trigger.entity_id, 'off') }}"
+      - service: media_player.media_play
+        entity_id: media_player.apple_tv
 
   - id: television_turned_off_stop_apple_tv
     alias: Television turned off stop Apple TV

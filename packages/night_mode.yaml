@@ -1,0 +1,38 @@
+input_boolean:
+  night_mode:
+    name: Night Mode
+
+
+automation:
+  # UI Switch Action
+  - id: night_mode_switch_on
+    alias: Night Mode Switch On
+    trigger:
+      - platform: state
+        entity_id: input_boolean.night_mode
+        to: 'on'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.night_mode
+
+  - id: night_mode_switch_off
+    alias: Night Mode Switch Off
+    trigger:
+      - platform: state
+        entity_id: input_boolean.night_mode
+        to: 'on'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.day_mode
+                               
+  - id: night_mode_is_on
+    alias: Night Mode Switch On
+    trigger:
+      - platform: state
+        entity_id: input_boolean.night_mode
+        to: 'on'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.night_mode
+
+

@@ -1,0 +1,43 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Aqara motion sensor
+    state_topic: "zigbee2mqtt/aqara_motion_sensor"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes_topic: "zigbee2mqtt/aqara_motion_sensor"
+
+  - platform: "mqtt"
+    name: Mijia Motion Sensor
+    state_topic: "zigbee2mqtt/mijia_motion_sensor"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes_topic: "zigbee2mqtt/mijia_motion_sensor"
+
+  - platform: "mqtt"
+    name: Mijia Motion Sensor 2
+    state_topic: "zigbee2mqtt/mijia_motion_sensor_2"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes_topic: "zigbee2mqtt/mijia_motion_sensor_2"
+
+sensor:
+  - platform: "mqtt"
+    name: Aqara Illuminance
+    state_topic: "zigbee2mqtt/aqara_motion_sensor"
+    unit_of_measurement: "lx"
+    icon: "mdi:theme-light-dark"
+    value_template: "{{ value_json.illuminance }}"
+    json_attributes_topic: "zigbee2mqtt/aqara_motion_sensor"
+
+homeassistant:
+  customize:
+    binary_sensor.mijia_motion_sensor:
+      friendly_name: Kitchen Motion Sensor
+    binary_sensor.mijia_motion_sensor_2:
+      friendly_name: Bathroom Motion Sensor

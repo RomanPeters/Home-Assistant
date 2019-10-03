@@ -1,0 +1,14 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Contact Sensor 2
+    state_topic: "zigbee2mqtt/aqara_contact_sensor_2"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "door"
+    json_attributes_topic: "zigbee2mqtt/aqara_contact_sensor_2"
+
+homeassistant:
+  customize:
+    binary_sensor.contact_sensor_2:
+      friendly_name: Bathroom Door

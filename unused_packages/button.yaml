@@ -1,0 +1,71 @@
+sensor:
+  - platform: "mqtt"
+    name: Mijia Button
+    state_topic: "zigbee2mqtt/mijia_button"
+    #    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:toggle-switch"
+    value_template: "{{ value_json.click }}"
+    json_attributes_topic: "zigbee2mqtt/mijia_button"
+    force_update: true
+
+
+automation:
+  # SINGLE PRESS
+  - id: button_single_press
+    alias: Button Single Press
+    trigger:
+      - platform: mqtt
+        topic: zigbee2mqtt/mijia_button
+    condition:
+      - condition: template
+        value_template: "{{ trigger.payload_json.click == 'single' }}"
+    action:
+      - service: media_player.media_play_pause
+        entity_id: media_player.sonos
+  
+  # DOUBLE PRESS
+  - id: button_double_press
+    alias: Button Double Press
+    trigger:
+      - platform: mqtt
+        topic: zigbee2mqtt/mijia_button
+    condition:
+      - condition: template
+        value_template: "{{ trigger.payload_json.click == 'double' }}"
+    action:
+      - service: media_player.media_next_track
+        entity_id: media_player.sonos
+      - service: media_player.media_play
+        entity_id: media_player.sonos
+
+  # TRIPLE PRESS
+  - id: button_triple_press
+    alias: Button Triple Press
+    trigger:
+      - platform: mqtt
+        topic: zigbee2mqtt/mijia_button
+    condition:
+      - condition: template
+        value_template: "{{ trigger.payload_json.click == 'triple' }}"
+    action:
+      - service: switch.toggle
+        entity_id: switch.tradfri_control_outlet
+
+  # QUADRUPLE PRESS
+  - id: button_quadruple_press
+    alias: Button Triple Press
+    trigger:
+      - platform: mqtt
+        topic: zigbee2mqtt/mijia_button
+    condition:
+      - condition: template
+        value_template: "{{ trigger.payload_json.click == 'quadruple' }}"
+    action:
+      - service: switch.toggle
+        entity_id: switch.air_purifier
+
+  # MANY PRESS
+  
+  # LONG PRESS
+  
+  # LONG_RELEASE PRESS

@@ -6,7 +6,6 @@
 - platform: mqtt
   name: Aqara White Bulb
   state_topic: "zigbee2mqtt/aqara_white_bulb"
-  availability_topic: "zigbee2mqtt/bridge/state"
   brightness: true
   color_temp: true
   schema: "json"
@@ -15,7 +14,6 @@
 - platform: mqtt
   name: Tradfri RGBW Bulb
   state_topic: "zigbee2mqtt/tradfri_rgbw_bulb"
-  availability_topic: "zigbee2mqtt/bridge/state"
   brightness: true
   color_temp: true
   xy: true

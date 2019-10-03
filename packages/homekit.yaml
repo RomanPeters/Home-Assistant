@@ -1,33 +1,58 @@
 homekit:
   filter:
     include_entities:
-      - binary_sensor.door
-      - binary_sensor.window
-      - binary_sensor.motion_sensor_sensor
+      - binary_sensor.contact_sensor
+      - binary_sensor.contact_sensor_2
+      - binary_sensor.contact_sensor_3
+      - binary_sensor.aqara_motion_sensor
+      - binary_sensor.mijia_motion_sensor
+      - binary_sensor.mijia_motion_sensor_2
+      - binary_sensor.bathroom_occupied
+      - cover.fyrtur
+      - cover.fyrtur_2
+      - cover.fyrtur_3
       - light.aqara_white_bulb
       - light.tradfri_rgbw_bulb
       - light.tradfri_control_outlet_light
       - light.gateway_light_7811dce1e53e
+        #      - light.led_strip
       - media_player.television
       - sensor.aqara_humidity
       - sensor.aqara_humidity_2
       - sensor.aqara_temperature
       - sensor.aqara_temperature_2
       - switch.air_purifier
-      - switch.home
       - switch.entone
       - switch.tradfri_control_outlet
       - input_boolean.do_not_disturb
+      - device_tracker.macbook_pro
+      - person.roman_peters
 
   entity_config:
-    binary_sensor.door:
-      linked_battery_sensor: sensor.battery_door
-    binary_sensor.window:
-      linked_battery_sensor: sensor.battery_window
+    binary_sensor.bathroom_occupied:
+      name: Bathroom Occupied
+    binary_sensor.contact_sensor:
+      name: Living Room Door
+      linked_battery_sensor: sensor.battery_contact_sensor
+    binary_sensor.contact_sensor_2:
+      linked_battery_sensor: sensor.battery_contact_sensor_2
+    binary_sensor.contact_sensor_3:
+      linked_battery_sensor: sensor.battery_contact_sensor_3
     binary_sensor.aqara_motion_sensor:
+      name: Bathroom Motion Sensor
       linked_battery_sensor: sensor.battery_aqara_motion_sensor
     sensor.aqara_humidity:
+      name: Living Room Humidity
       linked_battery_sensor: sensor.battery_aqara_humidity
+    sensor.aqara_temperature:
+      name: Living Room Temperature
+      linked_battery_sensor: sensor.battery_aqara_humidity
+    sensor.aqara_humidity_2:
+      linked_battery_sensor: sensor.battery_aqara_humidity_2
+    sensor.aqara_vibration:
+      linked_battery_sensor: sensor.battery_aqara_vibration
+    person.roman_peters:
+      name: Roman
 
     switch.socket:
       type: outlet
@@ -47,12 +72,6 @@ device_tracker:
       homekit: 'homekit/home'
 
 switch:
-  - platform: mqtt
-    name: Home
-    command_topic: 'homekit/home'
-    payload_on: 'home'
-    payload_off: 'not_home'
-
   - platform: mqtt
     name: Do Not Disturb
     command_topic: 'homekit/dnd'
@@ -121,3 +140,7 @@ automation:
               {{ states('alarm_control_panel.home_status').split('_')[-1] | title }}
             {% endif %}
 
+homeassistant:
+  customize:
+    switch.do_not_disturb:
+      assumed_state: True

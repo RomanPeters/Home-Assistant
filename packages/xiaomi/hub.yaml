@@ -1,16 +1,8 @@
-xiaomi_aqara:
-  gateways:
-    - key: !secret xiaomi_aqara_key
+#xiaomi_aqara:
+#  gateways:
+#    - key: !secret xiaomi_aqara_key
 
 binary_sensor:
-  - platform: template
-    sensors:
-      motion_sensor_sensor: 
-        value_template: "{{ is_state('binary_sensor.aqara_motion_sensor', 'on') }}"
-        friendly_name: Motion Sensor
-        delay_off:
-          minutes: 3
-
   - platform: mqtt
     name: zigbee2mqtt_state
     state_topic: zigbee2mqtt/bridge/state 

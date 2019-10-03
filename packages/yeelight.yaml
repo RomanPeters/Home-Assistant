@@ -1,0 +1,11 @@
+yeelight:
+  devices:
+    10.10.10.193:
+      name: LED Strip
+      model: strip1
+
+homeassistant:
+  customize:
+    light.led_strip:
+      icon: mdi:led-strip-variant
+      friendly_name: Desk Light

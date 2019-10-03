@@ -12,13 +12,13 @@ homeassistant:
 
 
 http:
-  ip_ban_enabled: True
+  ip_ban_enabled: False
   login_attempts_threshold: 5
   use_x_forwarded_for: True
   trusted_proxies:
     - 172.1.1.1
     - 172.17.0.0/24
-    - 10.10.10.20
+    - 10.10.10.0/24
 
 #  trusted_networks:
 #    - 10.10.10.10
@@ -46,14 +46,14 @@ weather:
   - platform: buienradar
     name: Utrecht
     
-transmission:
-  host: transmission
-  username: ""
-  password: ""
+    #transmission:
+    #  host: transmission
 
 ffmpeg:
   ffmpeg_bin: /usr/bin/ffmpeg
 
+logger:
+  default: warn
 stream:
 person:
 system_health:
@@ -93,10 +93,6 @@ script: !include_dir_merge_named scripts
 history_graph: !include history_graphs.yaml
 input_select: !include input_selects.yaml
 scene: !include_dir_merge_named scenes
-climate: !include climates.yaml
-input_text: !include input_texts.yaml
-input_number: !include input_numbers.yaml
-device_tracker: !include device_trackers.yaml
 notify: !include notifies.yaml
 media_player: !include media_players.yaml
 zone: !include zones.yaml

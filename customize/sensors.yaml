@@ -10,26 +10,6 @@ sensor.br_pressure:
 sensor.br_condition:
   friendly_name: Condition
 
-sensor.aqara_temperature:
-  friendly_name: Inside Temperature
-
-sensor.aqara_humidity:
-  device_class: humidity
-  friendly_name: Inside Humidity
-
-sensor.aqara_pressure:
-  friendly_name: Inside Pressure
-
-sensor.aqara_temperature_2:
-  friendly_name: Server Temperature
-
-sensor.aqara_humidity_2:
-  device_class: humidity
-  friendly_name: Server Humidity
-
-sensor.aqara_pressure_2:
-  friendly_name: Server Pressure
-
 sensor.waqi_particle_sensor_pm25:
   friendly_name: WAQI PM2.5
   icon: mdi:salesforce
@@ -46,15 +26,4 @@ sensor.particle_sensor_pm10:
   friendly_name: PM10
   icon: mdi:salesforce
 
-sensor.mi_flora_sensor_temperature:
-  friendly_name: Inside Temperature 3
-
-sensor.travel_description:
-  icon: mdi:map-marker-distance
-
-sensor.travel_time:
-  icon: mdi:motorbike
-
-sensor.disk_use_percent:
-  icon: mdi:micro-sd
 

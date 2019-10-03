@@ -1,0 +1,71 @@
+macbook_pro:
+  hide_if_away: false
+  icon: mdi:laptop-mac
+  mac: BT_58:B0:35:94:A0:7F
+  name: MacBook Pro
+  picture:
+  track: true
+
+ipad:
+  hide_if_away: false
+  icon: mdi:tablet-ipad
+  mac: BT_B8:FF:61:A8:A1:15
+  name: iPad
+  picture:
+  track: true
+
+tile_506b6487eba64be9:
+  hide_if_away: false
+  icon: mdi:key-variant
+  mac:
+  name: Keys
+  picture:
+  track: true
+
+mh01:
+  hide_if_away: false
+  icon:
+  mac: BT_EB:06:EF:5B:91:27
+  name: MH01
+  picture:
+  track: true
+
+tile:
+  hide_if_away: false
+  icon:
+  mac:
+  name: tile
+  picture:
+  track: true
+
+flower_care:
+  hide_if_away: false
+  icon:
+  mac:
+  name: flower care
+  picture:
+  track: true
+
+bs440:
+  hide_if_away: false
+  icon:
+  mac: BLE_D3:E2:DB:FE:BA:1B
+  name: BS440
+  picture: mdi:gauge
+  track: true
+
+homekit:
+  hide_if_away: false
+  icon:
+  mac:
+  name: homekit
+  picture:
+  track: true
+
+iphone_8:
+  hide_if_away: false
+  icon: mdi:cellphone-iphone
+  mac: BT_64:70:33:D8:FF:25
+  name: iPhone 8
+  picture:
+  track: true

@@ -5,6 +5,5 @@
     - platform: homeassistant
       event: start
   action:
-    - service: group.turn_on
+    - service: automation.turn_on
       entity_id: group.all_automations
-      #    - service: shell_command.install_deps

@@ -22,6 +22,41 @@
                     "badges": [],
                     "cards": [
                         {
+                            "entities": [
+                                {
+                                    "entity": "scene.bright_mode"
+                                },
+                                {
+                                    "entity": "scene.dark_mode"
+                                },
+                                {
+                                    "entity": "scene.day_mode"
+                                },
+                                {
+                                    "entity": "scene.evening_relax"
+                                },
+                                {
+                                    "entity": "scene.leave_home"
+                                },
+                                {
+                                    "entity": "scene.movie_mode"
+                                },
+                                {
+                                    "entity": "scene.night_mode"
+                                },
+                                {
+                                    "entity": "scene.party_mode"
+                                },
+                                {
+                                    "entity": "scene.romantic"
+                                },
+                                {
+                                    "entity": "scene.work_mode"
+                                }
+                            ],
+                            "type": "entities"
+                        },
+                        {
                             "cards": [
                                 {
                                     "card": {
@@ -292,7 +327,7 @@
                             "entities": [
                                 "light.aqara_white_bulb",
                                 "light.tradfri_rgbw_bulb",
-                                "light.gateway_light_7811dce1e53e",
+                                "light.led_strip",
                                 "switch.tradfri_control_outlet",
                                 "light.tradfri_control_outlet_light"
                             ],
@@ -322,6 +357,21 @@
                                 }
                             ],
                             "type": "conditional"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "cover.fyrtur"
+                                },
+                                {
+                                    "entity": "cover.fyrtur_2"
+                                },
+                                {
+                                    "entity": "cover.fyrtur_3"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "type": "entities"
                         },
                         {
                             "cards": [
@@ -397,6 +447,32 @@
                                 }
                             ],
                             "type": "conditional"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.home"
+                                },
+                                {
+                                    "entity": "person.roman_peters"
+                                },
+                                {
+                                    "entity": "device_tracker.macbook_pro"
+                                },
+                                {
+                                    "entity": "binary_sensor.contact_sensor"
+                                },
+                                {
+                                    "entity": "binary_sensor.contact_sensor_2"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_occupied"
+                                },
+                                {
+                                    "entity": "binary_sensor.contact_sensor_3"
+                                }
+                            ],
+                            "type": "entities"
                         },
                         {
                             "entity": "media_player.sonos",
@@ -664,18 +740,15 @@
                     "cards": [
                         {
                             "entities": [
-                                "input_select.home_status",
-                                "binary_sensor.door",
-                                "input_boolean.room_presence",
-                                "switch.air_purifier"
+                                "binary_sensor.aqara_motion_sensor"
                             ],
                             "type": "history-graph"
                         },
                         {
                             "entities": [
-                                "climate.thermostat",
+                                "sensor.aqara_temperature",
                                 "sensor.aqara_temperature_2",
-                                "sensor.br_temperature"
+                                "sensor.br_temperature_4"
                             ],
                             "type": "history-graph"
                         },
@@ -704,7 +777,7 @@
                             "entities": [
                                 "sensor.aqara_humidity",
                                 "sensor.aqara_humidity_2",
-                                "sensor.br_humidity"
+                                "sensor.br_humidity_4"
                             ],
                             "type": "history-graph"
                         },
@@ -756,6 +829,15 @@
                             ],
                             "show_header_toggle": false,
                             "type": "entities"
+                        },
+                        {
+                            "detail": 2,
+                            "entity": "sensor.aqara_vibration",
+                            "type": "sensor"
+                        },
+                        {
+                            "entity": "sensor.activity",
+                            "type": "sensor"
                         }
                     ],
                     "id": 1,
@@ -770,9 +852,17 @@
                             "cards": [
                                 {
                                     "entities": [
-                                        "input_boolean.do_not_disturb"
+                                        "switch.do_not_disturb"
                                     ],
                                     "id": "a0f1fcd3c96f4debaa762ab298d0f419",
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "input_select.log_level"
+                                        }
+                                    ],
                                     "type": "entities"
                                 },
                                 {
@@ -782,6 +872,9 @@
                                         },
                                         {
                                             "entity": "switch.zigbee2mqtt_pairing"
+                                        },
+                                        {
+                                            "entity": "automation.notification_zigbee2mqtt"
                                         }
                                     ],
                                     "type": "entities"

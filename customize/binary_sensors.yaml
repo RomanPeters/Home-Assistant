@@ -1,6 +1,0 @@
-binary_sensor.aqara_motion_sensor:
-  icon: mdi:cellphone-dock
-
-binary_sensor.door:
-  icon: mdi:door
-

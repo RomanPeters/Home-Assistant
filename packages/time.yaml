@@ -1,52 +1,33 @@
 binary_sensor:
   - platform: tod
-    name: It's bed time
+    name: Morning
+    after: '06:00'
+    before: '12:00'
+
+  - platform: tod
+    name: Afternoon
+    after: '12:00'
+    before: '18:00'
+
+  - platform: tod
+    name: Evening
+    after: '18:00'
+    before: '00:00'
+
+  - platform: tod
+    name: Night
+    after: '00:00'
+    before: '06:00'
+  
+  - platform: tod
+    name: Bed Time
     after: '00:00'
     before: '03:00'
 
   - platform: tod
-    name: It's dark outside
+    name: Dark
     after: sunset
     after_offset: '-00:15'
     before: sunrise
 
-automation:
-  - id: bed_time_off_always
-    alias: Turn off things at midnight
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.it_s_bed_time
-        to: 'on'
-    action:
-      - service: climate.turn_off
-        entity_id: climate.thermostat
 
-  - id: bed_time_dim
-    alias: Dim lights at midnight
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.it_s_bed_time
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: input_select.home_status
-        state: Home
-      - condition: state
-        entity_id: group.room_lights
-        state: 'on'
-    action:
-      - service: scene.turn_on
-        entity_id: scene.dark_mode
-
-  - id: before_sunset_if_home
-    alias: Before sunset if home
-    trigger: 
-      - platform: state
-        entity_id: binary_sensor.it_s_dark_outside
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: input_select.home_statuss
-        state: Home
-    action:
-      - service: python_script.sunset

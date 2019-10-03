@@ -1,6 +1,6 @@
 binary_sensor:
   - platform: "mqtt"
-    name: Door
+    name: Contact Sensor
     state_topic: "zigbee2mqtt/aqara_contact_sensor"
     #    availability_topic: "zigbee2mqtt/bridge/state"
     payload_on: false
@@ -10,23 +10,6 @@ binary_sensor:
     json_attributes_topic: "zigbee2mqtt/aqara_contact_sensor" 
 
 automation:
-  - id: pause_apple_tv_when_door_opens
-    alias: Pause Apple TV when door opens
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.door
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: media_player.apple_tv
-        state: 'playing'
-    action:
-      - service: media_player.media_pause
-        entity_id: media_player.apple_tv
-      - wait_template: "{{ is_state('binary_sensor.door', 'off') }}"
-      - service: media_player.media_play
-        entity_id: media_player.apple_tv
-
   - id: turn_on_dnd_when_door_is_open
     alias: Turn on DND when door is open
     trigger:
@@ -35,3 +18,8 @@ automation:
     action:
       - service_template: "input_boolean.turn_{{trigger.to_state.state}}"
         entity_id: input_boolean.do_not_disturb
+
+homeassistant:
+  customize:
+    binary_sensor.contact_sensor:
+      friendly_name: Front Door
