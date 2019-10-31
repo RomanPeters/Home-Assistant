@@ -1,0 +1,20 @@
+binary_sensor:
+  - platform: "template"
+    sensors:
+      macbook_in_use:
+        friendly_name: MacBook in use
+        value_template: "{{ is_state('device_tracker.macbook_pro', 'home') }}"
+
+automation:
+  - id: macbook_in_use
+    alias: MacBook in use
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.macbook_in_use
+        to: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.led_strip
+          color_name: white
+          brightness_pct: 100

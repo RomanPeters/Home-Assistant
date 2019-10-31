@@ -1,0 +1,39 @@
+sensor:
+  - platform: "mqtt"
+    name: Mijia Button
+    state_topic: "zigbee2mqtt/mijia_button"
+    #    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:toggle-switch"
+    value_template: "{{ value_json.click }}"
+    json_attributes_topic: "zigbee2mqtt/mijia_button"
+    force_update: true
+
+
+automation:
+  - id: button_press
+    alias: Button Press
+    trigger:
+      - platform: mqtt
+        topic: zigbee2mqtt/mijia_button
+    condition:
+      - condition: and
+        conditions:
+          - condition: or
+            conditions:
+              - condition: template
+                value_template: "{{ trigger.payload_json.click == 'single' }}"
+              - condition: template
+                value_template: "{{ trigger.payload_json.click == 'double' }}"
+              - condition: template
+                value_template: "{{ trigger.payload_json.click == 'triple' }}"
+              - condition: template
+                value_template: "{{ trigger.payload_json.click == 'quadruple' }}"
+              - condition: template
+                value_template: "{{ trigger.payload_json.click == 'many' }}"
+              - condition: template
+                value_template: "{{ trigger.payload_json.click == 'long' }}"
+          - condition: template
+            value_template: "{{ as_timestamp( now() ) - as_timestamp(states.binary_sensor.bathroom_occupied.last_changed) > 1 }}"
+    action:
+      - service: input_boolean.toggle
+        entity_id: input_boolean.bathroom_in_use

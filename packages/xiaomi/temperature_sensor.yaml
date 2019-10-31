@@ -1,0 +1,70 @@
+sensor:
+  - platform: "mqtt"
+    name: Aqara Temperature
+    state_topic: "zigbee2mqtt/aqara_temperature_sensor"
+    unit_of_measurement: "°C"
+    icon: "mdi:thermometer"
+    value_template: "{{ value_json.temperature }}"
+    json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor"
+
+  - platform: "mqtt"
+    name: Aqara Humidity
+    state_topic: "zigbee2mqtt/aqara_temperature_sensor"
+    unit_of_measurement: "%"
+    icon: "mdi:water-percent"
+    value_template: "{{ value_json.humidity }}"
+    json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor"
+
+  - platform: "mqtt"
+    name: Aqara Pressure
+    state_topic: "zigbee2mqtt/aqara_temperature_sensor"
+    unit_of_measurement: "hPa"
+    icon: "mdi:speedometer"
+    value_template: "{{ value_json.pressure }}"
+    json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor"
+
+  - platform: "mqtt"
+    name: Aqara Temperature 2
+    state_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+    unit_of_measurement: "°C"
+    icon: "mdi:thermometer"
+    value_template: "{{ value_json.temperature }}"
+    json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+
+  - platform: "mqtt"
+    name: Aqara Humidity 2
+    state_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+    unit_of_measurement: "%"
+    icon: "mdi:water-percent"
+    value_template: "{{ value_json.humidity }}"
+    json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+
+  - platform: "mqtt"
+    name: Aqara Pressure 2
+    state_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+    unit_of_measurement: "hPa"
+    icon: "mdi:speedometer"
+    value_template: "{{ value_json.pressure }}"
+    json_attributes_topic: "zigbee2mqtt/aqara_temperature_sensor_2"
+
+homeassistant:
+  customize:
+    sensor.aqara_temperature:
+      friendly_name: Room Temperature
+
+    sensor.aqara_humidity:
+      device_class: humidity
+      friendly_name: Room Humidity
+
+    sensor.aqara_pressure:
+      friendly_name: Room Pressure
+
+    sensor.aqara_temperature_2:
+      friendly_name: Bathroom Temperature
+
+    sensor.aqara_humidity_2:
+      device_class: humidity
+      friendly_name: Bathroom Humidity
+
+    sensor.aqara_pressure_2:
+      friendly_name: Bathroom Pressure

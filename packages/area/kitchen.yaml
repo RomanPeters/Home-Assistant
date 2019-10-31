@@ -1,0 +1,80 @@
+input_boolean:
+  kitchen_in_use:
+    name: Kitchen in use
+    initial: 'off'
+
+binary_sensor:
+  - platform: "template"
+    sensors:
+      kitchen_occupied:
+        friendly_name: Kitchen
+        value_template: "{{ is_state('input_boolean.kitchen_in_use', 'on') }}"
+        device_class: occupancy
+
+automation:
+  - id: kitchen_turn_on
+    alias: Kitchen turn on
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.mijia_motion_sensor
+        to: 'on'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.kitchen_in_use
+
+  - id: kitchen_turn_off
+    alias: Kitchen turn off
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.mijia_motion_sensor
+        to: 'off'
+        for:
+          minutes: 2
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.kitchen_in_use
+
+
+  # Turn on the light
+  - id: kitchen_light_on
+    alias: Kitchen in use
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.mijia_motion_sensor
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.dark
+        state: 'on'
+    action:
+      - service: light.turn_on
+        data_template:
+          transition: 5
+          entity_id: light.aqara_white_bulb
+          brightness_pct: >
+            {%- if is_state("light.tradfri_rgbw_bulb", "off") -%}
+                1
+            {%- else -%}
+                50
+            {%- endif -%}
+          color_temp: 500
+
+  # Turn off the light
+  - id: kitchen_light_off
+    alias: Kitchen Light Off
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.mijia_motion_sensor
+        to: 'off'
+        for:
+          seconds: 30
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.aqara_white_bulb
+          transition: 30
+
+homeassistant:
+  customize:
+    binary_sensor.kitchen_occupied:
+      icon: mdi:run

@@ -5,9 +5,9 @@ sensor:
       - type: processor_use
 
   - platform: glances
-    host: "glances.romanpeters.nl"
-    port: 443
-    ssl: true
+    host: "10.10.10.20"
+    port: 61208
+    ssl: false
     version: 3
     resources:
       - disk_use_percent
@@ -33,9 +33,9 @@ homeassistant:
       friendly_name: Containers RAM
     sensor.glances_cpu_temp:
       friendly_name: CPU temperature
-    sensor.glances_disk_used:
+    sensor.glances_disk_used_percent:
       friendly_name: Disk usage
-    sensor.glances_ram_used:
+    sensor.glances_ram_used_percent:
       friendly_name: RAM usage
 
     sensor.processor_use:

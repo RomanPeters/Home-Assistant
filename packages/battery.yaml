@@ -1,15 +1,20 @@
 sensor:
   - platform: template
     sensors:
-      battery_door:
-        value_template: "{{ state_attr('binary_sensor.door', 'battery') }}"
-      battery_window:
-        value_template: "{{ state_attr('binary_sensor.window', 'battery') }}"
+      battery_contact_sensor:
+        value_template: "{{ state_attr('binary_sensor.contact_sensor', 'battery') }}"
+      battery_contact_sensor_2:
+        value_template: "{{ state_attr('binary_sensor.contact_sensor_2', 'battery') }}"
+      battery_contact_sensor_3:
+        value_template: "{{ state_attr('binary_sensor.contact_sensor_3', 'battery') }}"
       battery_aqara_motion_sensor:
         value_template: "{{ state_attr('binary_sensor.aqara_motion_sensor', 'battery') }}"
       battery_aqara_humidity:
         value_template: "{{ state_attr('sensor.aqara_humidity', 'battery') }}"
-
+      battery_aqara_humidity_2:
+        value_template: "{{ state_attr('sensor.aqara_humidity_2', 'battery') }}"
+      battery_aqara_vibration:
+        value_template: "{{ state_attr('sensor.aqara_vibration', 'battery') }}"
 
 automation:
   # Low battery

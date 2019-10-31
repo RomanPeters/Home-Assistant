@@ -65,6 +65,18 @@ automation:
       - service: media_player.turn_on
         entity_id: media_player.apple_tv
 
+  - id: television_turned_on_complete
+    alias: Television turned on complete
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'on'
+        for:
+          seconds: 10
+    action:
+      - service: scene.turn_on
+        entity_id: scene.movie_mode
+
   - id: television_turns_on_extra
     alias: Television turns on extra
     trigger:
@@ -73,12 +85,10 @@ automation:
         to: 'on'
     condition:
       - condition: template
-        value_template: "{{ not is_state('media_player.apple_tv', 'playing') and not is_state('media_player.chromecast', 'playing') }}"
+        value_template: "{{ not is_state('media_player.apple_tv', 'playing') }}"
     action:
       - service: switch.turn_on
         entity_id: switch.entone
-      - service: switch.turn_on
-        entity_id: switch.chromecast
       - service: remote.send_command
         data:
           entity_id: remote.apple_tv

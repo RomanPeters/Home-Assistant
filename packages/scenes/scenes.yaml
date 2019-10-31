@@ -1,0 +1,140 @@
+scene:
+  - name: Movie Mode
+    entities:
+      switch.television: on
+      switch.air_purifier: off
+      switch.ipad: off
+      light.aqara_white_bulb: off
+      light.tradfri_rgbw_bulb: off
+      light.led_strip: off
+      group.all_covers: closed
+
+
+  - name: Evening Relax
+    icon: mdi:seat
+    entities:
+      light.tradfri_rgbw_bulb:
+        state: on
+        color_name: orange
+        brightness_pct: 60
+      light.led_strip: 
+        state: on
+        color_name: orange
+        brightness_pct: 40
+      light.aqara_white_bulb: off
+
+  - name: Leave Home
+    entities:
+      light.tradfri_rgbw_bulb: off
+      light.aqara_white_bulb: off
+      light.led_strip: off
+      switch.television: off
+      switch.ipad: off
+      switch.fan: off
+      media_player.sonos: 'paused'
+
+  - name: Romantic
+    entities:
+      light.tradfri_rgbw_bulb:
+        state: on
+        color_name: red
+        brightness_pct: 50
+      light.led_strip:
+        state: on
+        color_name: red
+        brightness_pct: 40
+      switch.air_purifier: off
+      switch.fan: off
+      switch.television: off
+      switch.ipad: off
+      light.aqara_white_bulb: off
+
+  - name: Work Mode
+    entities:
+      light.led_strip:
+        state: on
+        color_name: white
+        brightness_pct: 60
+      light.tradfri_rgbw_bulb: off
+      switch.ipad: on
+
+  - name: Bright Mode
+    entities:
+      light.tradfri_rgbw_bulb:
+        state: on
+        color_name: white
+        brightness_pct: 100
+      light.aqara_white_bulb:
+        state: on
+        color_name: white
+        brightness_pct: 100
+      light.led_strip:
+        state: on
+        color_name: white
+        brightness_pct: 100
+
+  - name: Dim Mode
+    entities:
+      light.tradfri_rgbw_bulb:
+        state: on
+        color_name: orange
+        brightness_pct: 30
+      light.aqara_white_bulb: off
+      light.led_strip:
+        state: on
+        color_name: orange
+        brightness_pct: 20
+      group.all_covers: closed
+
+
+  - name: Night Mode
+    entities:
+      light.tradfri_rgbw_bulb: off
+      light.aqara_white_bulb: off
+      light.led_strip: off
+      switch.television: off
+      switch.ipad: off
+      group.all_covers: closed
+ 
+  - name: Day Mode
+    entities:
+      group.all_covers: open
+
+  - name: Party Mode
+    entities:
+      light.tradfri_rgbw_bulb:
+        state: on
+        color_name: red
+        brightness_pct: 60
+      light.aqara_white_bulb: off
+      light.led_strip:
+        state: on
+        color_name: blue
+        brightness_pct: 50
+
+
+homeassistant:
+  customize:
+    scene.bright_mode:
+      icon: mdi:home
+    scene.dim_mode:
+      icon: mdi:weather-night
+    scene.day_mode:
+      icon: mdi:weather-sunny
+    scene.evening_relax:
+      icon: mdi:seat
+    scene.leave_home:
+      icon: mdi:home-export-outline
+    scene.movie_mode:
+      icon: mdi:popcorn
+    scene.night_mode:
+      icon: mdi:weather-night
+    scene.party_mode:
+      icon: mdi:party-popper
+    scene.romantic:
+      icon: mdi:heart
+    scene.work_mode:
+      icon: mdi:home
+
+    
+
