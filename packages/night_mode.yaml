@@ -1,0 +1,84 @@
+input_boolean:
+  night_mode:
+    name: Night Mode
+
+binary_sensor:
+  - platform: "template"
+    sensors:
+      night_mode:
+        friendly_name: Night Mode
+        value_template: "{{ is_state('input_boolean.night_mode', 'on') }}"
+
+automation:
+  # UI Switch Action
+  - id: night_mode_switch_on
+    alias: Night Mode Switch On
+    trigger:
+      - platform: state
+        entity_id: input_boolean.night_mode
+        to: 'on'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.night_mode
+
+  - id: night_mode_switch_off
+    alias: Night Mode Switch Off
+    trigger:
+      - platform: state
+        entity_id: input_boolean.night_mode
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.dark
+        state: 'off'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.day_mode
+                              
+  - id: night_mode_auto_off
+    alias: Night Mode Auto Off
+    trigger:
+            #      - platform: state
+            #        entity_id: input_boolean.night_mode
+            #        to: 'on'
+            #        for:
+            #          hours: 9
+      - platform: state
+        entity_id: binary_sensor.home
+        to: 'off'
+    condition: 
+      - condition: state
+        entity_id: binary_sensor.night
+        state: 'off'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.night_mode
+
+  - id: night_mode_on_by_dnd
+    alias: Night Mode on by DND
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.do_not_disturb
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.home
+        state: 'on'
+    action:
+      - service_template: input_boolean.turn_on
+        entity_id: input_boolean.night_mode
+
+  - id: night_mode_off_by_dnd
+    alias: Night Mode off by DND
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.do_not_disturb
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.home
+        state: 'on'
+    action:
+      - service_template: input_boolean.turn_off
+        entity_id: input_boolean.night_mode
+

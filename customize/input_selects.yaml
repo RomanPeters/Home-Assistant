@@ -1,0 +1,8 @@
+input_select.home_status:
+  icon: mdi:home-outline
+
+input_select.activity:
+  icon: mdi:human
+
+input_select.button_single:
+  icon: mdi:hockey-puck

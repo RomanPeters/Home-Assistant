@@ -1,0 +1,11 @@
+- id: pihole_auto_off
+  alias: Pi-Hole auto-off
+  trigger:
+    - platform: state
+      entity_id: switch.pihole
+      to: 'off'
+      for:
+        hours: 1
+  action:
+    - service: switch.turn_on
+      entity_id: switch.pihole

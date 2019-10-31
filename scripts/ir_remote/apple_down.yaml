@@ -1,0 +1,9 @@
+apple_down:
+  alias: Apple TV down
+  sequence:
+    - alias: Go down
+      service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - down

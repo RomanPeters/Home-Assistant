@@ -1,0 +1,13 @@
+- name: University
+  latitude: 52.085943
+  longitude: 5.171904
+  radius: 600
+  icon: mdi:school
+  track_ios: false
+
+- name: Parents' Home
+  latitude: 52.102014
+  longitude: 5.118785
+  icon: mdi:account-multiple
+  track_ios: false
+

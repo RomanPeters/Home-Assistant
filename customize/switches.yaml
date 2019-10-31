@@ -1,0 +1,32 @@
+switch.speakers:
+  icon: mdi:speaker
+
+switch.television:
+  icon: mdi:television
+
+switch.entone:
+  icon: mdi:television-box
+
+switch.fan:
+  icon: mdi:fan
+
+switch.tradfri_control_outlet:
+  icon: mdi:power-socket-eu
+
+switch.tradfri_control_outlet_2:
+  icon: mdi:power-socket-eu
+
+switch.socket:
+  icon: mdi:power-socket-eu
+  
+switch.air_purifier:
+  icon: mdi:weather-windy
+
+switch.zigbee2mqtt_pairing:
+  icon: mdi:zigbee
+  assumed_state: false
+
+switch.pihole:
+  icon: mdi:raspberrypi
+  assumed_state: false
+

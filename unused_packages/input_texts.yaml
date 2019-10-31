@@ -1,0 +1,144 @@
+animal_planet:
+  name: Animal Planet
+  initial: Animal Planet
+
+ard:
+  name: ARD
+  initial: ARD
+
+bbc_first:
+  name: BBC First
+  initial: BBC First
+
+bbc_one:
+  name: BBC One
+  initial: BBC One
+
+bbc_two:
+  name: BBC Two
+  initial: BBC Two
+
+bbc_world_news:
+  name: BBC World News
+  initial: BBC World News
+
+canvas:
+  name: Canvas
+  initial: Canvas
+
+cnn:
+  name: CNN
+  initial: CNN
+
+comedy_central:
+  name: Comedy Central
+  initial: Comedy Central
+
+discovery_channel:
+  name: Discovery Channel
+  initial: Discovery Channel
+
+disney_channel:
+  name: Disney Channel
+  initial: Disney Channel
+
+een:
+  name: Één
+  initial: Één
+
+euronews:
+  name: Euronews
+  initial: Euronews
+
+eurosport:
+  name: Eurosport
+  initial: Eurosport
+
+fox:
+  name: Fox
+  initial: Fox
+
+mtv:
+  name: MTV
+  initial: MTV
+
+national_geographic:
+  name: National Geographic
+  initial: National Geographic
+
+net_5:
+  name: Net 5
+  initial: Net 5
+
+nickelodeon:
+  name: Nickelodeon
+  initial: Nickelodeon
+
+npo_1:
+  name: NPO 1
+  initial: NPO 1
+
+npo_1_extra:
+  name: NPO 1 Extra
+  initial: NPO 1 Extra
+
+npo_2:
+  name: NPO 2
+  initial: NPO 2
+
+npo_3:
+  name: NPO 3
+  initial: NPO 3
+
+rtl_4:
+  name: RTL 4
+  initial: RTL 4
+
+rtl_5:
+  name: RTL 5
+  initial: RTL 5
+
+rtl_7:
+  name: RTL 7
+  initial: RTL 7
+
+rtl_8:
+  name: RTL 8
+  initial: RTL 8
+
+rtl_z:
+  name: RTL Z
+  initial: RTL Z
+
+rtv_utrecht:
+  name: RTV Utrecht
+  initial: RTV Utrecht
+
+sbs_6:
+  name: SBS 6
+  initial: SBS 6
+
+sbs_9:
+  name: SBS 9
+  initial: SBS 9
+
+trt_turk:
+  name: TRT Türk
+  initial: TRT Türk
+
+veronica_disney_xd:
+  name: Veronica/Disney XD
+  initial: Veronica/Disney XD
+
+xite:
+  name: Xite
+  initial: Xite
+
+zdf:
+  name: ZDF
+  initial: ZDF
+
+ziggo_sport:
+  name: Ziggo Sport
+  initial: Ziggo Sport
+

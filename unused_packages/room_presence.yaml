@@ -1,0 +1,26 @@
+input_boolean:
+  room_presence:
+    name: Room Presence
+
+automation:
+  - id: room_status_presence_home
+    alias: Room Status Presence Home
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.door
+        to: 'on'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.room_presence
+
+  - id: room_status_presence_check
+    alias: Room Status Presence Check
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.door
+        to: 'off'
+        for:
+          minutes: 10
+    action:
+      # This is a Python script that corrects input_boolean.room_presence
+      - service: python_script.room_presence

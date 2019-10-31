@@ -1,0 +1,21 @@
+sbs_9:
+  alias: SBS 9
+  sequence:
+    - alias: Turn on Entone
+      service: switch.turn_on
+      entity_id: switch.entone
+
+    - alias: Turn on television
+      service: switch.turn_on
+      entity_id: switch.television
+
+    - alias: Wait for Entone to be ready
+      wait_template: "{{ is_state('binary_sensor.entone', 'on') }}"
+
+    - alias: Send IR packet
+      service: switch.broadlink_send_packet_10_10_10_203
+      data:
+        packet:
+          - "JgBmAFUeDBENEAwfDR4pEQ0QDB8NEBsQDB8MEQwRDBAMEQ0QGx4MEQ0QDRANEBseDBEbEA0ACOlVHw0QDBANHwsgKBEMEQwfDBEbEAwfDRANEAwRDBANEBweDRAbHg0QGx4MERwPDAANBQAA"
+          - "JgBmAFQfDBEMEQwfDB8pEQsRDB8MERsQDCAMEAwRDBEMEQwRGh8MEQwRDBEaHxogDBAMEQwACNtXHgwRDBAMIAwfKBENEAwfDBEbEAwfDBEMEQwRDBEMEBweDBEaHxweGh8MEQwRDAANBQAA"
+

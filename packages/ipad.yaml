@@ -1,0 +1,8 @@
+switch:
+  - platform: mqtt
+    name: "iPad"
+    icon: mdi:tablet-ipad
+    command_topic: "mqtthawk/custom_ipad/set"
+    availability_topic: "mqtthawk/state"
+    payload_on: '{"state": "on"}'
+    payload_off: '{"state": "sleep"}'

@@ -1,0 +1,80 @@
+play_music_url:
+  alias: Play Music URL
+  sequence:
+    - alias: Play URL
+      service: media_extractor.play_media
+      data_template:
+        entity_id: media_player.intel_nuc
+        media_content_type: "music"
+        media_content_id: "{{ url }}"
+
+play_url_rainy_jazz:
+  alias: Play URL Rainy Jazz
+  sequence:
+    - alias: Play URL
+      service: media_extractor.play_media
+      data_template:
+        entity_id: media_player.intel_nuc
+        media_content_type: "audio/youtube"
+        media_content_id: "https://www.youtube.com/watch?v=zab985qDgnU"
+
+play_url_lofi_hip_hop_mix:
+  alias: Play URL LoFi Hip Hop Mix
+  sequence:
+    - alias: Play URL
+      service: media_extractor.play_media
+      data_template:
+        entity_id: media_player.intel_nuc
+        media_content_type: "music"
+        media_content_id: "https://www.youtube.com/watch?v=-FlxM_0S2lA&t=2062s" 
+
+play_url_birds:
+  alias: Play URL Birds
+  sequence:
+    - alias: Play URL
+      service: media_extractor.play_media
+      data_template:
+        entity_id: media_player.intel_nuc
+        media_content_type: "audio/youtube"
+        media_content_id: "https://www.youtube.com/watch?v=vgqQSVFch44"
+
+play_url_forest:
+  alias: Play URL Forest
+  sequence:
+    - alias: Play URL
+      service: media_extractor.play_media
+      data_template:
+        entity_id: media_player.intel_nuc
+        media_content_type: "audio/youtube"
+        media_content_id: "https://www.youtube.com/watch?v=xNN7iTA57jM"
+
+play_url_thunderstorm:
+  alias: Play URL Thunderstorm
+  sequence:
+    - alias: Play URL
+      service: media_extractor.play_media
+      data_template:
+        entity_id: media_player.intel_nuc
+        media_content_type: "audio/youtube"
+        media_content_id: "https://www.youtube.com/watch?v=Qo4JIT8jMtI"
+
+play_url_fireplace:
+  alias: Play URL Fireplace
+  sequence:
+    - alias: Play URL
+      service: media_extractor.play_media
+      data_template:
+        entity_id: media_player.intel_nuc
+        media_content_type: "audio/youtube"
+        media_content_id: "https://www.youtube.com/watch?v=RDfjXj5EGqI"
+
+play_url_beach:
+  alias: Play URL Beach
+  sequence:
+    - alias: Play URL
+      service: media_extractor.play_media
+      data_template:
+        entity_id: media_player.intel_nuc
+        media_content_type: "audio/youtube"
+        media_content_id: "https://www.youtube.com/watch?v=DGIXT7ce3vQ"
+

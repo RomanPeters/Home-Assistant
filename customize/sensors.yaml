@@ -1,0 +1,29 @@
+sensor.br_temperature:
+  friendly_name: Outside Temperature
+
+sensor.br_humidity:
+  friendly_name: Outside Humidity
+
+sensor.br_pressure:
+  friendly_name: Outside Pressure
+
+sensor.br_condition:
+  friendly_name: Condition
+
+sensor.waqi_particle_sensor_pm25:
+  friendly_name: WAQI PM2.5
+  icon: mdi:salesforce
+
+sensor.waqi_particle_sensor_pm10: 
+  friendly_name: WAQI PM10
+  icon: mdi:salesforce
+
+sensor.particle_sensor_pm25:
+  friendly_name: PM2.5
+  icon: mdi:salesforce
+
+sensor.particle_sensor_pm10:
+  friendly_name: PM10
+  icon: mdi:salesforce
+
+

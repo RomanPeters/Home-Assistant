@@ -1,0 +1,41 @@
+script:
+  hey_siri:
+    alias: Hey Siri
+    sequence:
+      - service: sonos.snapshot
+      - service: media_player.volume_set
+        data_template:
+          entity_id: media_player.sonos
+          volume_level: "{{ states('input_number.spoken_notifications_volume') }}"
+      - service: tts.google_translate_say
+        data_template:
+          entity_id: media_player.sonos
+          message: "Hey Siri, {{ command }}"
+      - delay:
+          seconds: 5
+      - service: sonos.restore
+
+input_text:
+  hey_siri:
+    name: Hey Siri
+    initial: ""
+
+automation:
+  - alias: Ask Siri
+    trigger:
+      platform: state
+      entity_id: input_text.hey_siri
+      from: ""
+    action:
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.hey_siri
+          value: ""
+      - service: script.hey_siri
+        data_template:
+          command: "{{ trigger.to_state.state }}"
+
+homeassistant:
+  customize:
+    input_text.hey_siri:
+      icon: mdi:apple-finder

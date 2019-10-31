@@ -1,0 +1,66 @@
+- platform: waqi
+  token: !secret waqi_token
+  locations:
+    - 'utrecht'
+  stations:
+    - 'de Jongweg, Utrecht'
+
+- platform: time_date
+  display_options:
+    - 'time'
+
+# Templates
+- platform: template
+  sensors:
+    air_quality_status:
+      friendly_name: AQI
+      # Based on EPA AQI: https://en.wikipedia.org/wiki/Air_quality_index#Computing_the_AQI
+      value_template: >
+        {% if states('sensor.particle_sensor_pm25') | int <= 12 and states('sensor.particle_sensor_pm10') | int <= 54 %}
+          Good
+        {% elif states('sensor.particle_sensor_pm25') | float <= 35.4 and states('sensor.particle_sensor_pm10') | int <= 154 %}
+          Moderate
+        {% elif states('sensor.particle_sensor_pm25') | float <= 55.4 and states('sensor.particle_sensor_pm10') | int <= 254 %}
+          Unhealthy for Sensitive Groups
+        {% elif states('sensor.particle_sensor_pm25') | float <= 150.4 and states('sensor.particle_sensor_pm10') | int <= 354 %}
+          Unhealthy
+        {% elif states('sensor.particle_sensor_pm25') | float <= 250.4 and states('sensor.particle_sensor_pm10') | int <= 424 %}
+          Very Unhealthy
+        {% else %}
+          Hazardous
+        {% endif %}
+
+    world_air_quality_status:
+      friendly_name: WAQI
+      value_template: >
+        {% if states('sensor.waqi_de_jongweg_utrecht') | int <= 50 %}
+          Good
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 100 %}
+          Moderate
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 150 %}
+          Unhealthy for Sensitive Groups
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 200 %}
+          Unhealthy
+        {% elif states('sensor.waqi_de_jongweg_utrecht') | int <= 300 %}
+          Very Unhealthy
+        {% else %}
+          Hazardous
+        {% endif %}
+
+    waqi_particle_sensor_pm25:
+      friendly_name: WAQI PM2.5
+      unit_of_measurement: "μg/m3"
+      value_template: >
+        {{ state_attr('sensor.waqi_de_jongweg_utrecht', 'pm_2_5') }}
+    waqi_particle_sensor_pm10:
+      friendly_name: WAQI PM10
+      unit_of_measurement: "μg/m3"
+      value_template: >
+        {{ state_attr('sensor.waqi_de_jongweg_utrecht', 'pm_10') }}
+
+### MQTT
+- platform: "mqtt"
+  name: Zigbee Network
+  state_topic: "zigbee2mqtt/bridge/networkmap/graphviz"
+  icon: "mdi:zigbee"
+

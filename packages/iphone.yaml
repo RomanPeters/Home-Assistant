@@ -1,0 +1,20 @@
+switch:
+  - platform: mqtt
+    name: Do Not Disturb
+    state_topic: "homekit/switch/do_not_disturb"
+    command_topic: "homekit/switch/do_not_disturb/set"
+
+
+binary_sensor:
+  - platform: "template"
+    sensors:
+      do_not_disturb:
+        friendly_name: Do Not Disturb
+        value_template: "{{ is_state('switch.do_not_disturb', 'on') }}"
+
+
+homeassistant:
+  customize:
+    switch.do_not_disturb:
+      assumed_state: true
+      icon: mdi:night

@@ -1,0 +1,11 @@
+
+- id: boot
+  alias: At start
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: automation.turn_on
+      entity_id: group.all_automations
+    - service: automation.turn_off
+      entity_id: automation.notification_zigbee2mqtt

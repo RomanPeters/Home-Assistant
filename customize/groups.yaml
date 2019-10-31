@@ -1,0 +1,12 @@
+group.led_strips:
+  icon: mdi:blur-linear
+
+group.climate_control_automations:
+  icon: mdi:thermostat
+
+group.notification_automations:
+  icon: mdi:comment-text-outline
+
+group.alarm_clock:
+  icon: mdi:alarm
+

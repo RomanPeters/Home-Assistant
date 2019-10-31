@@ -1,0 +1,73 @@
+# Home
+automation:
+  - id: set_home_status_to_home_by_door
+    alias: Set Home Status to home by door
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.door
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_select.home_status
+        state: 'Away'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_status
+          option: Home
+  
+  - id: set_home_status_to_home_from_night
+    alias: Set Home Status to home from night
+    trigger:
+      - platform: state
+        entity_id: sensor.iphone_8_battery_state
+        to: Unplugged
+      - platform: state
+        entity_id: input_boolean.autowake
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: input_select.home_status
+        state: Night
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_status
+          option: Home
+  
+  # Away
+  - id: set_home_status_to_away
+    alias: Set Home Status to away
+    trigger: 
+      - platform: state
+        entity_id: group.presence
+        to: not_home
+    condition:
+      - condition: state
+        entity_id: input_select.home_status
+        state: Home
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_status
+          option: Away
+      - service: timer.cancel
+        entity_id: timer.wait_for_presence
+  
+  # Night
+  - id: set_home_status_to_night_by_autowake
+    alias: Set Home Status to Night by AutoWake
+    trigger:
+      - platform: state
+        entity_id: input_boolean.autowake
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_select.home_status
+        state: Home
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_status
+          option: Night
+  

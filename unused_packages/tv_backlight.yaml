@@ -1,0 +1,291 @@
+light:
+  - platform: template
+    lights:
+      tv_light:
+        friendly_name: "TV Light"
+        turn_on:
+          service: switch.broadlink_send_packet_10_10_10_203
+          data:
+            packet:
+            - "JgBYAAABJpYSExI4ETgRFBITEhQQFRE4EjcSOBAVETgSExI4ETgSExEVETgRFBITEhMRFBIUERQROBITEjgROBI3ETkROBI4EQAFGwABJ0sRAAxPAAEmTBAADQU"
+        turn_off:
+          service: switch.broadlink_send_packet_10_10_10_203
+          data:
+            packet:
+            - "JgBYAAABJpYRFBE5EDkRFRAVEBQRFRA5EDkSORAVDzkRFRE4EDkSFBAVETkQFRAUETkQFg8WDxYQORAVEDkROREUEDkRORA5EAAFHQABJ0sRAAxQAAElTBEADQU"
+
+  - platform: mqtt
+    name: "TV Backlight"
+    command_topic: "homeassistant/light/tv_backlight/command"
+    brightness_command_topic: "homeassistant/light/tv_backlight/brightness"
+    rgb_command_topic: "homeassistant/light/tv_backlight/rgb"
+    effect_command_topic: "homeassistant/light/tv_backlight/effect"
+    effect_list:
+      - Strobe
+      - Flash
+      - Fade 
+      - RGB Fade
+
+
+automation:
+  - id: tv_backlight_off
+    alias: TV Backlight off
+    trigger:
+      - platform: state
+        entity_id: light.tv_backlight
+        to: 'on'
+    action:
+      - service: script.turn_on
+        entity_id: script.tv_backlight_on
+  
+  - id: tv_backlight_on
+    alias: TV Backlight on
+    trigger:
+      - platform: state
+        entity_id: light.tv_backlight
+        to: 'off'
+    action:
+      - service: script.turn_on                           
+        entity_id: script.tv_backlight_off
+  
+  - id: tv_backlight_effect
+    alias: TV Backlight effect
+    trigger:
+      - platform: state
+        entity_id: light.tv_backlight
+    condition:
+      - condition: template
+        value_template: "{{ states.light.tv_backlight.attributes.effect != 'none' }}"
+    action:
+      - service: script.turn_on
+        data_template:
+          entity_id: "scrip.tv_backlight_{{states.light.ambient_lights.attributes.effect.replace(' ', '_').lower()}}"
+  
+  - id: tv_backlight_color
+    alias: TV Backlight change color
+    trigger:
+      - platform: state
+        entity_id: light.tv_backlight
+    action:
+      - service: python_script.tv_backlight_nearest_color
+        data_template:
+          rgb_color: "{{ states.light.tv_backlight.attributes.rgb_color }}"
+  #    - service: python_script.tv_backlight_brightness
+        
+script:
+  tv_backlight_on:
+    alias: TV Backlight on
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBYAAABJpYRFBE4ETkQFRAVEBURFBE4ETkQOREUETgRFRA5ETgRFBEVEDkQFREUERQRFBEUERUQORAVETgRORA5ETgRORA5EQAFGwABJksRAAxNAAEmSxEADQU"
+  
+  tv_backlight_off:
+    alias: TV Backlight off
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBYAAABJpUSFBA5ETgRFRAVEBUQFRA5ETkQOREUETgRFRA5ETgRFBEVEDkRFBEUETgRFRAVEBUQOREUETkQOREUETkQORE4EQAFHAABJUwRAAxNAAEmTBAADQU"
+  
+  tv_backlight_w:
+    alias: TV Backlight white
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJZYSFBE4ETgRFREUEBUQFRA5EjgQOREUETgRFRE4EDkSExEVEBURFBAVEBUQFREUERQRORE4ETgSOBE4ETgRORE4EwAFGQABJkwQAA0FAAAAAAAAAAA"
+  
+  tv_backlight_r:
+    alias: TV Backlight red
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBYAAABJpYRFBE4EjgQFRAVERQRFBE4EjgQOREUEjgQFRE4ETkRFBA5ETgSFBEUEDkRFBEUERQRFBIUEDkQOREUEjgQORE4EQAFGwABJkwRAAxNAAEmSxEADQU"
+  
+  tv_backlight_r1:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpYSExI4ETgRFBITERQSExI4ETgSOBEUETgRFBE5ETgSExITEhMRORAVERQRFBITEhMRORE4EhMSOBE4EjcSOBE4EgAFGQABJ0wSAA0FAAAAAAAAAAA"
+  
+  tv_backlight_r2:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpYRFBE4ETkRFBAVEBURFBE4ETkQOREUETgRFRA5ETgRFBEVEBUQFRA5ETkQFRAVEBUQORE4ETkQFREUETgRORA5EQAFGwABKEkRAA0FAAAAAAAAAAA"
+  
+  tv_backlight_r3:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJ5QTFBA5ETgRFRAVEBUQFRE4ETkQOREUETgRFRA5ETgRFBEVEBUQFRA5ERQRFBEUERQRORA5ETkQFRA5ETgRORA5EQAFGwABJksRAA0FAAAAAAAAAAA"
+  
+  tv_backlight_r4:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJ5URFBA5ETgTExAVEBUQFRA5EzcROBAVETgRFBE5EDkRFBEUERQRORAVEDkRFBEUERUQORA5EhMRORAVETgROBE5EAAFHAABJUwSAA0FAAAAAAAAAAA"
+  
+  tv_backlight_g:
+    alias: TV Backlight green
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBYAAABJpUSFBA5ETgSFBEUERQQFRE4EjcSOBEUETgSExI4ETgRFBE5ETgRFBI3EjgRFBEUERQSExITEjgRFBEUETgRORE4EQAFGwABJksSAAxMAAEnSxAADQU"
+  
+  tv_backlight_g1:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpYRFBI3ETkRFBITERQSExI4ETgRORAVETgSExE5ETgSExE4ERUROBEUERQRFBIUEBURFBA5EhMSOBE4EjcSOBE4EgAFGwABJksSAA0FAAAAAAAAAAA"
+  
+  tv_backlight_g2:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpYRFBE4ETkQFRAVEBURFBE4ETkQOREUETkQFRA5ETgRFRAVEDkRFBE4ETkQFREUERQROBEVEDkRFBEUETgRORA5EQAFGwABJksRAA0FAAAAAAAAAAA"
+  
+  tv_backlight_g3:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJZYSExI4EDkRFBEUERQRFRA5ETgRORAVEDkRFBE5EDkRFBE4ERUQFRA5ERQRFBEUERQRFRA5EDkRFBI4EDkROBE5EAAFHAABJUwRAA0FAAAAAAAAAAA"
+  
+  tv_backlight_g4:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpYRFBA5ETkQFRAVEBUQFRE4ETkQOREUETkQFRA5ETgRFBE5EBUQOREUETkQFRAVEBURFBE4ERUQORAVETgRORA5EQAFGwABJksRAA0FAAAAAAAAAAA"
+  
+  
+  tv_backlight_b:
+    alias: TV Backlight blue
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBYAAABJZYSFBE4ETgSExEVERQRFBE4EjcSOBEUEjcSFBA5ETgRFBI4ETgSNxIUEBUQFRAVERQSExITEhMRORE4EjcSOBE4EQAFGwABJ0sRAAxNAAEmTBEADQU"
+  
+  tv_backlight_b1:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpYSExI4EDkRFBITERURFBE4EjcROREUETgRFRA5ETgSExIUEDkROBEUEhQRFBEUERQROBITEhQROBE4EjgROBI4EQAFGwABJ0sQAA0FAAAAAAAAAAA"
+  
+  tv_backlight_b2:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpUSFBA5ETgRFBEVEBUQFRA5ETgRORAVETgRFBE5EDkRFBE5EBUQFRA5ETgRFRAVEBUQFRA5ETkQFRAVEDkROBE5EQAFGwABJksRAA0FAAAAAAAAAAA"
+  
+  tv_backlight_b3:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpYSExE5EDkRFBEUERQRFBE5EDkRORAVEDkRFBE4ETkRFBEUETgRFRA5ERQRFBEUERQRORAVETgRFBE5EDkROBE5EAAFHAABJUwRAA0FAAAAAAAAAAA"
+  
+  tv_backlight_b4:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpYSExE5EDkRFBEUERQRFBE5EDkROBEVEDkQFRE4ETkQFRAVETgRORAVEDkRFBEUERQRORAVEBUROBEUETkQORE4EQAFGwABJkwQAA0FAAAAAAAAAAA"
+  
+  tv_backlight_brightness_down:
+    alias: Decrease brightness TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpUSFBE4EjcSFBEUERQQFRE4EjgROBITETkQFRE4ETgSFBA5ERQRFBITETkQFRAVERQRFBI4ETgROBEUEjgQORE5EAAFHAABJkwQAA0FAAAAAAAAAAA"
+  
+  tv_backlight_brightness_up:
+    alias: Increase brightness TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJ5URFBE4EjgRFBEUERQRFBE5ETgSNxIUEDkRFBI4EDkRFBEUERQTEhIUEDkQFg8VERQSOBI3ETgSOBAVEjcSOBE4EQAFGwABJkwRAA0FAAAAAAAAAAA"
+  
+  tv_backlight_fade:
+    alias: TV Backlight fade
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBYAAABJpURFRA6DzkRFRAVEBYPFRA5ETkQORAWDzkRFRA6DzkRFRA5EBUQFREVEBUQFBEVEBUQFRA5ETkROBE4ETkROBE4EQAFHAABJksSAAxOAAEmSxEADQU"
+  
+  tv_backlight_flash:
+    alias: TV Backlight flash
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpYSFBA6EDgRFBEVEBURFBA5ETgRORAWEDgSFBA5ETkQFRA6EDgRORA5ERUQFRETERQRFRAVEBYPFg85ETkQORE5EAAFHAABJ0oSAA0FAAAAAAAAAAA"
+  
+  tv_backlight_rgb_flash:
+    alias: TV Backlight
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBQAAABJpYRFQ85ETkQFg8VERUQFRA5EDkROBIUETgQFRA6ETgQFRA5ETkQORAWEDkRFQ8WEBQQFg8VERUQORAVEDoQOBE5EAAFGgABKEwRAA0FAAAAAAAAAAA"
+  
+  tv_backlight_strobe:
+    alias: TV Backlight strobe
+    sequence:
+      - alias: Send IR packet
+        service: switch.broadlink_send_packet_10_10_10_203
+        data:
+          packet:
+            - "JgBYAAABJ5USExE4EjgRFBEUEhMSExI4ETgROBITEjgRFBE4EjgRFBE4EjcSFBE4EhMSExEUERQSFBEUETgSExI3EjgROBI4EAAFHAABJksRAAxNAAEnShIADQU"

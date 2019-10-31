@@ -1,0 +1,28 @@
+light.tv_backlight:
+  icon: mdi:blur
+  assumed_state: false
+
+light.balcony_lights:
+  icon: mdi:led-off
+
+light.coffee_led:
+  icon: mdi:led-off
+
+light.blinkt:
+  friendly_name: LED
+  icon: mdi:raspberrypi
+
+light.spot:
+  icon: mdi:track-light
+  assumed_state: false
+
+light.tradfri_rgbw_bulb:
+  friendly_name: Living Room Light
+  icon: mdi:ceiling-light
+
+light.candela:
+  friendly_name: Candle
+  icon: mdi:battery-30
+
+light.macbook_screen:
+  icon: mdi:laptop-mac

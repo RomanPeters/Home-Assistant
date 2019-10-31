@@ -1,0 +1,57 @@
+# Relies on package/time.yaml
+#       and package/area/home.yaml
+
+automation:
+  # Evening Relax
+  - id: evening_relax_on
+    alias: Evening Relax On
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.dark
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.contact_sensor
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.dark
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.night_mode
+        state: 'off'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.evening_relax
+
+  # Dim Mode
+  - id: dim_mode_on
+    alias: Dim Mode on
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.bed_time
+        to: 'on'
+    condition:
+      # Television is off, light is on, someone is home
+      - condition: state
+        entity_id: switch.television
+        state: 'off'
+      - condition: state
+        entity_id: light.tradfri_rgbw_bulb
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.home
+        state: 'on'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.dim_mode
+
+  # Leave Home
+  - id: leave_home
+    alias: Leave Home
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.home
+        to: 'off'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.leave_home

@@ -1,0 +1,37 @@
+- platform: broadlink
+  host: "10.10.10.202"
+  mac: "b4:43:0d:db:97:6c"
+  type: mp1
+  friendly_name: Power Strip
+  slots:
+     slot_1: Entone
+     slot_2: Air Purifier
+     slot_3: Television
+     slot_4: Socket
+
+- platform: mqtt
+  name: zigbee2mqtt Pairing
+  icon: mdi:zigbee
+  state_topic: "zigbee2mqtt/bridge/config/permit_join"
+  command_topic: zigbee2mqtt/bridge/config/permit_join
+  payload_on: "true"
+  payload_off: "false"
+
+- platform: mqtt
+  name: zigbee2mqtt LED
+  icon: mdi:led
+  state_topic: "zigbee2mqtt/bridge/config/disable_led"
+  command_topic: "zigbee2mqtt/bridge/config/disable_led"
+  payload_on: "true"
+  payload_off: "false"
+
+
+- platform: command_line
+  switches:
+    pihole:
+      friendly_name: Pi-Hole Blocking
+      command_on: !secret pi_hole_command_on
+      command_off: !secret pi_hole_command_off
+# Disabled below, because it's not really necessary to keep checking whether it's on or off
+#      command_state: "curl -X GET 'http://10.10.10.101/admin/api.php?status'"
+#      value_template: "{{ value_json.status == 'enabled' }}"

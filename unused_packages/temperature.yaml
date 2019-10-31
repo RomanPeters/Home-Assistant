@@ -1,0 +1,106 @@
+# CLIMATE ON
+- id: turn_on_climate_control_automation
+  alias: Turn on climate control
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Home
+      from: Night
+    - platform: state
+      entity_id: input_select.home_status
+      to: Home
+      from: Away
+    - platform: state
+      entity_id: binary_sensor.window
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.window
+      state: 'off'
+  action:
+    - service: climate.turn_on
+      entity_id: climate.thermostat
+
+# CLIMATE OFF
+- id: turn_off_climate_control_automation
+  alias: Turn off climate control
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Away
+    - platform: state
+      entity_id: input_select.home_status
+      to: Night
+    - platform: state
+      entity_id: binary_sensor.door
+      to: 'on'
+      for:
+        seconds: 60
+    - platform: state
+      entity_id: binary_sensor.window
+      to: 'on'
+  action:
+    - service: climate.turn_off
+      entity_id: climate.thermostat
+
+# WINDOW
+- id: open_window_to_cool
+  alias: Open window
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: Home
+    - platform: state
+      entity_id: binary_sensor.outside_cooler_than_inside
+      to: 'on'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.indside_temperature
+      above: 23
+    - condition: state
+      entity_id: input_select.home_status
+      state: Home
+    - condition: state
+      entity_id: binary_sensor.outside_cooler_than_inside
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.window
+      state: 'off'
+  action:
+    - service: script.broadcast
+      data:
+        message: "Open your window to cool your room"
+
+- id: climate_control_disabled
+  alias: Climate control disabled
+  trigger:
+    - platform: state
+      entity_id: climate.thermostat
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.window
+      state: 'on'
+  action:
+    - service: climate.turn_off
+      entity_id: climate.thermostat
+    - service: notify.notify
+      data:
+        message: "The thermostat didn't turn on because the window is open"
+
+- id: climate_alarm
+  alias: Climate Alarm
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.aqara_temperature
+      above: 23
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.aqara_temperature_1
+      below: 21
+  action:
+    - service: notify.notify
+      data:
+        message: "Warning! It's very hot inside"
+    - service: switch.turn_off
+      entity_id: switch.heater

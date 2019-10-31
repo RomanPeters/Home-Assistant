@@ -1,0 +1,40 @@
+automation:
+  - id: home_status_to_home_from_away
+    alias: Home Status to Home from Away
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+        to: Home
+        from: Away
+      - platform: state
+        entity_id: input_boolean.room_presence
+        to: 'on'
+    action:
+      - wait_template: "{{ is_state('input_boolean.room_presence', 'on') }}"
+      - service: switch.turn_off
+        entity_id: switch.air_purifier
+      - service: script.broadcast
+        data:
+          message: "Welcome"
+
+  - id: home_status_to_home_from_away_at_night_time
+    alias: Home Status to Home from Away at night time
+    trigger:
+      - platform: state
+        entity_id: input_select.home_status
+        to: Home
+        from: Away
+    condition:
+      condition: or  # 'when dark' condition either after sunset or before sunrise
+      conditions:
+        - condition: sun
+          after: sunset
+          after_offset: "-00:30:00"
+        - condition: sun
+          before: sunrise
+    action:
+      - wait_template: "{{ is_state('input_boolean.room_presence', 'on') }}"
+      - service: scene.turn_on
+        entity_id: scene.evening
+  
+  

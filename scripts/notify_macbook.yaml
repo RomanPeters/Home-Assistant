@@ -1,0 +1,7 @@
+notify_macbook:
+  sequence:
+    - service: mqtt.publish
+      data_template:
+        payload: "{{ data }}"
+        topic: macbook/notify
+        retain: true

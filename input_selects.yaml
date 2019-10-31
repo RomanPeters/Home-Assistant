@@ -1,0 +1,38 @@
+activity:
+  name: Activity
+  options:
+    - computering
+    - watching tv
+    - showering
+    - brushing teeth
+    - leaving
+    - going to bed
+    - in bed
+    - sleeping
+    - waking up
+    - going home
+    - at work
+    - at the university
+    - none
+
+button_single:
+  name: Button Single Click
+  options:
+    - Fan
+    - Standing Lamp
+    - TV Backlight
+    - Ambient Lights
+
+alarm_clock_media:
+  name: Media
+  icon: mdi:none
+  options:
+    - Television
+    - Rainy Jazz
+    - LoFi Hip Hop Mix
+    - Birds
+    - Forest
+    - Thunderstorm
+    - Fireplace
+    - Beach
+

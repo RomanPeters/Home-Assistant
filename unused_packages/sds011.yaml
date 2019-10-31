@@ -1,0 +1,40 @@
+automation:
+  - id: air_quality_low
+    alias: Air Quality Low
+    trigger:
+      - platform: state
+        entity_id: sensor.air_quality_status    
+        from: "Good"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.air_purifier
+      - service: notify.notify
+        data_template:
+          message: "The air quality in your room degraded, turning on air purifier."
+    
+  - id: air_quality_high
+    alias: Air Quality High
+    trigger:
+      - platform: state
+        entity_id: sensor.air_quality_status
+        to: "Good"
+    action:
+      - service: switch.turn_off
+        entity_id: switch.air_purifier
+      - service: notify.notify
+        data:
+          message: "The air quality in your room has improved."
+
+
+sensor:
+  - platform: "mqtt"
+    name: Particle Sensor PM2.5
+    state_topic: "satellite/sensor/pm25/state"
+  #  availability_topic: "satellite/state"
+    unit_of_measurement: "μg/m3"
+
+  - platform: "mqtt"
+    name: Particle Sensor PM10
+    state_topic: "satellite/sensor/pm10/state"
+  #  availability_topic: "satellite/state"
+    unit_of_measurement: "μg/m3"

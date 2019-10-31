@@ -1,0 +1,111 @@
+media_player:
+  - platform: universal
+    name: Television
+    children:
+      - media_player.apple_tv
+    commands:
+      turn_on:
+        service: switch.turn_on
+        data:
+          entity_id: switch.television
+      turn_off:
+        service: switch.turn_off
+        data:
+          entity_id: switch.television
+      volume_up:
+        service: script.turn_on
+        data:
+          entity_id: script.sony_volume_higher
+      volume_down:
+        service: script.turn_on
+        data:
+          entity_id: script.sony_volume_lower
+      volume_mute:
+        service: script.turn_on
+        data:
+          entity_id: script.sony_mute
+      select_source:
+        service: input_select.select_option
+        data_template:
+          entity_id: input_select.tv_input
+          source: '{{ source }}'
+
+
+input_select:
+  channel:
+    name: Channel
+    options: !include ../../templates/channels.yaml
+    initial: Unknown
+    icon: mdi:television-classic
+
+  tv_input:
+    name: Input
+    options:
+      - Television
+      - Apple TV
+      - Pi
+
+
+binary_sensor:
+  - platform: "template"
+    sensors:
+      television:
+        friendly_name: "TV is on"
+        value_template: "{{ is_state('switch.television', 'on') }}"
+        delay_on: "00:00:10"
+
+automation:
+  - id: television_turned_on
+    alias: Television turned on
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'on'
+    action:
+      - service: media_player.turn_on
+        entity_id: media_player.apple_tv
+
+  - id: television_turned_on_complete
+    alias: Television turned on complete
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'on'
+        for:
+          seconds: 10
+    action:
+      - service: scene.turn_on
+        entity_id: scene.movie_mode
+
+  - id: television_turns_on_extra
+    alias: Television turns on extra
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'on'
+    condition:
+      - condition: template
+        value_template: "{{ not is_state('media_player.apple_tv', 'playing') }}"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.entone
+      - service: remote.send_command
+        data:
+          entity_id: remote.apple_tv
+          command:
+            - 'top_menu'
+
+  - id: television_turned_off
+    alias: Television turned off
+    trigger:
+      - platform: state
+        entity_id: switch.television
+        to: 'off'
+    action:
+      - service: switch.turn_off
+        entity_id: switch.entone
+
+homeassistant:
+  customize:
+    media_player.television:
+      device_class: tv
