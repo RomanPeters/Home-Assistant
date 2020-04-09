@@ -1,41 +1,6 @@
 homeassistant:
   name: Home
-  packages: !include_dir_named packages
-
-http:
-  ip_ban_enabled: True
-  login_attempts_threshold: 5
-  use_x_forwarded_for: True
-  trusted_proxies:
-    - 172.1.1.1
-    - 172.17.0.0/24
-    - 10.10.10.0/24
-
-frontend:
-config:
-history:
-logger:
-stream:
-person:
-system_health:
-auth:
-map:
-python_script:
-media_extractor:
-conversation:
-sun:
-ios:
-mobile_app:
-
-mqtt:
-  discovery: false
-  broker: 10.10.10.20
-  client_id: homeassistant
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
-
-
+  packages:
+    system: !include_dir_named system_pack
+    homekit: !include_dir_named homekit_pack
+    other: !include_dir_named other_pack

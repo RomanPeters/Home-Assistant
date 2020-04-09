@@ -1,0 +1,10 @@
+mqtt:
+  discovery: false
+  broker: 10.10.10.20
+  client_id: homeassistant
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
