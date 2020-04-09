@@ -1,0 +1,31 @@
+switch:
+  - platform: "mqtt"
+    name: IKEA Control Outlet
+    state_topic: "zigbee2mqtt/ikea_control_outlet"
+    payload_off: "OFF"
+    payload_on: "ON"
+    value_template: "{{ value_json.state }}"
+    command_topic: "zigbee2mqtt/ikea_control_outlet/set"
+
+  - platform: "mqtt"
+    name: IKEA Control Outlet 2
+    state_topic: "zigbee2mqtt/ikea_control_outlet_2"
+    payload_off: "OFF"
+    payload_on: "ON"
+    value_template: "{{ value_json.state }}"
+    command_topic: "zigbee2mqtt/ikea_control_outlet_2/set"
+
+light:
+  - platform: switch
+    name: String Lights
+    entity_id: switch.ikea_control_outlet_2
+
+homeassistant:
+  customize:
+    switch.ikea_control_outlet:
+      friendly_name: Air Purifier
+    switch.ikea_control_outlet_2:
+      friendly_name: Control Outlet
+    light.string_lights:
+      friendly_name: Bed Lights
+      icon: mdi:string-lights

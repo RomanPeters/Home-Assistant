@@ -1,0 +1,74 @@
+sensor:
+  - platform: "mqtt"
+    name: Xiaomi Temperature
+    state_topic: "zigbee2mqtt/xiaomi_temperature_sensor"
+    unit_of_measurement: "°C"
+    icon: "mdi:thermometer"
+    value_template: "{{ value_json.temperature }}"
+    json_attributes_topic: "zigbee2mqtt/xiaomi_temperature_sensor"
+
+  - platform: "mqtt"
+    name: Xiaomi Humidity
+    state_topic: "zigbee2mqtt/xiaomi_temperature_sensor"
+    unit_of_measurement: "%"
+    icon: "mdi:water-percent"
+    value_template: "{{ value_json.humidity }}"
+    json_attributes_topic: "zigbee2mqtt/xiaomi_temperature_sensor"
+
+  - platform: "mqtt"
+    name: Xiaomi Pressure
+    state_topic: "zigbee2mqtt/xiaomi_temperature_sensor"
+    unit_of_measurement: "hPa"
+    icon: "mdi:speedometer"
+    value_template: "{{ value_json.pressure }}"
+    json_attributes_topic: "zigbee2mqtt/xiaomi_temperature_sensor"
+
+  - platform: "mqtt"
+    name: Xiaomi Temperature 2
+    state_topic: "zigbee2mqtt/xiaomi_temperature_sensor_2"
+    unit_of_measurement: "°C"
+    icon: "mdi:thermometer"
+    value_template: "{{ value_json.temperature }}"
+    json_attributes_topic: "zigbee2mqtt/xiaomi_temperature_sensor_2"
+
+  - platform: "mqtt"
+    name: Xiaomi Humidity 2
+    state_topic: "zigbee2mqtt/xiaomi_temperature_sensor_2"
+    unit_of_measurement: "%"
+    icon: "mdi:water-percent"
+    value_template: "{{ value_json.humidity }}"
+    json_attributes_topic: "zigbee2mqtt/xiaomi_temperature_sensor_2"
+
+  - platform: "mqtt"
+    name: Xiaomi Pressure 2
+    state_topic: "zigbee2mqtt/xiaomi_temperature_sensor_2"
+    unit_of_measurement: "hPa"
+    icon: "mdi:speedometer"
+    value_template: "{{ value_json.pressure }}"
+    json_attributes_topic: "zigbee2mqtt/xiaomi_temperature_sensor_2"
+
+homeassistant:
+  customize:
+    sensor.xiaomi_temperature:
+      device_class: temperature
+      friendly_name: Living Room Temperature
+
+    sensor.xiaomi_humidity:
+      device_class: humidity
+      friendly_name: Living Room Humidity
+
+    sensor.xiaomi_pressure:
+      device_class: pressure
+      friendly_name: Living Room Pressure
+
+    sensor.xiaomi_temperature_2:
+      device_class: temperature
+      friendly_name: Bathroom Temperature
+
+    sensor.xiaomi_humidity_2:
+      device_class: humidity
+      friendly_name: Bathroom Humidity
+
+    sensor.xiaomi_pressure_2:
+      device_class: pressure
+      friendly_name: Bathroom Pressure

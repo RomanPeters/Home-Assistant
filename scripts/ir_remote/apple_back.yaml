@@ -1,9 +1,0 @@
-apple_back:
-  alias: Apple TV back
-  sequence:
-    - alias: Menu
-      service: remote.send_command
-      data:
-        entity_id: remote.apple_tv
-        command:
-          - menu

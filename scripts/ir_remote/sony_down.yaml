@@ -1,8 +1,0 @@
-sony_down:
-  alias: Sony down
-  sequence:
-    - alias: Send IR packet
-      service: switch.broadlink_send_packet_10_10_10_203
-      data:
-        packet: 
-          - "JgBwAEwWJRYRFSYVERYmFSYVJhUmFREWERURFhEAAylMFSYVEhUmFREWJRYlFiYVJhURFRIVERYRAAMpTBUmFRIVJhURFiUWJRYlFiUWERUSFREVEgADKUwVJhYRFSYVERYlFiYVJhUmFREVEhURFhEADQUAAAAAAAAAAA"

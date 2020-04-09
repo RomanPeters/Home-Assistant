@@ -1,6 +1,0 @@
-toggle_apple:
-  alias: Toggle Apple TV
-  sequence:
-    - alias: Toggle Apple TV
-      service: media_player.toggle
-      entity_id: media_player.apple_tv

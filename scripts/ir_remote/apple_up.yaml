@@ -1,9 +1,0 @@
-apple_up:
-  alias: Apple TV up
-  sequence:
-    - alias: Go up
-      service: remote.send_command
-      data:
-        entity_id: remote.apple_tv
-        command:
-          - up

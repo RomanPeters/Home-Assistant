@@ -1,8 +1,0 @@
-sony_theatre:
-  alias: Sony theatre
-  sequence:
-    - alias: Send IR packet
-      service: switch.broadlink_send_packet_10_10_10_203
-      data:
-        packet: 
-          - "JgCqAEwWERURFhEVEhURFSYVJhUmFicUJRYRFSYVJhUmFRIAAoxMFhEVERYRFREWERUoEygTKBMoFCcUERUoEyYVJhUSAAKMTBYRFRMUERUTFBEVJhUoEygTJhYnFBIUKBMoEygTEgACjE4TExQRFRMUERUSFSYVJxQmFScUJxQTFCcUJxQnFBEAAo1MFRMUExMTFBEWExMoEygTJhUoEygTExQoEygTKBMTAA0FAAAAAAAAAAAAAAAAAAA"

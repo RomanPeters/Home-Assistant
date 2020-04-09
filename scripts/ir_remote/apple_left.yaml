@@ -1,9 +1,0 @@
-apple_left:
-  alias: Apple TV left
-  sequence:
-    - alias: Go left
-      service: remote.send_command
-      data:
-        entity_id: remote.apple_tv
-        command:
-          - left

@@ -1,0 +1,38 @@
+switch:
+        #  - platform: broadlink
+        #    host: "10.10.10.202"
+        #    mac: "b4:43:0d:db:97:6c"
+        #    type: mp1
+        #    friendly_name: Power Strip
+        #    slots:
+        #      slot_1: Entone
+        #      slot_2: Slot 2
+        #      slot_3: Receiver
+        #      slot_4: Slot 4
+
+
+  - platform: broadlink_mp1
+    host: "10.10.10.202"
+    mac: "b4:43:0d:db:97:6c"
+    type: mp11
+    friendly_name: Entone
+
+
+  - platform: broadlink_mp1
+    host: "10.10.10.202"
+    mac: "b4:43:0d:db:97:6c"
+    type: mp12
+    friendly_name: Slot 2
+
+  - platform: broadlink_mp1
+    host: "10.10.10.202"
+    mac: "b4:43:0d:db:97:6c"
+    type: mp13
+    friendly_name: Receiver
+
+  - platform: broadlink_mp1
+    host: "10.10.10.202"
+    mac: "b4:43:0d:db:97:6c"
+    type: mp14
+    friendly_name: Slot 4
+

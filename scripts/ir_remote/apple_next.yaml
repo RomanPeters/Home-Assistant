@@ -1,6 +1,0 @@
-apple_next:
-  alias: Apple TV next
-  sequence:
-    - alias: Next
-      service: media_player.media_next_track
-      entity_id: media_player.apple_tv

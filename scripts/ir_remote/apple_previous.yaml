@@ -1,6 +1,0 @@
-apple_previous:
-  alias: Apple TV previous
-  sequence:
-    - alias: Previous
-      service: media_player.media_previous_track
-      entity_id: media_player.apple_tv

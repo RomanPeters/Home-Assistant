@@ -1,6 +1,6 @@
 cover:
   - platform: mqtt
-    name: Fyrtur
+    name: IKEA Fyrtur
     command_topic: zigbee2mqtt/ikea_fyrtur/set
     position_topic: zigbee2mqtt/ikea_fyrtur
     set_position_topic: zigbee2mqtt/ikea_fyrtur/set
@@ -8,7 +8,7 @@ cover:
     set_position_template: "{ \"position\":{{ position }} }"
 
   - platform: mqtt
-    name: Fyrtur 2
+    name: IKEA Fyrtur 2
     command_topic: zigbee2mqtt/ikea_fyrtur_2/set
     position_topic: zigbee2mqtt/ikea_fyrtur_2
     set_position_topic: zigbee2mqtt/ikea_fyrtur_2/set
@@ -16,67 +16,41 @@ cover:
     set_position_template: "{ \"position\":{{ position }} }"
   
   - platform: mqtt
-    name: Fyrtur 3
+    name: IKEA Fyrtur 3
     command_topic: zigbee2mqtt/ikea_fyrtur_3/set
     position_topic: zigbee2mqtt/ikea_fyrtur_3
     set_position_topic: zigbee2mqtt/ikea_fyrtur_3/set
     value_template: "{{ value_json.position }}"
     set_position_template: "{ \"position\":{{ position }} }"
 
-group:
-  shades:
-    name: Shades
-    entities:
-      - cover.fyrtur
-      - cover.fyrtur_2
-      - cover.fyrtur_3
-
-automation:
-  - id: close_shades
-    alias: Close Shades
-    trigger:
-      - platform: sun
-        event: sunset
-        offset: "02:00:00"
-      - platform: numeric_state
-        entity_id: sensor.aqara_temperature
-        below: 20
-    condition:
-      - condition: state
-        entity_id: binary_sensor.home
-        state: 'on'
-      - condition: state
-        entity_id: binary_sensor.dark
-        state: 'on'
-    action:
-      service: cover.close_cover
-      entity_id: group.shades
+sensor:
+  - platform: mqtt
+    name: Battery Fyrtur
+    state_topic: zigbee2mqtt/ikea_fyrtur
+    unit_of_measurement: "-"
+    value_template: "{{ value_json.linkquality }}"
 
 
-  - id: close_shades_coming_home
-    alias: Close Shades Coming Home
-    trigger: 
-      - platform: state
-        entity_id: binary_sensor.home
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: binary_sensor.dark
-        state: 'on'
-    action:
-      service: cover.close_cover
-      entity_id: group.shades
+  - platform: mqtt
+    name: Battery Fyrtur 2
+    state_topic: zigbee2mqtt/ikea_fyrtur_2
+    unit_of_measurement: "-"
+    value_template: "{{ value_json.linkquality }}"
 
+  - platform: mqtt
+    name: Battery Fyrtur 3
+    state_topic: zigbee2mqtt/ikea_fyrtur_3
+    unit_of_measurement: "-"
+    value_template: "{{ value_json.linkquality }}"
 
 homeassistant:
   customize:
-    cover.fyrtur:
-      friendly_name: Shade 1
+    cover.ikea_fyrtur:
+      friendly_name: Left Shade
       device_class: shade
-    cover.fyrtur_2:
-      friendly_name: Shade 2
+    cover.ikea_fyrtur_2:
+      friendly_name: Middle Shade
       device_class: shade 
-    cover.fyrtur_3:
-      friendly_name: Shade 3
+    cover.ikea_fyrtur_3:
+      friendly_name: Right Shade
       device_class: shade
-

@@ -1,0 +1,26 @@
+binary_sensor:
+  - platform: "mqtt"
+    name: Xiaomi Motion Sensor
+    state_topic: "zigbee2mqtt/xiaomi_motion_sensor"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes_topic: "zigbee2mqtt/xiaomi_motion_sensor"
+
+  - platform: "mqtt"
+    name: Xiaomi Motion Sensor 2
+    state_topic: "zigbee2mqtt/xiaomi_motion_sensor_2"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+    json_attributes_topic: "zigbee2mqtt/xiaomi_motion_sensor_2"
+
+homeassistant:
+  customize:
+    binary_sensor.xiaomi_motion_sensor:
+      friendly_name: Kitchen Motion Sensor
+    binary_sensor.xiaomi_motion_sensor_2:
+      friendly_name: Bathroom Motion Sensor
+

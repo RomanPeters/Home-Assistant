@@ -1,33 +1,9 @@
+
 sensor:
   - platform: "mqtt"
-    name: Aqara Vibration
-    state_topic: "zigbee2mqtt/aqara_vibration_sensor"
+    name: Xiaomi Vibration Sensor
+    state_topic: "zigbee2mqtt/xiaomi_vibration_sensor"
     icon: "mdi:gesture-double-tap"
     value_template: "{{ value_json.action }}"
-    json_attributes_topic: "zigbee2mqtt/aqara_vibration_sensor"
+    json_attributes_topic: "zigbee2mqtt/xiaomi_vibration_sensor"
 
-automation:
-  - id: done_vibrating
-    alias: Done vibrating
-    trigger:
-      - platform: state
-        entity_id: sensor.aqara_vibration
-        from: 'vibration'
-    action:
-      - service: script.broadcast
-        data:
-          message: 'Centrifuge done'
-
-  - id: done_washing
-    alias: Done washing
-    trigger:
-      - platform: state
-        entity_id: sensor.aqara_vibration
-        from: 'vibration'
-        to: ''
-        for:
-          minutes: 31
-    action:
-      - service: script.broadcast
-        data:
-          message: 'Washing machine done'
