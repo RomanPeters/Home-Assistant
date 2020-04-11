@@ -1,0 +1,16 @@
+zigbee2mqtt_networkmap:
+
+panel_iframe:
+  networkmap:
+    title: 'Zigbee Map'
+    url: '/local/community/zigbee2mqtt_networkmap/map.html'
+    icon: 'mdi:graphql'
+
+switch:
+  - platform: mqtt
+    name: zigbee2mqtt Pairing
+    icon: mdi:zigbee
+    state_topic: "zigbee2mqtt/bridge/config/permit_join"
+    command_topic: zigbee2mqtt/bridge/config/permit_join
+    payload_on: "true"
+    payload_off: "false"

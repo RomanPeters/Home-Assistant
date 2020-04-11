@@ -1,0 +1,13 @@
+
+sensor:
+  - platform: systemmonitor
+    resources:
+      - type: last_boot
+      - type: disk_use_percent
+        arg: /media/synology
+
+homeassistant:
+  customize:
+    sensor.last_boot:
+      device_class: timestamp
+

@@ -1,0 +1,48 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      living_room_occupancy:
+        friendly_name: "Living Room Occupancy"
+        value_template: "{{ is_state('input_boolean.living_room_occupancy', 'on')}}"
+        icon_template: mdi:sofa
+
+input_boolean:
+  living_room_occupancy:
+    name: Living Room Occupancy
+
+automation:
+# Turn On
+  - id: living_room_occupancy_on
+    alias: Living Room Occupancy On
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.bathroom_occupancy
+        to: 'off'
+      - platform: state
+        entity_id: binary_sensor.kitchen_occupancy
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.bathroom_occupancy
+        state:  'off'
+      - condition: state
+        entity_id: binary_sensor.kitchen_occupancy
+        state:  'off'
+      - condition: state
+        entity_id: binary_sensor.home_occupancy
+        state: 'on'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.living_room_occupancy
+
+# Turn Off
+  - id: living_room_occupancy_off
+    alias: Living Room Occupancy Off
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.home_occupancy
+        from: 'on'
+        to: 'off'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.living_room_occupancy

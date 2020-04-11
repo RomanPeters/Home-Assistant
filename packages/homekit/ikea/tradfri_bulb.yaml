@@ -1,0 +1,27 @@
+light:
+  - platform: mqtt
+    name: IKEA RGBW Bulb
+    state_topic: "zigbee2mqtt/ikea_rgbw_bulb"
+    brightness: true
+    color_temp: true
+    xy: true
+    schema: "json"
+    command_topic: "zigbee2mqtt/ikea_rgbw_bulb/set"
+
+  - platform: mqtt
+    name: IKEA RGBW Bulb 2
+    state_topic: "zigbee2mqtt/ikea_rgbw_bulb_2"
+    brightness: true
+    color_temp: true
+    xy: true
+    schema: "json"
+    command_topic: "zigbee2mqtt/ikea_rgbw_bulb_2/set"
+
+homeassistant:
+  customize:
+    light.ikea_rgbw_bulb:
+      friendly_name: Living Room Light
+      icon: mdi:ceiling-light
+    light.ikea_rgbw_bulb_2:
+      friendly_name: Kitchen Light
+      icon: mdi:ceiling-light

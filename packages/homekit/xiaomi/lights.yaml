@@ -1,0 +1,27 @@
+light:
+  - platform: mqtt
+    name: Xiaomi WW Bulb
+    state_topic: "zigbee2mqtt/xiaomi_ww_bulb"
+    brightness: true
+    color_temp: true
+    schema: "json"
+    command_topic: "zigbee2mqtt/xiaomi_ww_bulb/set"
+
+yeelight:
+  devices:
+    10.10.10.201:
+      name: LED Strip
+      model: strip1
+
+
+homeassistant:
+  customize:
+    light.xiaomi_ww_bulb:
+      icon: mdi:floor-lamp
+      friendly_name: Bathroom Light
+
+    light.led_strip:
+      icon: mdi:led-strip-variant
+      friendly_name: LED Strip
+
+

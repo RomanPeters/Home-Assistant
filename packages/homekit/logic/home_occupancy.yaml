@@ -1,0 +1,86 @@
+# This sensor is just an indication
+# Not completely reliable
+binary_sensor:
+  - platform: template
+    sensors:
+      home_occupancy:
+        friendly_name: "Home Occupancy"
+        value_template: "{{ is_state('input_boolean.home_occupancy', 'on')}}"
+        icon_template: mdi:home
+
+input_boolean:
+  home_occupancy:
+    name: Home Occupancy
+
+  home_occupancy_closed_door:
+    name: Home Occupancy Closed Door
+    initial: 'off'
+
+automation:
+# Turn On
+  - id: home_occupancy_on
+    alias: Home Occupancy On
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.xiaomi_motion_sensor
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.xiaomi_motion_sensor_2
+        to: 'on'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.home_occupancy
+
+  - id: home_occupancy_closed_door_on
+    alias: Home Occupancy Closed Door On
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.xiaomi_motion_sensor
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.xiaomi_motion_sensor_2
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.xiaomi_contact_sensor
+        state:  'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.home_occupancy_closed_door
+
+# Turn Off
+  - id: home_occupancy_off
+    alias: Home Occupancy Off
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.kitchen_occupancy
+        from: 'on'
+        to: 'off'
+      - platform: state
+        entity_id: binary_sensor.bathroom_occupancy
+        from: 'on'
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: input_boolean.home_occupancy_closed_door
+        state:  'off'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.home_occupancy
+
+  - id: home_occupancy_closed_door_off
+    alias: Home Occupancy Closed Door Off
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.xiaomi_contact_sensor
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.home_occupancy_closed_door
+        state:  'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.home_occupancy_closed_door
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.home_occupancy

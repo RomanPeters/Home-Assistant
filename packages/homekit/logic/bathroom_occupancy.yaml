@@ -1,0 +1,79 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      bathroom_occupancy:
+        friendly_name: "Bathroom Occupancy"
+        value_template: "{{ is_state('input_boolean.bathroom_occupancy', 'on')}}"
+        icon_template: mdi:shower
+
+input_boolean:
+  bathroom_occupancy:
+    name: Bathroom Occupancy
+
+  bathroom_occupancy_closed_door:
+    name: Bathroom Occupancy Closed Door
+    initial: 'off'
+
+automation:
+# motion detected or door opened -> turn on
+  - id: bathroom_occupancy_on
+    alias: Bathroom Occupancy On
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.xiaomi_motion_sensor_2
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.xiaomi_contact_sensor_2
+        from: 'off'
+        to: 'on'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.bathroom_occupancy
+
+# motion detected while door is closed -> turn on closed_door_on
+  - id: bathroom_occupancy_closed_door_on
+    alias: Bathroom Occupancy Closed Door On
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.xiaomi_motion_sensor_2
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.xiaomi_contact_sensor_2
+        state:  'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.bathroom_occupancy_closed_door
+
+# no motion for 5 minutes -> turn off
+  - id: bathroom_occupancy_off
+    alias: Bathroom Occupancy Off
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.xiaomi_motion_sensor_2
+        to: 'off'
+        for:
+          minutes: 5
+    action:
+      - wait_template: "{{ is_state('input_boolean.bathroom_occupancy_closed_door', 'off') }}"
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.bathroom_occupancy
+
+# door opened while closed_door_on -> turn off, turn closed_door_on off
+  - id: bathroom_occupancy_closed_door_off
+    alias: Bathroom Occupancy Closed Door Off
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.xiaomi_contact_sensor_2
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.bathroom_occupancy_closed_door
+        state:  'on'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.bathroom_occupancy_closed_door
+      - delay:
+          seconds: 3
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.bathroom_occupancy

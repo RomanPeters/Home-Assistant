@@ -1,6 +1,3 @@
 homeassistant:
-  name: Home
-  packages:
-    system: !include_dir_named system_pack
-    homekit: !include_dir_named homekit_pack
-    other: !include_dir_named other_pack
+  name: LP308
+  packages: !include_dir_named packages

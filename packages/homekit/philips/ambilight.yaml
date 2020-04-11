@@ -1,0 +1,13 @@
+# light:
+#   - platform: philips_ambilight
+#     name: Ambilight
+#     host: 10.10.10.9
+#     username: ry3S5uBScUhI707D
+#     password: 6024eeb47b5aa386e0cf2844f206b58133511a842d65c5b59492202bba50a5cc
+
+
+homeassistant:
+  customize:
+    light.ambilight:
+      icon: mdi:television
+

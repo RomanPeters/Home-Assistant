@@ -1,0 +1,41 @@
+media_player:
+  - platform: androidtv
+    name: AndroidTV
+    host: 10.10.10.9
+    #    adb_server_ip: 10.10.10.20
+    apps:
+      com.plexapp.android: "Plex"
+      com.netflix.ninja: "Netflix"
+      com.google.android.youtube.tv: "YouTube"
+      org.droidtv.nettvapp2786: "NPO"
+      org.droidtv.nettvapp2512: "RTL XL"
+      com.ted.android.tv: "TED"
+      org.droidtv.playtv: "Television"
+
+  - platform: universal
+    name: Television
+    children:
+      - media_player.androidtv
+    state_template: >
+      {% if is_state('media_player.androidtv', 'idle') or is_state('media_player.androidtv', 'off') or is_state('media_player.androidtv', 'unavailable')%}
+        off
+      {% else %}
+      {{ states('media_player.androidtv') }}
+      {% endif %}
+    commands:
+      turn_on:
+        service: media_player.turn_on
+        data:
+          entity_id: media_player.androidtv
+
+homeassistant:
+  customize:
+    media_player.androidtv:
+      device_class: tv
+      source_list: [Television,Netflix,Plex,YouTube]
+
+    media_player.television:
+      icon: mdi:television
+      device_class: tv
+      source_list: [Television,Netflix,Plex,YouTube]
+
