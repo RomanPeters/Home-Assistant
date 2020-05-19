@@ -1,0 +1,36 @@
+automation:
+  - id: fridge_door_is_open
+    alias: Fridge Door is open
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.xiaomi_contact_sensor_3
+        to:  'on'
+        for:
+          minutes: 3
+    action:
+      - service: notify.mobile_app_iphone_8
+        data_template:
+          message: "Fridge door didn't close"
+
+  - id: front_door_is_open
+    alias: Front Door is open
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.xiaomi_contact_sensor
+        to:  'on'
+        for:
+          minutes: 5
+    action:
+      - service: notify.mobile_app_iphone_8
+        data_template:
+          message: "Front door didn't close"
+
+  - id: voice_changed
+    alias: Voice changed
+    trigger:
+      - platform: state
+        entity_id: input_boolean.voice
+    action:
+      - service: notify.mobile_app_iphone_8
+        data_template:
+          message: "Voice turned {{ trigger.to_state.state }}"

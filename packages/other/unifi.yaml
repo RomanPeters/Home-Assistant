@@ -1,0 +1,55 @@
+shell_command:
+  # Changes the status light of an Ubiquiti Unifi AP
+  unifi_led_off: >-
+    ssh romanpeters@10.10.10.253 "echo '0' >/proc/gpio/led_pattern
+    && sed -i '/mgmt.led_pattern_override/d' /var/etc/persistent/cfg/mgmt
+    && echo 'mgmt.led_pattern_override=0' >> /var/etc/persistent/cfg/mgmt"
+  unifi_led_blue: >-
+    ssh romanpeters@10.10.10.253 "echo '1' >/proc/gpio/led_pattern
+    && sed -i '/mgmt.led_pattern_override/d' /var/etc/persistent/cfg/mgmt
+    && echo 'mgmt.led_pattern_override=1' >> /var/etc/persistent/cfg/mgmt"
+  unifi_led_white: >-
+    ssh romanpeters@10.10.10.253 "echo '2' >/proc/gpio/led_pattern
+    && sed -i '/mgmt.led_pattern_override/d' /var/etc/persistent/cfg/mgmt 
+    && echo 'mgmt.led_pattern_override=2' >> /var/etc/persistent/cfg/mgmt"
+
+  unifi_led_pattern: >-
+    ssh romanpeters@10.10.10.253 "echo '{{ states('input_text.unifi_led_pattern') }}' >/proc/gpio/led_pattern
+    && sed -i '/mgmt.led_pattern_override/d' /var/etc/persistent/cfg/mgmt 
+    && echo 'mgmt.led_pattern_override={{ states('input_text.unifi_led_pattern') }}' >> /var/etc/persistent/cfg/mgmt"
+
+
+input_text:
+  unifi_led_pattern:
+    name: UniFi LED Pattern
+    initial: '1'
+
+script:
+  unifi_led_pattern:
+    alias: Change Pattern
+    sequence:
+      - service: shell_command.unifi_led_pattern
+
+
+sensor:
+  - platform: template
+    sensors:
+      unifi_led:
+        friendly_name: "Unifi LED"
+        value_template: >-
+          {%- if not is_state("person.roman_peters", "home") -%}
+            off
+          {%- elif  is_state("binary_sensor.do_not_disturb", "on") -%}
+            white
+          {%- else -%}
+            blue
+          {%- endif %}
+
+automation:
+  - id: control_unifi_led
+    alias: Control UniFi LED
+    trigger:
+      - platform: state
+        entity_id: sensor.unifi_led
+    action:
+      - service_template: shell_command.unifi_led_{{ trigger.to_state.state }}

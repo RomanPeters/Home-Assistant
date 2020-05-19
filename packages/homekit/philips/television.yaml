@@ -2,7 +2,7 @@ media_player:
   - platform: androidtv
     name: AndroidTV
     host: 10.10.10.9
-    #    adb_server_ip: 10.10.10.20
+    #    adb_server_ip: 10.10.10.10
     apps:
       com.plexapp.android: "Plex"
       com.netflix.ninja: "Netflix"
@@ -27,6 +27,7 @@ media_player:
         service: media_player.turn_on
         data:
           entity_id: media_player.androidtv
+
 
 homeassistant:
   customize:

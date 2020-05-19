@@ -1,0 +1,11 @@
+input_boolean:
+  do_not_disturb:
+    name: Do Not Disturb
+    icon: mdi:moon
+
+binary_sensor:
+  - platform: template
+    sensors:
+      do_not_disturb:
+        friendly_name: Do Not Disturb
+        value_template: "{{ states('input_boolean.do_not_disturb') == 'on' }}"

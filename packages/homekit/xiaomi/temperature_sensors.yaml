@@ -4,7 +4,7 @@ sensor:
     state_topic: "zigbee2mqtt/xiaomi_temperature_sensor"
     unit_of_measurement: "°C"
     icon: "mdi:thermometer"
-    value_template: "{{ value_json.temperature }}"
+    value_template: "{{ value_json.temperature | float | round(1) }}"
     json_attributes_topic: "zigbee2mqtt/xiaomi_temperature_sensor"
 
   - platform: "mqtt"
@@ -28,7 +28,7 @@ sensor:
     state_topic: "zigbee2mqtt/xiaomi_temperature_sensor_2"
     unit_of_measurement: "°C"
     icon: "mdi:thermometer"
-    value_template: "{{ value_json.temperature }}"
+    value_template: "{{ value_json.temperature | float | round(1) }}"
     json_attributes_topic: "zigbee2mqtt/xiaomi_temperature_sensor_2"
 
   - platform: "mqtt"

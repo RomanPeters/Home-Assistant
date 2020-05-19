@@ -1,3 +1,26 @@
 binary_sensor:
+  - platform: template
+    sensors:
+      web_services:
+        friendly_name: Web Services
+        device_class: connectivity
+        value_template: >-
+          {% if is_state("binary_sensor.home_assistant", "on") and
+                is_state("binary_sensor.e_surveillant_ical", "on") and
+                is_state("binary_sensor.e_surveillant_nl", "on") and
+                is_state("binary_sensor.nextcloud", "on") and
+                is_state("binary_sensor.sharelatex", "on")
+          %}
+            True
+          {% else %}
+            False
+          {% endif %}
+        icon_template: >-
+          {% if is_state("binary_sensor.web_services", "on") %}
+            mdi:checkbox-marked-circle
+          {% else %}
+            mdi:checkbox-blank-circle-outline
+          {% endif %}
+
   - platform: uptimerobot
     api_key: "ur571128-44d11701fe5aaec2bf2fcf00"  # what are secrets lol (it's read-only)

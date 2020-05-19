@@ -1,0 +1,4 @@
+homeassistant:
+  customize:
+    person.roman_peters:
+      entity_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFj8ri2XHVpaQ/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=Vfa16wfUmv6ainOK6r5VCerwl8voydfe5HtWu1mB82A"

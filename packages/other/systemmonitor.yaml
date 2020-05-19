@@ -3,8 +3,21 @@ sensor:
   - platform: systemmonitor
     resources:
       - type: last_boot
-      - type: disk_use_percent
-        arg: /media/synology
+
+
+  - platform: template
+    sensors:
+      ram_used_gb:
+        friendly_name: "RAM used"
+        unit_of_measurement: "GB"
+        value_template: "{{ (states('sensor.glances_ram_used') | int / 1000) | round(1)  }}"
+
+  - platform: command_line
+    name: Thermal Throttling
+    scan_interval: 300
+    command: >-
+      ssh -i /config/.ssh/id_rsa -o "StrictHostKeyChecking no" homeassistant@127.0.0.1 "journalctl --since -300s | grep throttled > /dev/null && echo True || echo False"
+
 
 homeassistant:
   customize:

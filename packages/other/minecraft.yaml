@@ -1,6 +1,6 @@
 switch:
   - platform: rest
-    resource: http://10.10.10.20:8126/container/minecraft-server
+    resource: http://10.10.10.10:8126/container/minecraft-server
     name: Minecraft Server
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'

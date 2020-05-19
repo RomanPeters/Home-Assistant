@@ -1,0 +1,59 @@
+sensor:
+  - platform: mqtt
+    name: IKEA Open Close Remote
+    state_topic: zigbee2mqtt/ikea_open_close_remote
+    value_template: "{{ value_json.click }}"
+    icon: "mdi:toggle-switch"
+
+  - platform: mqtt
+    name: IKEA Open Close Remote 2
+    state_topic: zigbee2mqtt/ikea_open_close_remote_2
+    value_template: "{{ value_json.click }}"
+    icon: "mdi:toggle-switch"
+
+  
+  - platform: mqtt
+    name: IKEA Open Close Remote 3
+    state_topic: zigbee2mqtt/ikea_open_close_remote_3
+    value_template: "{{ value_json.click }}"
+    icon: "mdi:toggle-switch"
+    
+automation:
+  - id: ikea_open_close_remote
+    alias: IKEA Open Close Remote
+    trigger:
+      - platform: state
+        entity_id: sensor.ikea_open_close_remote
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.state != '' }}"
+    action:
+      - service_template: cover.{% if trigger.to_state.state == 'release' %}stop{% else %}{{ trigger.to_state.state }}{% endif %}_cover
+        data:
+          entity_id: group.all_covers
+          
+  - id: ikea_open_close_remote_2
+    alias: IKEA Open Close Remote 2
+    trigger:
+      - platform: state
+        entity_id: sensor.ikea_open_close_remote_2
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.state != '' }}"
+    action:
+      - service_template: cover.{% if trigger.to_state.state == 'release' %}stop{% else %}{{ trigger.to_state.state }}{% endif %}_cover
+        data:
+          entity_id: cover.ikea_fyrtur_3
+          
+  - id: ikea_open_close_remote_3
+    alias: IKEA Open Close Remote 3
+    trigger:
+      - platform: state
+        entity_id: sensor.ikea_open_close_remote_3
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.state != '' }}"
+    action:
+      - service_template: switch.turn_{% if trigger.to_state.state == 'open' %}on{% elif trigger.to_state.state == 'close' or trigger.to_state.state == 'release'%}off{% endif %}
+      
+      

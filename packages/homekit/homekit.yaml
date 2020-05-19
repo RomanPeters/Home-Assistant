@@ -1,3 +1,4 @@
+
 homekit:
   name: Hassio
   auto_start: false
@@ -55,7 +56,7 @@ binary_sensor:
   - platform: template
     sensors:
       homekit_ready:
-        friendly_name: HomeKit Ready
+        friendly_name: HomeKit
         value_template: >-
           {% if is_state("light.led_strip", "unavailable") or
                 is_state("switch.entone", "unavailable") or
@@ -75,6 +76,10 @@ script:
     sequence:
       - wait_template: "{{ is_state('binary_sensor.homekit_ready', 'on') }}"
       - service: homekit.start
+      - service: notify.mobile_app_iphone_8
+        data:
+          message: "HomeKit is online"
+
 
 automation:
   - alias: Start HomeKit

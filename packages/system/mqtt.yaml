@@ -1,6 +1,6 @@
 mqtt:
   discovery: false
-  broker: 10.10.10.20
+  broker: 10.10.10.10
   client_id: homeassistant
   birth_message:
     topic: 'hass/status'

@@ -1,0 +1,57 @@
+input_boolean:
+  voice:
+    name: Voice
+    icon: mdi:volume-high
+
+automation:
+  - id: Voice on
+    alias: Voice on
+    trigger: 
+      - platform: state
+        entity_id: input_boolean.do_not_disturb
+        to: 'off'
+      - platform: state
+        entity_id: input_boolean.home_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.home_occupancy
+        state:  'on'
+    action:
+      - service_template: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.voice
+
+  - id: Voice off
+    alias: Voice off
+    trigger: 
+      - platform: state
+        entity_id: input_boolean.do_not_disturb
+        to: 'on'
+      - platform: state
+        entity_id: input_boolean.home_occupancy
+        to: 'off'
+    action:
+      - service_template: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.voice
+
+script:
+  announcement:
+    description: Announcement
+    fields:
+      message:
+        description: 'The message content'
+        example: 'Hello World!'
+      title:
+        description: 'The message title'
+        example: 'Hello World!'
+    sequence:
+      - service: script.turn_on
+        data_template:
+          entity_id: script.{% if states('input_boolean.voice') == 'on' and states('media_player.sonos') == 'playing' %}speak_2{% elif states('input_boolean.voice') == 'on' and not states('media_player.television') == 'playing' %}speak{% else %}notification{% endif %}
+          variables:
+            message: "{{ message }}"
+            title: "{{ title }}"
+
+  

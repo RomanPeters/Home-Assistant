@@ -1,0 +1,4 @@
+camera:
+  - platform: ffmpeg
+    name: Pan Tilt Camera
+    input: -rtsp_transport tcp -i rtsp://10.10.10.31:8554/unicast

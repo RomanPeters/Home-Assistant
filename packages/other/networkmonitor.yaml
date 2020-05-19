@@ -1,0 +1,43 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      local_devices:
+        friendly_name: Local Devices
+        device_class: connectivity
+        value_template: >-
+          {% if is_state("binary_sensor.synology", "on") and
+                is_state("binary_sensor.netcon", "on") and
+                is_state("binary_sensor.radio", "on") and
+                is_state("binary_sensor.unifi_ap", "on")
+          %}
+            True
+          {% else %}
+            False
+          {% endif %}
+        icon_template: >-
+          {% if is_state("binary_sensor.local_devices", "on") %}
+            mdi:checkbox-marked-circle
+          {% else %}
+            mdi:checkbox-blank-circle-outline
+          {% endif %}
+
+
+  - platform: ping
+    name: Synology
+    host: 10.10.10.100
+    scan_interval: 900
+
+  - platform: ping
+    name: NetCon
+    host: 10.10.10.101
+    scan_interval: 900
+
+  - platform: ping
+    name: Radio
+    host: 10.10.10.102
+    scan_interval: 900
+
+  - platform: ping
+    name: UniFi AP
+    host: 10.10.10.253
+    scan_interval: 900

@@ -1,0 +1,15 @@
+script:
+  notification:
+    description: 'Notification'
+    fields:
+      message:
+        description: 'The message content'
+        example: 'Hello World!'
+      title:
+        description: 'The message title'
+        example: 'Hello World!'
+    sequence:
+      - service: notify.mobile_app_iphone_8
+        data_template:
+          message: "{{ message }}"
+          title: "{{ title }}"

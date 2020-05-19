@@ -1,0 +1,86 @@
+input_number:
+  sonos_saved_volume:
+    name: Sonos Saved Volume
+    min: 0
+    max: 1
+    step: 0.01
+
+automation:
+  - id: occupancy_detected_in_bathroom
+    alias: Occupancy Detected in Bathroom
+    trigger: 
+      - platform: state
+        entity_id: binary_sensor.bathroom_occupancy
+        to:  'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.xiaomi_ww_bulb
+      - wait_template: "{{ is_state('binary_sensor.bathroom_occupancy', 'off') }}"
+      - service: light.turn_off
+        data:
+          entity_id: light.xiaomi_ww_bulb
+      
+  - id: occupancy_detected_in_bathroom_while_watching_tv
+    alias: Occupancy Detected in Bathroom While Watching TV
+    trigger: 
+      - platform: state
+        entity_id: binary_sensor.bathroom_occupancy
+        to:  'on'
+    condition:
+      - condition: state
+        entity_id: media_player.androidtv
+        state: 'playing'
+    action:
+      - service: media_player.media_pause
+        data:
+          entity_id: media_plagyer.androidtv
+
+  - id: occupancy_detected_in_kitchen
+    alias: Occupancy Detected in Kitchen
+    trigger: 
+      - platform: state
+        entity_id: binary_sensor.kitchen_occupancy
+        to:  'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.led_strip
+      - service: media_player.volume_set
+        data_template:
+          entity_id: media_player.sonos
+          volume_level: "{{ states('input_number.sonos_saved_volume') }}"
+      - wait_template: "{{ is_state('binary_sensor.kitchen_occupancy', 'off') }}"
+      - service: light.turn_off
+        data:
+          entity_id: light.led_strip
+      - wait_template: "{{ is_state('binary_sensor.bathroom_occupancy', 'off') }}"
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.sonos_saved_volume
+          value: "{{ state_attr('media_player.sonos', 'volume_level') }}"
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.sonos
+          volume_level: 0
+
+
+  - id: occupancy_detected_in_kitchen_2
+    alias: Occupancy Detected in Kitchen_2 
+    trigger: 
+      - platform: state
+        entity_id: binary_sensor.kitchen_occupancy
+        to:  'on'
+    condition:
+      - condition: state
+        entity_id: light.ikea_rgbw_bulb
+        state:  'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.ikea_rgbw_bulb_2
+      - wait_template: "{{ is_state('binary_sensor.kitchen_occupancy', 'off') }}"
+      - service: light.turn_off
+        data:
+          entity_id: light.ikea_rgbw_bulb_2
+
