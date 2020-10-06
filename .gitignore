@@ -10,3 +10,7 @@ home-assistant_v2.db
 themes/
 www/
 custom_components/
+tts/
+known_devices.yaml
+id_rsa.pub
+

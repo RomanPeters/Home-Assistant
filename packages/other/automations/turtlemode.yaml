@@ -1,0 +1,21 @@
+
+automation:
+  - id: turtle_mode_plex
+    alias: Turtle Mode Plex
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.plex_rtv
+        above: 0
+    condition:
+      - condition: state
+        entity_id: switch.transmission_turtle_mode
+        state:  'on'
+    action:
+      - service_template: switch.turn_on
+        data:
+          entity_id: switch.transmission_turtle_mode
+      - wait_template: "{{ is_state('switch.transmission_turtle_mode', '0') }}"
+      - service_template: switch.turn_off
+        data:
+          entity_id: switch.transmission_turtle_mode
+

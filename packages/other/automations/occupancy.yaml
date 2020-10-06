@@ -5,7 +5,50 @@ input_number:
     max: 1
     step: 0.01
 
+input_boolean:
+  dim_mode:
+    name: Dim Mode
+
 automation:
+  - id: turn_dim_mode_on
+    alias: Turn Dim Mode On
+    trigger:
+      - platform: state
+        entity_id: cover.ikea_fyrtur
+        to: 'closed'
+      - platform: state
+        entity_id: light.ikea_rgbw
+        to: 'off'
+      - platform: state
+        entity_id: light.ikea_rgbw_2
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: cover.ikea_fyrtur
+        state: 'closed'
+      - condition: state
+        entity_id: light.ikea_rgbw
+        state: 'off'
+      - condition: state
+        entity_id: light.ikea_rgbw_2
+        state: 'off'
+    action:
+      - wait_template: "{{ is_state('media_player.television', 'off') }}"
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.dim_mode
+
+  - id: turn_dim_mode_off
+    alias: Turn Dim Mode Off
+    trigger:
+      - platform: state
+        entity_id: cover.ikea_fyrtur
+        to: 'open'
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.dim_mode
+
   - id: occupancy_detected_in_bathroom
     alias: Occupancy Detected in Bathroom
     trigger: 
@@ -16,6 +59,12 @@ automation:
       - service: light.turn_on
         data:
           entity_id: light.xiaomi_ww_bulb
+          brightness_pct: >
+            {%- if is_state("input_boolean.dim_mode", "on") -%}
+              1
+            {%- else -%}
+              100
+            {%- endif %}
       - wait_template: "{{ is_state('binary_sensor.bathroom_occupancy', 'off') }}"
       - service: light.turn_off
         data:
@@ -34,7 +83,7 @@ automation:
     action:
       - service: media_player.media_pause
         data:
-          entity_id: media_plagyer.androidtv
+          entity_id: media_player.androidtv
 
   - id: occupancy_detected_in_kitchen
     alias: Occupancy Detected in Kitchen
@@ -46,6 +95,12 @@ automation:
       - service: light.turn_on
         data:
           entity_id: light.led_strip
+          brightness_pct: >-
+            {%- if is_state("input_boolean.dim_mode", "on") -%}
+              1
+            {%- else -%}
+              100
+            {%- endif %}
       - service: media_player.volume_set
         data_template:
           entity_id: media_player.sonos

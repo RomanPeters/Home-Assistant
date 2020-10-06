@@ -15,7 +15,7 @@ switch:
     host: "10.10.10.202"
     mac: "b4:43:0d:db:97:6c"
     type: mp11
-    friendly_name: Entone
+    friendly_name: Slot 1
 
 
   - platform: broadlink_mp1
@@ -28,7 +28,7 @@ switch:
     host: "10.10.10.202"
     mac: "b4:43:0d:db:97:6c"
     type: mp13
-    friendly_name: Receiver
+    friendly_name: Slot 3
 
   - platform: broadlink_mp1
     host: "10.10.10.202"
@@ -38,11 +38,11 @@ switch:
 
 homeassistant:
   customize:
-    switch.entone:
+    switch.slot_1:
       icon: mdi:television-box
     switch.slot_2:
       icon: mdi:power-socket-eu
-    switch.receiver:
+    switch.slot_3:
       icon: mdi:monitor-speaker
     switch.slot_4:
       icon: mdi:power-socket-eu

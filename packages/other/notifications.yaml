@@ -25,12 +25,3 @@ automation:
         data_template:
           message: "Front door didn't close"
 
-  - id: voice_changed
-    alias: Voice changed
-    trigger:
-      - platform: state
-        entity_id: input_boolean.voice
-    action:
-      - service: notify.mobile_app_iphone_8
-        data_template:
-          message: "Voice turned {{ trigger.to_state.state }}"

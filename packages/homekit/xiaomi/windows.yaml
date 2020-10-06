@@ -1,0 +1,62 @@
+
+sensor:
+  - platform: "mqtt"
+    name: Xiaomi Vibration Sensor
+    state_topic: "zigbee2mqtt/xiaomi_vibration_sensor"
+    icon: "mdi:gesture-double-tap"
+    value_template: "{{ value_json.action }}"
+    json_attributes_topic: "zigbee2mqtt/xiaomi_vibration_sensor"
+
+binary_sensor:
+  - platform: "mqtt"
+    name: Xiaomi Contact Sensor 3
+    state_topic: "zigbee2mqtt/xiaomi_contact_sensor_3"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    #device_class: "door"
+    json_attributes_topic: "zigbee2mqtt/xiaomi_contact_sensor_3"
+
+  - platform: template
+    sensors:
+      window_tilt:
+        friendly_name: "Window Tilt"
+        value_template: >-
+          {{ state_attr('sensor.xiaomi_vibration_sensor', 'angle_z')|float < 10 }}
+
+      window:
+        friendly_name: "Window"
+        value_template: >-
+          {%- if is_state("binary_sensor.window_tilt", 'off') and
+                 is_state("binary_sensor.xiaomi_contact_sensor_3", 'off') -%}
+            false
+          {%- else -%}
+            true
+          {% endif %}
+
+
+# obsolete
+#automation:
+#  - id: vibration_sensor
+#    alias: Vibration Sensor
+#    trigger:
+#      - platform: state
+#        entity_id: sensor.xiaomi_vibration_sensor
+#    condition:
+#      - condition: template
+#        value_template: "{{  trigger.to_state.state != '' and trigger.to_state.state != 'unknown' }}"
+#    action:
+#      - service: notify.mobile_app_iphone_8
+#        data_template:
+#          message: "Bed is '{{ trigger.to_state.state }}'"
+
+
+
+homeassistant:
+  customize:
+    binary_sensor.window_tilt:
+      friendly_name: Window Tilt
+      device_class: window
+    binary_sensor.window:
+      friendly_name: Window
+      device_class: window

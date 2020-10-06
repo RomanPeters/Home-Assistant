@@ -1,0 +1,44 @@
+input_boolean:
+  do_not_disturb:
+    name: Do Not Disturb
+    icon: mdi:moon
+
+  iphone_charging:
+    name: iPhone Charging
+    icon: mdi:battery
+
+binary_sensor:
+  - platform: template
+    sensors:
+      do_not_disturb:
+        friendly_name: Do Not Disturb
+        value_template: "{{ states('input_boolean.do_not_disturb') == 'on' }}"
+
+  - platform: template
+    sensors:
+      iphone_charging:
+        friendly_name: iPhone Charging
+        value_template: "{{ states('input_boolean.iphone_charging') == 'on' }}"
+
+automation:
+  - id: iphone_start_charging
+    alias: iPhone Start Charging
+    trigger: 
+      - platform: event
+        event_type: ios_charger_connected
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.iphone_charging
+
+
+  - id: iphone_stop_charging
+    alias: iPhone Stop Charging
+    trigger: 
+      - platform: event
+        event_type: ios_charger_disconnected
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.iphone_charging
+      

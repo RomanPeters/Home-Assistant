@@ -1,7 +1,7 @@
 media_player:
   - platform: androidtv
     name: AndroidTV
-    host: 10.10.10.9
+    host: 10.10.10.29
     #    adb_server_ip: 10.10.10.10
     apps:
       com.plexapp.android: "Plex"

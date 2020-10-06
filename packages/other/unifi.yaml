@@ -1,22 +1,13 @@
 shell_command:
   # Changes the status light of an Ubiquiti Unifi AP
   unifi_led_off: >-
-    ssh romanpeters@10.10.10.253 "echo '0' >/proc/gpio/led_pattern
-    && sed -i '/mgmt.led_pattern_override/d' /var/etc/persistent/cfg/mgmt
-    && echo 'mgmt.led_pattern_override=0' >> /var/etc/persistent/cfg/mgmt"
+    ssh -o StrictHostKeyChecking=no romanpeters@10.10.10.253 "echo '0' >/proc/gpio/led_pattern
   unifi_led_blue: >-
-    ssh romanpeters@10.10.10.253 "echo '1' >/proc/gpio/led_pattern
-    && sed -i '/mgmt.led_pattern_override/d' /var/etc/persistent/cfg/mgmt
-    && echo 'mgmt.led_pattern_override=1' >> /var/etc/persistent/cfg/mgmt"
+    ssh -o StrictHostKeyChecking=no romanpeters@10.10.10.253 "echo '1' >/proc/gpio/led_pattern
   unifi_led_white: >-
-    ssh romanpeters@10.10.10.253 "echo '2' >/proc/gpio/led_pattern
-    && sed -i '/mgmt.led_pattern_override/d' /var/etc/persistent/cfg/mgmt 
-    && echo 'mgmt.led_pattern_override=2' >> /var/etc/persistent/cfg/mgmt"
-
+    ssh -o StrictHostKeyChecking=no romanpeters@10.10.10.253 "echo '2' >/proc/gpio/led_pattern
   unifi_led_pattern: >-
-    ssh romanpeters@10.10.10.253 "echo '{{ states('input_text.unifi_led_pattern') }}' >/proc/gpio/led_pattern
-    && sed -i '/mgmt.led_pattern_override/d' /var/etc/persistent/cfg/mgmt 
-    && echo 'mgmt.led_pattern_override={{ states('input_text.unifi_led_pattern') }}' >> /var/etc/persistent/cfg/mgmt"
+    ssh -o StrictHostKeyChecking=no romanpeters@10.10.10.253 "echo '{{ states('input_text.unifi_led_pattern') }}' >/proc/gpio/led_pattern
 
 
 input_text:

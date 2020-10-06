@@ -1,7 +1,7 @@
 
 homekit:
   name: Hassio
-  auto_start: false
+  auto_start: true
   filter:
     include_entities:
       - media_player.television
@@ -11,14 +11,16 @@ homekit:
       - light.led_strip
       - light.string_lights
       - switch.ikea_control_outlet  # Air purifier
-      - switch.entone
-      - switch.receiver
+      - switch.slot_1  # entone
+      - switch.slot_2
+      - switch.slot_3  # receiver
+      - switch.slot_4
       - cover.ikea_fyrtur
       - cover.ikea_fyrtur_2
       - cover.ikea_fyrtur_3
       - binary_sensor.xiaomi_contact_sensor  # Door
       - binary_sensor.xiaomi_contact_sensor_2  # Bathroom door
-      - binary_sensor.xiaomi_contact_sensor_3  # Fridge door
+      - binary_sensor.window
       - binary_sensor.kitchen_occupancy
       - binary_sensor.bathroom_occupancy
       - binary_sensor.living_room_occupancy
@@ -28,15 +30,17 @@ homekit:
       - sensor.xiaomi_humidity_2
 
   entity_config:
-    switch.socket:
-      type: outlet
     switch.ikea_control_outlet:
       type: outlet
     switch.ikea_control_outlet_2:
       type: outlet
-    switch.entone:
+    switch.slot_1:
       type: outlet
-    switch.receiver:
+    switch.slot_2:
+      type: outlet
+    switch.slot_3:
+      type: outlet
+    switch.slot_4:
       type: outlet
     media_player.television: 
       feature_list:
