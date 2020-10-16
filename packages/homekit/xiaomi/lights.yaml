@@ -12,6 +12,10 @@ yeelight:
     10.10.10.201:
       name: LED Strip
       model: strip1
+    10.10.10.203:
+      name: Desk Light
+      model: lamp1
+    
 
 
 homeassistant:
@@ -19,9 +23,8 @@ homeassistant:
     light.xiaomi_ww_bulb:
       icon: mdi:floor-lamp
       friendly_name: Bathroom Light
-
     light.led_strip:
       icon: mdi:led-strip-variant
-      friendly_name: LED Strip
-
+    light.desk_light:
+      icon: mdi:desk-lamp
 

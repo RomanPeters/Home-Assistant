@@ -5,7 +5,7 @@ cover:
     position_topic: zigbee2mqtt/ikea_fyrtur
     set_position_topic: zigbee2mqtt/ikea_fyrtur/set
     value_template: "{{ value_json.position }}"
-    set_position_template: "{ \"position\":{{ position }} }"
+    set_position_template: "{ \"position\": {{ position }} }"
 
   - platform: mqtt
     name: IKEA Fyrtur 2

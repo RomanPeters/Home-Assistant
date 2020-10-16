@@ -13,4 +13,5 @@ custom_components/
 tts/
 known_devices.yaml
 id_rsa.pub
+.ssh/
 
