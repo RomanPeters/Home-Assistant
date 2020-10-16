@@ -17,23 +17,23 @@ automation:
         entity_id: cover.ikea_fyrtur
         to: 'closed'
       - platform: state
-        entity_id: light.ikea_rgbw
+        entity_id: light.ikea_rgbw_bulb
         to: 'off'
       - platform: state
-        entity_id: light.ikea_rgbw_2
+        entity_id: light.ikea_rgbw_bulb_2
         to: 'off'
     condition:
       - condition: state
         entity_id: cover.ikea_fyrtur
         state: 'closed'
       - condition: state
-        entity_id: light.ikea_rgbw
+        entity_id: light.ikea_rgbw_bulb
         state: 'off'
       - condition: state
-        entity_id: light.ikea_rgbw_2
+        entity_id: light.ikea_rgbw_bulb_2
         state: 'off'
     action:
-      - wait_template: "{{ is_state('media_player.television', 'off') }}"
+      - wait_template: "{{ is_state('media_player.television', 'off') or is_state('media_player.television', 'unavailable')}}"
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.dim_mode

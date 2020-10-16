@@ -1,0 +1,116 @@
+automation:
+  - id: television_remote_up
+    alias: Television Remote Up
+    trigger:
+      platform: event
+      event_type: homekit_tv_remote_key_pressed
+      event_data:
+        key_name: arrow_up
+    action:
+      service: remote.send_command
+      entity_id: remote.remote_broadlink
+      data:
+        device: television
+        command: up
+            #      service: androidtv.adb_command
+            #      data:
+            #        entity_id: media_player.androidtv
+            #        command: "UP"
+
+  - id: television_remote_down
+    alias: Television Remote Down
+    trigger:
+      platform: event
+      event_type: homekit_tv_remote_key_pressed
+      event_data:
+        key_name: arrow_down
+    action:
+      service: remote.send_command
+      entity_id: remote.remote_broadlink
+      data:
+        device: television
+        command: down  
+            #      service: androidtv.adb_command
+            #      data:
+            #        entity_id: media_player.androidtv
+            #        command: "DOWN"
+
+  - id: television_remote_right
+    alias: Television Remote Right
+    trigger:
+      platform: event
+      event_type: homekit_tv_remote_key_pressed
+      event_data:
+        key_name: arrow_right
+    action:
+      service: remote.send_command
+      entity_id: remote.remote_broadlink
+      data:
+        device: television
+        command: right 
+            #      service: androidtv.adb_command
+            #      data:
+            #        entity_id: media_player.androidtv
+            #        command: "RIGHT"
+
+  - id: television_remote_left
+    alias: Television Remote Left
+    trigger:
+      platform: event
+      event_type: homekit_tv_remote_key_pressed
+      event_data:
+        key_name: arrow_left
+    action:
+      service: remote.send_command
+      entity_id: remote.remote_broadlink
+      data:
+        device: television
+        command: left
+            #     service: androidtv.adb_command
+            #      data:
+            #        entity_id: media_player.androidtv
+            #        command: "LEFT"
+
+  - id: television_remote_select
+    alias: Television Remote Select
+    trigger:
+      platform: event
+      event_type: homekit_tv_remote_key_pressed
+      event_data:
+        key_name: select
+    action:
+      service: remote.send_command
+      entity_id: remote.remote_broadlink
+      data:
+        device: television
+        command: ok
+
+  - id: television_remote_back
+    alias: Television Remote Back
+    trigger:
+      platform: event
+      event_type: homekit_tv_remote_key_pressed
+      event_data:
+        key_name: back
+    action:
+      service: remote.send_command
+      entity_id: remote.remote_broadlink
+      data:
+        device: television
+        command: back
+
+  - id: television_remote_information
+    alias: Television Remote Information
+    trigger:
+      platform: event
+      event_type: homekit_tv_remote_key_pressed
+      event_data:
+        key_name: information
+    action:
+      service: remote.send_command
+      entity_id: remote.remote_broadlink
+      data:
+        device: television
+        command: sources
+
+

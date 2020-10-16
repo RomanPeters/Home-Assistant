@@ -1,39 +1,138 @@
+---
 media_player:
   - platform: androidtv
     name: AndroidTV
-    host: 10.10.10.29
-    #    adb_server_ip: 10.10.10.10
+    host: "10.10.10.29"
+          #    #    adb_server_ip: 10.10.10.10
     apps:
       com.plexapp.android: "Plex"
       com.netflix.ninja: "Netflix"
       com.google.android.youtube.tv: "YouTube"
       org.droidtv.nettvapp2786: "NPO"
-      org.droidtv.nettvapp2512: "RTL XL"
-      com.ted.android.tv: "TED"
-      org.droidtv.playtv: "Television"
+          #      org.droidtv.nettvapp2512: "RTL XL"
+          #      com.ted.android.tv: "TED"
+          #      org.droidtv.playtv: "Television"
 
-  - platform: universal
+  - platform: philips_android_tv
     name: Television
-    children:
-      - media_player.androidtv
-    state_template: >
-      {% if is_state('media_player.androidtv', 'idle') or is_state('media_player.androidtv', 'off') or is_state('media_player.androidtv', 'unavailable')%}
-        off
-      {% else %}
-      {{ states('media_player.androidtv') }}
-      {% endif %}
-    commands:
-      turn_on:
-        service: media_player.turn_on
-        data:
-          entity_id: media_player.androidtv
+    host: "10.10.10.29"
+    mac: "70:af:24:b8:8b:80"
+    username: "ry3S5uBScUhI707D"
+    password: "6024eeb47b5aa386e0cf2844f206b58133511a842d65c5b59492202bba50a5cc"  # password shmassword
 
+automation:
+  - id: television_on_assurance
+    alias: Television On Assurance
+    trigger: 
+      - platform: state
+        entity_id: media_player.television
+        to:  'on'
+    action:
+      - service: remote.send_command
+        entity_id: remote.remote_broadlink
+        data:
+          device: television
+          command: home
+
+#  - id: television_off_assurance
+#    alias: Television Off Assurance
+#    trigger:
+#      - platform: state
+#        entity_id: media_player.androidtv
+#        to:  'off'
+#    action:
+#      - service: remote.send_command
+#        entity_id: remote.remote_broadlink
+#        data:
+#          device: television
+#          command: power
+
+  - id: television_home_assurance
+    alias: Television Home Assurance
+    mode: parallel
+    trigger:
+      - platform: event
+        event_type: homekit_tv_remote_key_pressed
+        event_data:
+          key_name: back
+    action:
+      - wait_for_trigger:
+          - platform: event
+            event_type: homekit_tv_remote_key_pressed
+            event_data:
+              key_name: back
+        timeout: '00:00:1'
+        continue_on_timeout: false
+      - wait_for_trigger:
+          - platform: event
+            event_type: homekit_tv_remote_key_pressed
+            event_data:
+              key_name: back
+        timeout: '00:00:1'
+        continue_on_timeout: false
+      - service: remote.send_command
+        entity_id: remote.remote_broadlink
+        data:
+          device: television
+          command: home
+      - service: automation.turn_off
+        entity_id: automation.television_home_assurance
+      - service: automation.turn_on
+        entity_id: automation.television_home_assurance
+
+  - id: television_source_assurance_netflix
+    alias: Television Source Assurance Netflix
+    trigger: 
+      - platform: event
+        event_type: call_service       
+        event_data:
+          service: select_source
+          service_data:
+            entity_id: media_player.television
+            source: Netflix
+    action:
+      - service: media_player.select_source
+        entity_id: media_player.androidtv
+        data:
+          source: Netflix
+
+  - id: television_source_assurance_plex
+    alias: Television Source Assurance Plex
+    trigger:
+      - platform: event
+        event_type: call_service
+        event_data:
+          service: select_source
+          service_data:
+            entity_id: media_player.television
+            source: Plex
+    action:
+      - service: media_player.select_source
+        entity_id: media_player.androidtv
+        data:
+          source: Plex
+
+  - id: television_source_assurance_youtube
+    alias: Television Source Assurance YouTube
+    trigger:
+      - platform: event
+        event_type: call_service
+        event_data:
+          service: select_source
+          service_data:
+            entity_id: media_player.television
+            source: YouTube
+    action:
+      - service: media_player.select_source
+        entity_id: media_player.androidtv
+        data:
+          source: YouTube
 
 homeassistant:
   customize:
     media_player.androidtv:
       device_class: tv
-      source_list: [Television,Netflix,Plex,YouTube]
+      #      source_list: [Television,Netflix,Plex,YouTube]
 
     media_player.television:
       icon: mdi:television

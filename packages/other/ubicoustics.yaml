@@ -1,0 +1,9 @@
+sensor:
+  - platform: "mqtt"
+    name: Ubicoustics
+    state_topic: "ubicoustics/state"
+    icon: "mdi:head-cog-outline"
+#    value_template: "{{ value_json.click }}"
+#    json_attributes_topic: "zigbee2mqtt/xiaomi_wall_switch"
+#    force_update: true
+

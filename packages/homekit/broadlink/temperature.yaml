@@ -1,0 +1,8 @@
+sensor:
+  - platform: template
+    sensors:
+      adjusted_broadlink_temperature:
+        friendly_name: Living Room Temperature
+        unit_of_measurement: '°C'
+        device_class: temperature
+        value_template: "{{ states('sensor.broadlink_temperature')|float - 2.2 }}"
