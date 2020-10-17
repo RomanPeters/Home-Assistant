@@ -25,7 +25,9 @@ automation:
     alias: iPhone Start Charging
     trigger: 
       - platform: event
-        event_type: ios_charger_connected
+        event_type: shortcut_event
+        event_data:
+          name: charger_connected
     action:
       - service: input_boolean.turn_on
         data:
@@ -36,9 +38,35 @@ automation:
     alias: iPhone Stop Charging
     trigger: 
       - platform: event
-        event_type: ios_charger_disconnected
+        event_type: shortcut_event
+        event_data:
+          name: charger_disconnected 
     action:
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.iphone_charging
-      
+
+  - id: start_do_not_disturb
+    alias: Start Do Not Disturb
+    trigger:
+      - platform: event
+        event_type: shortcut_event
+        event_data:
+          name: do_not_disturb_on
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.do_not_disturb
+
+
+  - id: stop_do_not_disturb
+    alias: Stop Do Not Disturb
+    trigger: 
+      - platform: event
+        event_type: shortcut_event
+        event_data:
+          name: do_not_disturb_off
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.do_not_disturb

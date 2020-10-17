@@ -1,0 +1,26 @@
+automation:
+  - id: powernap_start
+    alias: Powernap Start
+    trigger:
+      - platform: event
+        event_type: shortcut_event
+        event_data:
+          name: powernap
+    action:
+      - delay:
+          minutes: "{{ trigger.event.data.length }}"
+      - service: cover.open_cover
+        entity_id: cover.covers
+
+  - id: powernap_stop
+    alias: Powernap Stop
+    trigger:
+      - platform: event
+        event_type: shortcut_event
+        event_data:
+          name: do_not_disturb_off
+    action:
+      - service: automation.turn_off
+        entity_id: automation.powernap_start
+      - service: automation.turn_on
+        entity_id: automation.powernap_start

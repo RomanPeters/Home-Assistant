@@ -13,27 +13,11 @@ automation:
   - id: turn_dim_mode_on
     alias: Turn Dim Mode On
     trigger:
-      - platform: state
-        entity_id: cover.ikea_fyrtur
-        to: 'closed'
-      - platform: state
-        entity_id: light.ikea_rgbw_bulb
-        to: 'off'
-      - platform: state
-        entity_id: light.ikea_rgbw_bulb_2
-        to: 'off'
-    condition:
-      - condition: state
-        entity_id: cover.ikea_fyrtur
-        state: 'closed'
-      - condition: state
-        entity_id: light.ikea_rgbw_bulb
-        state: 'off'
-      - condition: state
-        entity_id: light.ikea_rgbw_bulb_2
-        state: 'off'
+      - platform: event
+        event_type: shortcut_event
+        event_data:
+          name: bedtime_starts
     action:
-      - wait_template: "{{ is_state('media_player.television', 'off') or is_state('media_player.television', 'unavailable')}}"
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.dim_mode
@@ -108,6 +92,7 @@ automation:
       - wait_template: "{{ is_state('binary_sensor.kitchen_occupancy', 'off') }}"
       - service: light.turn_off
         data:
+          transition: 30
           entity_id: light.led_strip
       - wait_template: "{{ is_state('binary_sensor.bathroom_occupancy', 'off') }}"
       - service: input_number.set_value
@@ -137,5 +122,6 @@ automation:
       - wait_template: "{{ is_state('binary_sensor.kitchen_occupancy', 'off') }}"
       - service: light.turn_off
         data:
+          transition: 30
           entity_id: light.ikea_rgbw_bulb_2
 
