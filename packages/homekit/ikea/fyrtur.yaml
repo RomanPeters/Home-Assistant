@@ -23,6 +23,13 @@ cover:
     value_template: "{{ value_json.position }}"
     set_position_template: "{ \"position\":{{ position }} }"
 
+  - platform: group
+    name: Covers
+    entities:
+      - cover.ikea_fyrtur
+      - cover.ikea_fyrtur_2
+      - cover.ikea_fyrtur_3
+
 sensor:
   - platform: mqtt
     name: Battery Fyrtur
